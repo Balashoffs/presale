@@ -2,6 +2,7 @@ import 'package:presale/src/domain/models/v3/design/calc_division_row/calc_divis
 import 'package:presale/src/domain/models/v3/design/commercial%20offer/commercial%20offer.dart';
 import 'package:presale/src/domain/models/v3/design/custom_fuctors/custom_factors.dart';
 import 'package:presale/src/domain/models/v3/design/division_result/division_result.dart';
+import 'package:presale/src/domain/models/v4/design/divison_table/divison_resource_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/division_row_data.dart';
 
 class Calculator {
@@ -46,10 +47,11 @@ class Calculator {
 
   double calcClearCost(DivisionRowDataValueChangeNotifier row) {
     return (row.data.employee.workingRatePerDay *
-        row.deadline.value*
-        row.hardFactor.value *
-        row.squareFactor.value *
-        row.userUsingFactor.value).roundToDouble();
+            row.deadline.value *
+            row.hardFactor.value *
+            row.squareFactor.value *
+            row.userUsingFactor.value)
+        .roundToDouble();
   }
 
   double calcWithMargin(DivisionRowDataValueChangeNotifier row) {
@@ -71,5 +73,16 @@ class Calculator {
       fullRateOfCO: totalWithMargin,
       fullRateOfCOWithTax: totalWithTax,
     );
+  }
+
+  double calcDivisionSummary(
+    DivisionResourceViewModel divisionResourceViewModel,
+  ) {
+    return divisionResourceViewModel.resourceCostPerDay *
+        divisionResourceViewModel.resourceUsingFactorVN.value *
+        divisionResourceViewModel.squareFactorVN.value *
+        divisionResourceViewModel.complexFactorVN.value *
+        divisionResourceViewModel.workDaysVN.value *
+        divisionResourceViewModel.resourceQntVN.value;
   }
 }

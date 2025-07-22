@@ -11,7 +11,7 @@ class CollumAttribute {
 }
 
 
-final List<CollumAttribute> calculateCollumAttributes = [
+final List<CollumAttribute> divisionTableAttributes = [
   CollumAttribute(name: '', width: 64.0, tooltip: ''),
   CollumAttribute(name: 'Наименование', width: 368, tooltip: ''),
   CollumAttribute(name: 'Шифр', width: 88.0, tooltip: 'Шифр Раздела'),
@@ -24,4 +24,29 @@ final List<CollumAttribute> calculateCollumAttributes = [
   CollumAttribute(name: 'Расходы', width: 88.0, tooltip: 'Накладные расходы при проектировании (от 1% до 15%)'),
   CollumAttribute(name: 'Маржа', width: 88.0, tooltip: ''),
   CollumAttribute(name: 'Итого с НДС', width: 196.0, tooltip: 'Стоимость за раздел вместе с расходами, маржой и НДС')
+];
+
+
+final List<CollumAttribute> divisionResourceTableAttributes = [
+  CollumAttribute(name: '', width: 64.0, tooltip: ''),
+  CollumAttribute(name: 'Наименование', width: 368, tooltip: ''),
+  CollumAttribute(name: 'Ресурс', width: 88.0, tooltip: 'Должность специалиста'),
+  CollumAttribute(name: 'Кол-во', width: 88.0, tooltip: 'Количество сотрудников'),
+  CollumAttribute(name: 'За день', width: 88.0, tooltip: 'Ставка в день'),
+  CollumAttribute(name: 'За месяц', width: 88.0, tooltip: 'Ставка в месяц'),
+  CollumAttribute(name: 'Дни', width: 88.0, tooltip: 'Рабочие дни'),
+  CollumAttribute(name: 'По сложности', width: 96.0, tooltip: 'Коэфициент по сложности'),
+  CollumAttribute(name: 'По площади', width: 128.0, tooltip: 'Коэфициент по площади'),
+  CollumAttribute(name: 'Участие', width: 128.0, tooltip: 'Коэфициент участия'),
+  CollumAttribute(name: 'Итого по ресурсу', width: 88.0, tooltip: 'Итого по конкретной должности'),
+];
+
+final List<CollumAttribute> divisionMarginTableAttributes = [
+  CollumAttribute(name: 'Наименование', width: 368, tooltip: ''),
+  CollumAttribute(name: 'Себестоимость', width: 88.0, tooltip: 'Себестоимость раздела'),
+  CollumAttribute(name: 'Накладные', width: 88.0, tooltip: 'Накладные расходы'),
+  CollumAttribute(name: 'Наценка', width: 88.0, tooltip: 'Маржинальность'),
+  CollumAttribute(name: 'Итого', width: 88.0, tooltip: 'Итого стоимость, без НДС'),
+  CollumAttribute(name: 'с НДС', width: 88.0, tooltip: 'Стоимость по разделу с НДС'),
+
 ];

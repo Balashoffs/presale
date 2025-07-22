@@ -126,7 +126,7 @@ class CalculatorDivisionsTableStory extends StatelessWidget {
                     .rowDivisionDataListVN,
                 builder: (context, value, child) {
                   return DivisionsTableWidget(
-                    rowAttributes: calculateCollumAttributes,
+                    rowAttributes: divisionTableAttributes,
                     tableDataRows: value,
                     onRemoveRow: context
                         .read<CalculateDivisionValueBlocCubit>()
