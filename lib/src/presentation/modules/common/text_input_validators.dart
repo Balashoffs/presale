@@ -32,12 +32,22 @@ FormFieldValidator<String>? onlyInfiniteNumberValidator = (value) {
   }return null;
 };
 
-FormFieldValidator<String>? onlyNumberValidator = (value) {
+FormFieldValidator<String>? onlyFactorValidator = (value) {
   if(value == null) {
     return 'ошибка';
   } else if (!RegExp(r'^\d+$').hasMatch(value)){
     return '0-9';
   }else if(value.length > 3){
     return '1-999%';
+  } return null;
+};
+
+FormFieldValidator<String>? onlyIntValidator = (value) {
+  if(value == null) {
+    return 'ошибка';
+  } else if (!RegExp(r'^\d+$').hasMatch(value)){
+    return '0-9';
+  }else if(value.length > 3){
+    return '1-999';
   } return null;
 };

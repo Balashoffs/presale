@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/domain/models/v3/design/divison/division.dart';
+import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_atributes.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/custon_text_input.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/division_row_data.dart';
 
-import '../../../../../common/text_input_validators.dart';
+import '../../../../common/text_input_validators.dart';
 
-typedef OnRemoveRow = Function(DivisionRowDataValueChangeNotifier row);
+typedef OnRemoveRow = Function(DivisionResourceRowViewModel row);
 
-class DivisionsTableWidget extends StatefulWidget {
-  const DivisionsTableWidget({
+class DivisionsResourceTableWidget extends StatefulWidget {
+  const DivisionsResourceTableWidget({
     super.key,
     required this.rowAttributes,
     required this.tableDataRows,
@@ -18,14 +18,14 @@ class DivisionsTableWidget extends StatefulWidget {
   });
 
   final List<CollumAttribute> rowAttributes;
-  final List<DivisionRowDataValueChangeNotifier> tableDataRows;
+  final List<DivisionResourceRowViewModel> tableDataRows;
   final OnRemoveRow onRemoveRow;
 
   @override
-  State<DivisionsTableWidget> createState() => _DivisionsTableWidgetState();
+  State<DivisionsResourceTableWidget> createState() => _DivisionsResourceTableWidgetState();
 }
 
-class _DivisionsTableWidgetState extends State<DivisionsTableWidget> {
+class _DivisionsResourceTableWidgetState extends State<DivisionsResourceTableWidget> {
   void _scrollListener(ScrollController verticalScrollController) {
     verticalScrollController.addListener(() {
       if (verticalScrollController.hasClients) {
@@ -87,6 +87,18 @@ class _DivisionsTableWidgetState extends State<DivisionsTableWidget> {
     );
   }
 
+  Widget _buildIntInputCell(ValueNotifier<int> valueNotifier) {
+    return Center(
+      child: CustomTextInput(
+        hintText: '${(valueNotifier.value) }%',
+        onChanged: (input) {
+          onChangeIntValue(valueNotifier, input);
+        },
+        validator: onlyIntValidator,
+      ),
+    );
+  }
+
   Widget _buildFactorInputCell(ValueNotifier<double> valueNotifier) {
     return Center(
       child: CustomTextInput(
@@ -124,7 +136,7 @@ class _DivisionsTableWidgetState extends State<DivisionsTableWidget> {
     );
   }
 
-  Widget _buildCellWithMultiLine(Division label) {
+  Widget _buildCellWithMultiLine(String label) {
     return DecoratedBox(
       decoration: const BoxDecoration(),
       child: Padding(
@@ -136,7 +148,7 @@ class _DivisionsTableWidgetState extends State<DivisionsTableWidget> {
             child: Tooltip(
               message: label.toString(),
               child: Text(
-                label.name,
+                label,
                 maxLines: 3,
                 softWrap: true,
                 overflow: TextOverflow.ellipsis,
@@ -178,24 +190,16 @@ class _DivisionsTableWidgetState extends State<DivisionsTableWidget> {
               const Icon(MoonIcons.controls_close_16_light),
               () => widget.onRemoveRow(row),
             ),
-            _buildCellWithMultiLine(row.data),
-            _buildTextCell(row.data.shortName),
-            //hardFactor
-            _buildFactorInputCell(row.hardFactor),
-            //squareFactor
-            _buildFactorInputCell(row.squareFactor),
-            //userUsingFactor
-            _buildFactorInputCell(row.userUsingFactor),
-            //deadline
-            _buildDayInputCell(row.deadline),
-            //userSalaryPerDay
-            _buildTextCell(row.data.employee.workingRatePerDay),
-            _buildTextWithNotifier(row.costPrice),
-            //overPriceFactor
-            _buildFactorInputCell(row.overPriceFactor),
-            //marginFactor
-            _buildFactorInputCell(row.marginFactor),
-            _buildTextWithNotifier(row.costWithTax),
+            _buildTextCell(row.divisionShortName),
+            _buildCellWithMultiLine(row.divisionName),
+            _buildTextCell(row.resourceName),
+            _buildIntInputCell(row.resourceQntVN),
+            _buildTextCell(row.resourceCostPerDay),
+            _buildIntInputCell(row.workDaysVN),
+            _buildFactorInputCell(row.complexFactorVN),
+            _buildFactorInputCell(row.squareFactorVN),
+            _buildFactorInputCell(row.resourceUsingFactorVN),
+            _buildTextWithNotifier(row.summaryResourceRowCostVN),
           ],
         );
       },
@@ -210,6 +214,16 @@ class _DivisionsTableWidgetState extends State<DivisionsTableWidget> {
       }
     }
   }
+
+  void onChangeIntValue(ValueNotifier<int> value, String? newValue){
+    if(newValue != null){
+      int? tryParse = newValue.length < 4 ? int.tryParse(newValue) : null;
+      if(tryParse != null){
+        value.value = tryParse;
+      }
+    }
+  }
+
 
   void onChangeDyaValue(ValueNotifier<double> value, String? newValue){
     if(newValue != null){

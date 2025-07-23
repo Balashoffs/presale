@@ -29,11 +29,11 @@ final List<CollumAttribute> divisionTableAttributes = [
 
 final List<CollumAttribute> divisionResourceTableAttributes = [
   CollumAttribute(name: '', width: 64.0, tooltip: ''),
-  CollumAttribute(name: 'Наименование', width: 368, tooltip: ''),
+  CollumAttribute(name: 'Шифр', width: 88, tooltip: ''),
+  CollumAttribute(name: 'Раздел', width: 368, tooltip: ''),
   CollumAttribute(name: 'Ресурс', width: 88.0, tooltip: 'Должность специалиста'),
   CollumAttribute(name: 'Кол-во', width: 88.0, tooltip: 'Количество сотрудников'),
   CollumAttribute(name: 'За день', width: 88.0, tooltip: 'Ставка в день'),
-  CollumAttribute(name: 'За месяц', width: 88.0, tooltip: 'Ставка в месяц'),
   CollumAttribute(name: 'Дни', width: 88.0, tooltip: 'Рабочие дни'),
   CollumAttribute(name: 'По сложности', width: 96.0, tooltip: 'Коэфициент по сложности'),
   CollumAttribute(name: 'По площади', width: 128.0, tooltip: 'Коэфициент по площади'),

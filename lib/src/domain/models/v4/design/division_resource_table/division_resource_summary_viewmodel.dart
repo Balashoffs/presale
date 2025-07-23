@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 
-class DivisionResourceSummaryViewModel extends ChangeNotifier {
+class DivisionResourceSummaryViewModel {
   final String divisionType;
   final ValueNotifier<Map<String, DivisionResourceRowViewModel>>
   _selfCostSummaryOfDivisions = ValueNotifier({});
 
-  double _summary = 0.0;
-
-  double get summary => _summary;
+  final ValueNotifier<double> summary = ValueNotifier(0.0);
 
   List<DivisionResourceRowViewModel> get rows =>
       _selfCostSummaryOfDivisions.value.values.toList();
@@ -30,9 +28,10 @@ class DivisionResourceSummaryViewModel extends ChangeNotifier {
   }
 
   void _listener() {
-    _summary = _selfCostSummaryOfDivisions.value.values
+    double rawSummary = _selfCostSummaryOfDivisions.value.values
         .map((e) => e.summaryResourceRowCostVN.value)
         .reduce((value, element) => value + element);
-    notifyListeners();
+
+    summary.value = double.parse(rawSummary.toStringAsFixed(2));
   }
 }
