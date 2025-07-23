@@ -3,7 +3,7 @@ import 'package:presale/src/data/v3/calucator.dart';
 import 'package:presale/src/domain/models/v3/design/input_data/input_data_design.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_dto.dart';
 
-class DivisionResourceViewModel {
+class DivisionResourceRowViewModel{
   //Имя раздела
   final String divisionName;
 
@@ -29,17 +29,15 @@ class DivisionResourceViewModel {
   final ValueNotifier<double> resourceUsingFactorVN = ValueNotifier(0.0);
 
   // Стоимость задествия должности по конкретному разделу
-  final ValueNotifier<double> divisionPerResourceRowCostVN = ValueNotifier(0.0);
+  final ValueNotifier<double> summaryResourceRowCostVN = ValueNotifier(0.0);
+
 
   // Ставка в день
   final double resourceCostPerDay;
 
-  // Ставка за месяц
-  final double resourceCostPerMonth;
-
   final Calculator _calculator;
 
-  DivisionResourceViewModel({
+  DivisionResourceRowViewModel({
     required DivisionResourceDTO divisionResourceDTO,
     required InputDataDesign inputDataDesign,
     required Calculator calculator,
@@ -48,7 +46,6 @@ class DivisionResourceViewModel {
        resourceName = divisionResourceDTO.resourceName,
        divisionShortName = divisionResourceDTO.divisionShortName,
        resourceCostPerDay = divisionResourceDTO.resourceCostPerDay,
-       resourceCostPerMonth = divisionResourceDTO.resourceCostPerMonth,
        complexFactorVN = ValueNotifier(inputDataDesign.complexityFactor),
        squareFactorVN = ValueNotifier(inputDataDesign.squareFactor);
 
@@ -62,6 +59,6 @@ class DivisionResourceViewModel {
 
   void _listener() {
     double summary = _calculator.calcDivisionSummary(this);
-    divisionPerResourceRowCostVN.value = summary;
+    summaryResourceRowCostVN.value = summary;
   }
 }

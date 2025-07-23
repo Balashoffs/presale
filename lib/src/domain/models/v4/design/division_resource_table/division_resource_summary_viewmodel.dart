@@ -1,28 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 
 class DivisionResourceSummaryViewModel extends ChangeNotifier {
-  final ValueNotifier<Map<String, double>> selfCostSummaryOfDivisions =
-      ValueNotifier({});
+  final String divisionType;
+  final ValueNotifier<Map<String, DivisionResourceRowViewModel>>
+  _selfCostSummaryOfDivisions = ValueNotifier({});
+
   double _summary = 0.0;
 
   double get summary => _summary;
 
-  void addNewDivisionResourceCost(String resource, double value) {
-    selfCostSummaryOfDivisions.value.putIfAbsent(resource, () => value);
+  List<DivisionResourceRowViewModel> get rows =>
+      _selfCostSummaryOfDivisions.value.values.toList();
+
+  DivisionResourceSummaryViewModel({required this.divisionType}) {
+    _selfCostSummaryOfDivisions.addListener(_listener);
   }
 
-  void updateNewDivisionResourceCost(String resource, double value) {
-    selfCostSummaryOfDivisions.value.update(resource, (value) => value);
+  void addNewDivisionResourceCost(
+    String resource,
+    DivisionResourceRowViewModel value,
+  ) {
+    _selfCostSummaryOfDivisions.value.putIfAbsent(resource, () => value);
+    value.summaryResourceRowCostVN.addListener(_listener);
   }
 
-  void removeDivisionResourceCost(String resource, double value) {
-    selfCostSummaryOfDivisions.value.remove(resource);
+  void removeDivisionResourceCost(String resource) {
+    _selfCostSummaryOfDivisions.value.remove(resource);
   }
 
   void _listener() {
-    _summary = selfCostSummaryOfDivisions.value.values.reduce(
-      (value, element) => value + element,
-    );
+    _summary = _selfCostSummaryOfDivisions.value.values
+        .map((e) => e.summaryResourceRowCostVN.value)
+        .reduce((value, element) => value + element);
     notifyListeners();
   }
 }

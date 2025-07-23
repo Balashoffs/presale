@@ -2,7 +2,7 @@ import 'package:presale/src/domain/models/v3/design/calc_division_row/calc_divis
 import 'package:presale/src/domain/models/v3/design/commercial%20offer/commercial%20offer.dart';
 import 'package:presale/src/domain/models/v3/design/custom_fuctors/custom_factors.dart';
 import 'package:presale/src/domain/models/v3/design/division_result/division_result.dart';
-import 'package:presale/src/domain/models/v4/design/divison_table/divison_resource_viewmodel.dart';
+import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/division_row_data.dart';
 
 class Calculator {
@@ -76,7 +76,7 @@ class Calculator {
   }
 
   double calcDivisionSummary(
-    DivisionResourceViewModel divisionResourceViewModel,
+    DivisionResourceRowViewModel divisionResourceViewModel,
   ) {
     return divisionResourceViewModel.resourceCostPerDay *
         divisionResourceViewModel.resourceUsingFactorVN.value *

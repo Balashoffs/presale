@@ -1,12 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'devision_resource_pojo.freezed.dart';
+part 'division_resource_row_pojo.g.dart';
 
-part 'devision_resource_pojo.g.dart';
+part 'division_resource_row_pojo.freezed.dart';
 
 @freezed
-class DivisionResource with _$DivisionResource {
-  const factory DivisionResource({
+class DivisionResourceRowPojo with _$DivisionResourceRowPojo {
+  const factory DivisionResourceRowPojo({
     required String divisionName,
     required String divisionShortName,
     required String resourceName,
@@ -16,11 +16,9 @@ class DivisionResource with _$DivisionResource {
     required double squareFactor,
     required double resourceUsingFactor,
     required double divisionPerResourceRowCost,
-    required double divisionSummaryCost,
     required double resourceCostPerDay,
-    required double resourceCostPerMonth,
-  }) = _DivisionResource;
+  }) = _DivisionResourceRowPojo;
 
-  factory DivisionResource.fromJson(Map<String, dynamic> json) =>
-      _$DivisionResourceFromJson(json);
+  factory DivisionResourceRowPojo.fromJson(Map<String, dynamic> json) =>
+      _$DivisionResourceRowPojoFromJson(json);
 }

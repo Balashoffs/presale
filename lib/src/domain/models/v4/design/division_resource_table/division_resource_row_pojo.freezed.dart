@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'devision_resource_pojo.dart';
+part of 'division_resource_row_pojo.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,14 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
-DivisionResource _$DivisionResourceFromJson(Map<String, dynamic> json) {
-  return _DivisionResource.fromJson(json);
+DivisionResourceRowPojo _$DivisionResourceRowPojoFromJson(
+  Map<String, dynamic> json,
+) {
+  return _DivisionResourceRowPojo.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DivisionResource {
+mixin _$DivisionResourceRowPojo {
   String get divisionName => throw _privateConstructorUsedError;
   String get divisionShortName => throw _privateConstructorUsedError;
   String get resourceName => throw _privateConstructorUsedError;
@@ -30,26 +32,24 @@ mixin _$DivisionResource {
   double get squareFactor => throw _privateConstructorUsedError;
   double get resourceUsingFactor => throw _privateConstructorUsedError;
   double get divisionPerResourceRowCost => throw _privateConstructorUsedError;
-  double get divisionSummaryCost => throw _privateConstructorUsedError;
   double get resourceCostPerDay => throw _privateConstructorUsedError;
-  double get resourceCostPerMonth => throw _privateConstructorUsedError;
 
-  /// Serializes this DivisionResource to a JSON map.
+  /// Serializes this DivisionResourceRowPojo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of DivisionResource
+  /// Create a copy of DivisionResourceRowPojo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DivisionResourceCopyWith<DivisionResource> get copyWith =>
+  $DivisionResourceRowPojoCopyWith<DivisionResourceRowPojo> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DivisionResourceCopyWith<$Res> {
-  factory $DivisionResourceCopyWith(
-    DivisionResource value,
-    $Res Function(DivisionResource) then,
-  ) = _$DivisionResourceCopyWithImpl<$Res, DivisionResource>;
+abstract class $DivisionResourceRowPojoCopyWith<$Res> {
+  factory $DivisionResourceRowPojoCopyWith(
+    DivisionResourceRowPojo value,
+    $Res Function(DivisionResourceRowPojo) then,
+  ) = _$DivisionResourceRowPojoCopyWithImpl<$Res, DivisionResourceRowPojo>;
   @useResult
   $Res call({
     String divisionName,
@@ -61,23 +61,24 @@ abstract class $DivisionResourceCopyWith<$Res> {
     double squareFactor,
     double resourceUsingFactor,
     double divisionPerResourceRowCost,
-    double divisionSummaryCost,
     double resourceCostPerDay,
-    double resourceCostPerMonth,
   });
 }
 
 /// @nodoc
-class _$DivisionResourceCopyWithImpl<$Res, $Val extends DivisionResource>
-    implements $DivisionResourceCopyWith<$Res> {
-  _$DivisionResourceCopyWithImpl(this._value, this._then);
+class _$DivisionResourceRowPojoCopyWithImpl<
+  $Res,
+  $Val extends DivisionResourceRowPojo
+>
+    implements $DivisionResourceRowPojoCopyWith<$Res> {
+  _$DivisionResourceRowPojoCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DivisionResource
+  /// Create a copy of DivisionResourceRowPojo
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -91,9 +92,7 @@ class _$DivisionResourceCopyWithImpl<$Res, $Val extends DivisionResource>
     Object? squareFactor = null,
     Object? resourceUsingFactor = null,
     Object? divisionPerResourceRowCost = null,
-    Object? divisionSummaryCost = null,
     Object? resourceCostPerDay = null,
-    Object? resourceCostPerMonth = null,
   }) {
     return _then(
       _value.copyWith(
@@ -133,17 +132,9 @@ class _$DivisionResourceCopyWithImpl<$Res, $Val extends DivisionResource>
                 ? _value.divisionPerResourceRowCost
                 : divisionPerResourceRowCost // ignore: cast_nullable_to_non_nullable
                       as double,
-            divisionSummaryCost: null == divisionSummaryCost
-                ? _value.divisionSummaryCost
-                : divisionSummaryCost // ignore: cast_nullable_to_non_nullable
-                      as double,
             resourceCostPerDay: null == resourceCostPerDay
                 ? _value.resourceCostPerDay
                 : resourceCostPerDay // ignore: cast_nullable_to_non_nullable
-                      as double,
-            resourceCostPerMonth: null == resourceCostPerMonth
-                ? _value.resourceCostPerMonth
-                : resourceCostPerMonth // ignore: cast_nullable_to_non_nullable
                       as double,
           )
           as $Val,
@@ -152,12 +143,12 @@ class _$DivisionResourceCopyWithImpl<$Res, $Val extends DivisionResource>
 }
 
 /// @nodoc
-abstract class _$$DivisionResourceImplCopyWith<$Res>
-    implements $DivisionResourceCopyWith<$Res> {
-  factory _$$DivisionResourceImplCopyWith(
-    _$DivisionResourceImpl value,
-    $Res Function(_$DivisionResourceImpl) then,
-  ) = __$$DivisionResourceImplCopyWithImpl<$Res>;
+abstract class _$$DivisionResourceRowPojoImplCopyWith<$Res>
+    implements $DivisionResourceRowPojoCopyWith<$Res> {
+  factory _$$DivisionResourceRowPojoImplCopyWith(
+    _$DivisionResourceRowPojoImpl value,
+    $Res Function(_$DivisionResourceRowPojoImpl) then,
+  ) = __$$DivisionResourceRowPojoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({
@@ -170,22 +161,24 @@ abstract class _$$DivisionResourceImplCopyWith<$Res>
     double squareFactor,
     double resourceUsingFactor,
     double divisionPerResourceRowCost,
-    double divisionSummaryCost,
     double resourceCostPerDay,
-    double resourceCostPerMonth,
   });
 }
 
 /// @nodoc
-class __$$DivisionResourceImplCopyWithImpl<$Res>
-    extends _$DivisionResourceCopyWithImpl<$Res, _$DivisionResourceImpl>
-    implements _$$DivisionResourceImplCopyWith<$Res> {
-  __$$DivisionResourceImplCopyWithImpl(
-    _$DivisionResourceImpl _value,
-    $Res Function(_$DivisionResourceImpl) _then,
+class __$$DivisionResourceRowPojoImplCopyWithImpl<$Res>
+    extends
+        _$DivisionResourceRowPojoCopyWithImpl<
+          $Res,
+          _$DivisionResourceRowPojoImpl
+        >
+    implements _$$DivisionResourceRowPojoImplCopyWith<$Res> {
+  __$$DivisionResourceRowPojoImplCopyWithImpl(
+    _$DivisionResourceRowPojoImpl _value,
+    $Res Function(_$DivisionResourceRowPojoImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of DivisionResource
+  /// Create a copy of DivisionResourceRowPojo
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -199,12 +192,10 @@ class __$$DivisionResourceImplCopyWithImpl<$Res>
     Object? squareFactor = null,
     Object? resourceUsingFactor = null,
     Object? divisionPerResourceRowCost = null,
-    Object? divisionSummaryCost = null,
     Object? resourceCostPerDay = null,
-    Object? resourceCostPerMonth = null,
   }) {
     return _then(
-      _$DivisionResourceImpl(
+      _$DivisionResourceRowPojoImpl(
         divisionName: null == divisionName
             ? _value.divisionName
             : divisionName // ignore: cast_nullable_to_non_nullable
@@ -241,17 +232,9 @@ class __$$DivisionResourceImplCopyWithImpl<$Res>
             ? _value.divisionPerResourceRowCost
             : divisionPerResourceRowCost // ignore: cast_nullable_to_non_nullable
                   as double,
-        divisionSummaryCost: null == divisionSummaryCost
-            ? _value.divisionSummaryCost
-            : divisionSummaryCost // ignore: cast_nullable_to_non_nullable
-                  as double,
         resourceCostPerDay: null == resourceCostPerDay
             ? _value.resourceCostPerDay
             : resourceCostPerDay // ignore: cast_nullable_to_non_nullable
-                  as double,
-        resourceCostPerMonth: null == resourceCostPerMonth
-            ? _value.resourceCostPerMonth
-            : resourceCostPerMonth // ignore: cast_nullable_to_non_nullable
                   as double,
       ),
     );
@@ -260,8 +243,8 @@ class __$$DivisionResourceImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$DivisionResourceImpl implements _DivisionResource {
-  const _$DivisionResourceImpl({
+class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
+  const _$DivisionResourceRowPojoImpl({
     required this.divisionName,
     required this.divisionShortName,
     required this.resourceName,
@@ -271,13 +254,11 @@ class _$DivisionResourceImpl implements _DivisionResource {
     required this.squareFactor,
     required this.resourceUsingFactor,
     required this.divisionPerResourceRowCost,
-    required this.divisionSummaryCost,
     required this.resourceCostPerDay,
-    required this.resourceCostPerMonth,
   });
 
-  factory _$DivisionResourceImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DivisionResourceImplFromJson(json);
+  factory _$DivisionResourceRowPojoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DivisionResourceRowPojoImplFromJson(json);
 
   @override
   final String divisionName;
@@ -298,22 +279,18 @@ class _$DivisionResourceImpl implements _DivisionResource {
   @override
   final double divisionPerResourceRowCost;
   @override
-  final double divisionSummaryCost;
-  @override
   final double resourceCostPerDay;
-  @override
-  final double resourceCostPerMonth;
 
   @override
   String toString() {
-    return 'DivisionResource(divisionName: $divisionName, divisionShortName: $divisionShortName, resourceName: $resourceName, resourceQnt: $resourceQnt, workDays: $workDays, complexFactor: $complexFactor, squareFactor: $squareFactor, resourceUsingFactor: $resourceUsingFactor, divisionPerResourceRowCost: $divisionPerResourceRowCost, divisionSummaryCost: $divisionSummaryCost, resourceCostPerDay: $resourceCostPerDay, resourceCostPerMonth: $resourceCostPerMonth)';
+    return 'DivisionResourceRowPojo(divisionName: $divisionName, divisionShortName: $divisionShortName, resourceName: $resourceName, resourceQnt: $resourceQnt, workDays: $workDays, complexFactor: $complexFactor, squareFactor: $squareFactor, resourceUsingFactor: $resourceUsingFactor, divisionPerResourceRowCost: $divisionPerResourceRowCost, resourceCostPerDay: $resourceCostPerDay)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DivisionResourceImpl &&
+            other is _$DivisionResourceRowPojoImpl &&
             (identical(other.divisionName, divisionName) ||
                 other.divisionName == divisionName) &&
             (identical(other.divisionShortName, divisionShortName) ||
@@ -336,12 +313,8 @@ class _$DivisionResourceImpl implements _DivisionResource {
                 ) ||
                 other.divisionPerResourceRowCost ==
                     divisionPerResourceRowCost) &&
-            (identical(other.divisionSummaryCost, divisionSummaryCost) ||
-                other.divisionSummaryCost == divisionSummaryCost) &&
             (identical(other.resourceCostPerDay, resourceCostPerDay) ||
-                other.resourceCostPerDay == resourceCostPerDay) &&
-            (identical(other.resourceCostPerMonth, resourceCostPerMonth) ||
-                other.resourceCostPerMonth == resourceCostPerMonth));
+                other.resourceCostPerDay == resourceCostPerDay));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -357,30 +330,28 @@ class _$DivisionResourceImpl implements _DivisionResource {
     squareFactor,
     resourceUsingFactor,
     divisionPerResourceRowCost,
-    divisionSummaryCost,
     resourceCostPerDay,
-    resourceCostPerMonth,
   );
 
-  /// Create a copy of DivisionResource
+  /// Create a copy of DivisionResourceRowPojo
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DivisionResourceImplCopyWith<_$DivisionResourceImpl> get copyWith =>
-      __$$DivisionResourceImplCopyWithImpl<_$DivisionResourceImpl>(
-        this,
-        _$identity,
-      );
+  _$$DivisionResourceRowPojoImplCopyWith<_$DivisionResourceRowPojoImpl>
+  get copyWith =>
+      __$$DivisionResourceRowPojoImplCopyWithImpl<
+        _$DivisionResourceRowPojoImpl
+      >(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DivisionResourceImplToJson(this);
+    return _$$DivisionResourceRowPojoImplToJson(this);
   }
 }
 
-abstract class _DivisionResource implements DivisionResource {
-  const factory _DivisionResource({
+abstract class _DivisionResourceRowPojo implements DivisionResourceRowPojo {
+  const factory _DivisionResourceRowPojo({
     required final String divisionName,
     required final String divisionShortName,
     required final String resourceName,
@@ -390,13 +361,11 @@ abstract class _DivisionResource implements DivisionResource {
     required final double squareFactor,
     required final double resourceUsingFactor,
     required final double divisionPerResourceRowCost,
-    required final double divisionSummaryCost,
     required final double resourceCostPerDay,
-    required final double resourceCostPerMonth,
-  }) = _$DivisionResourceImpl;
+  }) = _$DivisionResourceRowPojoImpl;
 
-  factory _DivisionResource.fromJson(Map<String, dynamic> json) =
-      _$DivisionResourceImpl.fromJson;
+  factory _DivisionResourceRowPojo.fromJson(Map<String, dynamic> json) =
+      _$DivisionResourceRowPojoImpl.fromJson;
 
   @override
   String get divisionName;
@@ -417,16 +386,12 @@ abstract class _DivisionResource implements DivisionResource {
   @override
   double get divisionPerResourceRowCost;
   @override
-  double get divisionSummaryCost;
-  @override
   double get resourceCostPerDay;
-  @override
-  double get resourceCostPerMonth;
 
-  /// Create a copy of DivisionResource
+  /// Create a copy of DivisionResourceRowPojo
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DivisionResourceImplCopyWith<_$DivisionResourceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$DivisionResourceRowPojoImplCopyWith<_$DivisionResourceRowPojoImpl>
+  get copyWith => throw _privateConstructorUsedError;
 }

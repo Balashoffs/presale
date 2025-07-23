@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'devision_resource_pojo.dart';
+part of 'division_resource_row_pojo.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DivisionResourceImpl _$$DivisionResourceImplFromJson(
+_$DivisionResourceRowPojoImpl _$$DivisionResourceRowPojoImplFromJson(
   Map<String, dynamic> json,
-) => _$DivisionResourceImpl(
+) => _$DivisionResourceRowPojoImpl(
   divisionName: json['divisionName'] as String,
   divisionShortName: json['divisionShortName'] as String,
   resourceName: json['resourceName'] as String,
@@ -19,13 +19,11 @@ _$DivisionResourceImpl _$$DivisionResourceImplFromJson(
   resourceUsingFactor: (json['resourceUsingFactor'] as num).toDouble(),
   divisionPerResourceRowCost: (json['divisionPerResourceRowCost'] as num)
       .toDouble(),
-  divisionSummaryCost: (json['divisionSummaryCost'] as num).toDouble(),
   resourceCostPerDay: (json['resourceCostPerDay'] as num).toDouble(),
-  resourceCostPerMonth: (json['resourceCostPerMonth'] as num).toDouble(),
 );
 
-Map<String, dynamic> _$$DivisionResourceImplToJson(
-  _$DivisionResourceImpl instance,
+Map<String, dynamic> _$$DivisionResourceRowPojoImplToJson(
+  _$DivisionResourceRowPojoImpl instance,
 ) => <String, dynamic>{
   'divisionName': instance.divisionName,
   'divisionShortName': instance.divisionShortName,
@@ -36,7 +34,5 @@ Map<String, dynamic> _$$DivisionResourceImplToJson(
   'squareFactor': instance.squareFactor,
   'resourceUsingFactor': instance.resourceUsingFactor,
   'divisionPerResourceRowCost': instance.divisionPerResourceRowCost,
-  'divisionSummaryCost': instance.divisionSummaryCost,
   'resourceCostPerDay': instance.resourceCostPerDay,
-  'resourceCostPerMonth': instance.resourceCostPerMonth,
 };
