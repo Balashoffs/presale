@@ -1,11 +1,11 @@
-abstract class InputResultDataSource<T> {
-  const InputResultDataSource();
+abstract class DesignPresaleDataSource<T> {
+  const DesignPresaleDataSource();
 
-  Future<T> getInputResult(String id);
+  Future<T> getDesignPresale(String id);
 
-  Future<bool> deleteInputResult(String id);
+  Future<bool> deleteDesignPresale(String id);
 
-  Future<bool> addInputResult(T result);
+  Future<bool> addDesignPresale(T result);
   // Future<bool> loadFromExcel()
 }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:presale/src/presentation/modules/v4/design/navi/service_navi.dart';
 import 'package:provider/provider.dart';
 
 import 'package:presale/src/di/di.dart';
@@ -55,8 +56,8 @@ class ObjectInputDataConsumerWidget extends StatelessWidget {
     return BlocConsumer<ObjectDataCubit, ObjectInputDataState>(
       listener: (context, state) {
         state.whenOrNull(
-          nextPage: () =>
-              context.go('/$inputDataRoutePath/$divisionCalculateRoutePath'),
+          nextPage: (type) =>
+              context.go('/$inputDataRoutePath/$divisionResourceCalculateRoutePath'),
         );
       },
       builder: (context, state) {

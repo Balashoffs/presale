@@ -49,6 +49,7 @@ class _CustomTextInputState extends State<CustomTextInput> {
   @override
   Widget build(BuildContext context) {
     return MoonFormTextInput(
+      textAlign: TextAlign.center,
       controller: _textController,
       enabled: true,
       textInputSize: MoonTextInputSize.sm,
@@ -60,25 +61,12 @@ class _CustomTextInputState extends State<CustomTextInput> {
       inactiveBorderColor: colorTable(context)[40],
       hoverBorderColor: colorTable(context)[40],
       errorColor: colorTable(context)[40],
-      // borderRadius: BorderRadius.circular(8.toDouble()),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       hintText: widget.hintText,
       validator: widget.validator,
       autofocus: widget.autofocus,
       onTapOutside: (PointerDownEvent _) =>
           FocusManager.instance.primaryFocus?.unfocus(),
-      // leading: widget.leading != null
-      //     ? Icon(widget.leading, size: 16)
-      //     : null,
-      // trailing: MouseRegion(
-      //   cursor: SystemMouseCursors.click,
-      //   child: GestureDetector(
-      //     child: widget.trailing != null
-      //         ? Icon(widget.trailing, size: 16)
-      //         : null,
-      //     onTap: () => _textController.clear(),
-      //   ),
-      // ),
       onChanged: widget.onChanged,
       helper: widget.helperText != null ? Text(widget.helperText!) : null,
     );

@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:presale/src/data/v3/calucator.dart';
+import 'package:presale/src/data/v3/design_calculator.dart';
 import 'package:presale/src/domain/models/v3/design/custom_fuctors/custom_factors.dart';
 import 'package:presale/src/domain/models/v3/design/divison/division.dart';
 
@@ -33,7 +33,7 @@ class DivisionRowData {
 
 class DivisionRowDataValueChangeNotifier extends ChangeNotifier {
   final Division data;
-  final Calculator calculator;
+  final DesignOfferCalculator calculator;
 
   final ValueNotifier<double> hardFactor = ValueNotifier(1.0);
   final ValueNotifier<double> squareFactor = ValueNotifier(1.0);

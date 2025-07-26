@@ -29,16 +29,16 @@ final List<CollumAttribute> divisionTableAttributes = [
 
 final List<CollumAttribute> divisionResourceTableAttributes = [
   CollumAttribute(name: '', width: 64.0, tooltip: ''),
-  CollumAttribute(name: 'Шифр', width: 88, tooltip: ''),
-  CollumAttribute(name: 'Раздел', width: 368, tooltip: ''),
-  CollumAttribute(name: 'Ресурс', width: 88.0, tooltip: 'Должность специалиста'),
+  CollumAttribute(name: 'Шифр', width: 64, tooltip: ''),
+  CollumAttribute(name: 'Раздел', width: 312, tooltip: ''),
+  CollumAttribute(name: 'Ресурс', width: 312.0, tooltip: 'Должность специалиста'),
   CollumAttribute(name: 'Кол-во', width: 88.0, tooltip: 'Количество сотрудников'),
   CollumAttribute(name: 'За день', width: 88.0, tooltip: 'Ставка в день'),
   CollumAttribute(name: 'Дни', width: 88.0, tooltip: 'Рабочие дни'),
-  CollumAttribute(name: 'По сложности', width: 96.0, tooltip: 'Коэфициент по сложности'),
-  CollumAttribute(name: 'По площади', width: 128.0, tooltip: 'Коэфициент по площади'),
+  CollumAttribute(name: 'КС', width: 96.0, tooltip: 'Коэфициент по сложности'),
+  CollumAttribute(name: 'КП', width: 128.0, tooltip: 'Коэфициент по площади'),
   CollumAttribute(name: 'Участие', width: 128.0, tooltip: 'Коэфициент участия'),
-  CollumAttribute(name: 'Итого по ресурсу', width: 88.0, tooltip: 'Итого по конкретной должности'),
+  CollumAttribute(name: 'Итого', width: 128.0, tooltip: 'Итого по конкретной должности'),
 ];
 
 final List<CollumAttribute> divisionMarginTableAttributes = [

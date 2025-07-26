@@ -9,32 +9,32 @@
 import 'package:presale/src/data/core/csv_parser.dart';
 
 class DivisionResourceDTO {
+  final int id;
   final String divisionName;
   final String divisionShortName;
   final String resourceName;
   final double resourceCostPerDay;
-  final double resourceCostPerMonth;
 
   const DivisionResourceDTO({
+    required this.id,
     required this.divisionName,
     required this.divisionShortName,
     required this.resourceName,
     required this.resourceCostPerDay,
-    required this.resourceCostPerMonth,
   });
 
   @override
   String toString() {
-    return 'DivisionResourceDTO{divisionName: $divisionName, divisionShortName: $divisionShortName, resourceName: $resourceName, resourceCostPerDay: $resourceCostPerDay, resourceCostPerMonth: $resourceCostPerMonth}';
+    return 'DivisionResourceDTO{divisionName: $divisionName, divisionShortName: $divisionShortName, resourceName: $resourceName, resourceCostPerDay: $resourceCostPerDay,}';
   }
 
   factory DivisionResourceDTO.fromCsvRow(List<dynamic> row) {
     return DivisionResourceDTO(
-      divisionShortName: row[0],
-      divisionName: row[1],
-      resourceName: row[2],
-      resourceCostPerDay: double.tryParse(row[3]) ?? 0.0,
-      resourceCostPerMonth: double.tryParse(row[4]) ?? 0.0
+      id: int.parse(row[0]),
+      divisionShortName: row[1],
+      divisionName: row[2],
+      resourceName: row[3],
+      resourceCostPerDay: double.tryParse(row[4]) ?? 0.0,
     );
   }
 }
@@ -43,7 +43,7 @@ typedef DivisionWithResourceDtoParser =
     List<DivisionResourceDTO> Function(List<List<dynamic>> rows);
 
 class JobCostDtoBuilder extends CsvParser<DivisionResourceDTO> {
-  JobCostDtoBuilder(super.file);
+  JobCostDtoBuilder() : super('assets/calculator_data/razdely_resursy.csv');
 
   DivisionWithResourceDtoParser get _parser =>
       (rows) => rows

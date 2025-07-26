@@ -5,7 +5,7 @@ import 'package:presale/src/domain/models/v3/design/division_result/division_res
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/division_row_data.dart';
 
-class Calculator {
+class DesignOfferCalculator {
   /*
 
     Алгоритм расчета одного раздела
@@ -76,7 +76,7 @@ class Calculator {
   }
 
   double calcDivisionSummary(
-    DivisionResourceRowViewModel divisionResourceViewModel,
+    DivisionResourceRowViewModelWithValueNotifier divisionResourceViewModel,
   ) {
     return divisionResourceViewModel.resourceCostPerDay *
         divisionResourceViewModel.resourceUsingFactorVN.value *

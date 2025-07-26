@@ -1,17 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:presale/src/presentation/core/navigation/app_routes.dart';
 import 'package:presale/src/presentation/core/navigation/not_found_page.dart';
-import 'package:presale/src/presentation/modules/auth/navi/auth_navi.dart';
-import 'package:presale/src/presentation/modules/construction/navi/construction_navi.dart';
-import 'package:presale/src/presentation/modules/data_viewer/navi/data_viewer_navi.dart';
-import 'package:presale/src/presentation/modules/data_viewer/shell_navi.dart';
 import 'package:presale/src/presentation/modules/service_type_select/navi/service_navi.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/object_data_input/object_input_data_page.dart';
+import 'package:presale/src/presentation/modules/v3/design/input/calculate/calculator_table.dart';
 import 'package:presale/src/presentation/modules/v3/design/navi/service_navi.dart';
+import 'package:presale/src/presentation/modules/v4/design/navi/service_navi.dart';
 
 import 'base_route.dart';
 
@@ -27,8 +22,9 @@ class AppRouterV3 extends GoRouter {
             routes: [
               ServiceTypeSelectRoute(
                 routes: [
-                  InputDataRoute(routes: [DivisionCalculateRoute(routes: []),])
-
+                  InputDataRoute(
+                    routes: [DivisionResourceCalculateRoute(routes: [])],
+                  ),
                 ],
               ),
             ],

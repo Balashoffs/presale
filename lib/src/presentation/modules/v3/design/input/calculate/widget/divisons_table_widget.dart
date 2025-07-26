@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/domain/models/v3/design/divison/division.dart';
-import 'package:presale/src/presentation/modules/v3/design/common/collum_atributes.dart';
+import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/custon_text_input.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/division_row_data.dart';
 

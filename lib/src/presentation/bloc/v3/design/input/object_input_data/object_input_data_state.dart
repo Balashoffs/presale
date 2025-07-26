@@ -11,6 +11,6 @@ LoadedState
 class ObjectInputDataState with _$ObjectInputDataState {
   const factory ObjectInputDataState.initial() = _Initial;
   const factory ObjectInputDataState.enterInputData(InputFactorsViewModel factors) = _EnterInputData;
-  const factory ObjectInputDataState.nextPage() = _NextPage;
+  const factory ObjectInputDataState.nextPage(String? type) = _NextPage;
   const factory ObjectInputDataState.errorMessage(String errorText) = _ErrorMessage;
 }
