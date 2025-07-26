@@ -66,17 +66,17 @@ class DivisionResourceRowVM_VN {
        resourceName = divisionResourceModel.resourceName,
        divisionShortName = divisionResourceModel.divisionShortName,
        resourceCostPerDay = divisionResourceModel.resourceCostPerDay,
-       resourceQntVN = ValueNotifier(divisionResourceModel.resourceQnt ?? 1),
+       resourceQntVN = ValueNotifier(divisionResourceModel.resourceQnt),
        complexFactorVN = ValueNotifier(
-         divisionResourceModel.complexFactor ?? 0.0,
+         divisionResourceModel.complexFactor,
        ),
        resourceUsingFactorVN = ValueNotifier(
-         divisionResourceModel.resourceUsingFactor ?? 0.0,
+         divisionResourceModel.resourceUsingFactor,
        ),
-       workDaysVN = ValueNotifier(divisionResourceModel.workDays ?? 0),
+       workDaysVN = ValueNotifier(divisionResourceModel.workDays),
        squareFactorVN = ValueNotifier(inputDataDesign.squareFactor),
        summaryResourceRowCostVN = ValueNotifier(
-         divisionResourceModel.summaryResourceRowCost ?? 0.0,
+         divisionResourceModel.summaryResourceRowCost,
        ) {
     initListeners();
   }

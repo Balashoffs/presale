@@ -1,8 +1,5 @@
 import 'package:presale/src/data/core/db_client.dart';
 import 'package:presale/src/data/data_sources/input_result_data_source.dart';
-import 'package:presale/src/domain/models/v2/constructing/model/input/construction_state/section_data.dart';
-import 'package:presale/src/domain/models/v2/constructing/model/input/input_result.dart';
-import 'package:presale/src/domain/models/v3/design/input_data/input_data_design.dart';
 import 'package:presale/src/domain/models/v4/design/design_presale_pojo.dart';
 
 class DesignPresaleDataSourceLocal

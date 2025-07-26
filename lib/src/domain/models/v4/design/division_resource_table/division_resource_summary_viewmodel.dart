@@ -93,7 +93,7 @@ class DivisionResourceSummaryViewModel extends ChangeNotifier {
   void _listener() {
     double rawSummary = _divisionResourceRowVM.isNotEmpty
         ? _divisionResourceRowVM
-              .map((e) => e.summaryResourceRowCost ?? 0.0)
+              .map((e) => e.summaryResourceRowCost)
               .reduce((value, element) => value + element)
         : 0.0;
     summary.value = double.parse(rawSummary.toStringAsFixed(2));

@@ -75,12 +75,12 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
   );
 }
 
-Widget buildIntInputCell(ValueNotifier<int> valueNotifier, [String dimension = '']) {
+Widget buildIntInputCell(ValueNotifier<int> valueNotifier) {
   return Center(
     child: SizedBox(
       width: 56,
       child: CustomTextInput(
-        hintText: dimension.isEmpty ? '${(valueNotifier.value)}' : '${(valueNotifier.value)}$dimension',
+        hintText: '${(valueNotifier.value)}',
         onChanged: (input) {
           onChangeIntValue(valueNotifier, input);
         },
@@ -90,12 +90,12 @@ Widget buildIntInputCell(ValueNotifier<int> valueNotifier, [String dimension = '
   );
 }
 
-Widget buildFactorInputCell(ValueNotifier<double> valueNotifier, [String dimension = '']) {
+Widget buildFactorInputCell(ValueNotifier<double> valueNotifier) {
   return Center(
     child: SizedBox(
       width: 56,
       child: CustomTextInput(
-        hintText: dimension.isEmpty ? '${(valueNotifier.value)}' : '${(valueNotifier.value)}$dimension',
+        hintText: '${(valueNotifier.value)}',
         onChanged: (input) {
           onChangeFactorValue(valueNotifier, input);
         },
@@ -140,11 +140,8 @@ Widget buildCellWithMultiLine(String label) {
 
 void onChangeFactorValue(ValueNotifier<double> value, String? newValue) {
   if (newValue != null) {
-    print('onChangeFactorValue');
-    print('newValue::$newValue');
     double? tryParse = newValue.length < 4 ? double.tryParse(newValue) : 0.0;
     if (tryParse != null) {
-      print('tryParse::$tryParse');
       value.value = tryParse;
     }
   }
@@ -152,11 +149,8 @@ void onChangeFactorValue(ValueNotifier<double> value, String? newValue) {
 
 void onChangeIntValue(ValueNotifier<int> value, String? newValue) {
   if (newValue != null) {
-    print('onChangeIntValue');
-    print('newValue::$newValue');
     int? tryParse = newValue.length < 4 ? int.tryParse(newValue) : null;
     if (tryParse != null) {
-      print('tryParse::$tryParse');
       value.value = tryParse;
     }
   }

@@ -41,12 +41,12 @@ extension DivisionResourceRowCreater on DivisionResourceRowVM {
       divisionName: divisionName,
       divisionShortName: divisionShortName,
       resourceName: resourceName,
-      resourceQnt: resourceQnt ?? 0,
-      workDays: workDays ?? 0,
-      complexFactor: complexFactor ?? 0.0,
-      squareFactor: squareFactor ?? 0.0,
-      resourceUsingFactor: resourceUsingFactor ?? 0.0,
-      divisionPerResourceRowCost: summaryResourceRowCost ?? 0.0,
+      resourceQnt: resourceQnt,
+      workDays: workDays,
+      complexFactor: complexFactor,
+      squareFactor: squareFactor,
+      resourceUsingFactor: resourceUsingFactor,
+      divisionPerResourceRowCost: summaryResourceRowCost,
       resourceCostPerDay: resourceCostPerDay,
     );
   }
