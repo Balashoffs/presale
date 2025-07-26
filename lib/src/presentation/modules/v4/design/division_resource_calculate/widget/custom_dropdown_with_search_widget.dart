@@ -12,8 +12,8 @@ class CustomDropdownWithSearchWidget extends StatefulWidget {
     required this.enabled,
   });
 
-  final List<DivisionResourceDropdownViewModel> divisions;
-  final Function(DivisionResourceDropdownViewModel) onSelected;
+  final List<toDropdownViewModel> divisions;
+  final Function(toDropdownViewModel) onSelected;
   final bool enabled;
 
   @override
@@ -26,8 +26,8 @@ class _CustomDropdownWithSearchWidgetState
   final TextEditingController _searchController = TextEditingController();
 
   final FocusNode _focusNode = FocusNode();
-  List<DivisionResourceDropdownViewModel> _filteredOptionsList = [];
-  DivisionResourceDropdownViewModel? _selectedOption;
+  List<toDropdownViewModel> _filteredOptionsList = [];
+  toDropdownViewModel? _selectedOption;
   bool _showDropdown = false;
 
   bool get _optionIsSelected =>
@@ -42,7 +42,7 @@ class _CustomDropdownWithSearchWidgetState
 
       _filteredOptionsList = widget.divisions
           .where(
-            (DivisionResourceDropdownViewModel option) =>
+            (toDropdownViewModel option) =>
                 option.divisionName.toLowerCase().contains(_inputValue) ||
                 option.divisionShortName.toLowerCase().contains(_inputValue),
           )
@@ -51,7 +51,7 @@ class _CustomDropdownWithSearchWidgetState
     });
   }
 
-  void _handleSelect(DivisionResourceDropdownViewModel option) {
+  void _handleSelect(toDropdownViewModel option) {
     setState(() {
       _showDropdown = false;
       _searchController.clear();
@@ -118,7 +118,7 @@ class _CustomDropdownWithSearchWidgetState
                         if (index >= _filteredOptionsList.length) {
                           return const SizedBox.shrink();
                         }
-                        final DivisionResourceDropdownViewModel option =
+                        final toDropdownViewModel option =
                             _filteredOptionsList[index];
 
                         return MoonMenuItem(
@@ -141,7 +141,7 @@ class _CustomDropdownWithSearchWidgetState
           hoverBorderColor: colorTable(context)[40],
           borderRadius: BorderRadius.circular(8.0),
           textInputSize: MoonTextInputSize.md,
-          hintText: "Select single component",
+          hintText: "Найти раздел",
           controller: _searchController,
           onTap: () => _performSearch(),
           onTapOutside: (PointerDownEvent _) => _handleInputTapOutside(),

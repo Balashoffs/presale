@@ -37,13 +37,21 @@ class _CustomTextInputState extends State<CustomTextInput> {
   void initState() {
     super.initState();
     if (widget.initValue != null) {
-      _textController.text = widget.hintText;
+      // _textController.text = widget.hintText;
       _textController.addListener(_listener);
     }
   }
 
   void _listener(){
 
+  }
+
+
+  @override
+  void dispose() {
+    _textController.clear();
+    _textController.dispose();
+    super.dispose();//
   }
 
   @override
@@ -68,7 +76,7 @@ class _CustomTextInputState extends State<CustomTextInput> {
       onTapOutside: (PointerDownEvent _) =>
           FocusManager.instance.primaryFocus?.unfocus(),
       onChanged: widget.onChanged,
-      helper: widget.helperText != null ? Text(widget.helperText!) : null,
+      // helper: widget.helperText != null ? Text(widget.helperText!) : null,
     );
   }
 }

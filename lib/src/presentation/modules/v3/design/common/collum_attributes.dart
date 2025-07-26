@@ -35,10 +35,10 @@ final List<CollumAttribute> divisionResourceTableAttributes = [
   CollumAttribute(name: 'Кол-во', width: 88.0, tooltip: 'Количество сотрудников'),
   CollumAttribute(name: 'За день', width: 88.0, tooltip: 'Ставка в день'),
   CollumAttribute(name: 'Дни', width: 88.0, tooltip: 'Рабочие дни'),
-  CollumAttribute(name: 'КС', width: 96.0, tooltip: 'Коэфициент по сложности'),
-  CollumAttribute(name: 'КП', width: 128.0, tooltip: 'Коэфициент по площади'),
-  CollumAttribute(name: 'Участие', width: 128.0, tooltip: 'Коэфициент участия'),
-  CollumAttribute(name: 'Итого', width: 128.0, tooltip: 'Итого по конкретной должности'),
+  CollumAttribute(name: 'КС', width: 88.0, tooltip: 'Коэфициент по сложности'),
+  CollumAttribute(name: 'КП', width: 88.0, tooltip: 'Коэфициент по площади'),
+  CollumAttribute(name: 'Участие', width: 88.0, tooltip: 'Коэфициент участия'),
+  CollumAttribute(name: 'Итого', width: 256.0, tooltip: 'Итого по конкретной должности'),
 ];
 
 final List<CollumAttribute> divisionMarginTableAttributes = [

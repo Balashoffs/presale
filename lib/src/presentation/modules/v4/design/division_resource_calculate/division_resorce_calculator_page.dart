@@ -140,7 +140,7 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
                     rowAttributes: divisionResourceTableAttributes,
                     tableDataRows: value.divisionResourceRowViewModel,
                     firstRow:
-                        value.divisionResourceRowViewModelWithValueNotifierVN,
+                        value.divisionResourceRowVM_VN.value,
                     onRowAction: value.onRowAction,
                   );
                 },

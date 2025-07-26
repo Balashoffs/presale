@@ -9,20 +9,17 @@ import 'division_resource_summary_viewmodel.dart';
 import 'division_resource_table_pojo.dart';
 
 extension DivisionResourceTableCreater on DivisionResourceSummaryViewModel {
-  DivisionResourceTableWithTypePojo from(String divisionType) {
+  DivisionResourceTableWithTypePojo toPojo(String divisionType) {
     return DivisionResourceTableWithTypePojo(
       divisionType: divisionType,
-      rows: this.divisionResourceRowViewModel
-          .map((e) => e.toDivisionResource())
-          .toList(),
+      rows: divisionResourceRowViewModel.map((e) => e.toPojo()).toList(),
     );
   }
 }
 
-extension DivisionResourceRowViewModelExt
-    on DivisionResourceRowViewModelWithValueNotifier {
-  DivisionResourceRowViewModel toDivisionResourceRowViewModel() {
-    return DivisionResourceRowViewModel(
+extension DivisionResourceRowViewModelExt on DivisionResourceRowVM_VN {
+  DivisionResourceRowVM toRowViewModel() {
+    return DivisionResourceRowVM(
       divisionName: divisionName,
       divisionShortName: divisionShortName,
       resourceName: resourceName,
@@ -32,13 +29,14 @@ extension DivisionResourceRowViewModelExt
       squareFactor: squareFactorVN.value,
       resourceUsingFactor: resourceUsingFactorVN.value,
       summaryResourceRowCost: summaryResourceRowCostVN.value,
-      resourceCostPerDay: resourceCostPerDay, id: id,
+      resourceCostPerDay: resourceCostPerDay,
+      id: id,
     );
   }
 }
 
-extension DivisionResourceRowCreater on DivisionResourceRowViewModel {
-  DivisionResourceRowPojo toDivisionResource() {
+extension DivisionResourceRowCreater on DivisionResourceRowVM {
+  DivisionResourceRowPojo toPojo() {
     return DivisionResourceRowPojo(
       divisionName: divisionName,
       divisionShortName: divisionShortName,
@@ -52,22 +50,33 @@ extension DivisionResourceRowCreater on DivisionResourceRowViewModel {
       resourceCostPerDay: resourceCostPerDay,
     );
   }
-}
 
-extension DivisionResourceDtoExt on DivisionResourceDTO {
-  DivisionResourceRowViewModelWithValueNotifier toDivisionResourceViewModel(
+  DivisionResourceRowVM_VN toDivisionResourceViewModel(
     InputDataDesign inputDataDesign,
     DesignOfferCalculator calculator,
   ) {
-    return DivisionResourceRowViewModelWithValueNotifier(
+    return DivisionResourceRowVM_VN.fromModel(
+      divisionResourceModel: this,
+      inputDataDesign: inputDataDesign,
+      calculator: calculator,
+    );
+  }
+}
+
+extension DivisionResourceDtoExt on DivisionResourceDTO {
+  DivisionResourceRowVM_VN toRowViewModel(
+    InputDataDesign inputDataDesign,
+    DesignOfferCalculator calculator,
+  ) {
+    return DivisionResourceRowVM_VN.fromDto(
       divisionResourceDTO: this,
       inputDataDesign: inputDataDesign,
       calculator: calculator,
     );
   }
 
-  DivisionResourceDropdownViewModel toDropDownViewModel() {
-    return DivisionResourceDropdownViewModel(
+  toDropdownViewModel toDropDownViewModel() {
+    return toDropdownViewModel(
       id: id,
       divisionName: divisionName,
       divisionShortName: divisionShortName,

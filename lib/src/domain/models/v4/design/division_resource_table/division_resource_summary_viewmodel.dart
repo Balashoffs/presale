@@ -8,24 +8,21 @@ import 'package:presale/src/domain/models/v4/design/division_resource_table/exte
 import 'package:presale/src/domain/models/v4/design/division_resource_table/widget_action_type.dart';
 
 class DivisionResourceSummaryViewModel extends ChangeNotifier {
-  final List<DivisionResourceRowViewModel> _divisionResourceRowViewModel = [];
+  final List<DivisionResourceRowVM> _divisionResourceRowVM = [];
 
-  List<DivisionResourceRowViewModel> get divisionResourceRowViewModel =>
-      _divisionResourceRowViewModel;
+  List<DivisionResourceRowVM> get divisionResourceRowViewModel =>
+      _divisionResourceRowVM;
 
-  DivisionResourceRowViewModelWithValueNotifier?
-  _divisionResourceRowViewModelWithValueNotifierVN;
-
-  DivisionResourceRowViewModelWithValueNotifier?
-  get divisionResourceRowViewModelWithValueNotifierVN =>
-      _divisionResourceRowViewModelWithValueNotifierVN;
+  final ValueNotifier<DivisionResourceRowVM_VN?> divisionResourceRowVM_VN = ValueNotifier(null);
 
   final ValueNotifier<double> summary = ValueNotifier(0.0);
 
   final DropDownDivisionResourceProvider _divisionResourceProvider;
 
-  List<DivisionResourceDropdownViewModel> get notSelected =>
+  List<toDropdownViewModel> get notSelected =>
       _divisionResourceProvider.notSelected;
+
+  DivisionResourceRowVM_VN? get vn => divisionResourceRowVM_VN.value;
 
   DivisionResourceSummaryViewModel()
     : _divisionResourceProvider = DropDownDivisionResourceProvider() {
@@ -40,64 +37,62 @@ class DivisionResourceSummaryViewModel extends ChangeNotifier {
   void onRowAction(int id, WidgetActionType type) {
     switch (type) {
       case WidgetActionType.add:
-        _onSelected(id);
+        _onAdd(id);
       case WidgetActionType.delete:
-        _onUnSelected(id);
+        _onDelete(id);
       case WidgetActionType.edit:
-        _onEdit(id);
+        _onUpdate(id);
     }
   }
 
-  void _onEdit(id) {
-    if (_divisionResourceRowViewModelWithValueNotifierVN != null) {
-      DivisionResourceRowViewModel divisionResourceRowViewModel =
-          _divisionResourceRowViewModelWithValueNotifierVN!
-              .toDivisionResourceRowViewModel();
-      _divisionResourceRowViewModel.add(divisionResourceRowViewModel);
-      _divisionResourceRowViewModelWithValueNotifierVN = null;
+  void _onAdd(int selected) {
+    if (vn != null) {
+      _divisionResourceRowVM.add(
+        vn!.toRowViewModel(),
+      );
     }
-    DivisionResourceRowViewModel? found = _divisionResourceRowViewModel
-        .where((element) => element.id == id)
-        .firstOrNull;
-    if (found != null) {
-      DivisionResourceDTO? foundDR = _divisionResourceProvider?.byId(id);
-      if (foundDR != null) {
-        _divisionResourceRowViewModelWithValueNotifierVN =
-            _divisionResourceProvider.build(foundDR);
-        _divisionResourceRowViewModel.remove(found);
-        notifyListeners();
-      }
-    }
-  }
 
-  void _onSelected(int selected) {
-    DivisionResourceRowViewModelWithValueNotifier? found =
-        _divisionResourceProvider?.onSelected(selected);
-    if (found != null) {
-      if (_divisionResourceRowViewModelWithValueNotifierVN != null) {
-        _divisionResourceRowViewModel.add(
-          _divisionResourceRowViewModelWithValueNotifierVN!
-              .toDivisionResourceRowViewModel(),
-        );
-      }
-      _divisionResourceRowViewModelWithValueNotifierVN = found;
+    DivisionResourceRowVM_VN? forAdding = _divisionResourceProvider.onSelected(
+      selected,
+    );
+    if (forAdding != null) {
+      print(forAdding);
+      divisionResourceRowVM_VN.value?.clear();
+      divisionResourceRowVM_VN.value = forAdding;
       notifyListeners();
     }
   }
 
-  void _onUnSelected(int unSelected) {
-    _divisionResourceRowViewModelWithValueNotifierVN?.clear();
-    _divisionResourceRowViewModelWithValueNotifierVN = null;
-    _divisionResourceProvider?.onUnSelected(unSelected);
-    _divisionResourceRowViewModel.removeWhere(
-      (element) => element.id == unSelected,
-    );
+  void _onDelete(int unSelected) {
+    _divisionResourceProvider.onUnSelected(unSelected);
+    _divisionResourceRowVM.removeWhere((element) => element.id == unSelected);
+    divisionResourceRowVM_VN.value = null;
     notifyListeners();
   }
 
+  void _onUpdate(id) {
+    if (vn != null) {
+      DivisionResourceRowVM divisionResourceRowVM = vn!
+          .toRowViewModel();
+      _divisionResourceRowVM.add(divisionResourceRowVM);
+    }
+    DivisionResourceRowVM? forEditing = _divisionResourceRowVM
+        .where((element) => element.id == id)
+        .firstOrNull;
+    if (forEditing != null) {
+      divisionResourceRowVM_VN.value?.clear();
+      divisionResourceRowVM_VN.value = null;
+      divisionResourceRowVM_VN.value = _divisionResourceProvider.buildFromModel(
+        forEditing,
+      );
+      _divisionResourceRowVM.removeWhere((element) => element.id == id);
+      notifyListeners();
+    }
+  }
+
   void _listener() {
-    double rawSummary = _divisionResourceRowViewModel.isNotEmpty
-        ? _divisionResourceRowViewModel
+    double rawSummary = _divisionResourceRowVM.isNotEmpty
+        ? _divisionResourceRowVM
               .map((e) => e.summaryResourceRowCost ?? 0.0)
               .reduce((value, element) => value + element)
         : 0.0;
@@ -108,7 +103,7 @@ class DivisionResourceSummaryViewModel extends ChangeNotifier {
 class DropDownDivisionResourceProvider {
   final Map<DivisionResourceDTO, bool> _divisionResource = {};
 
-  List<DivisionResourceDropdownViewModel> get notSelected => _divisionResource
+  List<toDropdownViewModel> get notSelected => _divisionResource
       .entries
       .where((element) => element.value == false)
       .map((e) => e.key)
@@ -128,20 +123,22 @@ class DropDownDivisionResourceProvider {
     }
   }
 
-  DivisionResourceRowViewModelWithValueNotifier? onSelected(int id) {
+  DivisionResourceRowVM_VN? onSelected(int id) {
     DivisionResourceDTO? found = _divisionResource.keys
         .where((element) => element.id == id)
         .firstOrNull;
     if (found != null) {
       _divisionResource[found] = true;
-      return build(found);
+      return buildFromDTO(found);
     }
     return null;
   }
 
-  DivisionResourceRowViewModelWithValueNotifier build(
-    DivisionResourceDTO found,
-  ) => found.toDivisionResourceViewModel(_inputDataDesign!, _calculator);
+  DivisionResourceRowVM_VN buildFromDTO(DivisionResourceDTO found) =>
+      found.toRowViewModel(_inputDataDesign!, _calculator);
+
+  DivisionResourceRowVM_VN buildFromModel(DivisionResourceRowVM found) =>
+      found.toDivisionResourceViewModel(_inputDataDesign!, _calculator);
 
   void onUnSelected(int id) {
     DivisionResourceDTO? found = _divisionResource.keys

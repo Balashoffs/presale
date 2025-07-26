@@ -4,7 +4,7 @@ import 'package:presale/src/presentation/modules/common/text_input_validators.da
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/custon_text_input.dart';
 
-Widget addDecoration(Widget child, [bool isFistCell = true]) {
+Widget addDecoration(Widget child, [bool isFistCell = false]) {
   return  Builder(
     builder: (context) {
       return DecoratedBox(
@@ -140,27 +140,25 @@ Widget buildCellWithMultiLine(String label) {
 
 void onChangeFactorValue(ValueNotifier<double> value, String? newValue) {
   if (newValue != null) {
+    print('onChangeFactorValue');
+    print('newValue::$newValue');
     double? tryParse = newValue.length < 4 ? double.tryParse(newValue) : 0.0;
     if (tryParse != null) {
-      value.value = tryParse / 100;
+      print('tryParse::$tryParse');
+      value.value = tryParse;
     }
   }
 }
 
 void onChangeIntValue(ValueNotifier<int> value, String? newValue) {
   if (newValue != null) {
+    print('onChangeIntValue');
+    print('newValue::$newValue');
     int? tryParse = newValue.length < 4 ? int.tryParse(newValue) : null;
     if (tryParse != null) {
+      print('tryParse::$tryParse');
       value.value = tryParse;
     }
   }
 }
 
-void onChangeDyaValue(ValueNotifier<double> value, String? newValue) {
-  if (newValue != null) {
-    double? tryParse = double.tryParse(newValue);
-    if (tryParse != null) {
-      value.value = tryParse;
-    }
-  }
-}

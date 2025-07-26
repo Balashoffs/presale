@@ -76,7 +76,7 @@ class DesignOfferCalculator {
   }
 
   double calcDivisionSummary(
-    DivisionResourceRowViewModelWithValueNotifier divisionResourceViewModel,
+    DivisionResourceRowVM_VN divisionResourceViewModel,
   ) {
     return divisionResourceViewModel.resourceCostPerDay *
         divisionResourceViewModel.resourceUsingFactorVN.value *

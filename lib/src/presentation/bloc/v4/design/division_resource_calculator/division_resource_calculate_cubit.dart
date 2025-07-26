@@ -55,7 +55,7 @@ class DivisionResourceCalculateCubit
   void onNextPage() async {
     List<DivisionResourceRowPojo> rows = _resourceSummaryViewModel
         .divisionResourceRowViewModel
-        .map((e) => e.toDivisionResource())
+        .map((e) => e.toPojo())
         .toList();
 
     DesignPresalePojo designPresalePojo = await _dataSourceLocal

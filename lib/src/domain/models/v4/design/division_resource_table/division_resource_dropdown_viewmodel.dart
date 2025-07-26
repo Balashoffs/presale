@@ -1,9 +1,9 @@
-class DivisionResourceDropdownViewModel {
+class toDropdownViewModel {
   final int id;
   final String divisionName;
   final String divisionShortName;
 
-  const DivisionResourceDropdownViewModel({
+  const toDropdownViewModel({
     required this.id,
     required this.divisionName,
     required this.divisionShortName,

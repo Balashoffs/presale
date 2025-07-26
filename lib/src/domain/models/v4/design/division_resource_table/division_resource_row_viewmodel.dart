@@ -3,7 +3,7 @@ import 'package:presale/src/data/v3/design_calculator.dart';
 import 'package:presale/src/domain/models/v3/design/input_data/input_data_design.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_dto.dart';
 
-class DivisionResourceRowViewModelWithValueNotifier{
+class DivisionResourceRowVM_VN {
   //Имя раздела
   final int id;
   final String divisionName;
@@ -15,10 +15,10 @@ class DivisionResourceRowViewModelWithValueNotifier{
   final String resourceName;
 
   // Кол-во задействованных должностей
-  final ValueNotifier<int> resourceQntVN = ValueNotifier(0);
+  final ValueNotifier<int> resourceQntVN;
 
   // Кол-во задействованных дней
-  final ValueNotifier<int> workDaysVN = ValueNotifier(0);
+  final ValueNotifier<int> workDaysVN;
 
   // Коэфициент сложности
   final ValueNotifier<double> complexFactorVN;
@@ -27,28 +27,59 @@ class DivisionResourceRowViewModelWithValueNotifier{
   final ValueNotifier<double> squareFactorVN;
 
   // Коэфициент участия
-  final ValueNotifier<double> resourceUsingFactorVN = ValueNotifier(1.0);
+  final ValueNotifier<double> resourceUsingFactorVN;
 
   // Стоимость задествия должности по конкретному разделу
-  final ValueNotifier<double> summaryResourceRowCostVN = ValueNotifier(0.0);
+  final ValueNotifier<double> summaryResourceRowCostVN;
 
   // Ставка в день
   final double resourceCostPerDay;
 
   final DesignOfferCalculator _calculator;
 
-  DivisionResourceRowViewModelWithValueNotifier({
+  DivisionResourceRowVM_VN.fromDto({
     required DivisionResourceDTO divisionResourceDTO,
     required InputDataDesign inputDataDesign,
     required DesignOfferCalculator calculator,
   }) : _calculator = calculator,
        id = divisionResourceDTO.id,
+       divisionShortName = divisionResourceDTO.divisionShortName,
        divisionName = divisionResourceDTO.divisionName,
        resourceName = divisionResourceDTO.resourceName,
-       divisionShortName = divisionResourceDTO.divisionShortName,
+       resourceQntVN = ValueNotifier(0),
+       workDaysVN = ValueNotifier(0),
+       resourceUsingFactorVN = ValueNotifier(1.0),
        resourceCostPerDay = divisionResourceDTO.resourceCostPerDay,
        complexFactorVN = ValueNotifier(inputDataDesign.complexityFactor),
-       squareFactorVN = ValueNotifier(inputDataDesign.squareFactor);
+       squareFactorVN = ValueNotifier(inputDataDesign.squareFactor),
+       summaryResourceRowCostVN = ValueNotifier(0.0) {
+    initListeners();
+  }
+
+  DivisionResourceRowVM_VN.fromModel({
+    required DivisionResourceRowVM divisionResourceModel,
+    required InputDataDesign inputDataDesign,
+    required DesignOfferCalculator calculator,
+  }) : _calculator = calculator,
+       id = divisionResourceModel.id,
+       divisionName = divisionResourceModel.divisionName,
+       resourceName = divisionResourceModel.resourceName,
+       divisionShortName = divisionResourceModel.divisionShortName,
+       resourceCostPerDay = divisionResourceModel.resourceCostPerDay,
+       resourceQntVN = ValueNotifier(divisionResourceModel.resourceQnt ?? 1),
+       complexFactorVN = ValueNotifier(
+         divisionResourceModel.complexFactor ?? 0.0,
+       ),
+       resourceUsingFactorVN = ValueNotifier(
+         divisionResourceModel.resourceUsingFactor ?? 0.0,
+       ),
+       workDaysVN = ValueNotifier(divisionResourceModel.workDays ?? 0),
+       squareFactorVN = ValueNotifier(inputDataDesign.squareFactor),
+       summaryResourceRowCostVN = ValueNotifier(
+         divisionResourceModel.summaryResourceRowCost ?? 0.0,
+       ) {
+    initListeners();
+  }
 
   void initListeners() {
     resourceUsingFactorVN.addListener(_listener);
@@ -59,8 +90,11 @@ class DivisionResourceRowViewModelWithValueNotifier{
   }
 
   void _listener() {
+    print("DivisionResourceRowViewModelWithValueNotifier::_listener");
     double summary = _calculator.calcDivisionSummary(this);
+    print("summary::$summary");
     summaryResourceRowCostVN.value = summary;
+    print("summaryResourceRowCostVN::$summary");
   }
 
   void clear() {
@@ -71,9 +105,14 @@ class DivisionResourceRowViewModelWithValueNotifier{
     resourceUsingFactorVN.dispose();
     summaryResourceRowCostVN.dispose();
   }
+
+  @override
+  String toString() {
+    return 'DivisionResourceRowVM_VN{id: $id, divisionName: $divisionName, divisionShortName: $divisionShortName, resourceName: $resourceName, resourceQntVN: $resourceQntVN, workDaysVN: $workDaysVN, complexFactorVN: $complexFactorVN, squareFactorVN: $squareFactorVN, resourceUsingFactorVN: $resourceUsingFactorVN, summaryResourceRowCostVN: $summaryResourceRowCostVN, resourceCostPerDay: $resourceCostPerDay}';
+  }
 }
 
-class DivisionResourceRowViewModel {
+class DivisionResourceRowVM {
   //Имя раздела
   final int id;
   final String divisionName;
@@ -85,37 +124,37 @@ class DivisionResourceRowViewModel {
   final String resourceName;
 
   // Кол-во задействованных должностей
-  final int? resourceQnt;
+  final int resourceQnt;
 
   // Кол-во задействованных дней
-  final int? workDays;
+  final int workDays;
 
   // Коэфициент сложности
-  final double? complexFactor;
+  final double complexFactor;
 
   // Коэфициент по площади
-  final double? squareFactor;
+  final double squareFactor;
 
   // Коэфициент участия
-  final double? resourceUsingFactor;
+  final double resourceUsingFactor;
 
   // Стоимость задествия должности по конкретному разделу
-  final double? summaryResourceRowCost;
+  final double summaryResourceRowCost;
 
   // Ставка в день
   final double resourceCostPerDay;
 
-  const DivisionResourceRowViewModel({
+  const DivisionResourceRowVM({
     required this.id,
     required this.divisionName,
     required this.divisionShortName,
     required this.resourceName,
-    this.resourceQnt,
-    this.workDays,
-    this.complexFactor,
-    this.squareFactor,
-    this.resourceUsingFactor,
-    this.summaryResourceRowCost,
+    required this.resourceQnt,
+    required this.workDays,
+    required this.complexFactor,
+    required this.squareFactor,
+    required this.resourceUsingFactor,
+    required this.summaryResourceRowCost,
     required this.resourceCostPerDay,
   });
 }
