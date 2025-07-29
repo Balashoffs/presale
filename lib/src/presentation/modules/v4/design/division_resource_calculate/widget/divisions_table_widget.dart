@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
+import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_summary_viewmodel.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/widget_action_type.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 
@@ -14,12 +16,10 @@ class DivisionsResourceTableWidget extends StatefulWidget {
     required this.rowAttributes,
     required this.tableDataRows,
     required this.onRowAction,
-    this.firstRow,
   });
 
   final List<CollumAttribute> rowAttributes;
   final List<DivisionResourceRowVM> tableDataRows;
-  final DivisionResourceRowVM_VN? firstRow;
   final OnRowAction onRowAction;
 
   @override
@@ -55,57 +55,61 @@ class _DivisionsResourceTableWidgetState
   }
 
   List<MoonTableRow> _generateTableRows() {
-    int totalRow =
-        widget.tableDataRows.length + (widget.firstRow != null ? 1 : 0);
-    return List.generate(totalRow, (int index) {
-      if (index == 0 && widget.firstRow != null) {
-        final row = widget.firstRow!;
-        print(row);
-        return MoonTableRow(
-          height: 72,
-          cells: [
-            addDecoration(
-              buildCellWithIcon(
-                const Icon(MoonIcons.controls_close_16_light),
-                () => widget.onRowAction(row.id, WidgetActionType.delete),
-              ),
-              true,
-            ),
-            addDecoration(buildTextCell(row.divisionShortName)),
-            addDecoration(buildCellWithMultiLine(row.divisionName)),
-            addDecoration(buildTextCell(row.resourceName)),
-            addDecoration(buildIntInputCell(row.resourceQntVN)),
-            addDecoration(buildTextCell(row.resourceCostPerDay)),
-            addDecoration(buildIntInputCell(row.workDaysVN)),
-            addDecoration(buildFactorInputCell(row.complexFactorVN)),
-            addDecoration(buildFactorInputCell(row.squareFactorVN)),
-            addDecoration(buildFactorInputCell(row.resourceUsingFactorVN)),
-            addDecoration(buildTextWithNotifier(row.summaryResourceRowCostVN)),
-          ],
-        );
-      }
-      int newIndex = widget.firstRow == null ? index : index - 1;
-      final row = widget.tableDataRows[newIndex];
+    return List.generate(widget.tableDataRows.length, (int index) {
+      final row = widget.tableDataRows[index];
       return MoonTableRow(
-        height: 48,
+        height: 72,
         cells: [
           addDecoration(
             buildCellWithIcon(
-              const Icon(MoonIcons.generic_edit_16_light),
-              () => widget.onRowAction(row.id, WidgetActionType.edit),
+              const Icon(MoonIcons.controls_close_16_light),
+              () => widget.onRowAction(row.id, WidgetActionType.delete),
             ),
             true,
           ),
           addDecoration(buildTextCell(row.divisionShortName)),
           addDecoration(buildCellWithMultiLine(row.divisionName)),
           addDecoration(buildTextCell(row.resourceName)),
-          addDecoration(buildTextCell(row.resourceQnt)),
+          addDecoration(
+            buildIntInputCell(row.resourceQnt, (context, value) {
+              context.read<DivisionResourceSummaryViewModel>().onResourceQnt(
+                row.id,
+                value,
+              );
+            }),
+          ),
           addDecoration(buildTextCell(row.resourceCostPerDay)),
-          addDecoration(buildTextCell(row.workDays)),
-          addDecoration(buildTextCell(row.complexFactor)),
-          addDecoration(buildTextCell(row.squareFactor)),
-          addDecoration(buildTextCell(row.resourceUsingFactor)),
-          addDecoration(buildTextCell(row.summaryResourceRowCost)),
+          addDecoration(buildIntInputCell(row.workDays, (context, value) {
+            context.read<DivisionResourceSummaryViewModel>().onWorkDays(
+              row.id,
+              value,
+            );
+          })),
+          addDecoration(
+            buildFactorInputCell(row.complexFactor, (context, value) {
+              context.read<DivisionResourceSummaryViewModel>().onComplexFactor(
+                row.id,
+                value,
+              );
+            }),
+          ),
+          addDecoration(
+            buildFactorInputCell(row.squareFactor, (context, value) {
+              context.read<DivisionResourceSummaryViewModel>().onSquareFactor(
+                row.id,
+                value,
+              );
+            }),
+          ),
+          addDecoration(
+            buildFactorInputCell(row.resourceUsingFactor, (context, value) {
+              context.read<DivisionResourceSummaryViewModel>().onResourceUsingFactor(
+                row.id,
+                value,
+              );
+            }),
+          ),
+          addDecoration(buildTextWithNotifier(row.totalResourceRowCostVN)),
         ],
       );
     });

@@ -75,14 +75,14 @@ class DesignOfferCalculator {
     );
   }
 
-  double calcDivisionSummary(
-    DivisionResourceRowVM_VN divisionResourceViewModel,
+  double calcDivisionTotal(
+    DivisionResourceRowVM divisionResourceViewModel,
   ) {
     return divisionResourceViewModel.resourceCostPerDay *
-        divisionResourceViewModel.resourceUsingFactorVN.value *
-        divisionResourceViewModel.squareFactorVN.value *
-        divisionResourceViewModel.complexFactorVN.value *
-        divisionResourceViewModel.workDaysVN.value *
-        divisionResourceViewModel.resourceQntVN.value;
+        divisionResourceViewModel.resourceUsingFactor *
+        divisionResourceViewModel.squareFactor *
+        divisionResourceViewModel.complexFactor *
+        divisionResourceViewModel.workDays *
+        divisionResourceViewModel.resourceQnt;
   }
 }

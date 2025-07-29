@@ -8,34 +8,8 @@ import 'division_resource_row_viewmodel.dart';
 import 'division_resource_summary_viewmodel.dart';
 import 'division_resource_table_pojo.dart';
 
-extension DivisionResourceTableCreater on DivisionResourceSummaryViewModel {
-  DivisionResourceTableWithTypePojo toPojo(String divisionType) {
-    return DivisionResourceTableWithTypePojo(
-      divisionType: divisionType,
-      rows: divisionResourceRowViewModel.map((e) => e.toPojo()).toList(),
-    );
-  }
-}
 
-extension DivisionResourceRowViewModelExt on DivisionResourceRowVM_VN {
-  DivisionResourceRowVM toRowViewModel() {
-    return DivisionResourceRowVM(
-      divisionName: divisionName,
-      divisionShortName: divisionShortName,
-      resourceName: resourceName,
-      resourceQnt: resourceQntVN.value,
-      workDays: workDaysVN.value,
-      complexFactor: complexFactorVN.value,
-      squareFactor: squareFactorVN.value,
-      resourceUsingFactor: resourceUsingFactorVN.value,
-      summaryResourceRowCost: summaryResourceRowCostVN.value,
-      resourceCostPerDay: resourceCostPerDay,
-      id: id,
-    );
-  }
-}
-
-extension DivisionResourceRowCreater on DivisionResourceRowVM {
+extension ExtDivisionResourceRow on DivisionResourceRowVM {
   DivisionResourceRowPojo toPojo() {
     return DivisionResourceRowPojo(
       divisionName: divisionName,
@@ -46,37 +20,32 @@ extension DivisionResourceRowCreater on DivisionResourceRowVM {
       complexFactor: complexFactor,
       squareFactor: squareFactor,
       resourceUsingFactor: resourceUsingFactor,
-      divisionPerResourceRowCost: summaryResourceRowCost,
+      divisionPerResourceRowCost: totalResourceRowCostVN.value,
       resourceCostPerDay: resourceCostPerDay,
-    );
-  }
-
-  DivisionResourceRowVM_VN toDivisionResourceViewModel(
-    InputDataDesign inputDataDesign,
-    DesignOfferCalculator calculator,
-  ) {
-    return DivisionResourceRowVM_VN.fromModel(
-      divisionResourceModel: this,
-      inputDataDesign: inputDataDesign,
-      calculator: calculator,
     );
   }
 }
 
 extension DivisionResourceDtoExt on DivisionResourceDTO {
-  DivisionResourceRowVM_VN toRowViewModel(
-    InputDataDesign inputDataDesign,
-    DesignOfferCalculator calculator,
-  ) {
-    return DivisionResourceRowVM_VN.fromDto(
-      divisionResourceDTO: this,
-      inputDataDesign: inputDataDesign,
-      calculator: calculator,
+
+  DivisionResourceRowVM toDivisionResourceRowVM(InputDataDesign inputDataDesign,){
+    return DivisionResourceRowVM(
+      resourceQnt: 0,
+      resourceUsingFactor: 1.0,
+      workDays: 0,
+      divisionShortName: divisionShortName,
+      divisionName: divisionName,
+      id: id,
+      squareFactor: inputDataDesign.squareFactor,
+      complexFactor: inputDataDesign.complexityFactor,
+      resourceCostPerDay: resourceCostPerDay,
+      resourceName: resourceName
     );
+
   }
 
-  toDropdownViewModel toDropDownViewModel() {
-    return toDropdownViewModel(
+  DropdownViewModel toDropDownViewModel() {
+    return DropdownViewModel(
       id: id,
       divisionName: divisionName,
       divisionShortName: divisionShortName,

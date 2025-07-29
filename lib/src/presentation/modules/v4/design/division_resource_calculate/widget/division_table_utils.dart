@@ -4,31 +4,35 @@ import 'package:presale/src/presentation/modules/common/text_input_validators.da
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/custon_text_input.dart';
 
+
+typedef ValueChangedWithContext<T>= void Function(BuildContext context, T value);
 Widget addDecoration(Widget child, [bool isFistCell = false]) {
-  return  Builder(
+  return Builder(
     builder: (context) {
       return DecoratedBox(
-        decoration: isFistCell ? BoxDecoration() :  BoxDecoration(
-          border: Border(
-            left: Directionality.of(context) == TextDirection.ltr
-                ? Divider.createBorderSide(
-              context,
-              color: context.moonColors!.beerus,
-              width: 1,
-            )
-                : BorderSide.none,
-            right: Directionality.of(context) == TextDirection.rtl
-                ? Divider.createBorderSide(
-              context,
-              color: context.moonColors!.beerus,
-              width: 1,
-            )
-                : BorderSide.none,
-          ),
-        ),
+        decoration: isFistCell
+            ? BoxDecoration()
+            : BoxDecoration(
+                border: Border(
+                  left: Directionality.of(context) == TextDirection.ltr
+                      ? Divider.createBorderSide(
+                          context,
+                          color: context.moonColors!.beerus,
+                          width: 1,
+                        )
+                      : BorderSide.none,
+                  right: Directionality.of(context) == TextDirection.rtl
+                      ? Divider.createBorderSide(
+                          context,
+                          color: context.moonColors!.beerus,
+                          width: 1,
+                        )
+                      : BorderSide.none,
+                ),
+              ),
         child: child,
       );
-    }
+    },
   );
 }
 
@@ -75,33 +79,47 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
   );
 }
 
-Widget buildIntInputCell(ValueNotifier<int> valueNotifier) {
-  return Center(
-    child: SizedBox(
-      width: 56,
-      child: CustomTextInput(
-        hintText: '${(valueNotifier.value)}',
-        onChanged: (input) {
-          onChangeIntValue(valueNotifier, input);
-        },
-        validator: onlyIntValidator,
-      ),
-    ),
+Widget buildIntInputCell(int defaultValue, ValueChangedWithContext<int> onChanged) {
+  return Builder(
+    builder: (context) {
+      return Center(
+        child: SizedBox(
+          width: 56,
+          child: CustomTextInput(
+            hintText: '$defaultValue',
+            onChanged: (input) {
+              int? parsed = onChangeIntValue(input);
+              if(parsed != null){
+                onChanged(context, parsed);
+              }
+            },
+            validator: onlyIntValidator,
+          ),
+        ),
+      );
+    },
   );
 }
 
-Widget buildFactorInputCell(ValueNotifier<double> valueNotifier) {
-  return Center(
-    child: SizedBox(
-      width: 56,
-      child: CustomTextInput(
-        hintText: '${(valueNotifier.value)}',
-        onChanged: (input) {
-          onChangeFactorValue(valueNotifier, input);
-        },
-        validator: onlyFactorValidator,
-      ),
-    ),
+Widget buildFactorInputCell(double defaultValue, ValueChangedWithContext<double> onChanged) {
+  return Builder(
+    builder: (context) {
+      return Center(
+        child: SizedBox(
+          width: 56,
+          child: CustomTextInput(
+            hintText: '$defaultValue',
+            onChanged: (input) {
+              double? parsed = onChangeFactorValue(input);
+              if(parsed != null){
+                onChanged(context, parsed);
+              }
+            },
+            validator: onlyFactorValidator,
+          ),
+        ),
+      );
+    }
   );
 }
 
@@ -136,23 +154,22 @@ Widget buildCellWithMultiLine(String label) {
   );
 }
 
-
-
-void onChangeFactorValue(ValueNotifier<double> value, String? newValue) {
+double? onChangeFactorValue(String? newValue) {
   if (newValue != null) {
     double? tryParse = newValue.length < 4 ? double.tryParse(newValue) : 0.0;
     if (tryParse != null) {
-      value.value = tryParse;
+      return tryParse;
     }
   }
+  return null;
 }
 
-void onChangeIntValue(ValueNotifier<int> value, String? newValue) {
+int? onChangeIntValue(String? newValue) {
   if (newValue != null) {
     int? tryParse = newValue.length < 4 ? int.tryParse(newValue) : null;
     if (tryParse != null) {
-      value.value = tryParse;
+      return tryParse;
     }
   }
+  return null;
 }
-

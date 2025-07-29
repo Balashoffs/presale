@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/di/di.dart';
+import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/widget_action_type.dart';
 
 import 'package:presale/src/presentation/common/typography_page_options.dart';
@@ -16,7 +17,6 @@ import 'package:presale/src/presentation/modules/v4/design/division_resource_cal
 import 'package:presale/src/presentation/modules/v4/design/division_resource_calculate/widget/divisions_table_widget.dart';
 import 'package:presale/src/presentation/modules/v4/design/division_resource_calculate/widget/next_page_widget.dart';
 import 'package:presale/src/presentation/modules/v4/design/division_resource_calculate/widget/result_sum_widget.dart';
-import 'package:provider/provider.dart';
 
 class DivisionResourceCalculatePage extends StatelessWidget {
   const DivisionResourceCalculatePage({super.key});
@@ -25,25 +25,34 @@ class DivisionResourceCalculatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => DivisionResourceSummaryViewModel(),
-      child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            MoonButton.icon(
-              icon: Icon(MoonIcons.controls_close_16_light),
-              onTap: () {
-                context.go(pathToRootRoute);
-              },
-            ),
-          ],
-          title: Text(
-            "Расчет стадий проектирования",
-            style: getHeadingTextStyle(context, MoonTextSize.size16),
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          MoonButton.icon(
+            icon: Icon(MoonIcons.controls_close_16_light),
+            onTap: () {
+              context.go(pathToRootRoute);
+            },
           ),
+        ],
+        title: Text(
+          "Расчет стадий проектирования",
+          style: getHeadingTextStyle(context, MoonTextSize.size16),
         ),
-        body: DivisionResourceCalculateProvider(),
       ),
+      body: DivisionResourceCalculateRepository(),
+    );
+  }
+}
+
+class DivisionResourceCalculateRepository extends StatelessWidget {
+  const DivisionResourceCalculateRepository({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return RepositoryProvider(
+      create: (context) => DivisionResourceSummaryViewModel(),
+      child: DivisionResourceCalculateProvider(),
     );
   }
 }
@@ -58,7 +67,8 @@ class DivisionResourceCalculateProvider extends StatelessWidget {
         return DivisionResourceCalculateCubit(
           divisionType: 'П',
           dbClient: di.dbClientImpl,
-          resourceSummaryViewModel: context.read<DivisionResourceSummaryViewModel>()
+          resourceSummaryViewModel: context
+              .read<DivisionResourceSummaryViewModel>(),
         )..init();
       },
       child: DivisionResourceCalculateConsumer(),
@@ -103,22 +113,21 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Consumer<DivisionResourceSummaryViewModel>(
-                builder: (context, value, child) {
-                  return CustomDropdownWithSearchWidget(
-                    enabled: true,
-                    divisions: value.notSelected,
-                    onSelected: (p0) =>
-                        value.onRowAction(p0.id, WidgetActionType.add),
-                  );
-                },
+              CustomDropdownWithSearchWidget(
+                enabled: true,
+                divisions: context
+                    .read<DivisionResourceSummaryViewModel>()
+                    .unselectedRows,
+                onSelected: (p0) => context
+                    .read<DivisionResourceSummaryViewModel>()
+                    .onRowAction(p0.id, WidgetActionType.add),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ValueListenableBuilder<double>(
                   valueListenable: context
                       .read<DivisionResourceSummaryViewModel>()
-                      .summary,
+                      .summaryVN,
                   builder: (context, value, child) {
                     return ResultSumWidget(
                       name: 'Себестоимость, рубл.',
@@ -134,14 +143,17 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
           flex: 8,
           child: Builder(
             builder: (context) {
-              return Consumer<DivisionResourceSummaryViewModel>(
+              return ValueListenableBuilder<List<DivisionResourceRowVM>>(
+                valueListenable: context
+                    .read<DivisionResourceSummaryViewModel>()
+                    .selectedRows,
                 builder: (context, value, child) {
                   return DivisionsResourceTableWidget(
                     rowAttributes: divisionResourceTableAttributes,
-                    tableDataRows: value.divisionResourceRowViewModel,
-                    firstRow:
-                        value.divisionResourceRowVM_VN.value,
-                    onRowAction: value.onRowAction,
+                    tableDataRows: value,
+                    onRowAction: context
+                        .read<DivisionResourceSummaryViewModel>()
+                        .onRowAction,
                   );
                 },
               );

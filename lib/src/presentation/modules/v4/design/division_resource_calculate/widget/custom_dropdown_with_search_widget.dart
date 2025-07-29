@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_dropdown_viewmodel.dart';
+import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/presentation/common/color_options.dart'
     show colorTable;
 
@@ -12,8 +12,8 @@ class CustomDropdownWithSearchWidget extends StatefulWidget {
     required this.enabled,
   });
 
-  final List<toDropdownViewModel> divisions;
-  final Function(toDropdownViewModel) onSelected;
+  final List<DivisionResourceRowVM> divisions;
+  final Function(DivisionResourceRowVM) onSelected;
   final bool enabled;
 
   @override
@@ -26,8 +26,8 @@ class _CustomDropdownWithSearchWidgetState
   final TextEditingController _searchController = TextEditingController();
 
   final FocusNode _focusNode = FocusNode();
-  List<toDropdownViewModel> _filteredOptionsList = [];
-  toDropdownViewModel? _selectedOption;
+  List<DivisionResourceRowVM> _filteredOptionsList = [];
+  DivisionResourceRowVM? _selectedOption;
   bool _showDropdown = false;
 
   bool get _optionIsSelected =>
@@ -42,7 +42,7 @@ class _CustomDropdownWithSearchWidgetState
 
       _filteredOptionsList = widget.divisions
           .where(
-            (toDropdownViewModel option) =>
+            (DivisionResourceRowVM option) =>
                 option.divisionName.toLowerCase().contains(_inputValue) ||
                 option.divisionShortName.toLowerCase().contains(_inputValue),
           )
@@ -51,7 +51,7 @@ class _CustomDropdownWithSearchWidgetState
     });
   }
 
-  void _handleSelect(toDropdownViewModel option) {
+  void _handleSelect(DivisionResourceRowVM option) {
     setState(() {
       _showDropdown = false;
       _searchController.clear();
@@ -118,7 +118,7 @@ class _CustomDropdownWithSearchWidgetState
                         if (index >= _filteredOptionsList.length) {
                           return const SizedBox.shrink();
                         }
-                        final toDropdownViewModel option =
+                        final DivisionResourceRowVM option =
                             _filteredOptionsList[index];
 
                         return MoonMenuItem(
