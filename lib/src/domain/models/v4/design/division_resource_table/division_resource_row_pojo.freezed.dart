@@ -31,7 +31,7 @@ mixin _$DivisionResourceRowPojo {
   double get complexFactor => throw _privateConstructorUsedError;
   double get squareFactor => throw _privateConstructorUsedError;
   double get resourceUsingFactor => throw _privateConstructorUsedError;
-  double get divisionPerResourceRowCost => throw _privateConstructorUsedError;
+  double get resourceRowCost => throw _privateConstructorUsedError;
   double get resourceCostPerDay => throw _privateConstructorUsedError;
 
   /// Serializes this DivisionResourceRowPojo to a JSON map.
@@ -60,7 +60,7 @@ abstract class $DivisionResourceRowPojoCopyWith<$Res> {
     double complexFactor,
     double squareFactor,
     double resourceUsingFactor,
-    double divisionPerResourceRowCost,
+    double resourceRowCost,
     double resourceCostPerDay,
   });
 }
@@ -91,7 +91,7 @@ class _$DivisionResourceRowPojoCopyWithImpl<
     Object? complexFactor = null,
     Object? squareFactor = null,
     Object? resourceUsingFactor = null,
-    Object? divisionPerResourceRowCost = null,
+    Object? resourceRowCost = null,
     Object? resourceCostPerDay = null,
   }) {
     return _then(
@@ -128,9 +128,9 @@ class _$DivisionResourceRowPojoCopyWithImpl<
                 ? _value.resourceUsingFactor
                 : resourceUsingFactor // ignore: cast_nullable_to_non_nullable
                       as double,
-            divisionPerResourceRowCost: null == divisionPerResourceRowCost
-                ? _value.divisionPerResourceRowCost
-                : divisionPerResourceRowCost // ignore: cast_nullable_to_non_nullable
+            resourceRowCost: null == resourceRowCost
+                ? _value.resourceRowCost
+                : resourceRowCost // ignore: cast_nullable_to_non_nullable
                       as double,
             resourceCostPerDay: null == resourceCostPerDay
                 ? _value.resourceCostPerDay
@@ -160,7 +160,7 @@ abstract class _$$DivisionResourceRowPojoImplCopyWith<$Res>
     double complexFactor,
     double squareFactor,
     double resourceUsingFactor,
-    double divisionPerResourceRowCost,
+    double resourceRowCost,
     double resourceCostPerDay,
   });
 }
@@ -191,7 +191,7 @@ class __$$DivisionResourceRowPojoImplCopyWithImpl<$Res>
     Object? complexFactor = null,
     Object? squareFactor = null,
     Object? resourceUsingFactor = null,
-    Object? divisionPerResourceRowCost = null,
+    Object? resourceRowCost = null,
     Object? resourceCostPerDay = null,
   }) {
     return _then(
@@ -228,9 +228,9 @@ class __$$DivisionResourceRowPojoImplCopyWithImpl<$Res>
             ? _value.resourceUsingFactor
             : resourceUsingFactor // ignore: cast_nullable_to_non_nullable
                   as double,
-        divisionPerResourceRowCost: null == divisionPerResourceRowCost
-            ? _value.divisionPerResourceRowCost
-            : divisionPerResourceRowCost // ignore: cast_nullable_to_non_nullable
+        resourceRowCost: null == resourceRowCost
+            ? _value.resourceRowCost
+            : resourceRowCost // ignore: cast_nullable_to_non_nullable
                   as double,
         resourceCostPerDay: null == resourceCostPerDay
             ? _value.resourceCostPerDay
@@ -253,7 +253,7 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
     required this.complexFactor,
     required this.squareFactor,
     required this.resourceUsingFactor,
-    required this.divisionPerResourceRowCost,
+    required this.resourceRowCost,
     required this.resourceCostPerDay,
   });
 
@@ -277,13 +277,13 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
   @override
   final double resourceUsingFactor;
   @override
-  final double divisionPerResourceRowCost;
+  final double resourceRowCost;
   @override
   final double resourceCostPerDay;
 
   @override
   String toString() {
-    return 'DivisionResourceRowPojo(divisionName: $divisionName, divisionShortName: $divisionShortName, resourceName: $resourceName, resourceQnt: $resourceQnt, workDays: $workDays, complexFactor: $complexFactor, squareFactor: $squareFactor, resourceUsingFactor: $resourceUsingFactor, divisionPerResourceRowCost: $divisionPerResourceRowCost, resourceCostPerDay: $resourceCostPerDay)';
+    return 'DivisionResourceRowPojo(divisionName: $divisionName, divisionShortName: $divisionShortName, resourceName: $resourceName, resourceQnt: $resourceQnt, workDays: $workDays, complexFactor: $complexFactor, squareFactor: $squareFactor, resourceUsingFactor: $resourceUsingFactor, resourceRowCost: $resourceRowCost, resourceCostPerDay: $resourceCostPerDay)';
   }
 
   @override
@@ -307,12 +307,8 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
                 other.squareFactor == squareFactor) &&
             (identical(other.resourceUsingFactor, resourceUsingFactor) ||
                 other.resourceUsingFactor == resourceUsingFactor) &&
-            (identical(
-                  other.divisionPerResourceRowCost,
-                  divisionPerResourceRowCost,
-                ) ||
-                other.divisionPerResourceRowCost ==
-                    divisionPerResourceRowCost) &&
+            (identical(other.resourceRowCost, resourceRowCost) ||
+                other.resourceRowCost == resourceRowCost) &&
             (identical(other.resourceCostPerDay, resourceCostPerDay) ||
                 other.resourceCostPerDay == resourceCostPerDay));
   }
@@ -329,7 +325,7 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
     complexFactor,
     squareFactor,
     resourceUsingFactor,
-    divisionPerResourceRowCost,
+    resourceRowCost,
     resourceCostPerDay,
   );
 
@@ -360,7 +356,7 @@ abstract class _DivisionResourceRowPojo implements DivisionResourceRowPojo {
     required final double complexFactor,
     required final double squareFactor,
     required final double resourceUsingFactor,
-    required final double divisionPerResourceRowCost,
+    required final double resourceRowCost,
     required final double resourceCostPerDay,
   }) = _$DivisionResourceRowPojoImpl;
 
@@ -384,7 +380,7 @@ abstract class _DivisionResourceRowPojo implements DivisionResourceRowPojo {
   @override
   double get resourceUsingFactor;
   @override
-  double get divisionPerResourceRowCost;
+  double get resourceRowCost;
   @override
   double get resourceCostPerDay;
 

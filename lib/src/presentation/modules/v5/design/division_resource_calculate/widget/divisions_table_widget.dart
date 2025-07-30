@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
-import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_summary_viewmodel.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/widget_action_type.dart';
+import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
+import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 
 import 'division_table_utils.dart';
@@ -19,7 +19,7 @@ class DivisionsResourceTableWidget extends StatefulWidget {
   });
 
   final List<CollumAttribute> rowAttributes;
-  final List<DivisionResourceRowVM> tableDataRows;
+  final List<DivisionWithResourceRowVM> tableDataRows;
   final OnRowAction onRowAction;
 
   @override
@@ -70,26 +70,26 @@ class _DivisionsResourceTableWidgetState
           addDecoration(buildTextCell(row.divisionShortName)),
           addDecoration(buildCellWithMultiLine(row.divisionName)),
           //TODO change to dropdown widget with resource types
-          addDecoration(buildTextCell(row.resourceName)),
+          addDecoration(buildTextCell(row.resourceNameVN)),
           addDecoration(
             buildIntInputCell(row.resourceQnt, (context, value) {
-              context.read<DivisionWithResourceSummaryVM>().onResourceQnt(
+              context.read<DivisionResourceSummaryViewModel>().onResourceQnt(
                 row.id,
                 value,
               );
             }),
           ),
           //TODO listen updates after select value at resource dropdown
-          addDecoration(buildTextCell(row.resourceCostPerDay)),
+          addDecoration(buildTextCell(row.resourceCostPerDayVN)),
           addDecoration(buildIntInputCell(row.workDays, (context, value) {
-            context.read<DivisionWithResourceSummaryVM>().onWorkDays(
+            context.read<DivisionResourceSummaryViewModel>().onWorkDays(
               row.id,
               value,
             );
           })),
           addDecoration(
             buildFactorInputCell(row.complexFactor, (context, value) {
-              context.read<DivisionWithResourceSummaryVM>().onComplexFactor(
+              context.read<DivisionResourceSummaryViewModel>().onComplexFactor(
                 row.id,
                 value,
               );
@@ -97,7 +97,7 @@ class _DivisionsResourceTableWidgetState
           ),
           addDecoration(
             buildFactorInputCell(row.squareFactor, (context, value) {
-              context.read<DivisionWithResourceSummaryVM>().onSquareFactor(
+              context.read<DivisionResourceSummaryViewModel>().onSquareFactor(
                 row.id,
                 value,
               );
@@ -105,7 +105,7 @@ class _DivisionsResourceTableWidgetState
           ),
           addDecoration(
             buildFactorInputCell(row.resourceUsingFactor, (context, value) {
-              context.read<DivisionWithResourceSummaryVM>().onResourceUsingFactor(
+              context.read<DivisionResourceSummaryViewModel>().onResourceUsingFactor(
                 row.id,
                 value,
               );

@@ -15,7 +15,7 @@ class DivisionResourceRowPojo with _$DivisionResourceRowPojo {
     required double complexFactor,
     required double squareFactor,
     required double resourceUsingFactor,
-    required double divisionPerResourceRowCost,
+    required double resourceRowCost,
     required double resourceCostPerDay,
   }) = _DivisionResourceRowPojo;
 

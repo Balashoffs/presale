@@ -43,7 +43,7 @@ typedef DivisionWithResourceDtoParser =
     List<DivisionResourceDTO> Function(List<List<dynamic>> rows);
 
 class JobCostDtoBuilder extends CsvParser<DivisionResourceDTO> {
-  JobCostDtoBuilder() : super('assets/calculator_data/razdely_resursy.csv');
+  JobCostDtoBuilder() : super('assets/calculator_data/v4/razdely.csv');
 
   DivisionWithResourceDtoParser get _parser =>
       (rows) => rows

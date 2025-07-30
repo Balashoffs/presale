@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-
 enum DivisionType {
   project(
     'design',

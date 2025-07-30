@@ -3,6 +3,7 @@ import 'package:presale/src/domain/models/v3/design/commercial%20offer/commercia
 import 'package:presale/src/domain/models/v3/design/custom_fuctors/custom_factors.dart';
 import 'package:presale/src/domain/models/v3/design/division_result/division_result.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
+import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/division_row_data.dart';
 
 class DesignOfferCalculator {
@@ -76,9 +77,20 @@ class DesignOfferCalculator {
   }
 
   double calcDivisionTotal(
-    DivisionResourceRowVM divisionResourceViewModel,
+      DivisionResourceRowVM divisionResourceViewModel,
   ) {
     return divisionResourceViewModel.resourceCostPerDay *
+        divisionResourceViewModel.resourceUsingFactor *
+        divisionResourceViewModel.squareFactor *
+        divisionResourceViewModel.complexFactor *
+        divisionResourceViewModel.workDays *
+        divisionResourceViewModel.resourceQnt;
+  }
+
+  double calcDivisionTotalV5(
+      DivisionWithResourceRowVM divisionResourceViewModel,
+      ) {
+    return divisionResourceViewModel.resourceCostPerDayVN.value *
         divisionResourceViewModel.resourceUsingFactor *
         divisionResourceViewModel.squareFactor *
         divisionResourceViewModel.complexFactor *

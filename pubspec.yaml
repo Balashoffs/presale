@@ -140,3 +140,5 @@ flutter:
     - assets/input/стадии/строительство/Фасады и кровля/
     - assets/input/стадии/строительство/Прочие работы и затраты/
     - assets/calculator_data/factors/
+    - assets/calculator_data/v4/
+    - assets/calculator_data/v5/

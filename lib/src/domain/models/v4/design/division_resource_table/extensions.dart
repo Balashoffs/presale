@@ -1,12 +1,11 @@
-import 'package:presale/src/data/v3/design_calculator.dart';
 import 'package:presale/src/domain/models/v3/design/input_data/input_data_design.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_dto.dart';
+import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 
 import 'division_resource_dropdown_viewmodel.dart';
 import 'division_resource_row_pojo.dart';
 import 'division_resource_row_viewmodel.dart';
-import 'division_resource_summary_viewmodel.dart';
-import 'division_resource_table_pojo.dart';
+
 
 
 extension ExtDivisionResourceRow on DivisionResourceRowVM {
@@ -20,7 +19,7 @@ extension ExtDivisionResourceRow on DivisionResourceRowVM {
       complexFactor: complexFactor,
       squareFactor: squareFactor,
       resourceUsingFactor: resourceUsingFactor,
-      divisionPerResourceRowCost: totalResourceRowCostVN.value,
+      resourceRowCost: totalResourceRowCostVN.value,
       resourceCostPerDay: resourceCostPerDay,
     );
   }
