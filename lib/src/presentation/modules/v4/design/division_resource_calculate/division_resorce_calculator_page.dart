@@ -162,8 +162,12 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
         ),
         Expanded(
           flex: 1,
-          child: NextPageWidget(
-            onTap: context.read<DivisionResourceCalculateCubit>().onNextPage,
+          child: Padding(
+            padding: EdgeInsetsGeometry.all(8.0),
+            child: NextPageWidget(
+              buttonText: 'Расчет маржинальности',
+              onTap: context.read<DivisionResourceCalculateCubit>().onNextPage,
+            ),
           ),
         ),
       ],

@@ -86,6 +86,7 @@ Widget buildIntInputCell(int defaultValue, ValueChangedWithContext<int> onChange
         child: SizedBox(
           width: 56,
           child: CustomTextInput(
+            isEnables: true,
             hintText: '$defaultValue',
             onChanged: (input) {
               int? parsed = onChangeIntValue(input);
@@ -108,6 +109,7 @@ Widget buildFactorInputCell(double defaultValue, ValueChangedWithContext<double>
         child: SizedBox(
           width: 56,
           child: CustomTextInput(
+            isEnables: true,
             hintText: '$defaultValue',
             onChanged: (input) {
               double? parsed = onChangeFactorValue(input);

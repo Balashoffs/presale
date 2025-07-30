@@ -16,7 +16,6 @@ import 'package:presale/src/presentation/modules/v5/design/division_resource_cal
 import 'package:presale/src/presentation/modules/v4/design/division_resource_calculate/widget/next_page_widget.dart';
 import 'package:presale/src/presentation/modules/v4/design/division_resource_calculate/widget/result_sum_widget.dart';
 
-
 class DivisionResourceCalculatePage extends StatelessWidget {
   const DivisionResourceCalculatePage({super.key});
 
@@ -116,7 +115,7 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
                 enabled: true,
                 divisions: context
                     .read<DivisionResourceSummaryViewModel>()
-                    .unselectedRows,
+                    .allDivisions,
                 onSelected: (p0) => context
                     .read<DivisionResourceSummaryViewModel>()
                     .onRowAction(p0.id, WidgetActionType.add),
@@ -140,29 +139,36 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
         ),
         Expanded(
           flex: 8,
-          child: Builder(
-            builder: (context) {
-              return ValueListenableBuilder<List<DivisionWithResourceRowVM>>(
-                valueListenable: context
+          child: ValueListenableBuilder<List<DivisionWithResourceRowVM>>(
+            valueListenable: context
+                .read<DivisionResourceSummaryViewModel>()
+                .selectedRows,
+            builder: (context, value, child) {
+              return DivisionsResourceTableWidget(
+                rowAttributes: divisionResourceTableAttributes,
+                tableDataRows: value,
+                onRowAction: context
                     .read<DivisionResourceSummaryViewModel>()
-                    .selectedRows,
-                builder: (context, value, child) {
-                  return DivisionsResourceTableWidget(
-                    rowAttributes: divisionResourceTableAttributes,
-                    tableDataRows: value,
-                    onRowAction: context
-                        .read<DivisionResourceSummaryViewModel>()
-                        .onRowAction,
-                  );
-                },
+                    .onRowAction,
               );
             },
           ),
         ),
         Expanded(
           flex: 1,
-          child: NextPageWidget(
-            onTap: context.read<DivisionResourceCalculateCubit>().onNextPage,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ValueListenableBuilder<double>(
+              valueListenable: context
+                  .read<DivisionResourceSummaryViewModel>()
+                  .summaryVN,
+              builder: (context, value, child) {
+                return NextPageWidget(
+                  buttonText: 'Расчитать маржинальность',
+                  onTap: value.compareTo(0.0) > 0 ? context.read<DivisionResourceCalculateCubit>().onNextPage : null,
+                );
+              },
+            ),
           ),
         ),
       ],

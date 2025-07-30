@@ -29,13 +29,27 @@ class DivisionsResourceTableWidget extends StatefulWidget {
 
 class _DivisionsResourceTableWidgetState
     extends State<DivisionsResourceTableWidget> {
+  late final ScrollController? _verticalScrollController;
+
   void _scrollListener(ScrollController verticalScrollController) {
-    verticalScrollController.addListener(() {
-      if (verticalScrollController.hasClients) {
-        final double pixels = verticalScrollController.position.pixels;
-        final double maxScrollExtent =
-            verticalScrollController.position.maxScrollExtent;
-      }
+    _verticalScrollController = verticalScrollController;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('init state');
+  }
+
+  @override
+  void didUpdateWidget(DivisionsResourceTableWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _verticalScrollController?.animateTo(
+        _verticalScrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
     });
   }
 
@@ -144,5 +158,17 @@ class _DivisionsResourceTableWidgetState
             ) => _scrollListener(verticalScrollController),
       ),
     );
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    print('reassemble');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('didChangeDependencies');
   }
 }

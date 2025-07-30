@@ -7,13 +7,15 @@ import 'package:presale/src/domain/models/v5/design/division_resource_table/divi
 import 'package:presale/src/domain/models/v5/design/division_resource_table/extensions.dart';
 
 class DivisionResourceSummaryViewModel {
-  final List<DivisionWithResourceRowVM> unselectedRows = [];
+  final List<DivisionDTO> allDivisions = [];
 
   final ValueNotifier<List<DivisionWithResourceRowVM>> selectedRows =
       ValueNotifier([]);
   final Map<String, List<ResourceDTO>> _resources = {};
   final ValueNotifier<double> summaryVN = ValueNotifier(0.0);
 
+  double _squareFactor = 0.0;
+  double _complexityFactor = 0.0;
   final DesignOfferCalculator _designOfferCalculator = DesignOfferCalculator();
 
   double get summaryCost => selectedRows.value.isNotEmpty
@@ -23,7 +25,15 @@ class DivisionResourceSummaryViewModel {
       : 0.0;
 
   DivisionWithResourceRowVM? getById(int id) {
-    return unselectedRows.where((element) => element.id == id).firstOrNull;
+    return allDivisions
+        .where((element) => element.id == id)
+        .map(
+          (e) => e.toDivisionResourceRowVM(
+            squareFactor: _squareFactor,
+            complexityFactor: _complexityFactor,
+          ),
+        )
+        .firstOrNull;
   }
 
   DivisionWithResourceRowVM? getByIdVM(int id) {
@@ -34,30 +44,34 @@ class DivisionResourceSummaryViewModel {
     DivisionWithResourceDTO divisionWithResourceDTO,
     InputDataDesign inputDataDesign,
   ) {
+    _squareFactor = inputDataDesign.squareFactor;
+    _complexityFactor = inputDataDesign.complexityFactor;
     _resources.addAll(divisionWithResourceDTO.resources);
+    allDivisions.addAll(divisionWithResourceDTO.divisions);
 
-    unselectedRows.addAll(
-      divisionWithResourceDTO.divisions.map((e) {
-        if (_resources.containsKey(e.divisionShortName)) {
-          if (_resources[e.divisionShortName]!.length == 1) {
-            String resourceName =
-                _resources[e.divisionShortName]!.first.resourceName;
-            double resourceCostPerDay =
-                _resources[e.divisionShortName]!.first.resourceCostPerDay;
-            return e.toDivisionResourceRowVM(
-              inputDataDesign,
-              resourceName: resourceName,
-              resourceCostPerDay: resourceCostPerDay,
-            );
-          }
-        }
-
-        return e.toDivisionResourceRowVM(inputDataDesign);
-      }).toList(),
-    );
+    // allDivisions.addAll(
+    //   divisionWithResourceDTO.divisions.map((e) {
+    //     if (_resources.containsKey(e.divisionShortName)) {
+    //       if (_resources[e.divisionShortName]!.length == 1) {
+    //         String resourceName =
+    //             _resources[e.divisionShortName]!.first.resourceName;
+    //         double resourceCostPerDay =
+    //             _resources[e.divisionShortName]!.first.resourceCostPerDay;
+    //         return e.toDivisionResourceRowVM(
+    //           inputDataDesign,
+    //           resourceName: resourceName,
+    //           resourceCostPerDay: resourceCostPerDay,
+    //         );
+    //       }
+    //     }
+    //
+    //     return e.toDivisionResourceRowVM(inputDataDesign);
+    //   }).toList(),
+    // );
   }
 
-  List<ResourceDTO> resourcesByDivisionShortName(String divisionShortName) => _resources[divisionShortName] ?? [];
+  List<ResourceDTO> resourcesByDivisionShortName(String divisionShortName) =>
+      _resources[divisionShortName] ?? [];
 
   void onRowAction(int id, WidgetActionType type) {
     switch (type) {
@@ -73,8 +87,9 @@ class DivisionResourceSummaryViewModel {
   void _onAdd(int id) {
     DivisionWithResourceRowVM? found = getById(id);
     if (found != null) {
-      unselectedRows.removeWhere((element) => element.id == id);
-      selectedRows.value = [found, ...selectedRows.value];
+      //TODO Add algorithm to remove from unselected
+      // unselectedRows.removeWhere((element) => element.id == id);
+      selectedRows.value = [...selectedRows.value, found];
     }
   }
 
@@ -84,7 +99,8 @@ class DivisionResourceSummaryViewModel {
       final updates = List<DivisionWithResourceRowVM>.from(selectedRows.value);
       updates.removeWhere((element) => element.id == id);
       selectedRows.value = [...updates];
-      unselectedRows.add(found.copyWithClear());
+      //TODO Add algorithm to remove from unselected
+      // unselectedRows.add(found.copyWithClear());
       summaryVN.value = summaryCost;
     }
   }
@@ -101,6 +117,10 @@ class DivisionResourceSummaryViewModel {
   void onResourceName(int id, String resourceName) {
     DivisionWithResourceRowVM? found = getByIdVM(id);
     if (found != null) {
+      if (resourceName.isEmpty) {
+        found.resourceNameVN.value = '';
+        found.resourceCostPerDayVN.value = 0.0;
+      }
       ResourceDTO? foundResource = _resources[found.divisionShortName]
           ?.where((element) => element.resourceName == resourceName)
           .firstOrNull;

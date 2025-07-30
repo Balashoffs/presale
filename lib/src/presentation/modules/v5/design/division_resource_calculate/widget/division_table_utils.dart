@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
+import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:presale/src/presentation/modules/common/text_input_validators.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/custon_text_input.dart';
@@ -74,8 +75,13 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
         padding: const EdgeInsetsDirectional.all(8.0),
         child: ValueListenableBuilder<double>(
           valueListenable: vn,
-          builder: (context, value, child) =>
-              Text(textAlign: TextAlign.center, value.toStringAsFixed(2)),
+          builder: (context, value, child) {
+            Color textColor = vn.value.compareTo(0.0) > 0
+                ? colorTable(context)[MoonColor.zeno.index]!
+                : colorTable(context)[MoonColor.chichi.index]!;
+            ;
+            return Text(textAlign: TextAlign.center, value.toStringAsFixed(2), style: TextStyle(color: textColor),);
+          },
         ),
       ),
     ),
@@ -92,6 +98,7 @@ Widget buildIntInputCell(
         child: SizedBox(
           width: 56,
           child: CustomTextInput(
+            isEnables: true,
             hintText: '$defaultValue',
             onChanged: (input) {
               int? parsed = onChangeIntValue(input);
@@ -115,7 +122,7 @@ Widget buildIntDropdownCell(
     builder: (context) {
       return Center(
         child: ResourceDropDownSelector(
-          onSelected: (p0) => onChanged(context, p0.resourceName),
+          onSelected: (p0) => onChanged(context, p0?.resourceName ?? ''),
           resources: context
               .read<DivisionResourceSummaryViewModel>()
               .resourcesByDivisionShortName(divisionShortName),
@@ -135,6 +142,7 @@ Widget buildFactorInputCell(
         child: SizedBox(
           width: 56,
           child: CustomTextInput(
+            isEnables: true,
             hintText: '$defaultValue',
             onChanged: (input) {
               double? parsed = onChangeFactorValue(input);
@@ -162,19 +170,17 @@ Widget buildCellWithIcon(Widget widget, VoidCallback onRemove) {
 
 Widget buildCellWithMultiLine(String label) {
   return Center(
-    child: DecoratedBox(
-      decoration: const BoxDecoration(),
-      child: InkWell(
-        onTap: () {}, // Optional tap handler
-        child: Tooltip(
-          message: label.toString(),
-          child: Text(
-            label,
-            maxLines: 3,
-            softWrap: true,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(),
-          ),
+    child: InkWell(
+      onTap: () {}, // Optional tap handler
+      child: Tooltip(
+        message: label.toString(),
+        child: Text(
+          label,
+          maxLines: 3,
+          textAlign: TextAlign.center,
+          softWrap: true,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(),
         ),
       ),
     ),

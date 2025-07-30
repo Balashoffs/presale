@@ -14,6 +14,7 @@ class CustomTextInput extends StatefulWidget {
     this.width,
     this.initValue,
     this.autofocus = false,
+    required this.isEnables,
   });
 
   final String hintText;
@@ -25,6 +26,7 @@ class CustomTextInput extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final FormFieldValidator<String>? validator;
   final bool autofocus;
+  final bool isEnables;
 
   @override
   State<CustomTextInput> createState() => _CustomTextInputState();
@@ -32,49 +34,52 @@ class CustomTextInput extends StatefulWidget {
 
 class _CustomTextInputState extends State<CustomTextInput> {
   final TextEditingController _textController = TextEditingController();
+  Color _borderColor = Colors.transparent;
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    if (widget.initValue != null) {
-      // _textController.text = widget.hintText;
-      _textController.addListener(_listener);
-    }
+    _focusNode.addListener(() {
+      setState(() {
+        _borderColor = widget.hintText == '0' && _textController.text.isEmpty
+            ? colorTable(context)[MoonColor.chichi.index]!
+            : colorTable(context)[MoonColor.zeno.index]!;
+      });
+    });
   }
-
-  void _listener(){
-
-  }
-
 
   @override
   void dispose() {
     _textController.clear();
     _textController.dispose();
-    super.dispose();//
+    super.dispose(); //
   }
 
   @override
   Widget build(BuildContext context) {
     return MoonFormTextInput(
+      focusNode: _focusNode,
       textAlign: TextAlign.center,
       controller: _textController,
-      enabled: true,
+      enabled: widget.isEnables,
       textInputSize: MoonTextInputSize.sm,
       hasFloatingLabel: false,
       textColor: colorTable(context)[40],
       hintTextColor: colorTable(context)[40],
       backgroundColor: colorTable(context)[40],
-      activeBorderColor: colorTable(context)[40],
-      inactiveBorderColor: colorTable(context)[40],
+      activeBorderColor: colorTable(context)[MoonColor.zeno.index]!,
+      inactiveBorderColor: _borderColor,
       hoverBorderColor: colorTable(context)[40],
-      errorColor: colorTable(context)[40],
+      errorColor: colorTable(context)[MoonColor.chichi.index]!,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       hintText: widget.hintText,
+      helperTextStyle: TextStyle(fontSize: 8),
       validator: widget.validator,
       autofocus: widget.autofocus,
-      onTapOutside: (PointerDownEvent _) =>
-          FocusManager.instance.primaryFocus?.unfocus(),
+      onTapOutside: (PointerDownEvent _) {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       onChanged: widget.onChanged,
       // helper: widget.helperText != null ? Text(widget.helperText!) : null,
     );

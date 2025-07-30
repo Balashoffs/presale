@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
 import 'package:presale/src/presentation/common/color_options.dart'
     show colorTable;
+import 'package:uuid/uuid.dart';
 
 class CustomDropdownWithSearchWidget extends StatefulWidget {
   const CustomDropdownWithSearchWidget({
@@ -13,8 +13,8 @@ class CustomDropdownWithSearchWidget extends StatefulWidget {
     required this.enabled,
   });
 
-  final List<DivisionWithResourceRowVM> divisions;
-  final Function(DivisionWithResourceRowVM) onSelected;
+  final List<DivisionDTO> divisions;
+  final Function(DivisionDTO) onSelected;
   final bool enabled;
 
   @override
@@ -27,8 +27,8 @@ class _CustomDropdownWithSearchWidgetState
   final TextEditingController _searchController = TextEditingController();
 
   final FocusNode _focusNode = FocusNode();
-  List<DivisionWithResourceRowVM> _filteredOptionsList = [];
-  DivisionWithResourceRowVM? _selectedOption;
+  List<DivisionDTO> _filteredOptionsList = [];
+  DivisionDTO? _selectedOption;
   bool _showDropdown = false;
 
   bool get _optionIsSelected =>
@@ -43,7 +43,7 @@ class _CustomDropdownWithSearchWidgetState
 
       _filteredOptionsList = widget.divisions
           .where(
-            (DivisionWithResourceRowVM option) =>
+            (DivisionDTO option) =>
                 option.divisionName.toLowerCase().contains(_inputValue) ||
                 option.divisionShortName.toLowerCase().contains(_inputValue),
           )
@@ -52,7 +52,7 @@ class _CustomDropdownWithSearchWidgetState
     });
   }
 
-  void _handleSelect(DivisionWithResourceRowVM option) {
+  void _handleSelect(DivisionDTO option) {
     setState(() {
       _showDropdown = false;
       _searchController.clear();
@@ -119,9 +119,7 @@ class _CustomDropdownWithSearchWidgetState
                         if (index >= _filteredOptionsList.length) {
                           return const SizedBox.shrink();
                         }
-                        final DivisionWithResourceRowVM option =
-                            _filteredOptionsList[index];
-
+                        final DivisionDTO option = _filteredOptionsList[index];
                         return MoonMenuItem(
                           onTap: () => _handleSelect(option),
                           label: Text(option.divisionName),
@@ -171,21 +169,28 @@ class ResourceDropDownSelector extends StatefulWidget {
   });
 
   final List<ResourceDTO> resources;
-  final Function(ResourceDTO) onSelected;
+  final Function(ResourceDTO?) onSelected;
 
   @override
-  State<ResourceDropDownSelector> createState() => _ResourceDropDownSelectorState();
+  State<ResourceDropDownSelector> createState() =>
+      _ResourceDropDownSelectorState();
 }
 
 class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
   bool _showMenu = false;
-  String _hintText = 'Выберите ресурс';
+  final String _hintTextAtStart = 'Выберите ресурс';
+  String _hintText = '';
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MoonDropdown(
       show: _showMenu,
-      groupId: 'select_resources',
+      groupId: Uuid().v4(),
       maxWidth: 312,
       borderColor: colorTable(context)[40] ?? Colors.transparent,
       backgroundColor: colorTable(context)[40],
@@ -195,28 +200,38 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
       dropdownShadows: null,
       onTapOutside: () => setState(() {
         _showMenu = false;
+        _hintText = '';
       }),
       content: Column(
         children: List.generate(widget.resources.length, (index) {
           String name = widget.resources[index].resourceName;
-          return  MoonMenuItem(
-              onTap: () => setState(() {
-                _showMenu = false;
-                _hintText = widget.resources[index].resourceName;
-                widget.onSelected(widget.resources[index]);
-              }),
-              label: Text(name),);
-        },),
+          return MoonMenuItem(
+            onTap: () => setState(() {
+              _showMenu = false;
+              _hintText = widget.resources[index].resourceName;
+              widget.onSelected(widget.resources[index]);
+            }),
+            label: Text(name),
+          );
+        }),
       ),
       child: MoonTextInput(
         width: 256,
         readOnly: true,
         canRequestFocus: false,
         mouseCursor: MouseCursor.defer,
-        hintText: _hintText,
-        onTap: () => setState(() => _showMenu = !_showMenu),
-        onTapOutside: (PointerDownEvent _) =>
-            FocusManager.instance.primaryFocus?.unfocus(),
+        hintText: _hintText.isEmpty ? _hintTextAtStart : _hintText,
+        onTap: () => setState(() {
+          _showMenu = !_showMenu;
+          _hintText = '';
+          if (!_showMenu) {
+            widget.onSelected(null);
+          }
+        }),
+        onTapOutside: (PointerDownEvent _) {
+          FocusManager.instance.primaryFocus?.unfocus();
+          _hintText = '';
+        },
         trailing: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: Center(
@@ -232,5 +247,11 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _hintText = '';
   }
 }

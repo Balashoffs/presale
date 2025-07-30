@@ -90,6 +90,7 @@ class _DivisionsTableWidgetState extends State<DivisionsTableWidget> {
   Widget _buildFactorInputCell(ValueNotifier<double> valueNotifier) {
     return Center(
       child: CustomTextInput(
+        isEnables: true,
         hintText: '${(valueNotifier.value *100).toInt() }%',
         onChanged: (input) {
           onChangeFactorValue(valueNotifier, input);
@@ -102,6 +103,7 @@ class _DivisionsTableWidgetState extends State<DivisionsTableWidget> {
   Widget _buildDayInputCell(ValueNotifier<double> valueNotifier) {
     return Center(
       child: CustomTextInput(
+        isEnables: true,
         hintText: '${(valueNotifier.value).toInt()} дн.',
         onChanged: (input) {
           onChangeDyaValue(valueNotifier, input);

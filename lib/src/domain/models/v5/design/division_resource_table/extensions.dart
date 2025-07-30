@@ -30,10 +30,11 @@ extension ResourceCsvExt on ResourceCSV {
 }
 
 extension DivisionDtoExt on DivisionDTO {
-  DivisionWithResourceRowVM toDivisionResourceRowVM(
-    InputDataDesign inputDataDesign, {
+  DivisionWithResourceRowVM toDivisionResourceRowVM({
+    required double squareFactor,
+    required double complexityFactor,
     String resourceName = '',
-    double resourceCostPerDay = 0.0,
+    double resourceCostPerDay = 0.0
   }) {
     return DivisionWithResourceRowVM(
       resourceQnt: 0,
@@ -41,9 +42,9 @@ extension DivisionDtoExt on DivisionDTO {
       workDays: 0,
       divisionShortName: divisionShortName,
       divisionName: divisionName,
-      id: id,
-      squareFactor: inputDataDesign.squareFactor,
-      complexFactor: inputDataDesign.complexityFactor,
+      id: DateTime.now().microsecondsSinceEpoch,
+      squareFactor: squareFactor,
+      complexFactor: complexityFactor,
       resourceName: resourceName,
       resourceCostPerDay: resourceCostPerDay,
     );
