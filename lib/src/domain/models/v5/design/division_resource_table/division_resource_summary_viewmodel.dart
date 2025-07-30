@@ -79,15 +79,12 @@ class DivisionResourceSummaryViewModel {
   }
 
   void _onDelete(int id) {
-    print('_onDelete');
-    print(id);
     DivisionWithResourceRowVM? found = getByIdVM(id);
     if (found != null) {
       final updates = List<DivisionWithResourceRowVM>.from(selectedRows.value);
       updates.removeWhere((element) => element.id == id);
       selectedRows.value = [...updates];
-      unselectedRows.add(found);
-      _calcResourceTotal(found);
+      unselectedRows.add(found.copyWithClear());
       summaryVN.value = summaryCost;
     }
   }
@@ -149,8 +146,6 @@ class DivisionResourceSummaryViewModel {
   void onWorkDays(int id, int value) {
     DivisionWithResourceRowVM? found = getByIdVM(id);
     if (found != null) {
-      print('onWorkDays: found DivisionResourceRowVM');
-      print('onWorkDays: ${found.toString()}');
       found.workDays = value;
       _calcResourceTotal(found);
     }
@@ -159,8 +154,6 @@ class DivisionResourceSummaryViewModel {
   _calcResourceTotal(DivisionWithResourceRowVM value) {
     double total = _designOfferCalculator.calcDivisionTotalV5(value);
     if (total.compareTo(0.0) > 0) {
-      print('onWorkDays: calc _calcResourceTotal');
-      print('onWorkDays: ${total.toString()}');
       value.totalResourceRowCostVN.value = total;
       summaryVN.value = summaryCost;
     }

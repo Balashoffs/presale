@@ -33,7 +33,7 @@ extension DivisionDtoExt on DivisionDTO {
   DivisionWithResourceRowVM toDivisionResourceRowVM(
     InputDataDesign inputDataDesign, {
     String resourceName = '',
-    double resourceCostPerDay = -1.0,
+    double resourceCostPerDay = 0.0,
   }) {
     return DivisionWithResourceRowVM(
       resourceQnt: 0,
