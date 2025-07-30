@@ -2,8 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 
-final class DivisionWithResourceRowVM
-    extends LinkedListEntry<DivisionWithResourceRowVM> {
+final class DivisionWithResourceRowVM {
   final int id;
 
   //Имя раздела
@@ -70,8 +69,8 @@ final class DivisionWithResourceRowVM
     required this.id,
     required this.divisionName,
     required this.divisionShortName,
-    String resourceName = '',
-    double resourceCostPerDay = 0.0,
+    required String resourceName,
+    required double resourceCostPerDay,
     required int resourceQnt,
     required int workDays,
     required double complexFactor,

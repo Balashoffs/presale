@@ -30,9 +30,11 @@ extension ResourceCsvExt on ResourceCSV {
 }
 
 extension DivisionDtoExt on DivisionDTO {
-
   DivisionWithResourceRowVM toDivisionResourceRowVM(
-      InputDataDesign inputDataDesign,) {
+    InputDataDesign inputDataDesign, {
+    String resourceName = '',
+    double resourceCostPerDay = -1.0,
+  }) {
     return DivisionWithResourceRowVM(
       resourceQnt: 0,
       resourceUsingFactor: 1.0,
@@ -42,21 +44,25 @@ extension DivisionDtoExt on DivisionDTO {
       id: id,
       squareFactor: inputDataDesign.squareFactor,
       complexFactor: inputDataDesign.complexityFactor,
+      resourceName: resourceName,
+      resourceCostPerDay: resourceCostPerDay,
     );
   }
 }
 
-extension DivisionWithResourceRowExt on DivisionWithResourceRowVM{
+extension DivisionWithResourceRowExt on DivisionWithResourceRowVM {
   DivisionResourceRowPojo toPojo() {
-    return DivisionResourceRowPojo(divisionName: divisionName,
-        divisionShortName: divisionShortName,
-        resourceName: resourceNameVN.value,
-        resourceQnt: resourceQnt,
-        workDays: workDays,
-        complexFactor: complexFactor,
-        squareFactor: squareFactor,
-        resourceUsingFactor: resourceUsingFactor,
-        resourceRowCost: totalResourceRowCostVN.value,
-        resourceCostPerDay: resourceCostPerDayVN.value);
+    return DivisionResourceRowPojo(
+      divisionName: divisionName,
+      divisionShortName: divisionShortName,
+      resourceName: resourceNameVN.value,
+      resourceQnt: resourceQnt,
+      workDays: workDays,
+      complexFactor: complexFactor,
+      squareFactor: squareFactor,
+      resourceUsingFactor: resourceUsingFactor,
+      resourceRowCost: totalResourceRowCostVN.value,
+      resourceCostPerDay: resourceCostPerDayVN.value,
+    );
   }
 }

@@ -8,7 +8,7 @@
 
 import 'package:presale/src/data/core/csv_parser.dart';
 
-const String pathToSrc = 'assets/calculator_data/stavki.csv';
+const String pathToSrc = 'assets/calculator_data/v5/stavki.csv';
 
 class ResourceCSV {
   final String id;

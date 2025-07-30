@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
+import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
 import 'package:presale/src/presentation/modules/common/text_input_validators.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/custon_text_input.dart';
 
+import 'custom_dropdown_with_search_widget.dart';
 
-typedef ValueChangedWithContext<T>= void Function(BuildContext context, T value);
+typedef ValueChangedWithContext<T> =
+    void Function(BuildContext context, T value);
+
 Widget addDecoration(Widget child, [bool isFistCell = false]) {
   return Builder(
     builder: (context) {
@@ -53,12 +59,9 @@ Widget buildHeaderCell(CollumAttribute attribute) {
 
 Widget buildTextCell(dynamic label) {
   return Center(
-    child: DecoratedBox(
-      decoration: const BoxDecoration(),
-      child: Padding(
-        padding: const EdgeInsetsDirectional.all(8.0),
-        child: Text(textAlign: TextAlign.center, label.toString()),
-      ),
+    child: Padding(
+      padding: const EdgeInsetsDirectional.all(8.0),
+      child: Text(textAlign: TextAlign.center, label.toString()),
     ),
   );
 }
@@ -79,7 +82,10 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
   );
 }
 
-Widget buildIntInputCell(int defaultValue, ValueChangedWithContext<int> onChanged) {
+Widget buildIntInputCell(
+  int defaultValue,
+  ValueChangedWithContext<int> onChanged,
+) {
   return Builder(
     builder: (context) {
       return Center(
@@ -89,7 +95,7 @@ Widget buildIntInputCell(int defaultValue, ValueChangedWithContext<int> onChange
             hintText: '$defaultValue',
             onChanged: (input) {
               int? parsed = onChangeIntValue(input);
-              if(parsed != null){
+              if (parsed != null) {
                 onChanged(context, parsed);
               }
             },
@@ -101,7 +107,28 @@ Widget buildIntInputCell(int defaultValue, ValueChangedWithContext<int> onChange
   );
 }
 
-Widget buildFactorInputCell(double defaultValue, ValueChangedWithContext<double> onChanged) {
+Widget buildIntDropdownCell(
+  String divisionShortName,
+  ValueChangedWithContext<String> onChanged,
+) {
+  return Builder(
+    builder: (context) {
+      return Center(
+        child: ResourceDropDownSelector(
+          onSelected: (p0) => onChanged(context, p0.resourceName),
+          resources: context
+              .read<DivisionResourceSummaryViewModel>()
+              .resourcesByDivisionShortName(divisionShortName),
+        ),
+      );
+    },
+  );
+}
+
+Widget buildFactorInputCell(
+  double defaultValue,
+  ValueChangedWithContext<double> onChanged,
+) {
   return Builder(
     builder: (context) {
       return Center(
@@ -111,7 +138,7 @@ Widget buildFactorInputCell(double defaultValue, ValueChangedWithContext<double>
             hintText: '$defaultValue',
             onChanged: (input) {
               double? parsed = onChangeFactorValue(input);
-              if(parsed != null){
+              if (parsed != null) {
                 onChanged(context, parsed);
               }
             },
@@ -119,7 +146,7 @@ Widget buildFactorInputCell(double defaultValue, ValueChangedWithContext<double>
           ),
         ),
       );
-    }
+    },
   );
 }
 

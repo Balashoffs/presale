@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
+import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
 import 'package:presale/src/presentation/common/color_options.dart'
     show colorTable;
 
@@ -154,6 +155,78 @@ class _CustomDropdownWithSearchWidgetState
               duration: const Duration(milliseconds: 200),
               turns: _showDropdown ? -0.5 : 0,
               child: const Icon(MoonIcons.controls_chevron_down_16_light),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ResourceDropDownSelector extends StatefulWidget {
+  const ResourceDropDownSelector({
+    super.key,
+    required this.resources,
+    required this.onSelected,
+  });
+
+  final List<ResourceDTO> resources;
+  final Function(ResourceDTO) onSelected;
+
+  @override
+  State<ResourceDropDownSelector> createState() => _ResourceDropDownSelectorState();
+}
+
+class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
+  bool _showMenu = false;
+  String _hintText = 'Выберите ресурс';
+
+  @override
+  Widget build(BuildContext context) {
+    return MoonDropdown(
+      show: _showMenu,
+      groupId: 'select_resources',
+      maxWidth: 312,
+      borderColor: colorTable(context)[40] ?? Colors.transparent,
+      backgroundColor: colorTable(context)[40],
+      constrainWidthToChild: true,
+      distanceToTarget: 8.0,
+      dropdownAnchorPosition: MoonDropdownAnchorPosition.bottom,
+      dropdownShadows: null,
+      onTapOutside: () => setState(() {
+        _showMenu = false;
+      }),
+      content: Column(
+        children: List.generate(widget.resources.length, (index) {
+          String name = widget.resources[index].resourceName;
+          return  MoonMenuItem(
+              onTap: () => setState(() {
+                _showMenu = false;
+                _hintText = widget.resources[index].resourceName;
+                widget.onSelected(widget.resources[index]);
+              }),
+              label: Text(name),);
+        },),
+      ),
+      child: MoonTextInput(
+        width: 256,
+        readOnly: true,
+        canRequestFocus: false,
+        mouseCursor: MouseCursor.defer,
+        hintText: _hintText,
+        onTap: () => setState(() => _showMenu = !_showMenu),
+        onTapOutside: (PointerDownEvent _) =>
+            FocusManager.instance.primaryFocus?.unfocus(),
+        trailing: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: Center(
+            child: AnimatedRotation(
+              duration: const Duration(milliseconds: 200),
+              turns: _showMenu ? -0.5 : 0,
+              child: const Icon(
+                MoonIcons.controls_chevron_down_16_light,
+                size: 16,
+              ),
             ),
           ),
         ),

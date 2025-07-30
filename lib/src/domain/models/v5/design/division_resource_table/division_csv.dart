@@ -7,7 +7,7 @@
  */
 
 import 'package:presale/src/data/core/csv_parser.dart';
-final String pathToSrc = 'assets/calculator_data/razdely_resursy.csv';
+final String pathToSrc = 'assets/calculator_data/v5/razdely_resursy.csv';
 
 class DivisionCSV {
   final String id;

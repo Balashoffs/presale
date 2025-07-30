@@ -2,7 +2,7 @@ enum DivisionType {
   project(
     'design',
     'Проектная документация',
-    'ПД',
+    'П',
   ),
   both(
     'both',
@@ -12,7 +12,7 @@ enum DivisionType {
   working(
     'working',
     'Рабочая документация',
-    'РД',
+    'Р',
   );
 
   const DivisionType(

@@ -69,8 +69,16 @@ class _DivisionsResourceTableWidgetState
           ),
           addDecoration(buildTextCell(row.divisionShortName)),
           addDecoration(buildCellWithMultiLine(row.divisionName)),
-          //TODO change to dropdown widget with resource types
-          addDecoration(buildTextCell(row.resourceNameVN)),
+          row.resourceNameVN.value.isEmpty
+              ? addDecoration(
+                  buildIntDropdownCell(row.divisionShortName, (context, value) {
+                    context
+                        .read<DivisionResourceSummaryViewModel>()
+                        .onResourceName(row.id, value);
+                  }),
+                )
+              : addDecoration(buildTextCell(row.resourceNameVN.value)),
+          addDecoration(buildTextWithNotifier(row.resourceCostPerDayVN)),
           addDecoration(
             buildIntInputCell(row.resourceQnt, (context, value) {
               context.read<DivisionResourceSummaryViewModel>().onResourceQnt(
@@ -79,14 +87,14 @@ class _DivisionsResourceTableWidgetState
               );
             }),
           ),
-          //TODO listen updates after select value at resource dropdown
-          addDecoration(buildTextCell(row.resourceCostPerDayVN)),
-          addDecoration(buildIntInputCell(row.workDays, (context, value) {
-            context.read<DivisionResourceSummaryViewModel>().onWorkDays(
-              row.id,
-              value,
-            );
-          })),
+          addDecoration(
+            buildIntInputCell(row.workDays, (context, value) {
+              context.read<DivisionResourceSummaryViewModel>().onWorkDays(
+                row.id,
+                value,
+              );
+            }),
+          ),
           addDecoration(
             buildFactorInputCell(row.complexFactor, (context, value) {
               context.read<DivisionResourceSummaryViewModel>().onComplexFactor(
@@ -105,10 +113,9 @@ class _DivisionsResourceTableWidgetState
           ),
           addDecoration(
             buildFactorInputCell(row.resourceUsingFactor, (context, value) {
-              context.read<DivisionResourceSummaryViewModel>().onResourceUsingFactor(
-                row.id,
-                value,
-              );
+              context
+                  .read<DivisionResourceSummaryViewModel>()
+                  .onResourceUsingFactor(row.id, value);
             }),
           ),
           addDecoration(buildTextWithNotifier(row.totalResourceRowCostVN)),

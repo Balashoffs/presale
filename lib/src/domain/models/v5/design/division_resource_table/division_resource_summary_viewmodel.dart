@@ -7,9 +7,10 @@ import 'package:presale/src/domain/models/v5/design/division_resource_table/divi
 import 'package:presale/src/domain/models/v5/design/division_resource_table/extensions.dart';
 
 class DivisionResourceSummaryViewModel {
-  final LinkedList<DivisionWithResourceRowVM> unselectedRows = ;
+  final List<DivisionWithResourceRowVM> unselectedRows = [];
+
   final ValueNotifier<List<DivisionWithResourceRowVM>> selectedRows =
-  ValueNotifier([]);
+      ValueNotifier([]);
   final Map<String, List<ResourceDTO>> _resources = {};
   final ValueNotifier<double> summaryVN = ValueNotifier(0.0);
 
@@ -17,8 +18,8 @@ class DivisionResourceSummaryViewModel {
 
   double get summaryCost => selectedRows.value.isNotEmpty
       ? selectedRows.value
-      .map((e) => e.totalResourceRowCostVN.value)
-      .reduce((value, element) => value + element)
+            .map((e) => e.totalResourceRowCostVN.value)
+            .reduce((value, element) => value + element)
       : 0.0;
 
   DivisionWithResourceRowVM? getById(int id) {
@@ -30,16 +31,33 @@ class DivisionResourceSummaryViewModel {
   }
 
   void fill(
-      DivisionWithResourceDTO divisionWithResourceDTO,
-      InputDataDesign inputDataDesign,
-      ) {
-    unselectedRows.addAll(
-      divisionWithResourceDTO.divisions
-          .map((e) => e.toDivisionResourceRowVM(inputDataDesign))
-          .toList(),
-    );
+    DivisionWithResourceDTO divisionWithResourceDTO,
+    InputDataDesign inputDataDesign,
+  ) {
     _resources.addAll(divisionWithResourceDTO.resources);
+
+    unselectedRows.addAll(
+      divisionWithResourceDTO.divisions.map((e) {
+        if (_resources.containsKey(e.divisionShortName)) {
+          if (_resources[e.divisionShortName]!.length == 1) {
+            String resourceName =
+                _resources[e.divisionShortName]!.first.resourceName;
+            double resourceCostPerDay =
+                _resources[e.divisionShortName]!.first.resourceCostPerDay;
+            return e.toDivisionResourceRowVM(
+              inputDataDesign,
+              resourceName: resourceName,
+              resourceCostPerDay: resourceCostPerDay,
+            );
+          }
+        }
+
+        return e.toDivisionResourceRowVM(inputDataDesign);
+      }).toList(),
+    );
   }
+
+  List<ResourceDTO> resourcesByDivisionShortName(String divisionShortName) => _resources[divisionShortName] ?? [];
 
   void onRowAction(int id, WidgetActionType type) {
     switch (type) {
@@ -89,7 +107,7 @@ class DivisionResourceSummaryViewModel {
       ResourceDTO? foundResource = _resources[found.divisionShortName]
           ?.where((element) => element.resourceName == resourceName)
           .firstOrNull;
-      if(foundResource != null){
+      if (foundResource != null) {
         found.resourceNameVN.value = foundResource.resourceName;
         found.resourceCostPerDayVN.value = foundResource.resourceCostPerDay;
       }
