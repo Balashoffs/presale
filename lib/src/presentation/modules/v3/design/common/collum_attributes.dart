@@ -42,6 +42,7 @@ final List<CollumAttribute> divisionResourceTableAttributes = [
 ];
 
 final List<CollumAttribute> divisionMarginTableAttributes = [
+  CollumAttribute(name: '№', width: 64, tooltip: ''),
   CollumAttribute(name: 'Шифр', width: 64, tooltip: ''),
   CollumAttribute(name: 'Раздел', width: 368, tooltip: ''),
   CollumAttribute(name: 'Себестоимость', width: 128.0, tooltip: 'Себестоимость раздела'),

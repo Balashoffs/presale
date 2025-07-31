@@ -34,7 +34,7 @@ class DivisionsMarginSummaryViewModel {
             .firstOrNull;
         if (pojo != null) {
           DivisionsWithMarginRowVM row = DivisionsWithMarginRowVM(
-            id: i,
+            id: i+1,
             divisionSummaryCost: summary,
             divisionName: pojo.divisionName,
             divisionShortName: pojo.divisionShortName,

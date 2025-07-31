@@ -37,36 +37,6 @@ Widget addDecoration(Widget child, [bool isFistCell = false]) {
   );
 }
 
-Widget addDecorationWithCallback(Widget child, [bool isFistCell = false]) {
-  return Builder(
-    builder: (context) {
-      return DecoratedBox(
-        decoration: isFistCell
-            ? BoxDecoration()
-            : BoxDecoration(
-          border: Border(
-            left: Directionality.of(context) == TextDirection.ltr
-                ? Divider.createBorderSide(
-              context,
-              color: context.moonColors!.beerus,
-              width: 1,
-            )
-                : BorderSide.none,
-            right: Directionality.of(context) == TextDirection.rtl
-                ? Divider.createBorderSide(
-              context,
-              color: context.moonColors!.beerus,
-              width: 1,
-            )
-                : BorderSide.none,
-          ),
-        ),
-        child: child,
-      );
-    },
-  );
-}
-
 Widget buildHeaderCell(CollumAttribute attribute) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,

@@ -22,7 +22,11 @@ class AppRouterV3 extends GoRouter {
                   InputDataRoute(
                     routes: [
                       DivisionResourceCalculateRoute(
-                        routes: [DivisionMarginCalculateRoute(routes: [])],
+                        routes: [
+                          DivisionMarginCalculateRoute(
+                            routes: [DesignOfferRoute(routes: [])],
+                          ),
+                        ],
                       ),
                     ],
                   ),

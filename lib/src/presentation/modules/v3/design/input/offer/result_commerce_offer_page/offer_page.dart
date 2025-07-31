@@ -4,6 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/presentation/common/color_options.dart';
 
+class DesignOfferPage extends StatelessWidget {
+  const DesignOfferPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: OfferPage(),
+    );
+  }
+}
+
+
+
 class CollumAttribute {
   final String name;
   final double width;
@@ -234,7 +248,7 @@ class _OfferPageState extends State<OfferPage> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 7 / 20,
+                  height: MediaQuery.of(context).size.height * 9 / 20,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,7 +285,7 @@ class _OfferPageState extends State<OfferPage> {
                             ),
                           ),
                           textAlign: TextAlign.start,
-                          minLines: 2,
+                          minLines: 3,
                           height: 72,
                         ),
                       ),
@@ -292,7 +306,7 @@ class _OfferPageState extends State<OfferPage> {
                           ),
                           textAlign: TextAlign.start,
                           minLines: 2,
-                          height: 72,
+                          height: 96,
                         ),
                       ),
                     ],

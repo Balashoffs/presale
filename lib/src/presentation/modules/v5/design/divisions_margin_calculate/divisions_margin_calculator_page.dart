@@ -94,7 +94,7 @@ class DivisionsMarginCalculateConsumer extends StatelessWidget {
         state.whenOrNull(
           nextPage: (route) => route == null
               ? context.go(
-                  '/$inputDataRoutePath/$divisionResourceCalculateRoutePath/$divisionMarginCalculateRoutePath',
+                  '/$inputDataRoutePath/$divisionResourceCalculateRoutePath/$divisionMarginCalculateRoutePath/$designOfferPath',
                 )
               : context.go(''),
         );

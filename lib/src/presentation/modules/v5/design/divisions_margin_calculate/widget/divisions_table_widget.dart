@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/domain/models/v4/design/division_resource_table/widget_action_type.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/division_with_margin_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/divisions_margin_summary_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 import 'divisions_table_utils.dart';
-
-typedef OnRowAction = Function(int id, WidgetActionType actionType);
 
 class DivisionsMarginTableWidget extends StatefulWidget {
   const DivisionsMarginTableWidget({
@@ -46,7 +43,10 @@ class _DivisionsMarginTableWidgetState
   MoonTableFooter _generateTableFooter() {
     return MoonTableFooter(
       cells: List.generate(widget.rowAttributes.length, (int index) {
-        if (widget.rowAttributes.indexWhere((element) => element.name == 'Себестоимость') == index) {
+        if (widget.rowAttributes.indexWhere(
+              (element) => element.name == 'Себестоимость',
+            ) ==
+            index) {
           return Builder(
             builder: (context) {
               return addDecoration(
@@ -59,7 +59,10 @@ class _DivisionsMarginTableWidgetState
             },
           );
         }
-        if (widget.rowAttributes.indexWhere((element) => element.name == 'Итого') == index) {
+        if (widget.rowAttributes.indexWhere(
+              (element) => element.name == 'Итого',
+            ) ==
+            index) {
           return Builder(
             builder: (context) {
               return addDecoration(
@@ -71,7 +74,10 @@ class _DivisionsMarginTableWidgetState
               );
             },
           );
-        } else if (widget.rowAttributes.indexWhere((element) => element.name == 'с НДС') == index) {
+        } else if (widget.rowAttributes.indexWhere(
+              (element) => element.name == 'с НДС',
+            ) ==
+            index) {
           return Builder(
             builder: (context) {
               return addDecoration(
@@ -84,7 +90,7 @@ class _DivisionsMarginTableWidgetState
             },
           );
         }
-        return SizedBox(child: Center(child: Text('-')),);
+        return SizedBox(child: Center(child: Text('-')));
       }),
       height: 48,
     );
@@ -96,6 +102,7 @@ class _DivisionsMarginTableWidgetState
       return MoonTableRow(
         height: 72,
         cells: [
+          addDecoration(buildTextCell(row.id)),
           addDecoration(buildTextCell(row.divisionShortName)),
           addDecoration(buildCellWithMultiLine(row.divisionName)),
           addDecoration(buildTextCell(row.divisionSummaryCost)),
