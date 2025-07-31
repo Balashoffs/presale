@@ -7,7 +7,6 @@ import 'package:presale/src/presentation/modules/service_type_select/navi/servic
 import 'package:presale/src/presentation/modules/v3/design/navi/service_navi.dart';
 import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 
-
 class AppRouterV3 extends GoRouter {
   static final pathChangedController = StreamController<String>.broadcast();
 
@@ -21,7 +20,11 @@ class AppRouterV3 extends GoRouter {
               ServiceTypeSelectRoute(
                 routes: [
                   InputDataRoute(
-                    routes: [DivisionResourceCalculateRoute(routes: [])],
+                    routes: [
+                      DivisionResourceCalculateRoute(
+                        routes: [DivisionMarginCalculateRoute(routes: [])],
+                      ),
+                    ],
                   ),
                 ],
               ),

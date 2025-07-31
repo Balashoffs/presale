@@ -209,8 +209,8 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
             rows: [],
           );
     } else {
-      tables[DivisionType.both.shortText] = DivisionResourceTableWithTypePojo(
-        divisionType: DivisionType.both.shortText,
+      tables[type.shortText] = DivisionResourceTableWithTypePojo(
+        divisionType: type.shortText,
         rows: [],
       );
     }

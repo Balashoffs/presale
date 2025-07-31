@@ -4,6 +4,7 @@ import 'package:presale/src/domain/models/v3/design/custom_fuctors/custom_factor
 import 'package:presale/src/domain/models/v3/design/division_result/division_result.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
+import 'package:presale/src/domain/models/v5/design/divisions_margin_table/division_with_margin_row_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/division_row_data.dart';
 
 class DesignOfferCalculator {
@@ -76,10 +77,8 @@ class DesignOfferCalculator {
     );
   }
 
-  double calcDivisionTotal(
-      DivisionResourceRowVM divisionResourceViewModel,
-  ) {
-    return divisionResourceViewModel.resourceCostPerDay *
+  double calcDivisionTotalV4(DivisionResourceRowVM divisionResourceViewModel) {
+    return divisionResourceViewModel.totalResourceRowCostVN.value *
         divisionResourceViewModel.resourceUsingFactor *
         divisionResourceViewModel.squareFactor *
         divisionResourceViewModel.complexFactor *
@@ -87,14 +86,22 @@ class DesignOfferCalculator {
         divisionResourceViewModel.resourceQnt;
   }
 
-  double calcDivisionTotalV5(
-      DivisionWithResourceRowVM divisionResourceViewModel,
-      ) {
+  double calcDivisionTotalV5(DivisionWithResourceRowVM divisionResourceViewModel) {
     return divisionResourceViewModel.resourceCostPerDayVN.value *
         divisionResourceViewModel.resourceUsingFactor *
         divisionResourceViewModel.squareFactor *
         divisionResourceViewModel.complexFactor *
         divisionResourceViewModel.workDays *
         divisionResourceViewModel.resourceQnt;
+  }
+
+  void calcDivisionWithMargin(
+    DivisionsWithMarginRowVM model,
+  ) {
+    double withOverPrice = model.divisionSummaryCost + model.overPriceFactor * model.divisionSummaryCost;
+    double withMargins = model.divisionSummaryCost + model.marginFactor * model.divisionSummaryCost;
+    model.summaryCostWithMarginVN.value = withOverPrice + withMargins;
+    double withTax = ( model.summaryCostWithMarginVN.value) * RussianTax + ( model.summaryCostWithMarginVN.value);
+    model.summaryCostWithTaxVN.value = withTax;
   }
 }

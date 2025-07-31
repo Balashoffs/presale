@@ -1,5 +1,1 @@
-enum WidgetActionType{
-  add,
-  delete,
-  edit
-}
+enum WidgetActionType { add, delete }

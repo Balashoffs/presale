@@ -4,7 +4,6 @@ import 'package:presale/src/domain/models/v4/design/division_resource_table/divi
 
 import 'division_resource_dropdown_viewmodel.dart';
 import 'division_resource_row_pojo.dart';
-import 'division_resource_row_viewmodel.dart';
 
 
 
@@ -20,7 +19,7 @@ extension ExtDivisionResourceRow on DivisionResourceRowVM {
       squareFactor: squareFactor,
       resourceUsingFactor: resourceUsingFactor,
       resourceRowCost: totalResourceRowCostVN.value,
-      resourceCostPerDay: resourceCostPerDay,
+      resourceCostPerDay: resourceCostPerDay, resourceSummaryCost: totalResourceRowCostVN.value,
     );
   }
 }

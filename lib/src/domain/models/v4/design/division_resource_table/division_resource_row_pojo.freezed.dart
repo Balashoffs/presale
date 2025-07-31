@@ -33,6 +33,9 @@ mixin _$DivisionResourceRowPojo {
   double get resourceUsingFactor => throw _privateConstructorUsedError;
   double get resourceRowCost => throw _privateConstructorUsedError;
   double get resourceCostPerDay => throw _privateConstructorUsedError;
+  double get overPriceFactor => throw _privateConstructorUsedError;
+  double get marginFactor => throw _privateConstructorUsedError;
+  double get resourceSummaryCost => throw _privateConstructorUsedError;
 
   /// Serializes this DivisionResourceRowPojo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -62,6 +65,9 @@ abstract class $DivisionResourceRowPojoCopyWith<$Res> {
     double resourceUsingFactor,
     double resourceRowCost,
     double resourceCostPerDay,
+    double overPriceFactor,
+    double marginFactor,
+    double resourceSummaryCost,
   });
 }
 
@@ -93,6 +99,9 @@ class _$DivisionResourceRowPojoCopyWithImpl<
     Object? resourceUsingFactor = null,
     Object? resourceRowCost = null,
     Object? resourceCostPerDay = null,
+    Object? overPriceFactor = null,
+    Object? marginFactor = null,
+    Object? resourceSummaryCost = null,
   }) {
     return _then(
       _value.copyWith(
@@ -136,6 +145,18 @@ class _$DivisionResourceRowPojoCopyWithImpl<
                 ? _value.resourceCostPerDay
                 : resourceCostPerDay // ignore: cast_nullable_to_non_nullable
                       as double,
+            overPriceFactor: null == overPriceFactor
+                ? _value.overPriceFactor
+                : overPriceFactor // ignore: cast_nullable_to_non_nullable
+                      as double,
+            marginFactor: null == marginFactor
+                ? _value.marginFactor
+                : marginFactor // ignore: cast_nullable_to_non_nullable
+                      as double,
+            resourceSummaryCost: null == resourceSummaryCost
+                ? _value.resourceSummaryCost
+                : resourceSummaryCost // ignore: cast_nullable_to_non_nullable
+                      as double,
           )
           as $Val,
     );
@@ -162,6 +183,9 @@ abstract class _$$DivisionResourceRowPojoImplCopyWith<$Res>
     double resourceUsingFactor,
     double resourceRowCost,
     double resourceCostPerDay,
+    double overPriceFactor,
+    double marginFactor,
+    double resourceSummaryCost,
   });
 }
 
@@ -193,6 +217,9 @@ class __$$DivisionResourceRowPojoImplCopyWithImpl<$Res>
     Object? resourceUsingFactor = null,
     Object? resourceRowCost = null,
     Object? resourceCostPerDay = null,
+    Object? overPriceFactor = null,
+    Object? marginFactor = null,
+    Object? resourceSummaryCost = null,
   }) {
     return _then(
       _$DivisionResourceRowPojoImpl(
@@ -236,6 +263,18 @@ class __$$DivisionResourceRowPojoImplCopyWithImpl<$Res>
             ? _value.resourceCostPerDay
             : resourceCostPerDay // ignore: cast_nullable_to_non_nullable
                   as double,
+        overPriceFactor: null == overPriceFactor
+            ? _value.overPriceFactor
+            : overPriceFactor // ignore: cast_nullable_to_non_nullable
+                  as double,
+        marginFactor: null == marginFactor
+            ? _value.marginFactor
+            : marginFactor // ignore: cast_nullable_to_non_nullable
+                  as double,
+        resourceSummaryCost: null == resourceSummaryCost
+            ? _value.resourceSummaryCost
+            : resourceSummaryCost // ignore: cast_nullable_to_non_nullable
+                  as double,
       ),
     );
   }
@@ -255,6 +294,9 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
     required this.resourceUsingFactor,
     required this.resourceRowCost,
     required this.resourceCostPerDay,
+    this.overPriceFactor = 0.0,
+    this.marginFactor = 0.0,
+    required this.resourceSummaryCost,
   });
 
   factory _$DivisionResourceRowPojoImpl.fromJson(Map<String, dynamic> json) =>
@@ -280,10 +322,18 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
   final double resourceRowCost;
   @override
   final double resourceCostPerDay;
+  @override
+  @JsonKey()
+  final double overPriceFactor;
+  @override
+  @JsonKey()
+  final double marginFactor;
+  @override
+  final double resourceSummaryCost;
 
   @override
   String toString() {
-    return 'DivisionResourceRowPojo(divisionName: $divisionName, divisionShortName: $divisionShortName, resourceName: $resourceName, resourceQnt: $resourceQnt, workDays: $workDays, complexFactor: $complexFactor, squareFactor: $squareFactor, resourceUsingFactor: $resourceUsingFactor, resourceRowCost: $resourceRowCost, resourceCostPerDay: $resourceCostPerDay)';
+    return 'DivisionResourceRowPojo(divisionName: $divisionName, divisionShortName: $divisionShortName, resourceName: $resourceName, resourceQnt: $resourceQnt, workDays: $workDays, complexFactor: $complexFactor, squareFactor: $squareFactor, resourceUsingFactor: $resourceUsingFactor, resourceRowCost: $resourceRowCost, resourceCostPerDay: $resourceCostPerDay, overPriceFactor: $overPriceFactor, marginFactor: $marginFactor, resourceSummaryCost: $resourceSummaryCost)';
   }
 
   @override
@@ -310,7 +360,13 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
             (identical(other.resourceRowCost, resourceRowCost) ||
                 other.resourceRowCost == resourceRowCost) &&
             (identical(other.resourceCostPerDay, resourceCostPerDay) ||
-                other.resourceCostPerDay == resourceCostPerDay));
+                other.resourceCostPerDay == resourceCostPerDay) &&
+            (identical(other.overPriceFactor, overPriceFactor) ||
+                other.overPriceFactor == overPriceFactor) &&
+            (identical(other.marginFactor, marginFactor) ||
+                other.marginFactor == marginFactor) &&
+            (identical(other.resourceSummaryCost, resourceSummaryCost) ||
+                other.resourceSummaryCost == resourceSummaryCost));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -327,6 +383,9 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
     resourceUsingFactor,
     resourceRowCost,
     resourceCostPerDay,
+    overPriceFactor,
+    marginFactor,
+    resourceSummaryCost,
   );
 
   /// Create a copy of DivisionResourceRowPojo
@@ -358,6 +417,9 @@ abstract class _DivisionResourceRowPojo implements DivisionResourceRowPojo {
     required final double resourceUsingFactor,
     required final double resourceRowCost,
     required final double resourceCostPerDay,
+    final double overPriceFactor,
+    final double marginFactor,
+    required final double resourceSummaryCost,
   }) = _$DivisionResourceRowPojoImpl;
 
   factory _DivisionResourceRowPojo.fromJson(Map<String, dynamic> json) =
@@ -383,6 +445,12 @@ abstract class _DivisionResourceRowPojo implements DivisionResourceRowPojo {
   double get resourceRowCost;
   @override
   double get resourceCostPerDay;
+  @override
+  double get overPriceFactor;
+  @override
+  double get marginFactor;
+  @override
+  double get resourceSummaryCost;
 
   /// Create a copy of DivisionResourceRowPojo
   /// with the given fields replaced by the non-null parameter values.

@@ -20,6 +20,14 @@ _$DesignPresalePojoImpl _$$DesignPresalePojoImplFromJson(
         ),
       ) ??
       const {},
+  divisions:
+      (json['divisions'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(
+          k,
+          DivisionsMarginTableWithTypePojo.fromJson(e as Map<String, dynamic>),
+        ),
+      ) ??
+      const {},
 );
 
 Map<String, dynamic> _$$DesignPresalePojoImplToJson(
@@ -27,4 +35,5 @@ Map<String, dynamic> _$$DesignPresalePojoImplToJson(
 ) => <String, dynamic>{
   'inputDataDesign': instance.inputDataDesign,
   'resource': instance.resource,
+  'divisions': instance.divisions,
 };

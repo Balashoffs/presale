@@ -52,7 +52,7 @@ extension DivisionDtoExt on DivisionDTO {
 }
 
 extension DivisionWithResourceRowExt on DivisionWithResourceRowVM {
-  DivisionResourceRowPojo toPojo() {
+  DivisionResourceRowPojo toPojo({double overPriceFactor = 1.0, double marginFactor = 1.0}) {
     return DivisionResourceRowPojo(
       divisionName: divisionName,
       divisionShortName: divisionShortName,
@@ -64,6 +64,10 @@ extension DivisionWithResourceRowExt on DivisionWithResourceRowVM {
       resourceUsingFactor: resourceUsingFactor,
       resourceRowCost: totalResourceRowCostVN.value,
       resourceCostPerDay: resourceCostPerDayVN.value,
+      marginFactor: marginFactor,
+      overPriceFactor: overPriceFactor,
+      resourceSummaryCost: totalResourceRowCostVN.value,
     );
   }
 }
+

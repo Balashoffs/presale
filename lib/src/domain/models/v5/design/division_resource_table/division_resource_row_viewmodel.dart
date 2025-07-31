@@ -24,9 +24,7 @@ final class DivisionWithResourceRowVM {
 
   // Кол-во задействованных дней
   int _workDays = 0;
-
   int get workDays => _workDays;
-
   set workDays(int value) {
     _workDays = value;
   }
@@ -34,27 +32,21 @@ final class DivisionWithResourceRowVM {
   // Коэфициент сложности
 
   double _complexFactor = 1.0;
-
   double get complexFactor => _complexFactor;
-
   set complexFactor(double value) {
     _complexFactor = value;
   }
 
   // Коэфициент по площади
   double _squareFactor;
-
   double get squareFactor => _squareFactor;
-
   set squareFactor(double value) {
     _squareFactor = value;
   }
 
   // Коэфициент участия
   double _resourceUsingFactor = 1.0;
-
   double get resourceUsingFactor => _resourceUsingFactor;
-
   set resourceUsingFactor(double value) {
     _resourceUsingFactor = value;
   }

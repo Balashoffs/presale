@@ -48,26 +48,6 @@ class DivisionResourceSummaryViewModel {
     _complexityFactor = inputDataDesign.complexityFactor;
     _resources.addAll(divisionWithResourceDTO.resources);
     allDivisions.addAll(divisionWithResourceDTO.divisions);
-
-    // allDivisions.addAll(
-    //   divisionWithResourceDTO.divisions.map((e) {
-    //     if (_resources.containsKey(e.divisionShortName)) {
-    //       if (_resources[e.divisionShortName]!.length == 1) {
-    //         String resourceName =
-    //             _resources[e.divisionShortName]!.first.resourceName;
-    //         double resourceCostPerDay =
-    //             _resources[e.divisionShortName]!.first.resourceCostPerDay;
-    //         return e.toDivisionResourceRowVM(
-    //           inputDataDesign,
-    //           resourceName: resourceName,
-    //           resourceCostPerDay: resourceCostPerDay,
-    //         );
-    //       }
-    //     }
-    //
-    //     return e.toDivisionResourceRowVM(inputDataDesign);
-    //   }).toList(),
-    // );
   }
 
   List<ResourceDTO> resourcesByDivisionShortName(String divisionShortName) =>
@@ -79,8 +59,6 @@ class DivisionResourceSummaryViewModel {
         _onAdd(id);
       case WidgetActionType.delete:
         _onDelete(id);
-      case WidgetActionType.edit:
-        _onUpdate(id);
     }
   }
 
@@ -88,7 +66,6 @@ class DivisionResourceSummaryViewModel {
     DivisionWithResourceRowVM? found = getById(id);
     if (found != null) {
       //TODO Add algorithm to remove from unselected
-      // unselectedRows.removeWhere((element) => element.id == id);
       selectedRows.value = [...selectedRows.value, found];
     }
   }
@@ -100,7 +77,6 @@ class DivisionResourceSummaryViewModel {
       updates.removeWhere((element) => element.id == id);
       selectedRows.value = [...updates];
       //TODO Add algorithm to remove from unselected
-      // unselectedRows.add(found.copyWithClear());
       summaryVN.value = summaryCost;
     }
   }
@@ -178,6 +154,4 @@ class DivisionResourceSummaryViewModel {
       summaryVN.value = summaryCost;
     }
   }
-
-  void _onUpdate(id) {}
 }

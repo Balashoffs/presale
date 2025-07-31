@@ -41,8 +41,6 @@ class DivisionWithResourceSummaryVM {
         _onAdd(id);
       case WidgetActionType.delete:
         _onDelete(id);
-      case WidgetActionType.edit:
-        _onUpdate(id);
     }
   }
 
@@ -119,7 +117,7 @@ class DivisionWithResourceSummaryVM {
   }
 
   _calcResourceTotal(DivisionResourceRowVM value) {
-    double total = _designOfferCalculator.calcDivisionTotal(value);
+    double total = _designOfferCalculator.calcDivisionTotalV4(value);
     if (total.compareTo(0.0) > 0) {
       print('onWorkDays: calc _calcResourceTotal');
       print('onWorkDays: ${total.toString()}');
@@ -127,6 +125,4 @@ class DivisionWithResourceSummaryVM {
       summaryVN.value = summaryCost;
     }
   }
-
-  void _onUpdate(id) {}
 }

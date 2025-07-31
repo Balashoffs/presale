@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:presale/src/presentation/core/navigation/app_page.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/division_resorce_calculator_page.dart';
+import 'package:presale/src/presentation/modules/v5/design/divisions_margin_calculate/divisions_margin_calculator_page.dart';
 
 const divisionResourceCalculateRoutePath = "calculate_division_resource_page";
+const divisionMarginCalculateRoutePath = "calculate_division_margin_page";
 
 
 class DivisionResourceCalculateRoute extends GoRoute {
@@ -21,6 +23,23 @@ class DivisionResourceCalculateRoute extends GoRoute {
            return null;
          },
        );
+}
+
+class DivisionMarginCalculateRoute extends GoRoute {
+  DivisionMarginCalculateRoute({
+    String? path,
+    String? name,
+    super.builder,
+    Page Function(BuildContext, GoRouterState)? pageBuilder,
+    super.routes,
+  }) : super(
+    path: divisionMarginCalculateRoutePath,
+    name: name ?? (path ?? divisionMarginCalculateRoutePath).toUpperCase(),
+    pageBuilder: (context, state) => AppPage(child: DivisionsMarginCalculatePage()),
+    redirect: (context, state) {
+      return null;
+    },
+  );
 }
 
 

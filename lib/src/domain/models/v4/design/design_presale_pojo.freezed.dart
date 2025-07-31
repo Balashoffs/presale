@@ -24,6 +24,8 @@ mixin _$DesignPresalePojo {
   InputDataDesign get inputDataDesign => throw _privateConstructorUsedError;
   Map<String, DivisionResourceTableWithTypePojo> get resource =>
       throw _privateConstructorUsedError;
+  Map<String, DivisionsMarginTableWithTypePojo> get divisions =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this DesignPresalePojo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,6 +47,7 @@ abstract class $DesignPresalePojoCopyWith<$Res> {
   $Res call({
     InputDataDesign inputDataDesign,
     Map<String, DivisionResourceTableWithTypePojo> resource,
+    Map<String, DivisionsMarginTableWithTypePojo> divisions,
   });
 
   $InputDataDesignCopyWith<$Res> get inputDataDesign;
@@ -64,7 +67,11 @@ class _$DesignPresalePojoCopyWithImpl<$Res, $Val extends DesignPresalePojo>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? inputDataDesign = null, Object? resource = null}) {
+  $Res call({
+    Object? inputDataDesign = null,
+    Object? resource = null,
+    Object? divisions = null,
+  }) {
     return _then(
       _value.copyWith(
             inputDataDesign: null == inputDataDesign
@@ -75,6 +82,10 @@ class _$DesignPresalePojoCopyWithImpl<$Res, $Val extends DesignPresalePojo>
                 ? _value.resource
                 : resource // ignore: cast_nullable_to_non_nullable
                       as Map<String, DivisionResourceTableWithTypePojo>,
+            divisions: null == divisions
+                ? _value.divisions
+                : divisions // ignore: cast_nullable_to_non_nullable
+                      as Map<String, DivisionsMarginTableWithTypePojo>,
           )
           as $Val,
     );
@@ -103,6 +114,7 @@ abstract class _$$DesignPresalePojoImplCopyWith<$Res>
   $Res call({
     InputDataDesign inputDataDesign,
     Map<String, DivisionResourceTableWithTypePojo> resource,
+    Map<String, DivisionsMarginTableWithTypePojo> divisions,
   });
 
   @override
@@ -122,7 +134,11 @@ class __$$DesignPresalePojoImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? inputDataDesign = null, Object? resource = null}) {
+  $Res call({
+    Object? inputDataDesign = null,
+    Object? resource = null,
+    Object? divisions = null,
+  }) {
     return _then(
       _$DesignPresalePojoImpl(
         inputDataDesign: null == inputDataDesign
@@ -133,6 +149,10 @@ class __$$DesignPresalePojoImplCopyWithImpl<$Res>
             ? _value._resource
             : resource // ignore: cast_nullable_to_non_nullable
                   as Map<String, DivisionResourceTableWithTypePojo>,
+        divisions: null == divisions
+            ? _value._divisions
+            : divisions // ignore: cast_nullable_to_non_nullable
+                  as Map<String, DivisionsMarginTableWithTypePojo>,
       ),
     );
   }
@@ -144,7 +164,9 @@ class _$DesignPresalePojoImpl implements _DesignPresalePojo {
   const _$DesignPresalePojoImpl({
     required this.inputDataDesign,
     final Map<String, DivisionResourceTableWithTypePojo> resource = const {},
-  }) : _resource = resource;
+    final Map<String, DivisionsMarginTableWithTypePojo> divisions = const {},
+  }) : _resource = resource,
+       _divisions = divisions;
 
   factory _$DesignPresalePojoImpl.fromJson(Map<String, dynamic> json) =>
       _$$DesignPresalePojoImplFromJson(json);
@@ -160,9 +182,18 @@ class _$DesignPresalePojoImpl implements _DesignPresalePojo {
     return EqualUnmodifiableMapView(_resource);
   }
 
+  final Map<String, DivisionsMarginTableWithTypePojo> _divisions;
+  @override
+  @JsonKey()
+  Map<String, DivisionsMarginTableWithTypePojo> get divisions {
+    if (_divisions is EqualUnmodifiableMapView) return _divisions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_divisions);
+  }
+
   @override
   String toString() {
-    return 'DesignPresalePojo(inputDataDesign: $inputDataDesign, resource: $resource)';
+    return 'DesignPresalePojo(inputDataDesign: $inputDataDesign, resource: $resource, divisions: $divisions)';
   }
 
   @override
@@ -172,7 +203,11 @@ class _$DesignPresalePojoImpl implements _DesignPresalePojo {
             other is _$DesignPresalePojoImpl &&
             (identical(other.inputDataDesign, inputDataDesign) ||
                 other.inputDataDesign == inputDataDesign) &&
-            const DeepCollectionEquality().equals(other._resource, _resource));
+            const DeepCollectionEquality().equals(other._resource, _resource) &&
+            const DeepCollectionEquality().equals(
+              other._divisions,
+              _divisions,
+            ));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -181,6 +216,7 @@ class _$DesignPresalePojoImpl implements _DesignPresalePojo {
     runtimeType,
     inputDataDesign,
     const DeepCollectionEquality().hash(_resource),
+    const DeepCollectionEquality().hash(_divisions),
   );
 
   /// Create a copy of DesignPresalePojo
@@ -204,6 +240,7 @@ abstract class _DesignPresalePojo implements DesignPresalePojo {
   const factory _DesignPresalePojo({
     required final InputDataDesign inputDataDesign,
     final Map<String, DivisionResourceTableWithTypePojo> resource,
+    final Map<String, DivisionsMarginTableWithTypePojo> divisions,
   }) = _$DesignPresalePojoImpl;
 
   factory _DesignPresalePojo.fromJson(Map<String, dynamic> json) =
@@ -213,6 +250,8 @@ abstract class _DesignPresalePojo implements DesignPresalePojo {
   InputDataDesign get inputDataDesign;
   @override
   Map<String, DivisionResourceTableWithTypePojo> get resource;
+  @override
+  Map<String, DivisionsMarginTableWithTypePojo> get divisions;
 
   /// Create a copy of DesignPresalePojo
   /// with the given fields replaced by the non-null parameter values.

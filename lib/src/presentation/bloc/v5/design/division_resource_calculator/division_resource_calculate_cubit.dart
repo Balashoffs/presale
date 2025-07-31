@@ -2,8 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:presale/src/data/core/db_client.dart';
 import 'package:presale/src/data/data_sources/v3/input_result_design_source.dart';
+import 'package:presale/src/domain/models/v3/design/division_type/division_type.dart';
 import 'package:presale/src/domain/models/v4/design/design_presale_pojo.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_pojo.dart';
+import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_table_pojo.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/extensions.dart';
@@ -25,14 +27,18 @@ class DivisionResourceCalculateCubit
   }) : _divisionType = divisionType,
        _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),
        _resourceSummaryViewModel = resourceSummaryViewModel,
-       super(const DivisionResourceCalculateState.initial()) {}
+       super(const DivisionResourceCalculateState.initial());
 
   void init() async {
-    DivisionWithResourceDTO divisionWithResourceDTO =  await DivisionWithResourceDTO.build();
+    DivisionWithResourceDTO divisionWithResourceDTO =
+        await DivisionWithResourceDTO.build();
     DesignPresalePojo designPresalePojo = await _dataSourceLocal
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
 
-    _resourceSummaryViewModel.fill(divisionWithResourceDTO, designPresalePojo.inputDataDesign);
+    _resourceSummaryViewModel.fill(
+      divisionWithResourceDTO,
+      designPresalePojo.inputDataDesign,
+    );
     emit(DivisionResourceCalculateState.showPage());
   }
 
@@ -46,13 +52,43 @@ class DivisionResourceCalculateCubit
     DesignPresalePojo designPresalePojo = await _dataSourceLocal
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
 
-    designPresalePojo.resource[_divisionType]!.rows.addAll(rows);
+    final updatesRows = DivisionType.values
+        .where((element) => element != DivisionType.both)
+        .where(
+          (element) =>
+              designPresalePojo.resource.containsKey(element.shortText),
+        )
+        .map((e) {
+          if (e.shortText == _divisionType) {
+            return MapEntry<String, DivisionResourceTableWithTypePojo>(
+              _divisionType,
+              DivisionResourceTableWithTypePojo(
+                divisionType: _divisionType,
+                rows: rows,
+              ),
+            );
+          }
+          return MapEntry<String, DivisionResourceTableWithTypePojo>(
+            e.text,
+            designPresalePojo.resource[e.shortText]!,
+          );
+        });
 
-    String? divisionType = designPresalePojo.resource.entries
-        .where((element) => element.value.rows.isEmpty)
-        .firstOrNull
-        ?.value
-        .divisionType;
-    emit(DivisionResourceCalculateState.nextPage(divisionType));
+    DesignPresalePojo updated = designPresalePojo.copyWith(
+      resource: Map.fromEntries(updatesRows),
+    );
+
+    bool isSaves = await _dataSourceLocal.addDesignPresale(updated);
+    if(isSaves){
+      String? divisionType = updated.resource.entries
+          .where((element) => element.value.rows.isEmpty)
+          .firstOrNull
+          ?.value
+          .divisionType;
+
+      emit(DivisionResourceCalculateState.nextPage(divisionType));
+    }
+
+
   }
 }

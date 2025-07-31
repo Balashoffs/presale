@@ -6,7 +6,7 @@ import 'package:presale/src/domain/models/v5/design/division_resource_table/divi
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 
-import 'division_table_utils.dart';
+import 'division_resources_table_utils.dart';
 
 typedef OnRowAction = Function(int id, WidgetActionType actionType);
 
@@ -30,6 +30,7 @@ class DivisionsResourceTableWidget extends StatefulWidget {
 class _DivisionsResourceTableWidgetState
     extends State<DivisionsResourceTableWidget> {
   late final ScrollController? _verticalScrollController;
+  bool _isRemoveAction = false;
 
   void _scrollListener(ScrollController verticalScrollController) {
     _verticalScrollController = verticalScrollController;
@@ -38,19 +39,23 @@ class _DivisionsResourceTableWidgetState
   @override
   void initState() {
     super.initState();
-    print('init state');
   }
 
   @override
   void didUpdateWidget(DivisionsResourceTableWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _verticalScrollController?.animateTo(
-        _verticalScrollController.position.maxScrollExtent,
-        duration: Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
-    });
+    if(!_isRemoveAction){
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _verticalScrollController?.animateTo(
+          _verticalScrollController.position.maxScrollExtent,
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      });
+    }else{
+      _isRemoveAction =!_isRemoveAction;
+    }
+
   }
 
   MoonTableHeader _generateTableHeader() {
@@ -77,7 +82,10 @@ class _DivisionsResourceTableWidgetState
           addDecoration(
             buildCellWithIcon(
               const Icon(MoonIcons.controls_close_16_light),
-              () => widget.onRowAction(row.id, WidgetActionType.delete),
+              (){
+                widget.onRowAction(row.id, WidgetActionType.delete);
+                _isRemoveAction = true;
+              },
             ),
             true,
           ),
@@ -158,17 +166,5 @@ class _DivisionsResourceTableWidgetState
             ) => _scrollListener(verticalScrollController),
       ),
     );
-  }
-
-  @override
-  void reassemble() {
-    super.reassemble();
-    print('reassemble');
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print('didChangeDependencies');
   }
 }

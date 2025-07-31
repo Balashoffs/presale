@@ -1,9 +1,8 @@
-
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
 
-final class DivisionResourceRowVM extends LinkedListEntry<DivisionResourceRowVM> {
+final class DivisionResourceRowVM {
   final int id;
 
   //Имя раздела
@@ -65,6 +64,7 @@ final class DivisionResourceRowVM extends LinkedListEntry<DivisionResourceRowVM>
 
   // Стоимость задествия должности по конкретному разделу
   final ValueNotifier<double> totalResourceRowCostVN;
+
   DivisionResourceRowVM({
     required this.id,
     required this.divisionName,

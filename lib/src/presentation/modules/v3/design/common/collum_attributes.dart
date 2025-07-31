@@ -42,11 +42,11 @@ final List<CollumAttribute> divisionResourceTableAttributes = [
 ];
 
 final List<CollumAttribute> divisionMarginTableAttributes = [
-  CollumAttribute(name: 'Наименование', width: 368, tooltip: ''),
-  CollumAttribute(name: 'Себестоимость', width: 88.0, tooltip: 'Себестоимость раздела'),
-  CollumAttribute(name: 'Накладные', width: 88.0, tooltip: 'Накладные расходы'),
-  CollumAttribute(name: 'Наценка', width: 88.0, tooltip: 'Маржинальность'),
-  CollumAttribute(name: 'Итого', width: 88.0, tooltip: 'Итого стоимость, без НДС'),
-  CollumAttribute(name: 'с НДС', width: 88.0, tooltip: 'Стоимость по разделу с НДС'),
-
+  CollumAttribute(name: 'Шифр', width: 64, tooltip: ''),
+  CollumAttribute(name: 'Раздел', width: 368, tooltip: ''),
+  CollumAttribute(name: 'Себестоимость', width: 128.0, tooltip: 'Себестоимость раздела'),
+  CollumAttribute(name: 'Накладные', width: 128.0, tooltip: 'Накладные расходы'),
+  CollumAttribute(name: 'Наценка', width: 128.0, tooltip: 'Маржинальность'),
+  CollumAttribute(name: 'Итого', width: 128.0, tooltip: 'Итого стоимость, без НДС'),
+  CollumAttribute(name: 'с НДС', width: 128.0, tooltip: 'Стоимость по разделу с НДС'),
 ];

@@ -17,6 +17,9 @@ class DivisionResourceRowPojo with _$DivisionResourceRowPojo {
     required double resourceUsingFactor,
     required double resourceRowCost,
     required double resourceCostPerDay,
+    @Default(0.0) double overPriceFactor,
+    @Default(0.0) double marginFactor,
+    required double resourceSummaryCost,
   }) = _DivisionResourceRowPojo;
 
   factory DivisionResourceRowPojo.fromJson(Map<String, dynamic> json) =>

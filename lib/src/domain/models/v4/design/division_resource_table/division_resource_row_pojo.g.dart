@@ -19,6 +19,9 @@ _$DivisionResourceRowPojoImpl _$$DivisionResourceRowPojoImplFromJson(
   resourceUsingFactor: (json['resourceUsingFactor'] as num).toDouble(),
   resourceRowCost: (json['resourceRowCost'] as num).toDouble(),
   resourceCostPerDay: (json['resourceCostPerDay'] as num).toDouble(),
+  overPriceFactor: (json['overPriceFactor'] as num?)?.toDouble() ?? 0.0,
+  marginFactor: (json['marginFactor'] as num?)?.toDouble() ?? 0.0,
+  resourceSummaryCost: (json['resourceSummaryCost'] as num).toDouble(),
 );
 
 Map<String, dynamic> _$$DivisionResourceRowPojoImplToJson(
@@ -34,4 +37,7 @@ Map<String, dynamic> _$$DivisionResourceRowPojoImplToJson(
   'resourceUsingFactor': instance.resourceUsingFactor,
   'resourceRowCost': instance.resourceRowCost,
   'resourceCostPerDay': instance.resourceCostPerDay,
+  'overPriceFactor': instance.overPriceFactor,
+  'marginFactor': instance.marginFactor,
+  'resourceSummaryCost': instance.resourceSummaryCost,
 };
