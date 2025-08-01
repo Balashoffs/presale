@@ -166,10 +166,12 @@ class ResourceDropDownSelector extends StatefulWidget {
     super.key,
     required this.resources,
     required this.onSelected,
+    required this.hintText,
   });
 
   final List<ResourceDTO> resources;
   final Function(ResourceDTO?) onSelected;
+  final String hintText;
 
   @override
   State<ResourceDropDownSelector> createState() =>
@@ -178,13 +180,8 @@ class ResourceDropDownSelector extends StatefulWidget {
 
 class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
   bool _showMenu = false;
-  final String _hintTextAtStart = 'Выберите ресурс';
   String _hintText = '';
 
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -220,7 +217,7 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
         readOnly: true,
         canRequestFocus: false,
         mouseCursor: MouseCursor.defer,
-        hintText: _hintText.isEmpty ? _hintTextAtStart : _hintText,
+        hintText: _hintText.isEmpty ? widget.hintText : _hintText,
         onTap: () => setState(() {
           _showMenu = !_showMenu;
           _hintText = '';
@@ -247,11 +244,5 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _hintText = '';
   }
 }

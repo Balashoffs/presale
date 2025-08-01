@@ -84,9 +84,9 @@ class DivisionsMarginCalculateConsumer extends StatelessWidget {
       DivisionsMarginCalculateState
     >(
       builder: (context, state) {
-        return state.mapOrNull(
-              initial: (value) => CustomCircleLoader(),
-              showPage: (value) => DivisionsMarginCalculateWidget(),
+        return state.whenOrNull(
+              initial: () => CustomCircleLoader(),
+              showPage: () => DivisionsMarginCalculateWidget(),
             ) ??
             SizedBox();
       },

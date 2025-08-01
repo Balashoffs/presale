@@ -7,7 +7,6 @@ import 'package:presale/src/domain/models/v4/design/division_resource_table/divi
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_pojo.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_summary_viewmodel.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/extensions.dart';
-import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_summary_viewmodel.dart';
 
 part 'division_resource_calculate_state.dart';
 

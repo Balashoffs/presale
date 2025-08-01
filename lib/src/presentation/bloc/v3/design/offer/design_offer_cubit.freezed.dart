@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'division_resource_calculate_cubit.dart';
+part of 'design_offer_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -16,26 +16,26 @@ final _privateConstructorUsedError = UnsupportedError(
 );
 
 /// @nodoc
-mixin _$DivisionResourceCalculateState {
+mixin _$DesignOfferState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? nextType) nextPage,
-    required TResult Function() showPage,
+    required TResult Function() nextPage,
+    required TResult Function(DesignOfferResultVM result) showPage,
     required TResult Function(String errorText) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String? nextType)? nextPage,
-    TResult? Function()? showPage,
+    TResult? Function()? nextPage,
+    TResult? Function(DesignOfferResultVM result)? showPage,
     TResult? Function(String errorText)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? nextType)? nextPage,
-    TResult Function()? showPage,
+    TResult Function()? nextPage,
+    TResult Function(DesignOfferResultVM result)? showPage,
     TResult Function(String errorText)? error,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -64,31 +64,24 @@ mixin _$DivisionResourceCalculateState {
 }
 
 /// @nodoc
-abstract class $DivisionResourceCalculateStateCopyWith<$Res> {
-  factory $DivisionResourceCalculateStateCopyWith(
-    DivisionResourceCalculateState value,
-    $Res Function(DivisionResourceCalculateState) then,
-  ) =
-      _$DivisionResourceCalculateStateCopyWithImpl<
-        $Res,
-        DivisionResourceCalculateState
-      >;
+abstract class $DesignOfferStateCopyWith<$Res> {
+  factory $DesignOfferStateCopyWith(
+    DesignOfferState value,
+    $Res Function(DesignOfferState) then,
+  ) = _$DesignOfferStateCopyWithImpl<$Res, DesignOfferState>;
 }
 
 /// @nodoc
-class _$DivisionResourceCalculateStateCopyWithImpl<
-  $Res,
-  $Val extends DivisionResourceCalculateState
->
-    implements $DivisionResourceCalculateStateCopyWith<$Res> {
-  _$DivisionResourceCalculateStateCopyWithImpl(this._value, this._then);
+class _$DesignOfferStateCopyWithImpl<$Res, $Val extends DesignOfferState>
+    implements $DesignOfferStateCopyWith<$Res> {
+  _$DesignOfferStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DivisionResourceCalculateState
+  /// Create a copy of DesignOfferState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -102,14 +95,14 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$DivisionResourceCalculateStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$DesignOfferStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
     _$InitialImpl _value,
     $Res Function(_$InitialImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of DivisionResourceCalculateState
+  /// Create a copy of DesignOfferState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -120,7 +113,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'DivisionResourceCalculateState.initial()';
+    return 'DesignOfferState.initial()';
   }
 
   @override
@@ -136,8 +129,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? nextType) nextPage,
-    required TResult Function() showPage,
+    required TResult Function() nextPage,
+    required TResult Function(DesignOfferResultVM result) showPage,
     required TResult Function(String errorText) error,
   }) {
     return initial();
@@ -147,8 +140,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String? nextType)? nextPage,
-    TResult? Function()? showPage,
+    TResult? Function()? nextPage,
+    TResult? Function(DesignOfferResultVM result)? showPage,
     TResult? Function(String errorText)? error,
   }) {
     return initial?.call();
@@ -158,8 +151,8 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? nextType)? nextPage,
-    TResult Function()? showPage,
+    TResult Function()? nextPage,
+    TResult Function(DesignOfferResultVM result)? showPage,
     TResult Function(String errorText)? error,
     required TResult orElse(),
   }) {
@@ -207,7 +200,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements DivisionResourceCalculateState {
+abstract class _Initial implements DesignOfferState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -217,101 +210,73 @@ abstract class _$$NextPageImplCopyWith<$Res> {
     _$NextPageImpl value,
     $Res Function(_$NextPageImpl) then,
   ) = __$$NextPageImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? nextType});
 }
 
 /// @nodoc
 class __$$NextPageImplCopyWithImpl<$Res>
-    extends _$DivisionResourceCalculateStateCopyWithImpl<$Res, _$NextPageImpl>
+    extends _$DesignOfferStateCopyWithImpl<$Res, _$NextPageImpl>
     implements _$$NextPageImplCopyWith<$Res> {
   __$$NextPageImplCopyWithImpl(
     _$NextPageImpl _value,
     $Res Function(_$NextPageImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of DivisionResourceCalculateState
+  /// Create a copy of DesignOfferState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? nextType = freezed}) {
-    return _then(
-      _$NextPageImpl(
-        freezed == nextType
-            ? _value.nextType
-            : nextType // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
 class _$NextPageImpl implements _NextPage {
-  const _$NextPageImpl(this.nextType);
-
-  @override
-  final String? nextType;
+  const _$NextPageImpl();
 
   @override
   String toString() {
-    return 'DivisionResourceCalculateState.nextPage(nextType: $nextType)';
+    return 'DesignOfferState.nextPage()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$NextPageImpl &&
-            (identical(other.nextType, nextType) ||
-                other.nextType == nextType));
+        (other.runtimeType == runtimeType && other is _$NextPageImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, nextType);
-
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$NextPageImplCopyWith<_$NextPageImpl> get copyWith =>
-      __$$NextPageImplCopyWithImpl<_$NextPageImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? nextType) nextPage,
-    required TResult Function() showPage,
+    required TResult Function() nextPage,
+    required TResult Function(DesignOfferResultVM result) showPage,
     required TResult Function(String errorText) error,
   }) {
-    return nextPage(nextType);
+    return nextPage();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String? nextType)? nextPage,
-    TResult? Function()? showPage,
+    TResult? Function()? nextPage,
+    TResult? Function(DesignOfferResultVM result)? showPage,
     TResult? Function(String errorText)? error,
   }) {
-    return nextPage?.call(nextType);
+    return nextPage?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? nextType)? nextPage,
-    TResult Function()? showPage,
+    TResult Function()? nextPage,
+    TResult Function(DesignOfferResultVM result)? showPage,
     TResult Function(String errorText)? error,
     required TResult orElse(),
   }) {
     if (nextPage != null) {
-      return nextPage(nextType);
+      return nextPage();
     }
     return orElse();
   }
@@ -354,16 +319,8 @@ class _$NextPageImpl implements _NextPage {
   }
 }
 
-abstract class _NextPage implements DivisionResourceCalculateState {
-  const factory _NextPage(final String? nextType) = _$NextPageImpl;
-
-  String? get nextType;
-
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NextPageImplCopyWith<_$NextPageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _NextPage implements DesignOfferState {
+  const factory _NextPage() = _$NextPageImpl;
 }
 
 /// @nodoc
@@ -372,73 +329,100 @@ abstract class _$$ShowPageImplCopyWith<$Res> {
     _$ShowPageImpl value,
     $Res Function(_$ShowPageImpl) then,
   ) = __$$ShowPageImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DesignOfferResultVM result});
 }
 
 /// @nodoc
 class __$$ShowPageImplCopyWithImpl<$Res>
-    extends _$DivisionResourceCalculateStateCopyWithImpl<$Res, _$ShowPageImpl>
+    extends _$DesignOfferStateCopyWithImpl<$Res, _$ShowPageImpl>
     implements _$$ShowPageImplCopyWith<$Res> {
   __$$ShowPageImplCopyWithImpl(
     _$ShowPageImpl _value,
     $Res Function(_$ShowPageImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of DivisionResourceCalculateState
+  /// Create a copy of DesignOfferState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({Object? result = null}) {
+    return _then(
+      _$ShowPageImpl(
+        null == result
+            ? _value.result
+            : result // ignore: cast_nullable_to_non_nullable
+                  as DesignOfferResultVM,
+      ),
+    );
+  }
 }
 
 /// @nodoc
 
 class _$ShowPageImpl implements _ShowPage {
-  const _$ShowPageImpl();
+  const _$ShowPageImpl(this.result);
+
+  @override
+  final DesignOfferResultVM result;
 
   @override
   String toString() {
-    return 'DivisionResourceCalculateState.showPage()';
+    return 'DesignOfferState.showPage(result: $result)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ShowPageImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ShowPageImpl &&
+            (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, result);
+
+  /// Create a copy of DesignOfferState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ShowPageImplCopyWith<_$ShowPageImpl> get copyWith =>
+      __$$ShowPageImplCopyWithImpl<_$ShowPageImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? nextType) nextPage,
-    required TResult Function() showPage,
+    required TResult Function() nextPage,
+    required TResult Function(DesignOfferResultVM result) showPage,
     required TResult Function(String errorText) error,
   }) {
-    return showPage();
+    return showPage(result);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String? nextType)? nextPage,
-    TResult? Function()? showPage,
+    TResult? Function()? nextPage,
+    TResult? Function(DesignOfferResultVM result)? showPage,
     TResult? Function(String errorText)? error,
   }) {
-    return showPage?.call();
+    return showPage?.call(result);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? nextType)? nextPage,
-    TResult Function()? showPage,
+    TResult Function()? nextPage,
+    TResult Function(DesignOfferResultVM result)? showPage,
     TResult Function(String errorText)? error,
     required TResult orElse(),
   }) {
     if (showPage != null) {
-      return showPage();
+      return showPage(result);
     }
     return orElse();
   }
@@ -481,8 +465,16 @@ class _$ShowPageImpl implements _ShowPage {
   }
 }
 
-abstract class _ShowPage implements DivisionResourceCalculateState {
-  const factory _ShowPage() = _$ShowPageImpl;
+abstract class _ShowPage implements DesignOfferState {
+  const factory _ShowPage(final DesignOfferResultVM result) = _$ShowPageImpl;
+
+  DesignOfferResultVM get result;
+
+  /// Create a copy of DesignOfferState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ShowPageImplCopyWith<_$ShowPageImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -497,14 +489,14 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$DivisionResourceCalculateStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$DesignOfferStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
     _$ErrorImpl _value,
     $Res Function(_$ErrorImpl) _then,
   ) : super(_value, _then);
 
-  /// Create a copy of DivisionResourceCalculateState
+  /// Create a copy of DesignOfferState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -530,7 +522,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'DivisionResourceCalculateState.error(errorText: $errorText)';
+    return 'DesignOfferState.error(errorText: $errorText)';
   }
 
   @override
@@ -545,7 +537,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, errorText);
 
-  /// Create a copy of DivisionResourceCalculateState
+  /// Create a copy of DesignOfferState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -557,8 +549,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? nextType) nextPage,
-    required TResult Function() showPage,
+    required TResult Function() nextPage,
+    required TResult Function(DesignOfferResultVM result) showPage,
     required TResult Function(String errorText) error,
   }) {
     return error(errorText);
@@ -568,8 +560,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String? nextType)? nextPage,
-    TResult? Function()? showPage,
+    TResult? Function()? nextPage,
+    TResult? Function(DesignOfferResultVM result)? showPage,
     TResult? Function(String errorText)? error,
   }) {
     return error?.call(errorText);
@@ -579,8 +571,8 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? nextType)? nextPage,
-    TResult Function()? showPage,
+    TResult Function()? nextPage,
+    TResult Function(DesignOfferResultVM result)? showPage,
     TResult Function(String errorText)? error,
     required TResult orElse(),
   }) {
@@ -628,12 +620,12 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements DivisionResourceCalculateState {
+abstract class _Error implements DesignOfferState {
   const factory _Error(final String errorText) = _$ErrorImpl;
 
   String get errorText;
 
-  /// Create a copy of DivisionResourceCalculateState
+  /// Create a copy of DesignOfferState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>

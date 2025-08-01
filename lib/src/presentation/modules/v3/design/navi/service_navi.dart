@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:presale/src/presentation/core/navigation/app_page.dart';
+import 'package:presale/src/presentation/modules/v3/design/input/design_offer/result_commerce_offer_page/offer_page.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/object_data_input/object_input_data_page.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/offer/result_commerce_offer_page/offer_page.dart';
 
 const inputDataRoutePath = "input_data_page";
 const designOfferPath = "design_offer_page";

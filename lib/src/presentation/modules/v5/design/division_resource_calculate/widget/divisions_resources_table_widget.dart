@@ -44,7 +44,7 @@ class _DivisionsResourceTableWidgetState
   @override
   void didUpdateWidget(DivisionsResourceTableWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if(!_isRemoveAction){
+    if (!_isRemoveAction) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _verticalScrollController?.animateTo(
           _verticalScrollController.position.maxScrollExtent,
@@ -52,10 +52,9 @@ class _DivisionsResourceTableWidgetState
           curve: Curves.easeOut,
         );
       });
-    }else{
-      _isRemoveAction =!_isRemoveAction;
+    } else {
+      _isRemoveAction = !_isRemoveAction;
     }
-
   }
 
   MoonTableHeader _generateTableHeader() {
@@ -82,7 +81,7 @@ class _DivisionsResourceTableWidgetState
           addDecoration(
             buildCellWithIcon(
               const Icon(MoonIcons.controls_close_16_light),
-              (){
+              () {
                 widget.onRowAction(row.id, WidgetActionType.delete);
                 _isRemoveAction = true;
               },
@@ -93,11 +92,16 @@ class _DivisionsResourceTableWidgetState
           addDecoration(buildCellWithMultiLine(row.divisionName)),
           row.resourceNameVN.value.isEmpty
               ? addDecoration(
-                  buildIntDropdownCell(row.divisionShortName, (context, value) {
+                  buildIntDropdownCell(
+                    (context, value) {
+                      context
+                          .read<DivisionResourceSummaryViewModel>()
+                          .onResourceName(row.id, value);
+                    },
                     context
                         .read<DivisionResourceSummaryViewModel>()
-                        .onResourceName(row.id, value);
-                  }),
+                        .resourcesByDivisionShortName(row.divisionShortName),
+                  ),
                 )
               : addDecoration(buildTextCell(row.resourceNameVN.value)),
           addDecoration(buildTextWithNotifier(row.resourceCostPerDayVN)),

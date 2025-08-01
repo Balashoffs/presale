@@ -110,29 +110,26 @@ class CustomTextAreaInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width != null ? width! + 10 : 510,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: MoonTextArea(
-          height: 200,
-          enabled: true,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          textColor: colorTable(context)[40],
-          hintTextColor: colorTable(context)[40],
-          backgroundColor: colorTable(context)[40],
-          activeBorderColor: colorTable(context)[40],
-          inactiveBorderColor: colorTable(context)[40],
-          hoverBorderColor: colorTable(context)[40],
-          errorColor: colorTable(context)[40],
-          borderRadius: BorderRadius.circular(8.toDouble()),
-          hintText: hintText,
-          validator: validator,
-          onTapOutside: (PointerDownEvent _) =>
-              FocusManager.instance.primaryFocus?.unfocus(),
-          onChanged: onChanged,
-          helper: helperText != null ? Text(helperText!) : null,
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: MoonTextArea(
+        height: 200,
+        enabled: true,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        textColor: colorTable(context)[40],
+        hintTextColor: colorTable(context)[40],
+        backgroundColor: colorTable(context)[40],
+        activeBorderColor: colorTable(context)[40],
+        inactiveBorderColor: colorTable(context)[40],
+        hoverBorderColor: colorTable(context)[40],
+        errorColor: colorTable(context)[40],
+        borderRadius: BorderRadius.circular(8.toDouble()),
+        hintText: hintText,
+        validator: validator,
+        onTapOutside: (PointerDownEvent _) =>
+            FocusManager.instance.primaryFocus?.unfocus(),
+        onChanged: onChanged,
+        helper: helperText != null ? Text(helperText!) : null,
       ),
     );
   }

@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
-import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
 import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:presale/src/presentation/modules/common/text_input_validators.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/custon_text_input.dart';
 
-import 'custom_dropdown_with_search_widget.dart';
 
 typedef ValueChangedWithContext<T> =
     void Function(BuildContext context, T value);
@@ -40,6 +36,17 @@ Widget addDecoration(Widget child, [bool isFistCell = false]) {
         child: child,
       );
     },
+  );
+}
+
+Widget buildColumnCell(List<String> strings) {
+  return Expanded(
+    child: Column(
+      children: [
+        Center(child: Text(textAlign: TextAlign.center, strings[0])),
+        Center(child: Text(textAlign: TextAlign.center, strings[1])),
+      ],
+    ),
   );
 }
 
@@ -80,11 +87,7 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
                 ? colorTable(context)[MoonColor.zeno.index]!
                 : colorTable(context)[MoonColor.chichi.index]!;
             ;
-            return Text(
-              textAlign: TextAlign.center,
-              value.toStringAsFixed(2),
-              style: TextStyle(color: textColor),
-            );
+            return Text(textAlign: TextAlign.center, value.toStringAsFixed(2), style: TextStyle(color: textColor),);
           },
         ),
       ),
@@ -100,7 +103,7 @@ Widget buildIntInputCell(
     builder: (context) {
       return Center(
         child: SizedBox(
-          width: 56,
+          width: 256,
           child: CustomTextInput(
             isEnables: true,
             hintText: '$defaultValue',
@@ -118,23 +121,6 @@ Widget buildIntInputCell(
   );
 }
 
-Widget buildIntDropdownCell(
-  ValueChangedWithContext<String> onChanged,
-  List<ResourceDTO> resources,
-) {
-  return Builder(
-    builder: (context) {
-      return Center(
-        child: ResourceDropDownSelector(
-          hintText: 'Выберите ресурс',
-          onSelected: (p0) => onChanged(context, p0?.resourceName ?? ''),
-          resources: resources,
-        ),
-      );
-    },
-  );
-}
-
 Widget buildFactorInputCell(
   double defaultValue,
   ValueChangedWithContext<double> onChanged,
@@ -143,7 +129,7 @@ Widget buildFactorInputCell(
     builder: (context) {
       return Center(
         child: SizedBox(
-          width: 56,
+          width: 256,
           child: CustomTextInput(
             isEnables: true,
             hintText: '$defaultValue',
@@ -154,6 +140,31 @@ Widget buildFactorInputCell(
               }
             },
             validator: onlyFactorValidator,
+          ),
+        ),
+      );
+    },
+  );
+}
+
+Widget buildStringInputCell(
+    String defaultValue,
+    ValueChangedWithContext<String> onChanged,
+    ) {
+  return Builder(
+    builder: (context) {
+      return Center(
+        child: SizedBox(
+          width: 56,
+          child: CustomTextInput(
+            isEnables: true,
+            hintText: defaultValue,
+            onChanged: (input) {
+              if (input.isNotEmpty) {
+                onChanged(context, input);
+              }
+            },
+            validator: objectNameValidator,
           ),
         ),
       );
@@ -187,6 +198,18 @@ Widget buildCellWithMultiLine(String label) {
         ),
       ),
     ),
+  );
+}
+
+Widget buildMultilineTextInput(String label, ValueChangedWithContext<String> onChanged,){
+  return Builder(
+    builder: (context) {
+      return CustomTextAreaInput(hintText: label, width: 1000, onChanged: (value) {
+        if(value.isNotEmpty){
+          onChanged(context, value);
+        }
+      },);
+    }
   );
 }
 

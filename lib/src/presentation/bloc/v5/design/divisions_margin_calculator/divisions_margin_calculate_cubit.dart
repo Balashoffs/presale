@@ -80,7 +80,7 @@ class DivisionsMarginCalculateCubit
 
     bool isSaves = await _dataSourceLocal.addDesignPresale(updated);
     if (isSaves) {
-      String? divisionType = updated.resource.entries
+      String? divisionType = updated.divisions.entries
           .where((element) => element.value.rows.isEmpty)
           .firstOrNull
           ?.value
