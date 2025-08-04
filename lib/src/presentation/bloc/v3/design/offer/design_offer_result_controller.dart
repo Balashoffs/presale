@@ -54,7 +54,7 @@ class DesignOfferResultController {
       designOfferResultVM =  DesignOfferResultVM(
         divisionType: divisionType,
         createdDesignOffer: designPresalePojo.inputDataDesign.created!
-            .toIso8601String(),
+            .toLocal().toString().split('.')[0],
         objectName: designPresalePojo.inputDataDesign.objectData.name,
         objectLocation: designPresalePojo.inputDataDesign.objectData.address,
         divisionRows: divisionRows,

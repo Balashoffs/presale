@@ -107,7 +107,7 @@ final List<CollumAttribute> designOfferTableAttribute = [
   CollumAttribute(name: 'Шифр', width: 96.0, tooltip: 'Шифр Раздела'),
   CollumAttribute(
     name: 'Наименование',
-    width: 512,
+    width: double.nan,
     tooltip: 'Наименование раздела'
   ),
   CollumAttribute(
@@ -117,7 +117,7 @@ final List<CollumAttribute> designOfferTableAttribute = [
   ),
   CollumAttribute(
     name: 'Стоимость с НДС',
-    width: 128.0,
+    width: double.nan,
     tooltip: 'Стоимость с НДС (Итог для раздела)'
   ),
 ];

@@ -83,6 +83,8 @@ class _DesignOfferResultTableWidgetState
   @override
   Widget build(BuildContext context) {
     return OverflowBox(
+      maxWidth: MediaQuery.of(context).size.width,
+      maxHeight: MediaQuery.of(context).size.height,
       child: MoonTable(
         columnsCount: widget.rowAttributes.length,
         isHeaderPinned: true,

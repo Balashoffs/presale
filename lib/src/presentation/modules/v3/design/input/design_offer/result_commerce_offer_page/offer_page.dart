@@ -76,36 +76,40 @@ class DesignOfferWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-      child: CustomScrollView(
-        primary: true,
-        shrinkWrap: true,
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 16.0, left: 16.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 9 / 20,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      MoonMenuItem(
+    return CustomScrollView(
+      primary: true,
+      shrinkWrap: true,
+      slivers: [
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 256,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: MoonMenuItem(
                         label: Text(
                           "Раздел",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 16),
                         ),
-                        content: Text(
-                          results.divisionType,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16),
+                        content: Center(
+                          child: Text(
+                            results.divisionType,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 16),
+                          ),
                         ),
                       ),
-                      MoonMenuItem(
+                    ),
+                    Flexible(
+                      flex: 2,
+                      child: MoonMenuItem(
                         label: Text(
                           "Дата создания",
                           textAlign: TextAlign.center,
@@ -117,177 +121,306 @@ class DesignOfferWidget extends StatelessWidget {
                           style: TextStyle(fontSize: 16),
                         ),
                       ),
-                      MoonMenuItem(
+                    ),
+                    Flexible(
+                      flex: 7,
+                      child: MoonMenuItem(
+                        width: 1000,
                         label: Text(
                           "Название объекта",
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 16),
                         ),
-                        content: MoonTextArea(
+                        content: MoonTextInput(
                           controller: TextEditingController.fromValue(
                             TextEditingValue(text: results.objectName),
                           ),
+                          readOnly: true,
                           textAlign: TextAlign.start,
-                          minLines: 1,
                           height: 48,
                         ),
                       ),
-                      MoonMenuItem(
-                        label: Text(
-                          "Адрес объекта",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        content: MoonTextArea(
-                          controller: TextEditingController.fromValue(
-                            TextEditingValue(text: results.objectLocation),
-                          ),
-                          textAlign: TextAlign.start,
-                          minLines: 2,
-                          height: 72,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 15 / 20,
-              child: DesignOfferResultTableWidget(
-                rowAttributes: designOfferTableAttribute,
-                tableDataRows: results.divisionRows,
-                summaries: results.divisionSummaries,
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(child: HandleInputForm()),
-          SliverToBoxAdapter(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
                 MoonMenuItem(
-                  width: 250,
                   label: Text(
-                    "Итого (Для внутреннего)",
+                    "Адрес объекта",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16),
                   ),
                   content: MoonTextArea(
-                    height: 48,
-                    textAlign: TextAlign.start,
                     controller: TextEditingController.fromValue(
-                      TextEditingValue(
-                        text: results.personCost.toStringAsFixed(2),
-                      ),
+                      TextEditingValue(text: results.objectLocation),
                     ),
-                  ),
-                ),
-                MoonMenuItem(
-                  width: 250,
-                  label: Text(
-                    "Итого (Для заказчика)",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  content: MoonTextArea(
-                    height: 48,
                     textAlign: TextAlign.start,
-                    controller: TextEditingController.fromValue(
-                      TextEditingValue(
-                        text: results.customerCost.toStringAsFixed(2),
-                      ),
-                    ),
+                    minLines: 2,
+                    height: 72,
                   ),
                 ),
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class HandleInputForm extends StatefulWidget {
-  const HandleInputForm({super.key});
-
-  @override
-  State<HandleInputForm> createState() => _HandleInputFormState();
-}
-
-class _HandleInputFormState extends State<HandleInputForm> {
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      child: Builder(
-        builder: (BuildContext context) {
-          return Column(
-            children: [
-              buildMultilineTextInput('Поле для примечаний', (context, value) {
-                context.read<DesignOfferResultController>().onComments(value);
-              }),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 250,
-                    child: Text("Сроки проведения работ, дн."),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height -200,
+            width: MediaQuery.of(context).size.width -200,
+            child: DesignOfferResultTableWidget(
+              rowAttributes: designOfferTableAttribute,
+              tableDataRows: results.divisionRows,
+              summaries: results.divisionSummaries,
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 500,
+            child: Row(
+              children: [
+                Flexible(
+                  flex: 4,
+                  child: Form(
+                    child: Builder(
+                      builder: (BuildContext context) {
+                        return Column(
+                          children: [
+                            buildMultilineTextInput('Поле для примечаний', (
+                              context,
+                              value,
+                            ) {
+                              context
+                                  .read<DesignOfferResultController>()
+                                  .onComments(value);
+                            }),
+                            const SizedBox(height: 16),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 250,
+                                  child: Text("Сроки проведения работ, дн."),
+                                ),
+                                buildIntInputCell(0, (context, value) {
+                                  context
+                                      .read<DesignOfferResultController>()
+                                      .onWorkTime(value);
+                                }),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 250,
+                                  child: Text("Авансирование, рубл."),
+                                ),
+                                buildFactorInputCell(0, (context, value) {
+                                  context
+                                      .read<DesignOfferResultController>()
+                                      .onAvance(value);
+                                }),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            Row(
+                              children: [
+                                SizedBox(width: 250, child: Text('Подготовил')),
+                                ValueListenableBuilder(
+                                  valueListenable: context
+                                      .read<DesignOfferResultController>()
+                                      .signs,
+                                  builder: (context, value, child) {
+                                    return PersonSignDropDownSelector(
+                                      hintText: 'Выбрать подписанта',
+                                      onSelected: (value) {
+                                        context
+                                            .read<DesignOfferResultController>()
+                                            .onSelectSign(value);
+                                      },
+                                      resources: value,
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                MoonButton(
+                                  width: 200,
+                                  showBorder: true,
+                                  label: const Text("Выгрузить КП"),
+                                  onTap: () => Form.of(context).validate(),
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      },
+                    ),
                   ),
-                  buildIntInputCell(0, (context, value) {
-                    context.read<DesignOfferResultController>().onWorkTime(
-                      value,
-                    );
-                  }),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  SizedBox(width: 250, child: Text("Авансирование, рубл.")),
-                  buildFactorInputCell(0, (context, value) {
-                    context.read<DesignOfferResultController>().onAvance(value);
-                  }),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  SizedBox(width: 250, child: Text('Подготовил')),
-                  ValueListenableBuilder(
-                    valueListenable: context.read<DesignOfferResultController>().signs,
-                    builder: (context, value, child) {
-                      return PersonSignDropDownSelector(
-                        hintText: 'Выбрать подписанта',
-                        onSelected: (value) {
-                          context
-                              .read<DesignOfferResultController>()
-                              .onSelectSign(value);
-                        },
-                        resources: value,
-                      );
-                    }
+                ),
+                Flexible(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      MoonMenuItem(
+                        width: 250,
+                        label: Text(
+                          "Итого (Для внутреннего)",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        content: MoonTextArea(
+                          height: 48,
+                          textAlign: TextAlign.start,
+                          controller: TextEditingController.fromValue(
+                            TextEditingValue(
+                              text: results.personCost.toStringAsFixed(2),
+                            ),
+                          ),
+                        ),
+                      ),
+                      MoonMenuItem(
+                        width: 250,
+                        label: Text(
+                          "Итого (Для заказчика)",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        content: MoonTextArea(
+                          height: 48,
+                          textAlign: TextAlign.start,
+                          controller: TextEditingController.fromValue(
+                            TextEditingValue(
+                              text: results.customerCost.toStringAsFixed(2),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  MoonButton(
-                    showBorder: true,
-                    label: const Text("Выгрузить КП"),
-                    onTap: () => Form.of(context).validate(),
-                  ),
-                ],
-              ),
-            ],
-          );
-        },
-      ),
+                ),
+              ],
+            ),
+            // )),SliverToBoxAdapter(child:SizedBox(
+            //   height: MediaQuery.of(context).size.height * 6 / 20,
+            //   child: Row(
+            //     children: [
+            //       Column(
+            //         crossAxisAlignment: CrossAxisAlignment.end,
+            //         mainAxisAlignment: MainAxisAlignment.end,
+            //         children: [
+            //           MoonMenuItem(
+            //             width: 250,
+            //             label: Text(
+            //               "Итого (Для внутреннего)",
+            //               textAlign: TextAlign.center,
+            //               style: TextStyle(fontSize: 16),
+            //             ),
+            //             content: MoonTextArea(
+            //               height: 48,
+            //               textAlign: TextAlign.start,
+            //               controller: TextEditingController.fromValue(
+            //                 TextEditingValue(
+            //                   text: results.personCost.toStringAsFixed(2),
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //           MoonMenuItem(
+            //             width: 250,
+            //             label: Text(
+            //               "Итого (Для заказчика)",
+            //               textAlign: TextAlign.center,
+            //               style: TextStyle(fontSize: 16),
+            //             ),
+            //             content: MoonTextArea(
+            //               height: 48,
+            //               textAlign: TextAlign.start,
+            //               controller: TextEditingController.fromValue(
+            //                 TextEditingValue(
+            //                   text: results.customerCost.toStringAsFixed(2),
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //       Form(
+            //         child: Builder(
+            //           builder: (BuildContext context) {
+            //             return Column(
+            //               children: [
+            //                 buildMultilineTextInput('Поле для примечаний', (context, value) {
+            //                   context.read<DesignOfferResultController>().onComments(value);
+            //                 }),
+            //                 const SizedBox(height: 16),
+            //                 Row(
+            //                   children: [
+            //                     SizedBox(
+            //                       width: 250,
+            //                       child: Text("Сроки проведения работ, дн."),
+            //                     ),
+            //                     buildIntInputCell(0, (context, value) {
+            //                       context.read<DesignOfferResultController>().onWorkTime(
+            //                         value,
+            //                       );
+            //                     }),
+            //                   ],
+            //                 ),
+            //                 const SizedBox(height: 16),
+            //                 Row(
+            //                   children: [
+            //                     SizedBox(width: 250, child: Text("Авансирование, рубл.")),
+            //                     buildFactorInputCell(0, (context, value) {
+            //                       context.read<DesignOfferResultController>().onAvance(value);
+            //                     }),
+            //                   ],
+            //                 ),
+            //                 const SizedBox(height: 16),
+            //                 Row(
+            //                   children: [
+            //                     SizedBox(width: 250, child: Text('Подготовил')),
+            //                     ValueListenableBuilder(
+            //                         valueListenable: context.read<DesignOfferResultController>().signs,
+            //                         builder: (context, value, child) {
+            //                           return PersonSignDropDownSelector(
+            //                             hintText: 'Выбрать подписанта',
+            //                             onSelected: (value) {
+            //                               context
+            //                                   .read<DesignOfferResultController>()
+            //                                   .onSelectSign(value);
+            //                             },
+            //                             resources: value,
+            //                           );
+            //                         }
+            //                     ),
+            //                   ],
+            //                 ),
+            //                 const SizedBox(height: 16),
+            //                 Row(
+            //                   mainAxisAlignment: MainAxisAlignment.start,
+            //                   children: [
+            //                     MoonButton(
+            //                       width: 200,
+            //                       showBorder: true,
+            //                       label: const Text("Выгрузить КП"),
+            //                       onTap: () => Form.of(context).validate(),
+            //                     ),
+            //                   ],
+            //                 ),
+            //               ],
+            //             );
+            //           },
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+          ),
+        ),
+      ],
     );
   }
 }

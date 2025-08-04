@@ -66,11 +66,9 @@ Widget buildHeaderCell(CollumAttribute attribute) {
 }
 
 Widget buildTextCell(dynamic label) {
-  return Center(
-    child: Padding(
-      padding: const EdgeInsetsDirectional.all(8.0),
-      child: Text(textAlign: TextAlign.center, label.toString()),
-    ),
+  return Padding(
+    padding: const EdgeInsetsDirectional.all(8.0),
+    child: Text(textAlign: TextAlign.center, label.toString()),
   );
 }
 
