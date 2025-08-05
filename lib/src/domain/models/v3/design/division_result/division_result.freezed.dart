@@ -22,10 +22,9 @@ DivisionResult _$DivisionResultFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$DivisionResult {
   int get id => throw _privateConstructorUsedError;
-  String get divisionSortName => throw _privateConstructorUsedError;
+  String get divisionShortName => throw _privateConstructorUsedError;
   String get divisionName => throw _privateConstructorUsedError;
   double get divisionSummaryWithTax => throw _privateConstructorUsedError;
-  double get divisionSummaryTax => throw _privateConstructorUsedError;
 
   /// Serializes this DivisionResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,10 +45,9 @@ abstract class $DivisionResultCopyWith<$Res> {
   @useResult
   $Res call({
     int id,
-    String divisionSortName,
+    String divisionShortName,
     String divisionName,
     double divisionSummaryWithTax,
-    double divisionSummaryTax,
   });
 }
 
@@ -69,10 +67,9 @@ class _$DivisionResultCopyWithImpl<$Res, $Val extends DivisionResult>
   @override
   $Res call({
     Object? id = null,
-    Object? divisionSortName = null,
+    Object? divisionShortName = null,
     Object? divisionName = null,
     Object? divisionSummaryWithTax = null,
-    Object? divisionSummaryTax = null,
   }) {
     return _then(
       _value.copyWith(
@@ -80,9 +77,9 @@ class _$DivisionResultCopyWithImpl<$Res, $Val extends DivisionResult>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                       as int,
-            divisionSortName: null == divisionSortName
-                ? _value.divisionSortName
-                : divisionSortName // ignore: cast_nullable_to_non_nullable
+            divisionShortName: null == divisionShortName
+                ? _value.divisionShortName
+                : divisionShortName // ignore: cast_nullable_to_non_nullable
                       as String,
             divisionName: null == divisionName
                 ? _value.divisionName
@@ -91,10 +88,6 @@ class _$DivisionResultCopyWithImpl<$Res, $Val extends DivisionResult>
             divisionSummaryWithTax: null == divisionSummaryWithTax
                 ? _value.divisionSummaryWithTax
                 : divisionSummaryWithTax // ignore: cast_nullable_to_non_nullable
-                      as double,
-            divisionSummaryTax: null == divisionSummaryTax
-                ? _value.divisionSummaryTax
-                : divisionSummaryTax // ignore: cast_nullable_to_non_nullable
                       as double,
           )
           as $Val,
@@ -113,10 +106,9 @@ abstract class _$$DivisionResultImplCopyWith<$Res>
   @useResult
   $Res call({
     int id,
-    String divisionSortName,
+    String divisionShortName,
     String divisionName,
     double divisionSummaryWithTax,
-    double divisionSummaryTax,
   });
 }
 
@@ -135,10 +127,9 @@ class __$$DivisionResultImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? divisionSortName = null,
+    Object? divisionShortName = null,
     Object? divisionName = null,
     Object? divisionSummaryWithTax = null,
-    Object? divisionSummaryTax = null,
   }) {
     return _then(
       _$DivisionResultImpl(
@@ -146,9 +137,9 @@ class __$$DivisionResultImplCopyWithImpl<$Res>
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
                   as int,
-        divisionSortName: null == divisionSortName
-            ? _value.divisionSortName
-            : divisionSortName // ignore: cast_nullable_to_non_nullable
+        divisionShortName: null == divisionShortName
+            ? _value.divisionShortName
+            : divisionShortName // ignore: cast_nullable_to_non_nullable
                   as String,
         divisionName: null == divisionName
             ? _value.divisionName
@@ -157,10 +148,6 @@ class __$$DivisionResultImplCopyWithImpl<$Res>
         divisionSummaryWithTax: null == divisionSummaryWithTax
             ? _value.divisionSummaryWithTax
             : divisionSummaryWithTax // ignore: cast_nullable_to_non_nullable
-                  as double,
-        divisionSummaryTax: null == divisionSummaryTax
-            ? _value.divisionSummaryTax
-            : divisionSummaryTax // ignore: cast_nullable_to_non_nullable
                   as double,
       ),
     );
@@ -172,10 +159,9 @@ class __$$DivisionResultImplCopyWithImpl<$Res>
 class _$DivisionResultImpl implements _DivisionResult {
   const _$DivisionResultImpl({
     required this.id,
-    required this.divisionSortName,
+    required this.divisionShortName,
     required this.divisionName,
     required this.divisionSummaryWithTax,
-    required this.divisionSummaryTax,
   });
 
   factory _$DivisionResultImpl.fromJson(Map<String, dynamic> json) =>
@@ -184,17 +170,15 @@ class _$DivisionResultImpl implements _DivisionResult {
   @override
   final int id;
   @override
-  final String divisionSortName;
+  final String divisionShortName;
   @override
   final String divisionName;
   @override
   final double divisionSummaryWithTax;
-  @override
-  final double divisionSummaryTax;
 
   @override
   String toString() {
-    return 'DivisionResult(id: $id, divisionSortName: $divisionSortName, divisionName: $divisionName, divisionSummaryWithTax: $divisionSummaryWithTax, divisionSummaryTax: $divisionSummaryTax)';
+    return 'DivisionResult(id: $id, divisionShortName: $divisionShortName, divisionName: $divisionName, divisionSummaryWithTax: $divisionSummaryWithTax)';
   }
 
   @override
@@ -203,14 +187,12 @@ class _$DivisionResultImpl implements _DivisionResult {
         (other.runtimeType == runtimeType &&
             other is _$DivisionResultImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.divisionSortName, divisionSortName) ||
-                other.divisionSortName == divisionSortName) &&
+            (identical(other.divisionShortName, divisionShortName) ||
+                other.divisionShortName == divisionShortName) &&
             (identical(other.divisionName, divisionName) ||
                 other.divisionName == divisionName) &&
             (identical(other.divisionSummaryWithTax, divisionSummaryWithTax) ||
-                other.divisionSummaryWithTax == divisionSummaryWithTax) &&
-            (identical(other.divisionSummaryTax, divisionSummaryTax) ||
-                other.divisionSummaryTax == divisionSummaryTax));
+                other.divisionSummaryWithTax == divisionSummaryWithTax));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -218,10 +200,9 @@ class _$DivisionResultImpl implements _DivisionResult {
   int get hashCode => Object.hash(
     runtimeType,
     id,
-    divisionSortName,
+    divisionShortName,
     divisionName,
     divisionSummaryWithTax,
-    divisionSummaryTax,
   );
 
   /// Create a copy of DivisionResult
@@ -244,10 +225,9 @@ class _$DivisionResultImpl implements _DivisionResult {
 abstract class _DivisionResult implements DivisionResult {
   const factory _DivisionResult({
     required final int id,
-    required final String divisionSortName,
+    required final String divisionShortName,
     required final String divisionName,
     required final double divisionSummaryWithTax,
-    required final double divisionSummaryTax,
   }) = _$DivisionResultImpl;
 
   factory _DivisionResult.fromJson(Map<String, dynamic> json) =
@@ -256,13 +236,11 @@ abstract class _DivisionResult implements DivisionResult {
   @override
   int get id;
   @override
-  String get divisionSortName;
+  String get divisionShortName;
   @override
   String get divisionName;
   @override
   double get divisionSummaryWithTax;
-  @override
-  double get divisionSummaryTax;
 
   /// Create a copy of DivisionResult
   /// with the given fields replaced by the non-null parameter values.

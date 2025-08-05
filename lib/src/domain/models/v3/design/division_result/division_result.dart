@@ -9,10 +9,9 @@ part 'division_result.g.dart';
 class DivisionResult with _$DivisionResult {
   const factory DivisionResult({
     required final int id,
-    required final String divisionSortName,
+    required final String divisionShortName,
     required final String divisionName,
     required final double divisionSummaryWithTax,
-    required final double divisionSummaryTax,
   }) = _DivisionResult;
 
   factory DivisionResult.fromJson(Map<String, dynamic> json) =>

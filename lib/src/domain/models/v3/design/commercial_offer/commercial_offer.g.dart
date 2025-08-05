@@ -9,8 +9,8 @@ part of 'commercial_offer.dart';
 _$CommercialOfferResultImpl _$$CommercialOfferResultImplFromJson(
   Map<String, dynamic> json,
 ) => _$CommercialOfferResultImpl(
-  objectData: ObjectDataDesign.fromJson(
-    json['objectData'] as Map<String, dynamic>,
+  inputDataDesign: InputDataDesign.fromJson(
+    json['inputDataDesign'] as Map<String, dynamic>,
   ),
   divisionResults: (json['divisionResults'] as List<dynamic>)
       .map((e) => DivisionResult.fromJson(e as Map<String, dynamic>))
@@ -23,7 +23,7 @@ _$CommercialOfferResultImpl _$$CommercialOfferResultImplFromJson(
 Map<String, dynamic> _$$CommercialOfferResultImplToJson(
   _$CommercialOfferResultImpl instance,
 ) => <String, dynamic>{
-  'objectData': instance.objectData,
+  'inputDataDesign': instance.inputDataDesign,
   'divisionResults': instance.divisionResults,
   'designOfferSummaryCost': instance.designOfferSummaryCost,
   'designOfferSummaryTax': instance.designOfferSummaryTax,

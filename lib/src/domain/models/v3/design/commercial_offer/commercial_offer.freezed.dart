@@ -23,7 +23,7 @@ CommercialOfferResult _$CommercialOfferResultFromJson(
 
 /// @nodoc
 mixin _$CommercialOfferResult {
-  ObjectDataDesign get objectData => throw _privateConstructorUsedError;
+  InputDataDesign get inputDataDesign => throw _privateConstructorUsedError;
   List<DivisionResult> get divisionResults =>
       throw _privateConstructorUsedError;
   double get designOfferSummaryCost => throw _privateConstructorUsedError;
@@ -48,14 +48,14 @@ abstract class $CommercialOfferResultCopyWith<$Res> {
   ) = _$CommercialOfferResultCopyWithImpl<$Res, CommercialOfferResult>;
   @useResult
   $Res call({
-    ObjectDataDesign objectData,
+    InputDataDesign inputDataDesign,
     List<DivisionResult> divisionResults,
     double designOfferSummaryCost,
     double designOfferSummaryTax,
     FooterData footerData,
   });
 
-  $ObjectDataDesignCopyWith<$Res> get objectData;
+  $InputDataDesignCopyWith<$Res> get inputDataDesign;
   $FooterDataCopyWith<$Res> get footerData;
 }
 
@@ -77,7 +77,7 @@ class _$CommercialOfferResultCopyWithImpl<
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? objectData = null,
+    Object? inputDataDesign = null,
     Object? divisionResults = null,
     Object? designOfferSummaryCost = null,
     Object? designOfferSummaryTax = null,
@@ -85,10 +85,10 @@ class _$CommercialOfferResultCopyWithImpl<
   }) {
     return _then(
       _value.copyWith(
-            objectData: null == objectData
-                ? _value.objectData
-                : objectData // ignore: cast_nullable_to_non_nullable
-                      as ObjectDataDesign,
+            inputDataDesign: null == inputDataDesign
+                ? _value.inputDataDesign
+                : inputDataDesign // ignore: cast_nullable_to_non_nullable
+                      as InputDataDesign,
             divisionResults: null == divisionResults
                 ? _value.divisionResults
                 : divisionResults // ignore: cast_nullable_to_non_nullable
@@ -114,9 +114,9 @@ class _$CommercialOfferResultCopyWithImpl<
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ObjectDataDesignCopyWith<$Res> get objectData {
-    return $ObjectDataDesignCopyWith<$Res>(_value.objectData, (value) {
-      return _then(_value.copyWith(objectData: value) as $Val);
+  $InputDataDesignCopyWith<$Res> get inputDataDesign {
+    return $InputDataDesignCopyWith<$Res>(_value.inputDataDesign, (value) {
+      return _then(_value.copyWith(inputDataDesign: value) as $Val);
     });
   }
 
@@ -141,7 +141,7 @@ abstract class _$$CommercialOfferResultImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    ObjectDataDesign objectData,
+    InputDataDesign inputDataDesign,
     List<DivisionResult> divisionResults,
     double designOfferSummaryCost,
     double designOfferSummaryTax,
@@ -149,7 +149,7 @@ abstract class _$$CommercialOfferResultImplCopyWith<$Res>
   });
 
   @override
-  $ObjectDataDesignCopyWith<$Res> get objectData;
+  $InputDataDesignCopyWith<$Res> get inputDataDesign;
   @override
   $FooterDataCopyWith<$Res> get footerData;
 }
@@ -169,7 +169,7 @@ class __$$CommercialOfferResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? objectData = null,
+    Object? inputDataDesign = null,
     Object? divisionResults = null,
     Object? designOfferSummaryCost = null,
     Object? designOfferSummaryTax = null,
@@ -177,10 +177,10 @@ class __$$CommercialOfferResultImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$CommercialOfferResultImpl(
-        objectData: null == objectData
-            ? _value.objectData
-            : objectData // ignore: cast_nullable_to_non_nullable
-                  as ObjectDataDesign,
+        inputDataDesign: null == inputDataDesign
+            ? _value.inputDataDesign
+            : inputDataDesign // ignore: cast_nullable_to_non_nullable
+                  as InputDataDesign,
         divisionResults: null == divisionResults
             ? _value._divisionResults
             : divisionResults // ignore: cast_nullable_to_non_nullable
@@ -206,7 +206,7 @@ class __$$CommercialOfferResultImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CommercialOfferResultImpl implements _CommercialOfferResult {
   const _$CommercialOfferResultImpl({
-    required this.objectData,
+    required this.inputDataDesign,
     required final List<DivisionResult> divisionResults,
     required this.designOfferSummaryCost,
     required this.designOfferSummaryTax,
@@ -217,7 +217,7 @@ class _$CommercialOfferResultImpl implements _CommercialOfferResult {
       _$$CommercialOfferResultImplFromJson(json);
 
   @override
-  final ObjectDataDesign objectData;
+  final InputDataDesign inputDataDesign;
   final List<DivisionResult> _divisionResults;
   @override
   List<DivisionResult> get divisionResults {
@@ -235,7 +235,7 @@ class _$CommercialOfferResultImpl implements _CommercialOfferResult {
 
   @override
   String toString() {
-    return 'CommercialOfferResult(objectData: $objectData, divisionResults: $divisionResults, designOfferSummaryCost: $designOfferSummaryCost, designOfferSummaryTax: $designOfferSummaryTax, footerData: $footerData)';
+    return 'CommercialOfferResult(inputDataDesign: $inputDataDesign, divisionResults: $divisionResults, designOfferSummaryCost: $designOfferSummaryCost, designOfferSummaryTax: $designOfferSummaryTax, footerData: $footerData)';
   }
 
   @override
@@ -243,8 +243,8 @@ class _$CommercialOfferResultImpl implements _CommercialOfferResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CommercialOfferResultImpl &&
-            (identical(other.objectData, objectData) ||
-                other.objectData == objectData) &&
+            (identical(other.inputDataDesign, inputDataDesign) ||
+                other.inputDataDesign == inputDataDesign) &&
             const DeepCollectionEquality().equals(
               other._divisionResults,
               _divisionResults,
@@ -261,7 +261,7 @@ class _$CommercialOfferResultImpl implements _CommercialOfferResult {
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    objectData,
+    inputDataDesign,
     const DeepCollectionEquality().hash(_divisionResults),
     designOfferSummaryCost,
     designOfferSummaryTax,
@@ -288,7 +288,7 @@ class _$CommercialOfferResultImpl implements _CommercialOfferResult {
 
 abstract class _CommercialOfferResult implements CommercialOfferResult {
   const factory _CommercialOfferResult({
-    required final ObjectDataDesign objectData,
+    required final InputDataDesign inputDataDesign,
     required final List<DivisionResult> divisionResults,
     required final double designOfferSummaryCost,
     required final double designOfferSummaryTax,
@@ -299,7 +299,7 @@ abstract class _CommercialOfferResult implements CommercialOfferResult {
       _$CommercialOfferResultImpl.fromJson;
 
   @override
-  ObjectDataDesign get objectData;
+  InputDataDesign get inputDataDesign;
   @override
   List<DivisionResult> get divisionResults;
   @override
