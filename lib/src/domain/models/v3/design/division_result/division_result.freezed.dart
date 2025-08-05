@@ -21,14 +21,11 @@ DivisionResult _$DivisionResultFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DivisionResult {
-  // Данные о специалисте
-  Division get division =>
-      throw _privateConstructorUsedError; // Чистая стоимость за раздел
-  double get clearDivisionRate =>
-      throw _privateConstructorUsedError; // Стоимость за раздел вместе с расходами и маржой
-  double get fullDivisionRate =>
-      throw _privateConstructorUsedError; // Полная стоимость с НДС
-  double get fullDivisionRateWithTax => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get divisionSortName => throw _privateConstructorUsedError;
+  String get divisionName => throw _privateConstructorUsedError;
+  double get divisionSummaryWithTax => throw _privateConstructorUsedError;
+  double get divisionSummaryTax => throw _privateConstructorUsedError;
 
   /// Serializes this DivisionResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,13 +45,12 @@ abstract class $DivisionResultCopyWith<$Res> {
   ) = _$DivisionResultCopyWithImpl<$Res, DivisionResult>;
   @useResult
   $Res call({
-    Division division,
-    double clearDivisionRate,
-    double fullDivisionRate,
-    double fullDivisionRateWithTax,
+    int id,
+    String divisionSortName,
+    String divisionName,
+    double divisionSummaryWithTax,
+    double divisionSummaryTax,
   });
-
-  $DivisionCopyWith<$Res> get division;
 }
 
 /// @nodoc
@@ -72,42 +68,37 @@ class _$DivisionResultCopyWithImpl<$Res, $Val extends DivisionResult>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? division = null,
-    Object? clearDivisionRate = null,
-    Object? fullDivisionRate = null,
-    Object? fullDivisionRateWithTax = null,
+    Object? id = null,
+    Object? divisionSortName = null,
+    Object? divisionName = null,
+    Object? divisionSummaryWithTax = null,
+    Object? divisionSummaryTax = null,
   }) {
     return _then(
       _value.copyWith(
-            division: null == division
-                ? _value.division
-                : division // ignore: cast_nullable_to_non_nullable
-                      as Division,
-            clearDivisionRate: null == clearDivisionRate
-                ? _value.clearDivisionRate
-                : clearDivisionRate // ignore: cast_nullable_to_non_nullable
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as int,
+            divisionSortName: null == divisionSortName
+                ? _value.divisionSortName
+                : divisionSortName // ignore: cast_nullable_to_non_nullable
+                      as String,
+            divisionName: null == divisionName
+                ? _value.divisionName
+                : divisionName // ignore: cast_nullable_to_non_nullable
+                      as String,
+            divisionSummaryWithTax: null == divisionSummaryWithTax
+                ? _value.divisionSummaryWithTax
+                : divisionSummaryWithTax // ignore: cast_nullable_to_non_nullable
                       as double,
-            fullDivisionRate: null == fullDivisionRate
-                ? _value.fullDivisionRate
-                : fullDivisionRate // ignore: cast_nullable_to_non_nullable
-                      as double,
-            fullDivisionRateWithTax: null == fullDivisionRateWithTax
-                ? _value.fullDivisionRateWithTax
-                : fullDivisionRateWithTax // ignore: cast_nullable_to_non_nullable
+            divisionSummaryTax: null == divisionSummaryTax
+                ? _value.divisionSummaryTax
+                : divisionSummaryTax // ignore: cast_nullable_to_non_nullable
                       as double,
           )
           as $Val,
     );
-  }
-
-  /// Create a copy of DivisionResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $DivisionCopyWith<$Res> get division {
-    return $DivisionCopyWith<$Res>(_value.division, (value) {
-      return _then(_value.copyWith(division: value) as $Val);
-    });
   }
 }
 
@@ -121,14 +112,12 @@ abstract class _$$DivisionResultImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    Division division,
-    double clearDivisionRate,
-    double fullDivisionRate,
-    double fullDivisionRateWithTax,
+    int id,
+    String divisionSortName,
+    String divisionName,
+    double divisionSummaryWithTax,
+    double divisionSummaryTax,
   });
-
-  @override
-  $DivisionCopyWith<$Res> get division;
 }
 
 /// @nodoc
@@ -145,28 +134,33 @@ class __$$DivisionResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? division = null,
-    Object? clearDivisionRate = null,
-    Object? fullDivisionRate = null,
-    Object? fullDivisionRateWithTax = null,
+    Object? id = null,
+    Object? divisionSortName = null,
+    Object? divisionName = null,
+    Object? divisionSummaryWithTax = null,
+    Object? divisionSummaryTax = null,
   }) {
     return _then(
       _$DivisionResultImpl(
-        division: null == division
-            ? _value.division
-            : division // ignore: cast_nullable_to_non_nullable
-                  as Division,
-        clearDivisionRate: null == clearDivisionRate
-            ? _value.clearDivisionRate
-            : clearDivisionRate // ignore: cast_nullable_to_non_nullable
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as int,
+        divisionSortName: null == divisionSortName
+            ? _value.divisionSortName
+            : divisionSortName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        divisionName: null == divisionName
+            ? _value.divisionName
+            : divisionName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        divisionSummaryWithTax: null == divisionSummaryWithTax
+            ? _value.divisionSummaryWithTax
+            : divisionSummaryWithTax // ignore: cast_nullable_to_non_nullable
                   as double,
-        fullDivisionRate: null == fullDivisionRate
-            ? _value.fullDivisionRate
-            : fullDivisionRate // ignore: cast_nullable_to_non_nullable
-                  as double,
-        fullDivisionRateWithTax: null == fullDivisionRateWithTax
-            ? _value.fullDivisionRateWithTax
-            : fullDivisionRateWithTax // ignore: cast_nullable_to_non_nullable
+        divisionSummaryTax: null == divisionSummaryTax
+            ? _value.divisionSummaryTax
+            : divisionSummaryTax // ignore: cast_nullable_to_non_nullable
                   as double,
       ),
     );
@@ -177,31 +171,30 @@ class __$$DivisionResultImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DivisionResultImpl implements _DivisionResult {
   const _$DivisionResultImpl({
-    required this.division,
-    required this.clearDivisionRate,
-    required this.fullDivisionRate,
-    required this.fullDivisionRateWithTax,
+    required this.id,
+    required this.divisionSortName,
+    required this.divisionName,
+    required this.divisionSummaryWithTax,
+    required this.divisionSummaryTax,
   });
 
   factory _$DivisionResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$DivisionResultImplFromJson(json);
 
-  // Данные о специалисте
   @override
-  final Division division;
-  // Чистая стоимость за раздел
+  final int id;
   @override
-  final double clearDivisionRate;
-  // Стоимость за раздел вместе с расходами и маржой
+  final String divisionSortName;
   @override
-  final double fullDivisionRate;
-  // Полная стоимость с НДС
+  final String divisionName;
   @override
-  final double fullDivisionRateWithTax;
+  final double divisionSummaryWithTax;
+  @override
+  final double divisionSummaryTax;
 
   @override
   String toString() {
-    return 'DivisionResult(division: $division, clearDivisionRate: $clearDivisionRate, fullDivisionRate: $fullDivisionRate, fullDivisionRateWithTax: $fullDivisionRateWithTax)';
+    return 'DivisionResult(id: $id, divisionSortName: $divisionSortName, divisionName: $divisionName, divisionSummaryWithTax: $divisionSummaryWithTax, divisionSummaryTax: $divisionSummaryTax)';
   }
 
   @override
@@ -209,27 +202,26 @@ class _$DivisionResultImpl implements _DivisionResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DivisionResultImpl &&
-            (identical(other.division, division) ||
-                other.division == division) &&
-            (identical(other.clearDivisionRate, clearDivisionRate) ||
-                other.clearDivisionRate == clearDivisionRate) &&
-            (identical(other.fullDivisionRate, fullDivisionRate) ||
-                other.fullDivisionRate == fullDivisionRate) &&
-            (identical(
-                  other.fullDivisionRateWithTax,
-                  fullDivisionRateWithTax,
-                ) ||
-                other.fullDivisionRateWithTax == fullDivisionRateWithTax));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.divisionSortName, divisionSortName) ||
+                other.divisionSortName == divisionSortName) &&
+            (identical(other.divisionName, divisionName) ||
+                other.divisionName == divisionName) &&
+            (identical(other.divisionSummaryWithTax, divisionSummaryWithTax) ||
+                other.divisionSummaryWithTax == divisionSummaryWithTax) &&
+            (identical(other.divisionSummaryTax, divisionSummaryTax) ||
+                other.divisionSummaryTax == divisionSummaryTax));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
     runtimeType,
-    division,
-    clearDivisionRate,
-    fullDivisionRate,
-    fullDivisionRateWithTax,
+    id,
+    divisionSortName,
+    divisionName,
+    divisionSummaryWithTax,
+    divisionSummaryTax,
   );
 
   /// Create a copy of DivisionResult
@@ -251,24 +243,26 @@ class _$DivisionResultImpl implements _DivisionResult {
 
 abstract class _DivisionResult implements DivisionResult {
   const factory _DivisionResult({
-    required final Division division,
-    required final double clearDivisionRate,
-    required final double fullDivisionRate,
-    required final double fullDivisionRateWithTax,
+    required final int id,
+    required final String divisionSortName,
+    required final String divisionName,
+    required final double divisionSummaryWithTax,
+    required final double divisionSummaryTax,
   }) = _$DivisionResultImpl;
 
   factory _DivisionResult.fromJson(Map<String, dynamic> json) =
       _$DivisionResultImpl.fromJson;
 
-  // Данные о специалисте
   @override
-  Division get division; // Чистая стоимость за раздел
+  int get id;
   @override
-  double get clearDivisionRate; // Стоимость за раздел вместе с расходами и маржой
+  String get divisionSortName;
   @override
-  double get fullDivisionRate; // Полная стоимость с НДС
+  String get divisionName;
   @override
-  double get fullDivisionRateWithTax;
+  double get divisionSummaryWithTax;
+  @override
+  double get divisionSummaryTax;
 
   /// Create a copy of DivisionResult
   /// with the given fields replaced by the non-null parameter values.

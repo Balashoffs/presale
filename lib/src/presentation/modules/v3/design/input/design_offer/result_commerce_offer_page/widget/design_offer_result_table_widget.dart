@@ -46,25 +46,30 @@ class _DivisionsResultAsTableState extends State<DivisionsResultAsTable> {
                     shape: BoxShape.rectangle,
                   ),
                   child: Column(
-                    children: List.generate(
-                      widget.results.divisionSelfSummaries.length,
-                          (index) {
-                        DivisionSummaryVM sum =
-                        widget.results.divisionSelfSummaries[index];
-                        return buildTextCell('${sum.name}: ${sum.value}', 10.0);
-                      },
-                    ),
+                    children: [
+                      buildTextCell(
+                        getViewText(
+                          ResultType.overPrice,
+                          widget.results.overPrice,
+                        ),
+                        10.0,
+                      ),
+                      buildTextCell(
+                        getViewText(ResultType.margin, widget.results.margin),
+                        10.0,
+                      ),
+                    ],
                   ),
                 ),
                 Column(
-                  children: List.generate(
-                    widget.results.divisionClientSummaries.length,
-                        (index) {
-                      DivisionSummaryVM sum =
-                      widget.results.divisionClientSummaries[index];
-                      return buildTextCell('${sum.name}: ${sum.value}');
-                    },
-                  ),
+                  children: [
+                    buildTextCell(
+                      getViewText(ResultType.summary, widget.results.summary),
+                    ),
+                    buildTextCell(
+                      getViewText(ResultType.tax, widget.results.tax),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -100,27 +105,27 @@ class DivisionsDataSource extends DataGridSource {
     _divisionData = employeeData
         .map<DataGridRow>(
           (e) => DataGridRow(
-        cells: [
-          DataGridCell<int>(columnName: '№', value: e.id),
-          DataGridCell<String>(
-            columnName: 'Шифр раздела',
-            value: e.divisionShortName,
+            cells: [
+              DataGridCell<int>(columnName: '№', value: e.id),
+              DataGridCell<String>(
+                columnName: 'Шифр раздела',
+                value: e.divisionShortName,
+              ),
+              DataGridCell<String>(
+                columnName: 'Наименование раздела',
+                value: e.divisionName,
+              ),
+              DataGridCell<int>(
+                columnName: 'Срок выполнения работ',
+                value: e.deadline,
+              ),
+              DataGridCell<double>(
+                columnName: 'Стоимость с НДС',
+                value: e.divisionSummaryWithTax,
+              ),
+            ],
           ),
-          DataGridCell<String>(
-            columnName: 'Наименование раздела',
-            value: e.divisionName,
-          ),
-          DataGridCell<int>(
-            columnName: 'Срок выполнения работ',
-            value: e.deadline,
-          ),
-          DataGridCell<double>(
-            columnName: 'Стоимость с НДС',
-            value: e.divisionSummaryWithTax,
-          ),
-        ],
-      ),
-    )
+        )
         .toList();
   }
 

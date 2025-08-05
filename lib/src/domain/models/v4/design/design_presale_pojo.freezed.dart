@@ -26,6 +26,8 @@ mixin _$DesignPresalePojo {
       throw _privateConstructorUsedError;
   Map<String, DivisionsMarginTableWithTypePojo> get divisions =>
       throw _privateConstructorUsedError;
+  Map<String, CommercialOfferResult> get offers =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this DesignPresalePojo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,6 +50,7 @@ abstract class $DesignPresalePojoCopyWith<$Res> {
     InputDataDesign inputDataDesign,
     Map<String, DivisionResourceTableWithTypePojo> resource,
     Map<String, DivisionsMarginTableWithTypePojo> divisions,
+    Map<String, CommercialOfferResult> offers,
   });
 
   $InputDataDesignCopyWith<$Res> get inputDataDesign;
@@ -71,6 +74,7 @@ class _$DesignPresalePojoCopyWithImpl<$Res, $Val extends DesignPresalePojo>
     Object? inputDataDesign = null,
     Object? resource = null,
     Object? divisions = null,
+    Object? offers = null,
   }) {
     return _then(
       _value.copyWith(
@@ -86,6 +90,10 @@ class _$DesignPresalePojoCopyWithImpl<$Res, $Val extends DesignPresalePojo>
                 ? _value.divisions
                 : divisions // ignore: cast_nullable_to_non_nullable
                       as Map<String, DivisionsMarginTableWithTypePojo>,
+            offers: null == offers
+                ? _value.offers
+                : offers // ignore: cast_nullable_to_non_nullable
+                      as Map<String, CommercialOfferResult>,
           )
           as $Val,
     );
@@ -115,6 +123,7 @@ abstract class _$$DesignPresalePojoImplCopyWith<$Res>
     InputDataDesign inputDataDesign,
     Map<String, DivisionResourceTableWithTypePojo> resource,
     Map<String, DivisionsMarginTableWithTypePojo> divisions,
+    Map<String, CommercialOfferResult> offers,
   });
 
   @override
@@ -138,6 +147,7 @@ class __$$DesignPresalePojoImplCopyWithImpl<$Res>
     Object? inputDataDesign = null,
     Object? resource = null,
     Object? divisions = null,
+    Object? offers = null,
   }) {
     return _then(
       _$DesignPresalePojoImpl(
@@ -153,6 +163,10 @@ class __$$DesignPresalePojoImplCopyWithImpl<$Res>
             ? _value._divisions
             : divisions // ignore: cast_nullable_to_non_nullable
                   as Map<String, DivisionsMarginTableWithTypePojo>,
+        offers: null == offers
+            ? _value._offers
+            : offers // ignore: cast_nullable_to_non_nullable
+                  as Map<String, CommercialOfferResult>,
       ),
     );
   }
@@ -165,8 +179,10 @@ class _$DesignPresalePojoImpl implements _DesignPresalePojo {
     required this.inputDataDesign,
     final Map<String, DivisionResourceTableWithTypePojo> resource = const {},
     final Map<String, DivisionsMarginTableWithTypePojo> divisions = const {},
+    final Map<String, CommercialOfferResult> offers = const {},
   }) : _resource = resource,
-       _divisions = divisions;
+       _divisions = divisions,
+       _offers = offers;
 
   factory _$DesignPresalePojoImpl.fromJson(Map<String, dynamic> json) =>
       _$$DesignPresalePojoImplFromJson(json);
@@ -191,9 +207,18 @@ class _$DesignPresalePojoImpl implements _DesignPresalePojo {
     return EqualUnmodifiableMapView(_divisions);
   }
 
+  final Map<String, CommercialOfferResult> _offers;
+  @override
+  @JsonKey()
+  Map<String, CommercialOfferResult> get offers {
+    if (_offers is EqualUnmodifiableMapView) return _offers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_offers);
+  }
+
   @override
   String toString() {
-    return 'DesignPresalePojo(inputDataDesign: $inputDataDesign, resource: $resource, divisions: $divisions)';
+    return 'DesignPresalePojo(inputDataDesign: $inputDataDesign, resource: $resource, divisions: $divisions, offers: $offers)';
   }
 
   @override
@@ -207,7 +232,8 @@ class _$DesignPresalePojoImpl implements _DesignPresalePojo {
             const DeepCollectionEquality().equals(
               other._divisions,
               _divisions,
-            ));
+            ) &&
+            const DeepCollectionEquality().equals(other._offers, _offers));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -217,6 +243,7 @@ class _$DesignPresalePojoImpl implements _DesignPresalePojo {
     inputDataDesign,
     const DeepCollectionEquality().hash(_resource),
     const DeepCollectionEquality().hash(_divisions),
+    const DeepCollectionEquality().hash(_offers),
   );
 
   /// Create a copy of DesignPresalePojo
@@ -241,6 +268,7 @@ abstract class _DesignPresalePojo implements DesignPresalePojo {
     required final InputDataDesign inputDataDesign,
     final Map<String, DivisionResourceTableWithTypePojo> resource,
     final Map<String, DivisionsMarginTableWithTypePojo> divisions,
+    final Map<String, CommercialOfferResult> offers,
   }) = _$DesignPresalePojoImpl;
 
   factory _DesignPresalePojo.fromJson(Map<String, dynamic> json) =
@@ -252,6 +280,8 @@ abstract class _DesignPresalePojo implements DesignPresalePojo {
   Map<String, DivisionResourceTableWithTypePojo> get resource;
   @override
   Map<String, DivisionsMarginTableWithTypePojo> get divisions;
+  @override
+  Map<String, CommercialOfferResult> get offers;
 
   /// Create a copy of DesignPresalePojo
   /// with the given fields replaced by the non-null parameter values.

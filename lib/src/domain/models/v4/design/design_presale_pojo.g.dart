@@ -28,6 +28,14 @@ _$DesignPresalePojoImpl _$$DesignPresalePojoImplFromJson(
         ),
       ) ??
       const {},
+  offers:
+      (json['offers'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(
+          k,
+          CommercialOfferResult.fromJson(e as Map<String, dynamic>),
+        ),
+      ) ??
+      const {},
 );
 
 Map<String, dynamic> _$$DesignPresalePojoImplToJson(
@@ -36,4 +44,5 @@ Map<String, dynamic> _$$DesignPresalePojoImplToJson(
   'inputDataDesign': instance.inputDataDesign,
   'resource': instance.resource,
   'divisions': instance.divisions,
+  'offers': instance.offers,
 };

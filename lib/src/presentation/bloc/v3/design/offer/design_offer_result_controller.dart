@@ -15,60 +15,52 @@ class DesignOfferResultController {
   bool buildModel(DesignPresalePojo designPresalePojo, String divisionType) {
     if (designPresalePojo.divisions.containsKey(divisionType)) {
       DivisionsMarginTableWithTypePojo divisionResult =
-          designPresalePojo.divisions[divisionType]!;
+      designPresalePojo.divisions[divisionType]!;
       final List<DesignOfferResultRowVM> divisionRows = divisionResult.rows
           .map(
-            (e) => DesignOfferResultRowVM(
+            (e) =>
+            DesignOfferResultRowVM(
               id: e.id,
               divisionName: e.divisionName,
               divisionShortName: e.divisionShortName,
               deadline: 1,
               divisionSummaryWithTax: e.summaryCostWithMargin,
             ),
-          )
+      )
           .toList();
 
-      double overCost = designPresalePojo.divisions.values
+      double overPrice = designPresalePojo.divisions.values
           .map(
-            (e) => e.rows
+            (e) =>
+            e.rows
                 .map((e) => e.overPriceFactor * e.divisionSummaryCost)
                 .reduce((value, element) => value + element),
-          )
+      )
           .reduce((value, element) => value + element);
 
       double marginCost = designPresalePojo.divisions.values
           .map(
-            (e) => e.rows
+            (e) =>
+            e.rows
                 .map(
                   (e) =>
-                      e.overPriceFactor *
-                      e.divisionSummaryCost *
-                      e.marginFactor,
-                )
+              e.overPriceFactor *
+                  e.divisionSummaryCost *
+                  e.marginFactor,
+            )
                 .reduce((value, element) => value + element),
-          )
+      )
           .reduce((value, element) => value + element);
 
-      double customerCost = designPresalePojo.divisions.values
+      double summary = designPresalePojo.divisions.values
           .map(
-            (e) => e.rows
+            (e) =>
+            e.rows
                 .map((e) => e.summaryCostWithTax)
                 .reduce((value, element) => value + element),
-          )
+      )
           .reduce((value, element) => value + element);
-      double taxCost = (customerCost - customerCost * RussianTax).abs();
-
-      final List<DivisionSummaryVM> customerSummaries =
-          DivisionSummaryVM.generateCustomer(
-            customerCost: customerCost,
-            taxCost: taxCost,
-          );
-
-      final List<DivisionSummaryVM> selfSummaries =
-          DivisionSummaryVM.generateSelf(
-            overCost: overCost,
-            marginCost: marginCost,
-          );
+      double tax = (summary - summary * RussianTax).abs();
 
       designOfferResultVM = DesignOfferResultVM(
         divisionType: divisionType,
@@ -79,8 +71,10 @@ class DesignOfferResultController {
         objectName: designPresalePojo.inputDataDesign.objectData.name,
         objectLocation: designPresalePojo.inputDataDesign.objectData.address,
         divisionRows: divisionRows,
-        divisionSelfSummaries: selfSummaries,
-        divisionClientSummaries: customerSummaries,
+        summary: summary,
+        margin: marginCost,
+        tax: tax,
+        overPrice: overPrice,
       );
     }
 

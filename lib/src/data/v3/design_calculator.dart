@@ -1,7 +1,4 @@
-import 'package:presale/src/domain/models/v3/design/calc_division_row/calc_division_row.dart';
-import 'package:presale/src/domain/models/v3/design/commercial%20offer/commercial%20offer.dart';
 import 'package:presale/src/domain/models/v3/design/custom_fuctors/custom_factors.dart';
-import 'package:presale/src/domain/models/v3/design/division_result/division_result.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/division_with_margin_row_viewmodel.dart';
@@ -24,25 +21,6 @@ class DesignOfferCalculator {
      Итого =  Себестоимость *  Накладные расходы *  Норма прибыли * 1.2
      */
 
-  DivisionResult clearCostPerDivision(CalcDivisionRow row) {
-    double clearRate =
-        row.division.employee.getRate() *
-        row.duration *
-        row.complexityFactor *
-        row.bySquareFactor *
-        row.byEmployeeUsedFactor;
-    double fullRate =
-        clearRate * row.overheadsValue + clearRate * row.marginValue;
-    double fullRateWithTax = fullRate + clearRate * RussianTax;
-
-    return DivisionResult(
-      division: row.division,
-      clearDivisionRate: clearRate,
-      fullDivisionRate: fullRate,
-      fullDivisionRateWithTax: fullRateWithTax,
-    );
-  }
-
   double calcClearCost(DivisionRowDataValueChangeNotifier row) {
     return (row.data.employee.workingRatePerDay *
             row.deadline.value *
@@ -60,18 +38,6 @@ class DesignOfferCalculator {
     return (fullRate + clearRate).roundToDouble();
   }
 
-  CommercialOfferResult calculateRate(CommercialOfferResult result) {
-    double totalWithMargin = result.divisionResults
-        .map((e) => e.fullDivisionRate)
-        .reduce((value, element) => value + element);
-    double totalWithTax = result.divisionResults
-        .map((e) => e.fullDivisionRateWithTax)
-        .reduce((value, element) => value + element);
-    return result.copyWith(
-      fullRateOfCO: totalWithMargin,
-      fullRateOfCOWithTax: totalWithTax,
-    );
-  }
 
   double calcDivisionTotalV4(DivisionResourceRowVM divisionResourceViewModel) {
     return divisionResourceViewModel.totalResourceRowCostVN.value *

@@ -13,3 +13,4 @@ class DesignOfferResultRowVM{
     required this.divisionSummaryWithTax,
   });
 }
+

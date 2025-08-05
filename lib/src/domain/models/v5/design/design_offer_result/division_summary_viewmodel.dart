@@ -1,47 +1,40 @@
 class DivisionSummaryVM {
+  final ResultType resultType;
   final String name;
   final String fullName;
-  final double value;
 
   DivisionSummaryVM({
     required this.name,
-    required this.value,
     required this.fullName,
+    required this.resultType,
   });
-
-  static List<DivisionSummaryVM> generateSelf({
-    required double overCost,
-    required double marginCost,
-  }) {
-    return [
-      DivisionSummaryVM(
-        name: 'Накладные',
-        fullName: 'Накладные расходы',
-        value: overCost,
-      ),
-      DivisionSummaryVM(
-        name: 'Прибыль',
-        fullName: 'Норма прибыли',
-        value: marginCost,
-      )
-    ];
-  }
-
-  static List<DivisionSummaryVM> generateCustomer({
-    required double customerCost,
-    required double taxCost,
-  }) {
-    return [
-      DivisionSummaryVM(
-        name: 'Всего',
-        fullName: 'Всего с НДС',
-        value: customerCost,
-      ),
-      DivisionSummaryVM(
-        name: 'НДС',
-        fullName: 'чистый НДС',
-        value: taxCost,
-      ),
-    ];
-  }
 }
+
+final Map<ResultType, DivisionSummaryVM> _generatedViews = {
+  ResultType.overPrice: DivisionSummaryVM(
+    name: 'Накладные',
+    fullName: 'Накладные расходы',
+    resultType: ResultType.overPrice,
+  ),
+  ResultType.margin: DivisionSummaryVM(
+    name: 'Прибыль',
+    fullName: 'Норма прибыли',
+    resultType: ResultType.margin,
+  ),
+  ResultType.summary: DivisionSummaryVM(
+    name: 'Всего',
+    fullName: 'Всего с НДС',
+    resultType: ResultType.summary,
+  ),
+  ResultType.tax: DivisionSummaryVM(
+    name: 'НДС',
+    fullName: 'чистый НДС',
+    resultType: ResultType.tax,
+  ),
+};
+
+String getViewText(ResultType type, double value) {
+  return '${_generatedViews[type]!.name}: $value';
+}
+
+enum ResultType { overPrice, margin, summary, tax }
