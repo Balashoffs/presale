@@ -80,7 +80,7 @@ class DivisionsMarginSummaryViewModel {
   }
 
   _calcRowValues(DivisionsWithMarginRowVM value) {
-    _designOfferCalculator.calcDivisionWithMargin(value);
+    _designOfferCalculator.calcDivisionCost(value);
   }
 
   void _calcTotal() {

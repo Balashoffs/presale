@@ -10,12 +10,9 @@ import 'package:presale/src/domain/models/v5/design/design_offer_result/division
 class DesignOfferResultController {
   late final DesignOfferResultVM? designOfferResultVM;
   final ValueNotifier<List<PersonSignDTO>> signs = ValueNotifier([]);
+  final ValueNotifier<bool> isCorrect = ValueNotifier(false);
 
-
-  bool buildModel(
-    DesignPresalePojo designPresalePojo,
-    String divisionType,
-  ) {
+  bool buildModel(DesignPresalePojo designPresalePojo, String divisionType) {
     if (designPresalePojo.divisions.containsKey(divisionType)) {
       DivisionsMarginTableWithTypePojo divisionResult =
           designPresalePojo.divisions[divisionType]!;
@@ -31,10 +28,23 @@ class DesignOfferResultController {
           )
           .toList();
 
-      double personCost = designPresalePojo.divisions.values
+      double overCost = designPresalePojo.divisions.values
           .map(
             (e) => e.rows
-                .map((e) => e.summaryCostWithMargin)
+                .map((e) => e.overPriceFactor * e.divisionSummaryCost)
+                .reduce((value, element) => value + element),
+          )
+          .reduce((value, element) => value + element);
+
+      double marginCost = designPresalePojo.divisions.values
+          .map(
+            (e) => e.rows
+                .map(
+                  (e) =>
+                      e.overPriceFactor *
+                      e.divisionSummaryCost *
+                      e.marginFactor,
+                )
                 .reduce((value, element) => value + element),
           )
           .reduce((value, element) => value + element);
@@ -46,21 +56,31 @@ class DesignOfferResultController {
                 .reduce((value, element) => value + element),
           )
           .reduce((value, element) => value + element);
-      double taxCost = customerCost - customerCost * RussianTax;
+      double taxCost = (customerCost - customerCost * RussianTax).abs();
 
-      final List<DivisionSummaryVM> divisionSummaries =
-          DivisionSummaryVM.generate(customerCost, taxCost);
+      final List<DivisionSummaryVM> customerSummaries =
+          DivisionSummaryVM.generateCustomer(
+            customerCost: customerCost,
+            taxCost: taxCost,
+          );
 
-      designOfferResultVM =  DesignOfferResultVM(
+      final List<DivisionSummaryVM> selfSummaries =
+          DivisionSummaryVM.generateSelf(
+            overCost: overCost,
+            marginCost: marginCost,
+          );
+
+      designOfferResultVM = DesignOfferResultVM(
         divisionType: divisionType,
         createdDesignOffer: designPresalePojo.inputDataDesign.created!
-            .toLocal().toString().split('.')[0],
+            .toLocal()
+            .toString()
+            .split('.')[0],
         objectName: designPresalePojo.inputDataDesign.objectData.name,
         objectLocation: designPresalePojo.inputDataDesign.objectData.address,
         divisionRows: divisionRows,
-        divisionSummaries: divisionSummaries,
-        personCost: personCost,
-        customerCost: customerCost,
+        divisionSelfSummaries: selfSummaries,
+        divisionClientSummaries: customerSummaries,
       );
     }
 

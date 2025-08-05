@@ -148,7 +148,7 @@ class DivisionResourceSummaryViewModel {
   }
 
   _calcResourceTotal(DivisionWithResourceRowVM value) {
-    double total = _designOfferCalculator.calcDivisionTotalV5(value);
+    double total = _designOfferCalculator.calcResourceCost(value);
     if (total.compareTo(0.0) > 0) {
       value.totalResourceRowCostVN.value = total;
       summaryVN.value = summaryCost;

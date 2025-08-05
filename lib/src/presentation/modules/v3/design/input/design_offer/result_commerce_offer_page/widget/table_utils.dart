@@ -5,7 +5,6 @@ import 'package:presale/src/presentation/modules/common/text_input_validators.da
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/custon_text_input.dart';
 
-
 typedef ValueChangedWithContext<T> =
     void Function(BuildContext context, T value);
 
@@ -65,10 +64,14 @@ Widget buildHeaderCell(CollumAttribute attribute) {
   );
 }
 
-Widget buildTextCell(dynamic label) {
+Widget buildTextCell(dynamic label, [double? fontSize]) {
   return Padding(
     padding: const EdgeInsetsDirectional.all(8.0),
-    child: Text(textAlign: TextAlign.center, label.toString()),
+    child: Text(
+      textAlign: TextAlign.center,
+      label.toString(),
+      style: TextStyle(fontSize: fontSize),
+    ),
   );
 }
 
@@ -85,7 +88,11 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
                 ? colorTable(context)[MoonColor.zeno.index]!
                 : colorTable(context)[MoonColor.chichi.index]!;
             ;
-            return Text(textAlign: TextAlign.center, value.toStringAsFixed(2), style: TextStyle(color: textColor),);
+            return Text(
+              textAlign: TextAlign.center,
+              value.toStringAsFixed(2),
+              style: TextStyle(color: textColor),
+            );
           },
         ),
       ),
@@ -146,9 +153,9 @@ Widget buildFactorInputCell(
 }
 
 Widget buildStringInputCell(
-    String defaultValue,
-    ValueChangedWithContext<String> onChanged,
-    ) {
+  String defaultValue,
+  ValueChangedWithContext<String> onChanged,
+) {
   return Builder(
     builder: (context) {
       return Center(
@@ -199,15 +206,22 @@ Widget buildCellWithMultiLine(String label) {
   );
 }
 
-Widget buildMultilineTextInput(String label, ValueChangedWithContext<String> onChanged,){
+Widget buildMultilineTextInput(
+  String label,
+  ValueChangedWithContext<String> onChanged,
+) {
   return Builder(
     builder: (context) {
-      return CustomTextAreaInput(hintText: label, width: 1000, onChanged: (value) {
-        if(value.isNotEmpty){
-          onChanged(context, value);
-        }
-      },);
-    }
+      return CustomTextAreaInput(
+        hintText: label,
+        width: 1000,
+        onChanged: (value) {
+          if (value.isNotEmpty) {
+            onChanged(context, value);
+          }
+        },
+      );
+    },
   );
 }
 

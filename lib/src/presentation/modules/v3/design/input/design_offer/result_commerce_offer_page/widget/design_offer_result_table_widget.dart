@@ -1,102 +1,151 @@
 import 'package:flutter/material.dart';
-import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_row_viewmodel.dart';
+import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/division_summary_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
+import 'package:presale/src/presentation/modules/v3/design/input/design_offer/result_commerce_offer_page/widget/table_utils.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-import 'table_utils.dart';
+class DivisionsResultAsTable extends StatefulWidget {
+  const DivisionsResultAsTable({super.key, required this.results});
 
-class DesignOfferResultTableWidget extends StatefulWidget {
-  const DesignOfferResultTableWidget({
-    super.key,
-    required this.rowAttributes,
-    required this.tableDataRows,
-    required this.summaries,
-  });
-
-  final List<CollumAttribute> rowAttributes;
-  final List<DesignOfferResultRowVM> tableDataRows;
-  final List<DivisionSummaryVM> summaries;
+  final DesignOfferResultVM results;
 
   @override
-  State<DesignOfferResultTableWidget> createState() =>
-      _DesignOfferResultTableWidgetState();
+  State<DivisionsResultAsTable> createState() => _DivisionsResultAsTableState();
 }
 
-class _DesignOfferResultTableWidgetState
-    extends State<DesignOfferResultTableWidget> {
-  @override
-  void didUpdateWidget(DesignOfferResultTableWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-  }
-
-  MoonTableHeader _generateTableHeader() {
-    return MoonTableHeader(
-      height: 48,
-      columns: List.generate(widget.rowAttributes.length, (int index) {
-        return MoonTableColumn(
-          width: widget.rowAttributes[index].width,
-          cell: addDecoration(
-            buildHeaderCell(widget.rowAttributes[index]),
-            index == 0,
-          ),
-        );
-      }),
-    );
-  }
-
-  List<MoonTableRow> _generateTableRows() {
-    return List.generate(widget.tableDataRows.length, (int index) {
-      final row = widget.tableDataRows[index];
-      return MoonTableRow(
-        height: 48,
-        cells: [
-          addDecoration(buildTextCell(row.id), true),
-          addDecoration(buildTextCell(row.divisionShortName)),
-          addDecoration(buildTextCell(row.divisionName)),
-          addDecoration(buildTextCell(row.deadline)),
-          addDecoration(buildTextCell(row.divisionSummaryWithTax)),
-        ],
-      );
-    });
-  }
-
-  MoonTableFooter _generateTableFooter() {
-    return MoonTableFooter(
-      height: 72,
-      cells: List.generate(widget.rowAttributes.length, (int index) {
-        if (index == 3) {
-          return buildColumnCell(
-            widget.summaries.map((e) => e.name.toString()).toList(),
-          );
-        }
-        if (index == 4) {
-          return buildColumnCell(
-            widget.summaries.map((e) => e.value.toString()).toList(),
-          );
-        }
-        return buildColumnCell(['', '']);
-      }),
-    );
-  }
-
+class _DivisionsResultAsTableState extends State<DivisionsResultAsTable> {
   @override
   Widget build(BuildContext context) {
-    return OverflowBox(
-      maxWidth: MediaQuery.of(context).size.width,
-      maxHeight: MediaQuery.of(context).size.height,
-      child: MoonTable(
-        columnsCount: widget.rowAttributes.length,
-        isHeaderPinned: true,
-        isFooterPinned: true,
-        rowGap: 2.0,
-        rowSize: MoonTableRowSize.md,
-        header: _generateTableHeader(),
-        rows: _generateTableRows(),
-        footer: _generateTableFooter(),
-        tablePadding: const EdgeInsets.symmetric(horizontal: 16),
-        cellPadding: const EdgeInsets.symmetric(vertical: 8),
+    return Container(
+      decoration: BoxDecoration(),
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: 8.0,
+          bottom: 8.0,
+          left: 8.0,
+          right: 64,
+        ),
+        child: SizedBox(
+          height: widget.results.divisionRows.length <= 10
+              ? widget.results.divisionRows.length * 72 + 144
+              : MediaQuery.of(context).size.height * 2 / 3,
+          child: SfDataGrid(
+            footerFrozenRowsCount: 1,
+            columnWidthMode: ColumnWidthMode.fill,
+            footerHeight: 88,
+            footer: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  margin: EdgeInsetsGeometry.all(8.0),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    shape: BoxShape.rectangle,
+                  ),
+                  child: Column(
+                    children: List.generate(
+                      widget.results.divisionSelfSummaries.length,
+                          (index) {
+                        DivisionSummaryVM sum =
+                        widget.results.divisionSelfSummaries[index];
+                        return buildTextCell('${sum.name}: ${sum.value}', 10.0);
+                      },
+                    ),
+                  ),
+                ),
+                Column(
+                  children: List.generate(
+                    widget.results.divisionClientSummaries.length,
+                        (index) {
+                      DivisionSummaryVM sum =
+                      widget.results.divisionClientSummaries[index];
+                      return buildTextCell('${sum.name}: ${sum.value}');
+                    },
+                  ),
+                ),
+              ],
+            ),
+            source: DivisionsDataSource(
+              employeeData: widget.results.divisionRows,
+            ),
+            columns: List.generate(designOfferTableAttribute.length, (index) {
+              CollumAttribute attribute = designOfferTableAttribute[index];
+              return GridColumn(
+                width: attribute.width,
+                allowSorting: true,
+                columnName: attribute.name,
+                label: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    attribute.name,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              );
+            }),
+          ),
+        ),
       ),
+    );
+  }
+
+  _DivisionsResultAsTableState();
+}
+
+class DivisionsDataSource extends DataGridSource {
+  DivisionsDataSource({required List<DesignOfferResultRowVM> employeeData}) {
+    _divisionData = employeeData
+        .map<DataGridRow>(
+          (e) => DataGridRow(
+        cells: [
+          DataGridCell<int>(columnName: '№', value: e.id),
+          DataGridCell<String>(
+            columnName: 'Шифр раздела',
+            value: e.divisionShortName,
+          ),
+          DataGridCell<String>(
+            columnName: 'Наименование раздела',
+            value: e.divisionName,
+          ),
+          DataGridCell<int>(
+            columnName: 'Срок выполнения работ',
+            value: e.deadline,
+          ),
+          DataGridCell<double>(
+            columnName: 'Стоимость с НДС',
+            value: e.divisionSummaryWithTax,
+          ),
+        ],
+      ),
+    )
+        .toList();
+  }
+
+  @override
+  Future<void> handleRefresh() async {
+    // Implement any refresh logic if needed
+  }
+
+  int get rowCount => _divisionData.length;
+
+  List<DataGridRow> _divisionData = [];
+
+  @override
+  List<DataGridRow> get rows => _divisionData;
+
+  @override
+  DataGridRowAdapter? buildRow(DataGridRow row) {
+    return DataGridRowAdapter(
+      cells: row.getCells().map((e) {
+        return Container(
+          padding: const EdgeInsets.all(8.0),
+          alignment: Alignment.center,
+          child: Text(e.value.toString()),
+        );
+      }).toList(),
     );
   }
 }

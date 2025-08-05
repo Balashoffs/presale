@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/domain/models/v5/common/person_sign_dto.dart' show PersonSignDTO;
+import 'package:presale/src/domain/models/v5/common/person_sign_dto.dart'
+    show PersonSignDTO;
 import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:uuid/uuid.dart';
 
@@ -21,7 +22,8 @@ class PersonSignDropDownSelector extends StatefulWidget {
       _PersonSignDropDownSelectorState();
 }
 
-class _PersonSignDropDownSelectorState extends State<PersonSignDropDownSelector> {
+class _PersonSignDropDownSelectorState
+    extends State<PersonSignDropDownSelector> {
   bool _showMenu = false;
   String _hintText = '';
 
@@ -32,8 +34,6 @@ class _PersonSignDropDownSelectorState extends State<PersonSignDropDownSelector>
       show: _showMenu,
       groupId: Uuid().v4(),
       maxWidth: 312,
-      borderColor: colorTable(context)[40] ?? Colors.transparent,
-      backgroundColor: colorTable(context)[40],
       constrainWidthToChild: true,
       distanceToTarget: 8.0,
       dropdownAnchorPosition: MoonDropdownAnchorPosition.top,
@@ -55,22 +55,21 @@ class _PersonSignDropDownSelectorState extends State<PersonSignDropDownSelector>
           );
         }),
       ),
-      child: MoonTextInput(
+      child: MoonFormTextInput(
         width: 256,
         readOnly: true,
         canRequestFocus: false,
+        validator: (value) => _hintText.isEmpty ? 'Выберите подписанта' : null,
         mouseCursor: MouseCursor.defer,
         hintText: _hintText.isEmpty ? widget.hintText : _hintText,
         onTap: () => setState(() {
           _showMenu = !_showMenu;
-          _hintText = '';
           if (!_showMenu) {
             widget.onSelected(null);
           }
         }),
         onTapOutside: (PointerDownEvent _) {
           FocusManager.instance.primaryFocus?.unfocus();
-          _hintText = '';
         },
         trailing: MouseRegion(
           cursor: SystemMouseCursors.click,

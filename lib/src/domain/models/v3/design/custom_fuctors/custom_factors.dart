@@ -1,2 +1,2 @@
 //НДС - 30%
-const double RussianTax = 0.3;
+const double RussianTax = 1.2;

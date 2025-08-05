@@ -8,9 +8,8 @@ class DesignOfferResultVM{
   final String objectName;
   final String objectLocation;
   final List<DesignOfferResultRowVM> divisionRows;
-  final List<DivisionSummaryVM> divisionSummaries;
-  final double personCost;
-  final double customerCost;
+  final List<DivisionSummaryVM> divisionClientSummaries;
+  final List<DivisionSummaryVM> divisionSelfSummaries;
   String comments = '';
   int totalDays = 0;
   double avance = 0.0;
@@ -22,9 +21,8 @@ class DesignOfferResultVM{
     required this.objectName,
     required this.objectLocation,
     required this.divisionRows,
-    required this.divisionSummaries,
-    required this.personCost,
-    required this.customerCost,
+    required this.divisionSelfSummaries,
+    required this.divisionClientSummaries,
     this.signPerson,
   });
 }

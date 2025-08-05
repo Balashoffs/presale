@@ -3,18 +3,43 @@ class DivisionSummaryVM {
   final String fullName;
   final double value;
 
-  DivisionSummaryVM({required this.name, required this.value, required this.fullName});
+  DivisionSummaryVM({
+    required this.name,
+    required this.value,
+    required this.fullName,
+  });
 
-  static List<DivisionSummaryVM> generate(double customerCost, double taxCost) {
+  static List<DivisionSummaryVM> generateSelf({
+    required double overCost,
+    required double marginCost,
+  }) {
     return [
       DivisionSummaryVM(
-        name: 'Итого с НДС',
-        fullName: 'сумма всех стоимтостей разделов',
+        name: 'Накладные',
+        fullName: 'Накладные расходы',
+        value: overCost,
+      ),
+      DivisionSummaryVM(
+        name: 'Прибыль',
+        fullName: 'Норма прибыли',
+        value: marginCost,
+      )
+    ];
+  }
+
+  static List<DivisionSummaryVM> generateCustomer({
+    required double customerCost,
+    required double taxCost,
+  }) {
+    return [
+      DivisionSummaryVM(
+        name: 'Всего',
+        fullName: 'Всего с НДС',
         value: customerCost,
       ),
       DivisionSummaryVM(
         name: 'НДС',
-        fullName: 'сумма всех стоимтостей разделов * 20  / 120',
+        fullName: 'чистый НДС',
         value: taxCost,
       ),
     ];

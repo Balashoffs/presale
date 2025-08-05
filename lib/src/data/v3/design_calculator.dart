@@ -12,20 +12,16 @@ class DesignOfferCalculator {
 
     Алгоритм расчета одного раздела
 
-    Чистая стоимость =
+   Себестоимость =
      Ставка специалиста (за 1 день)
      * Срок выполнения (в днях)
      * Коэфициент сложности
      * Коэфициент по площади
      * Коэфициент использования специалиста
 
-
-    Итого =
-      (Чистая стоимость * Накладные расходы)
-      + (Чистая стоимость * Маржа)
-      + (Чистая стоимость * НДС)
-
-
+     Н =  (Себестоимость * Накладные расходы)
+     П = (Себестоимость * Норма прибыли)
+     Итого =  Себестоимость *  Накладные расходы *  Норма прибыли * 1.2
      */
 
   DivisionResult clearCostPerDivision(CalcDivisionRow row) {
@@ -86,7 +82,7 @@ class DesignOfferCalculator {
         divisionResourceViewModel.resourceQnt;
   }
 
-  double calcDivisionTotalV5(DivisionWithResourceRowVM divisionResourceViewModel) {
+  double calcResourceCost(DivisionWithResourceRowVM divisionResourceViewModel) {
     return divisionResourceViewModel.resourceCostPerDayVN.value *
         divisionResourceViewModel.resourceUsingFactor *
         divisionResourceViewModel.squareFactor *
@@ -95,13 +91,17 @@ class DesignOfferCalculator {
         divisionResourceViewModel.resourceQnt;
   }
 
-  void calcDivisionWithMargin(
-    DivisionsWithMarginRowVM model,
-  ) {
-    double withOverPrice = model.divisionSummaryCost + model.overPriceFactor * model.divisionSummaryCost;
-    double withMargins = model.divisionSummaryCost + model.marginFactor * model.divisionSummaryCost;
-    model.summaryCostWithMarginVN.value = withOverPrice + withMargins;
-    double withTax = ( model.summaryCostWithMarginVN.value) * RussianTax + ( model.summaryCostWithMarginVN.value);
+  void calcDivisionCost(DivisionsWithMarginRowVM model) {
+    double withOverPrice =
+        model.divisionSummaryCost +
+        model.overPriceFactor * model.divisionSummaryCost;
+    double withMargins = withOverPrice * model.marginFactor;
+
+    model.summaryOverPriceVN.value = withOverPrice;
+    model.summaryCostWithMarginVN.value = withMargins;
+
+    double withTax = withMargins * RussianTax;
     model.summaryCostWithTaxVN.value = withTax;
+    model.taxCost.value = withTax * 20 / 120;
   }
 }
