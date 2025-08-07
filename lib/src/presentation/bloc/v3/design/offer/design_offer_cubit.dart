@@ -5,21 +5,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:syncfusion_flutter_xlsio/xlsio.dart';
+import 'package:open_file/open_file.dart' as open_file;
+
 import 'package:presale/src/data/core/db_client.dart';
 import 'package:presale/src/data/data_sources/v3/input_result_design_source.dart';
 import 'package:presale/src/domain/models/v3/design/commercial_offer/commercial_offer.dart';
-import 'package:presale/src/domain/models/v3/design/custom_fuctors/custom_factors.dart';
 import 'package:presale/src/domain/models/v3/design/extension.dart';
-import 'package:presale/src/domain/models/v3/design/input_data/object_data_design.dart';
 import 'package:presale/src/domain/models/v4/design/design_presale_pojo.dart';
-import 'package:presale/src/domain/models/v4/design/division_resource_table/divisions_margin_table_with_type_pojo.dart';
 import 'package:presale/src/domain/models/v5/common/offer_template_builder.dart';
-import 'package:presale/src/domain/models/v5/common/person_sign_dto.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_viewmodel.dart';
-import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_row_viewmodel.dart';
-import 'package:presale/src/domain/models/v5/design/design_offer_result/division_summary_viewmodel.dart';
-import 'package:presale/src/domain/models/v5/design/design_offer_result/sign_person_viewmodel.dart';
-import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 
 import 'design_offer_result_controller.dart';
 
@@ -72,8 +67,8 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
         offerResult: commercialOfferResult,
         worksheet: sheet,
       );
-      await builder.fill();
-      List<int> fileBytes = builder.save();
+      await builder.fillRows();
+      List<int> fileBytes = builder.saveToBytes();
       print('results in bytes: ${fileBytes.length}');
       _saveFile(fileBytes);
     }
@@ -81,7 +76,7 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
 
   Future<void> _saveFile(List<int> fileBytes) async {
     String? pickedSaveFilePath;
-    bool hasUserAborted = true;
+
     try {
       Directory w = await getApplicationDocumentsDirectory();
       pickedSaveFilePath = await FilePicker.platform.saveFile(
@@ -93,7 +88,19 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
         lockParentWindow: true,
         bytes: Uint8List.fromList(fileBytes),
       );
-      hasUserAborted = pickedSaveFilePath == null;
+
+      if (Platform.isAndroid || Platform.isIOS) {
+        //Launch the file (used open_file package)
+        await open_file.OpenFile.open('$pickedSaveFilePath');
+      } else if (Platform.isWindows) {
+        await Process.run('start', <String>['$pickedSaveFilePath'], runInShell: true);
+      } else if (Platform.isMacOS) {
+        await Process.run('open', <String>['$pickedSaveFilePath'], runInShell: true);
+      } else if (Platform.isLinux) {
+        await Process.run('xdg-open', <String>[
+          '$pickedSaveFilePath',
+        ], runInShell: true);
+      }
     } on PlatformException catch (e) {
       print(e.message);
     } catch (e) {
