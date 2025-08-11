@@ -10,7 +10,7 @@ part 'division.g.dart';
 class Division with _$Division {
   const factory Division({
     // Виды проектирования - Испольнительная, Рабочая, Обе
-    @Default(DivisionType.both) DivisionType type,
+    DivisionType? type,
     // Полное имя раздела
     required String name,
     // Аббвеатура раздела

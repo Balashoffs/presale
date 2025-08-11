@@ -23,7 +23,7 @@ DivisionResourceTableWithTypePojo _$DivisionResourceTableWithTypePojoFromJson(
 
 /// @nodoc
 mixin _$DivisionResourceTableWithTypePojo {
-  String get divisionType => throw _privateConstructorUsedError;
+  DivisionType get divisionType => throw _privateConstructorUsedError;
   List<DivisionResourceRowPojo> get rows => throw _privateConstructorUsedError;
 
   /// Serializes this DivisionResourceTableWithTypePojo to a JSON map.
@@ -47,7 +47,7 @@ abstract class $DivisionResourceTableWithTypePojoCopyWith<$Res> {
         DivisionResourceTableWithTypePojo
       >;
   @useResult
-  $Res call({String divisionType, List<DivisionResourceRowPojo> rows});
+  $Res call({DivisionType divisionType, List<DivisionResourceRowPojo> rows});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$DivisionResourceTableWithTypePojoCopyWithImpl<
             divisionType: null == divisionType
                 ? _value.divisionType
                 : divisionType // ignore: cast_nullable_to_non_nullable
-                      as String,
+                      as DivisionType,
             rows: null == rows
                 ? _value.rows
                 : rows // ignore: cast_nullable_to_non_nullable
@@ -93,7 +93,7 @@ abstract class _$$DivisionResourceTableWithTypePojoImplCopyWith<$Res>
   ) = __$$DivisionResourceTableWithTypePojoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String divisionType, List<DivisionResourceRowPojo> rows});
+  $Res call({DivisionType divisionType, List<DivisionResourceRowPojo> rows});
 }
 
 /// @nodoc
@@ -119,7 +119,7 @@ class __$$DivisionResourceTableWithTypePojoImplCopyWithImpl<$Res>
         divisionType: null == divisionType
             ? _value.divisionType
             : divisionType // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as DivisionType,
         rows: null == rows
             ? _value._rows
             : rows // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ class _$DivisionResourceTableWithTypePojoImpl
   ) => _$$DivisionResourceTableWithTypePojoImplFromJson(json);
 
   @override
-  final String divisionType;
+  final DivisionType divisionType;
   final List<DivisionResourceRowPojo> _rows;
   @override
   List<DivisionResourceRowPojo> get rows {
@@ -197,7 +197,7 @@ class _$DivisionResourceTableWithTypePojoImpl
 abstract class _DivisionResourceTableWithTypePojo
     implements DivisionResourceTableWithTypePojo {
   const factory _DivisionResourceTableWithTypePojo({
-    required final String divisionType,
+    required final DivisionType divisionType,
     required final List<DivisionResourceRowPojo> rows,
   }) = _$DivisionResourceTableWithTypePojoImpl;
 
@@ -206,7 +206,7 @@ abstract class _DivisionResourceTableWithTypePojo
   ) = _$DivisionResourceTableWithTypePojoImpl.fromJson;
 
   @override
-  String get divisionType;
+  DivisionType get divisionType;
   @override
   List<DivisionResourceRowPojo> get rows;
 

@@ -34,8 +34,8 @@ extension DivisionResourceDtoExt on DivisionResourceDTO {
       divisionShortName: divisionShortName,
       divisionName: divisionName,
       id: id,
-      squareFactor: inputDataDesign.squareFactor,
-      complexFactor: inputDataDesign.complexityFactor,
+      squareFactor: inputDataDesign.inputFactors.squareFactor,
+      complexFactor: inputDataDesign.inputFactors.complexityFactor,
       resourceCostPerDay: resourceCostPerDay,
       resourceName: resourceName
     );

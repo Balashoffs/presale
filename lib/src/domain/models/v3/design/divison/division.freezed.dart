@@ -22,7 +22,7 @@ Division _$DivisionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Division {
   // Виды проектирования - Испольнительная, Рабочая, Обе
-  DivisionType get type =>
+  DivisionType? get type =>
       throw _privateConstructorUsedError; // Полное имя раздела
   String get name => throw _privateConstructorUsedError; // Аббвеатура раздела
   String get shortName =>
@@ -46,7 +46,7 @@ abstract class $DivisionCopyWith<$Res> {
       _$DivisionCopyWithImpl<$Res, Division>;
   @useResult
   $Res call({
-    DivisionType type,
+    DivisionType? type,
     String name,
     String shortName,
     int id,
@@ -71,7 +71,7 @@ class _$DivisionCopyWithImpl<$Res, $Val extends Division>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? type = freezed,
     Object? name = null,
     Object? shortName = null,
     Object? id = null,
@@ -79,10 +79,10 @@ class _$DivisionCopyWithImpl<$Res, $Val extends Division>
   }) {
     return _then(
       _value.copyWith(
-            type: null == type
+            type: freezed == type
                 ? _value.type
                 : type // ignore: cast_nullable_to_non_nullable
-                      as DivisionType,
+                      as DivisionType?,
             name: null == name
                 ? _value.name
                 : name // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ abstract class _$$DivisionImplCopyWith<$Res>
   @override
   @useResult
   $Res call({
-    DivisionType type,
+    DivisionType? type,
     String name,
     String shortName,
     int id,
@@ -150,7 +150,7 @@ class __$$DivisionImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? type = freezed,
     Object? name = null,
     Object? shortName = null,
     Object? id = null,
@@ -158,10 +158,10 @@ class __$$DivisionImplCopyWithImpl<$Res>
   }) {
     return _then(
       _$DivisionImpl(
-        type: null == type
+        type: freezed == type
             ? _value.type
             : type // ignore: cast_nullable_to_non_nullable
-                  as DivisionType,
+                  as DivisionType?,
         name: null == name
             ? _value.name
             : name // ignore: cast_nullable_to_non_nullable
@@ -187,7 +187,7 @@ class __$$DivisionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DivisionImpl implements _Division {
   const _$DivisionImpl({
-    this.type = DivisionType.both,
+    this.type,
     required this.name,
     required this.shortName,
     required this.id,
@@ -199,8 +199,7 @@ class _$DivisionImpl implements _Division {
 
   // Виды проектирования - Испольнительная, Рабочая, Обе
   @override
-  @JsonKey()
-  final DivisionType type;
+  final DivisionType? type;
   // Полное имя раздела
   @override
   final String name;
@@ -254,7 +253,7 @@ class _$DivisionImpl implements _Division {
 
 abstract class _Division implements Division {
   const factory _Division({
-    final DivisionType type,
+    final DivisionType? type,
     required final String name,
     required final String shortName,
     required final int id,
@@ -266,7 +265,7 @@ abstract class _Division implements Division {
 
   // Виды проектирования - Испольнительная, Рабочая, Обе
   @override
-  DivisionType get type; // Полное имя раздела
+  DivisionType? get type; // Полное имя раздела
   @override
   String get name; // Аббвеатура раздела
   @override

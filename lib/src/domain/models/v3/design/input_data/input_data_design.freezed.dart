@@ -24,23 +24,8 @@ mixin _$InputDataDesign {
   // Дата и время создание КП
   DateTime? get created =>
       throw _privateConstructorUsedError; // Данные об объекте
-  ObjectDataDesign get objectData =>
-      throw _privateConstructorUsedError; // Коэфициент за срочность
-  double get speedFactor =>
-      throw _privateConstructorUsedError; // Коэфициент за высотность
-  double get heightFactor =>
-      throw _privateConstructorUsedError; // Коэфициент за издержки
-  double get overPriceFactor =>
-      throw _privateConstructorUsedError; // Коэфициент за удаленность
-  double get remotingFactor =>
-      throw _privateConstructorUsedError; // Коэфициент за сложность
-  double get complexityFactor =>
-      throw _privateConstructorUsedError; // Коэфициент для заказчика
-  double get consumerFactor =>
-      throw _privateConstructorUsedError; // Коэфициент нормы прибыли
-  double get rateReturnFactor =>
-      throw _privateConstructorUsedError; // Коэфициент площади
-  double get squareFactor =>
+  ObjectDataDesign get objectData => throw _privateConstructorUsedError;
+  InputFactorsPojo get inputFactors =>
       throw _privateConstructorUsedError; // Тип проектной документации на выходе
   DivisionType get divisionType => throw _privateConstructorUsedError;
 
@@ -64,18 +49,12 @@ abstract class $InputDataDesignCopyWith<$Res> {
   $Res call({
     DateTime? created,
     ObjectDataDesign objectData,
-    double speedFactor,
-    double heightFactor,
-    double overPriceFactor,
-    double remotingFactor,
-    double complexityFactor,
-    double consumerFactor,
-    double rateReturnFactor,
-    double squareFactor,
+    InputFactorsPojo inputFactors,
     DivisionType divisionType,
   });
 
   $ObjectDataDesignCopyWith<$Res> get objectData;
+  $InputFactorsPojoCopyWith<$Res> get inputFactors;
 }
 
 /// @nodoc
@@ -95,14 +74,7 @@ class _$InputDataDesignCopyWithImpl<$Res, $Val extends InputDataDesign>
   $Res call({
     Object? created = freezed,
     Object? objectData = null,
-    Object? speedFactor = null,
-    Object? heightFactor = null,
-    Object? overPriceFactor = null,
-    Object? remotingFactor = null,
-    Object? complexityFactor = null,
-    Object? consumerFactor = null,
-    Object? rateReturnFactor = null,
-    Object? squareFactor = null,
+    Object? inputFactors = null,
     Object? divisionType = null,
   }) {
     return _then(
@@ -115,38 +87,10 @@ class _$InputDataDesignCopyWithImpl<$Res, $Val extends InputDataDesign>
                 ? _value.objectData
                 : objectData // ignore: cast_nullable_to_non_nullable
                       as ObjectDataDesign,
-            speedFactor: null == speedFactor
-                ? _value.speedFactor
-                : speedFactor // ignore: cast_nullable_to_non_nullable
-                      as double,
-            heightFactor: null == heightFactor
-                ? _value.heightFactor
-                : heightFactor // ignore: cast_nullable_to_non_nullable
-                      as double,
-            overPriceFactor: null == overPriceFactor
-                ? _value.overPriceFactor
-                : overPriceFactor // ignore: cast_nullable_to_non_nullable
-                      as double,
-            remotingFactor: null == remotingFactor
-                ? _value.remotingFactor
-                : remotingFactor // ignore: cast_nullable_to_non_nullable
-                      as double,
-            complexityFactor: null == complexityFactor
-                ? _value.complexityFactor
-                : complexityFactor // ignore: cast_nullable_to_non_nullable
-                      as double,
-            consumerFactor: null == consumerFactor
-                ? _value.consumerFactor
-                : consumerFactor // ignore: cast_nullable_to_non_nullable
-                      as double,
-            rateReturnFactor: null == rateReturnFactor
-                ? _value.rateReturnFactor
-                : rateReturnFactor // ignore: cast_nullable_to_non_nullable
-                      as double,
-            squareFactor: null == squareFactor
-                ? _value.squareFactor
-                : squareFactor // ignore: cast_nullable_to_non_nullable
-                      as double,
+            inputFactors: null == inputFactors
+                ? _value.inputFactors
+                : inputFactors // ignore: cast_nullable_to_non_nullable
+                      as InputFactorsPojo,
             divisionType: null == divisionType
                 ? _value.divisionType
                 : divisionType // ignore: cast_nullable_to_non_nullable
@@ -165,6 +109,16 @@ class _$InputDataDesignCopyWithImpl<$Res, $Val extends InputDataDesign>
       return _then(_value.copyWith(objectData: value) as $Val);
     });
   }
+
+  /// Create a copy of InputDataDesign
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $InputFactorsPojoCopyWith<$Res> get inputFactors {
+    return $InputFactorsPojoCopyWith<$Res>(_value.inputFactors, (value) {
+      return _then(_value.copyWith(inputFactors: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -179,19 +133,14 @@ abstract class _$$InputDataDesignImplCopyWith<$Res>
   $Res call({
     DateTime? created,
     ObjectDataDesign objectData,
-    double speedFactor,
-    double heightFactor,
-    double overPriceFactor,
-    double remotingFactor,
-    double complexityFactor,
-    double consumerFactor,
-    double rateReturnFactor,
-    double squareFactor,
+    InputFactorsPojo inputFactors,
     DivisionType divisionType,
   });
 
   @override
   $ObjectDataDesignCopyWith<$Res> get objectData;
+  @override
+  $InputFactorsPojoCopyWith<$Res> get inputFactors;
 }
 
 /// @nodoc
@@ -210,14 +159,7 @@ class __$$InputDataDesignImplCopyWithImpl<$Res>
   $Res call({
     Object? created = freezed,
     Object? objectData = null,
-    Object? speedFactor = null,
-    Object? heightFactor = null,
-    Object? overPriceFactor = null,
-    Object? remotingFactor = null,
-    Object? complexityFactor = null,
-    Object? consumerFactor = null,
-    Object? rateReturnFactor = null,
-    Object? squareFactor = null,
+    Object? inputFactors = null,
     Object? divisionType = null,
   }) {
     return _then(
@@ -230,38 +172,10 @@ class __$$InputDataDesignImplCopyWithImpl<$Res>
             ? _value.objectData
             : objectData // ignore: cast_nullable_to_non_nullable
                   as ObjectDataDesign,
-        speedFactor: null == speedFactor
-            ? _value.speedFactor
-            : speedFactor // ignore: cast_nullable_to_non_nullable
-                  as double,
-        heightFactor: null == heightFactor
-            ? _value.heightFactor
-            : heightFactor // ignore: cast_nullable_to_non_nullable
-                  as double,
-        overPriceFactor: null == overPriceFactor
-            ? _value.overPriceFactor
-            : overPriceFactor // ignore: cast_nullable_to_non_nullable
-                  as double,
-        remotingFactor: null == remotingFactor
-            ? _value.remotingFactor
-            : remotingFactor // ignore: cast_nullable_to_non_nullable
-                  as double,
-        complexityFactor: null == complexityFactor
-            ? _value.complexityFactor
-            : complexityFactor // ignore: cast_nullable_to_non_nullable
-                  as double,
-        consumerFactor: null == consumerFactor
-            ? _value.consumerFactor
-            : consumerFactor // ignore: cast_nullable_to_non_nullable
-                  as double,
-        rateReturnFactor: null == rateReturnFactor
-            ? _value.rateReturnFactor
-            : rateReturnFactor // ignore: cast_nullable_to_non_nullable
-                  as double,
-        squareFactor: null == squareFactor
-            ? _value.squareFactor
-            : squareFactor // ignore: cast_nullable_to_non_nullable
-                  as double,
+        inputFactors: null == inputFactors
+            ? _value.inputFactors
+            : inputFactors // ignore: cast_nullable_to_non_nullable
+                  as InputFactorsPojo,
         divisionType: null == divisionType
             ? _value.divisionType
             : divisionType // ignore: cast_nullable_to_non_nullable
@@ -277,15 +191,8 @@ class _$InputDataDesignImpl implements _InputDataDesign {
   const _$InputDataDesignImpl({
     required this.created,
     required this.objectData,
-    required this.speedFactor,
-    required this.heightFactor,
-    required this.overPriceFactor,
-    required this.remotingFactor,
-    required this.complexityFactor,
-    required this.consumerFactor,
-    required this.rateReturnFactor,
-    required this.squareFactor,
-    this.divisionType = DivisionType.project,
+    required this.inputFactors,
+    required this.divisionType,
   });
 
   factory _$InputDataDesignImpl.fromJson(Map<String, dynamic> json) =>
@@ -297,38 +204,15 @@ class _$InputDataDesignImpl implements _InputDataDesign {
   // Данные об объекте
   @override
   final ObjectDataDesign objectData;
-  // Коэфициент за срочность
   @override
-  final double speedFactor;
-  // Коэфициент за высотность
-  @override
-  final double heightFactor;
-  // Коэфициент за издержки
-  @override
-  final double overPriceFactor;
-  // Коэфициент за удаленность
-  @override
-  final double remotingFactor;
-  // Коэфициент за сложность
-  @override
-  final double complexityFactor;
-  // Коэфициент для заказчика
-  @override
-  final double consumerFactor;
-  // Коэфициент нормы прибыли
-  @override
-  final double rateReturnFactor;
-  // Коэфициент площади
-  @override
-  final double squareFactor;
+  final InputFactorsPojo inputFactors;
   // Тип проектной документации на выходе
   @override
-  @JsonKey()
   final DivisionType divisionType;
 
   @override
   String toString() {
-    return 'InputDataDesign(created: $created, objectData: $objectData, speedFactor: $speedFactor, heightFactor: $heightFactor, overPriceFactor: $overPriceFactor, remotingFactor: $remotingFactor, complexityFactor: $complexityFactor, consumerFactor: $consumerFactor, rateReturnFactor: $rateReturnFactor, squareFactor: $squareFactor, divisionType: $divisionType)';
+    return 'InputDataDesign(created: $created, objectData: $objectData, inputFactors: $inputFactors, divisionType: $divisionType)';
   }
 
   @override
@@ -339,42 +223,16 @@ class _$InputDataDesignImpl implements _InputDataDesign {
             (identical(other.created, created) || other.created == created) &&
             (identical(other.objectData, objectData) ||
                 other.objectData == objectData) &&
-            (identical(other.speedFactor, speedFactor) ||
-                other.speedFactor == speedFactor) &&
-            (identical(other.heightFactor, heightFactor) ||
-                other.heightFactor == heightFactor) &&
-            (identical(other.overPriceFactor, overPriceFactor) ||
-                other.overPriceFactor == overPriceFactor) &&
-            (identical(other.remotingFactor, remotingFactor) ||
-                other.remotingFactor == remotingFactor) &&
-            (identical(other.complexityFactor, complexityFactor) ||
-                other.complexityFactor == complexityFactor) &&
-            (identical(other.consumerFactor, consumerFactor) ||
-                other.consumerFactor == consumerFactor) &&
-            (identical(other.rateReturnFactor, rateReturnFactor) ||
-                other.rateReturnFactor == rateReturnFactor) &&
-            (identical(other.squareFactor, squareFactor) ||
-                other.squareFactor == squareFactor) &&
+            (identical(other.inputFactors, inputFactors) ||
+                other.inputFactors == inputFactors) &&
             (identical(other.divisionType, divisionType) ||
                 other.divisionType == divisionType));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    created,
-    objectData,
-    speedFactor,
-    heightFactor,
-    overPriceFactor,
-    remotingFactor,
-    complexityFactor,
-    consumerFactor,
-    rateReturnFactor,
-    squareFactor,
-    divisionType,
-  );
+  int get hashCode =>
+      Object.hash(runtimeType, created, objectData, inputFactors, divisionType);
 
   /// Create a copy of InputDataDesign
   /// with the given fields replaced by the non-null parameter values.
@@ -397,15 +255,8 @@ abstract class _InputDataDesign implements InputDataDesign {
   const factory _InputDataDesign({
     required final DateTime? created,
     required final ObjectDataDesign objectData,
-    required final double speedFactor,
-    required final double heightFactor,
-    required final double overPriceFactor,
-    required final double remotingFactor,
-    required final double complexityFactor,
-    required final double consumerFactor,
-    required final double rateReturnFactor,
-    required final double squareFactor,
-    final DivisionType divisionType,
+    required final InputFactorsPojo inputFactors,
+    required final DivisionType divisionType,
   }) = _$InputDataDesignImpl;
 
   factory _InputDataDesign.fromJson(Map<String, dynamic> json) =
@@ -415,23 +266,9 @@ abstract class _InputDataDesign implements InputDataDesign {
   @override
   DateTime? get created; // Данные об объекте
   @override
-  ObjectDataDesign get objectData; // Коэфициент за срочность
+  ObjectDataDesign get objectData;
   @override
-  double get speedFactor; // Коэфициент за высотность
-  @override
-  double get heightFactor; // Коэфициент за издержки
-  @override
-  double get overPriceFactor; // Коэфициент за удаленность
-  @override
-  double get remotingFactor; // Коэфициент за сложность
-  @override
-  double get complexityFactor; // Коэфициент для заказчика
-  @override
-  double get consumerFactor; // Коэфициент нормы прибыли
-  @override
-  double get rateReturnFactor; // Коэфициент площади
-  @override
-  double get squareFactor; // Тип проектной документации на выходе
+  InputFactorsPojo get inputFactors; // Тип проектной документации на выходе
   @override
   DivisionType get divisionType;
 

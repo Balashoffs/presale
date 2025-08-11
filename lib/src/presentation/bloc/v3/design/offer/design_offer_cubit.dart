@@ -25,14 +25,12 @@ part 'design_offer_cubit.freezed.dart';
 class DesignOfferCubit extends Cubit<DesignOfferState> {
   final DesignOfferResultController _designOfferController;
   final DesignPresaleDataSourceLocal _dataSourceLocal;
-  final String _divisionType;
 
   DesignOfferCubit({
     required DesignOfferResultController controller,
     required String divisionType,
     required DBClient dbClient,
-  }) : _divisionType = divisionType,
-       _designOfferController = controller,
+  }) : _designOfferController = controller,
        _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),
        super(const DesignOfferState.initial());
 
@@ -41,8 +39,7 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
     await _designOfferController.fillSign();
     bool isBuild = _designOfferController.buildModel(
-      designPresalePojo,
-      _divisionType,
+      designPresalePojo
     );
     if (isBuild) {
       emit(
@@ -58,19 +55,20 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
         .designOfferResultVM
         ?.toPojo(designPresalePojo.inputDataDesign);
     if (commercialOfferResult != null) {
-      int total = designPresalePojo.divisions.entries
-          .where((element) => element.value.rows.isNotEmpty)
-          .length;
-      final Workbook workbook = Workbook(total);
-      final Worksheet sheet = workbook.worksheets[0];
-      DesignOfferTemplateBuilder builder = DesignOfferTemplateBuilder(
-        offerResult: commercialOfferResult,
-        worksheet: sheet,
-      );
-      await builder.fillRows();
-      List<int> fileBytes = builder.saveToBytes();
-      print('results in bytes: ${fileBytes.length}');
-      _saveFile(fileBytes);
+      int total = designPresalePojo.divisions?.rows.length ?? 0;
+      if(total != 0){
+        final Workbook workbook = Workbook(total);
+        final Worksheet sheet = workbook.worksheets[0];
+        DesignOfferTemplateBuilder builder = DesignOfferTemplateBuilder(
+          offerResult: commercialOfferResult,
+          worksheet: sheet,
+        );
+        await builder.fillRows();
+        List<int> fileBytes = builder.saveToBytes();
+        print('results in bytes: ${fileBytes.length}');
+        _saveFile(fileBytes);
+      }
+
     }
   }
 
@@ -93,9 +91,13 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
         //Launch the file (used open_file package)
         await open_file.OpenFile.open('$pickedSaveFilePath');
       } else if (Platform.isWindows) {
-        await Process.run('start', <String>['$pickedSaveFilePath'], runInShell: true);
+        await Process.run('start', <String>[
+          '$pickedSaveFilePath',
+        ], runInShell: true);
       } else if (Platform.isMacOS) {
-        await Process.run('open', <String>['$pickedSaveFilePath'], runInShell: true);
+        await Process.run('open', <String>[
+          '$pickedSaveFilePath',
+        ], runInShell: true);
       } else if (Platform.isLinux) {
         await Process.run('xdg-open', <String>[
           '$pickedSaveFilePath',

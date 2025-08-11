@@ -10,14 +10,11 @@ import 'package:presale/src/presentation/bloc/v5/design/division_resource_calcul
 import 'package:presale/src/presentation/common/typography_page_options.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/custom_circle_loader.dart';
+import 'package:presale/src/presentation/modules/v3/design/input/calculate/widget/result_sum_widget.dart';
 import 'package:presale/src/presentation/modules/v3/design/navi/service_navi.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/custom_dropdown_with_search_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/divisions_resources_table_widget.dart';
-
-import 'package:presale/src/presentation/modules/v4/design/division_resource_calculate/widget/next_page_widget.dart';
-import 'package:presale/src/presentation/modules/v4/design/division_resource_calculate/widget/result_sum_widget.dart';
-
-import '../navi/service_navi.dart';
+import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/next_page_widget.dart';
 
 class DivisionResourceCalculatePage extends StatelessWidget {
   const DivisionResourceCalculatePage({super.key});
@@ -95,11 +92,7 @@ class DivisionResourceCalculateConsumer extends StatelessWidget {
       },
       listener: (context, state) {
         state.whenOrNull(
-          nextPage: (route) => route == null
-              ? context.go(
-                  '/$inputDataRoutePath/$divisionResourceCalculateRoutePath/$divisionMarginCalculateRoutePath',
-                )
-              : context.go(''),
+          nextPage: () => context.go('')
         );
       },
     );
@@ -171,7 +164,6 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
                   .summaryVN,
               builder: (context, value, child) {
                 return NextPageWidget(
-                  buttonText: 'Расчитать маржинальность',
                   onTap: value.compareTo(0.0) > 0
                       ? context
                             .read<DivisionResourceCalculateCubit>()

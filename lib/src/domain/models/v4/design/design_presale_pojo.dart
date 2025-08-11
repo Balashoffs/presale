@@ -12,9 +12,9 @@ part 'design_presale_pojo.freezed.dart';
 class DesignPresalePojo with _$DesignPresalePojo {
   const factory DesignPresalePojo({
     required InputDataDesign inputDataDesign,
-    @Default({}) Map<String, DivisionResourceTableWithTypePojo> resource,
-    @Default({}) Map<String, DivisionsMarginTableWithTypePojo> divisions,
-    @Default({}) Map<String, CommercialOfferResult> offers,
+    DivisionResourceTableWithTypePojo? resource,
+    DivisionsMarginTableWithTypePojo? divisions,
+    CommercialOfferResult? offers,
   }) = _DesignPresalePojo;
 
   factory DesignPresalePojo.fromJson(Map<String, dynamic> json) =>

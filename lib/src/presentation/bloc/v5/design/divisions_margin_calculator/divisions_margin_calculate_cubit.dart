@@ -22,14 +22,11 @@ class DivisionsMarginCalculateCubit
     extends Cubit<DivisionsMarginCalculateState> {
   final DivisionsMarginSummaryViewModel _resourceSummaryViewModel;
   final DesignPresaleDataSourceLocal _dataSourceLocal;
-  final String _divisionType;
 
   DivisionsMarginCalculateCubit({
-    required String divisionType,
     required DBClient dbClient,
     required DivisionsMarginSummaryViewModel resourceSummaryViewModel,
-  }) : _divisionType = divisionType,
-       _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),
+  }) : _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),
        _resourceSummaryViewModel = resourceSummaryViewModel,
        super(const DivisionsMarginCalculateState.initial());
 
@@ -37,7 +34,7 @@ class DivisionsMarginCalculateCubit
     DesignPresalePojo designPresalePojo = await _dataSourceLocal
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
     List<DivisionResourceRowPojo> divisionsByType =
-        designPresalePojo.resource[_divisionType]?.rows ?? [];
+        designPresalePojo.resource?.rows ?? [];
     if (divisionsByType.isNotEmpty) {
       _resourceSummaryViewModel.fill(divisionsByType);
       emit(DivisionsMarginCalculateState.showPage());
@@ -52,41 +49,18 @@ class DivisionsMarginCalculateCubit
     DesignPresalePojo designPresalePojo = await _dataSourceLocal
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
 
-    final updatesRows = DivisionType.values
-        .where((element) => element != DivisionType.both)
-        .where(
-          (element) =>
-              designPresalePojo.resource.containsKey(element.shortText),
-        )
-        .map((e) {
-          if (e.shortText == _divisionType) {
-            return MapEntry<String, DivisionsMarginTableWithTypePojo>(
-              _divisionType,
-              DivisionsMarginTableWithTypePojo(
-                divisionType: _divisionType,
-                rows: rows,
-              ),
-            );
-          }
-          return MapEntry<String, DivisionsMarginTableWithTypePojo>(
-            e.text,
-            designPresalePojo.divisions[e.shortText]!,
-          );
-        });
+    final updatesDivisions = DivisionsMarginTableWithTypePojo(
+      divisionType: designPresalePojo.inputDataDesign.divisionType,
+      rows: rows,
+    );
 
     DesignPresalePojo updated = designPresalePojo.copyWith(
-      divisions: Map.fromEntries(updatesRows),
+      divisions: updatesDivisions,
     );
 
     bool isSaves = await _dataSourceLocal.addDesignPresale(updated);
     if (isSaves) {
-      String? divisionType = updated.divisions.entries
-          .where((element) => element.value.rows.isEmpty)
-          .firstOrNull
-          ?.value
-          .divisionType;
-
-      emit(DivisionsMarginCalculateState.nextPage(divisionType));
+      emit(DivisionsMarginCalculateState.nextPage());
     }
   }
 }

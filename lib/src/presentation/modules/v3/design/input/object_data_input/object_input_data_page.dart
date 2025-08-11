@@ -56,8 +56,8 @@ class ObjectInputDataConsumerWidget extends StatelessWidget {
     return BlocConsumer<ObjectDataCubit, ObjectInputDataState>(
       listener: (context, state) {
         state.whenOrNull(
-          nextPage: (type) =>
-              context.go('/$inputDataRoutePath/$divisionResourceCalculateRoutePath'),
+          nextPage: () =>
+              context.go(''),
         );
       },
       builder: (context, state) {
@@ -212,7 +212,7 @@ class LoadedWidget extends StatelessWidget {
                       width: 256,
                       hintText: '100',
                       initValue: 100,
-                      onChanged: cubit.setRateReturnFactor,
+                      onChanged: cubit.setMarginFactor,
                       leading: Icons.calculate,
                       trailing: MoonIcons.controls_close_small_24_light,
                       validator: onlyNumberValidator,
@@ -222,7 +222,7 @@ class LoadedWidget extends StatelessWidget {
                       width: 256,
                       hintText: '100',
                       initValue: 100,
-                      onChanged: cubit.setConsumerFactor,
+                      onChanged: cubit.setCustomerFactor,
                       leading: Icons.person,
                       trailing: MoonIcons.controls_close_small_24_light,
                       validator: onlyNumberValidator,

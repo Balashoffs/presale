@@ -20,21 +20,21 @@ mixin _$DivisionResourceCalculateState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? nextType) nextPage,
+    required TResult Function() nextPage,
     required TResult Function() showPage,
     required TResult Function(String errorText) error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String? nextType)? nextPage,
+    TResult? Function()? nextPage,
     TResult? Function()? showPage,
     TResult? Function(String errorText)? error,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? nextType)? nextPage,
+    TResult Function()? nextPage,
     TResult Function()? showPage,
     TResult Function(String errorText)? error,
     required TResult orElse(),
@@ -136,7 +136,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? nextType) nextPage,
+    required TResult Function() nextPage,
     required TResult Function() showPage,
     required TResult Function(String errorText) error,
   }) {
@@ -147,7 +147,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String? nextType)? nextPage,
+    TResult? Function()? nextPage,
     TResult? Function()? showPage,
     TResult? Function(String errorText)? error,
   }) {
@@ -158,7 +158,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? nextType)? nextPage,
+    TResult Function()? nextPage,
     TResult Function()? showPage,
     TResult Function(String errorText)? error,
     required TResult orElse(),
@@ -217,8 +217,6 @@ abstract class _$$NextPageImplCopyWith<$Res> {
     _$NextPageImpl value,
     $Res Function(_$NextPageImpl) then,
   ) = __$$NextPageImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? nextType});
 }
 
 /// @nodoc
@@ -232,86 +230,60 @@ class __$$NextPageImplCopyWithImpl<$Res>
 
   /// Create a copy of DivisionResourceCalculateState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? nextType = freezed}) {
-    return _then(
-      _$NextPageImpl(
-        freezed == nextType
-            ? _value.nextType
-            : nextType // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
 class _$NextPageImpl implements _NextPage {
-  const _$NextPageImpl(this.nextType);
-
-  @override
-  final String? nextType;
+  const _$NextPageImpl();
 
   @override
   String toString() {
-    return 'DivisionResourceCalculateState.nextPage(nextType: $nextType)';
+    return 'DivisionResourceCalculateState.nextPage()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$NextPageImpl &&
-            (identical(other.nextType, nextType) ||
-                other.nextType == nextType));
+        (other.runtimeType == runtimeType && other is _$NextPageImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, nextType);
-
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$NextPageImplCopyWith<_$NextPageImpl> get copyWith =>
-      __$$NextPageImplCopyWithImpl<_$NextPageImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? nextType) nextPage,
+    required TResult Function() nextPage,
     required TResult Function() showPage,
     required TResult Function(String errorText) error,
   }) {
-    return nextPage(nextType);
+    return nextPage();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String? nextType)? nextPage,
+    TResult? Function()? nextPage,
     TResult? Function()? showPage,
     TResult? Function(String errorText)? error,
   }) {
-    return nextPage?.call(nextType);
+    return nextPage?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? nextType)? nextPage,
+    TResult Function()? nextPage,
     TResult Function()? showPage,
     TResult Function(String errorText)? error,
     required TResult orElse(),
   }) {
     if (nextPage != null) {
-      return nextPage(nextType);
+      return nextPage();
     }
     return orElse();
   }
@@ -355,15 +327,7 @@ class _$NextPageImpl implements _NextPage {
 }
 
 abstract class _NextPage implements DivisionResourceCalculateState {
-  const factory _NextPage(final String? nextType) = _$NextPageImpl;
-
-  String? get nextType;
-
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NextPageImplCopyWith<_$NextPageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _NextPage() = _$NextPageImpl;
 }
 
 /// @nodoc
@@ -410,7 +374,7 @@ class _$ShowPageImpl implements _ShowPage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? nextType) nextPage,
+    required TResult Function() nextPage,
     required TResult Function() showPage,
     required TResult Function(String errorText) error,
   }) {
@@ -421,7 +385,7 @@ class _$ShowPageImpl implements _ShowPage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String? nextType)? nextPage,
+    TResult? Function()? nextPage,
     TResult? Function()? showPage,
     TResult? Function(String errorText)? error,
   }) {
@@ -432,7 +396,7 @@ class _$ShowPageImpl implements _ShowPage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? nextType)? nextPage,
+    TResult Function()? nextPage,
     TResult Function()? showPage,
     TResult Function(String errorText)? error,
     required TResult orElse(),
@@ -557,7 +521,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? nextType) nextPage,
+    required TResult Function() nextPage,
     required TResult Function() showPage,
     required TResult Function(String errorText) error,
   }) {
@@ -568,7 +532,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String? nextType)? nextPage,
+    TResult? Function()? nextPage,
     TResult? Function()? showPage,
     TResult? Function(String errorText)? error,
   }) {
@@ -579,7 +543,7 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? nextType)? nextPage,
+    TResult Function()? nextPage,
     TResult Function()? showPage,
     TResult Function(String errorText)? error,
     required TResult orElse(),

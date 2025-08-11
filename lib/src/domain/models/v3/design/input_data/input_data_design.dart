@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:presale/src/domain/models/v3/design/division_type/division_type.dart';
+import 'package:presale/src/domain/models/v3/design/input_factors/input_factors_pojo.dart';
 
 import 'object_data_design.dart';
 
@@ -14,24 +15,9 @@ class InputDataDesign with _$InputDataDesign {
     required DateTime? created,
     // Данные об объекте
      required ObjectDataDesign objectData,
-    // Коэфициент за срочность
-     required double speedFactor,
-    // Коэфициент за высотность
-     required double heightFactor,
-    // Коэфициент за издержки
-     required double overPriceFactor,
-    // Коэфициент за удаленность
-     required double remotingFactor,
-    // Коэфициент за сложность
-     required double complexityFactor,
-    // Коэфициент для заказчика
-     required double consumerFactor,
-    // Коэфициент нормы прибыли
-     required double rateReturnFactor,
-    // Коэфициент площади
-     required double squareFactor,
+    required InputFactorsPojo inputFactors,
     // Тип проектной документации на выходе
-    @Default(DivisionType.project) DivisionType divisionType,
+    required DivisionType divisionType,
   }) = _InputDataDesign;
 
   factory InputDataDesign.fromJson(Map<String, dynamic> json) =>

@@ -18,14 +18,12 @@ class DivisionResourceCalculateCubit
     extends Cubit<DivisionResourceCalculateState> {
   final DivisionResourceSummaryViewModel _resourceSummaryViewModel;
   final DesignPresaleDataSourceLocal _dataSourceLocal;
-  final String _divisionType;
 
   DivisionResourceCalculateCubit({
     required String divisionType,
     required DBClient dbClient,
     required DivisionResourceSummaryViewModel resourceSummaryViewModel,
-  }) : _divisionType = divisionType,
-       _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),
+  }) : _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),
        _resourceSummaryViewModel = resourceSummaryViewModel,
        super(const DivisionResourceCalculateState.initial());
 
@@ -52,43 +50,19 @@ class DivisionResourceCalculateCubit
     DesignPresalePojo designPresalePojo = await _dataSourceLocal
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
 
-    final updatesRows = DivisionType.values
-        .where((element) => element != DivisionType.both)
-        .where(
-          (element) =>
-              designPresalePojo.resource.containsKey(element.shortText),
-        )
-        .map((e) {
-          if (e.shortText == _divisionType) {
-            return MapEntry<String, DivisionResourceTableWithTypePojo>(
-              _divisionType,
-              DivisionResourceTableWithTypePojo(
-                divisionType: _divisionType,
-                rows: rows,
-              ),
-            );
-          }
-          return MapEntry<String, DivisionResourceTableWithTypePojo>(
-            e.text,
-            designPresalePojo.resource[e.shortText]!,
-          );
-        });
+    DivisionResourceTableWithTypePojo updatedResources =
+        DivisionResourceTableWithTypePojo(
+          divisionType: designPresalePojo.inputDataDesign.divisionType,
+          rows: rows,
+        );
 
     DesignPresalePojo updated = designPresalePojo.copyWith(
-      resource: Map.fromEntries(updatesRows),
+      resource: updatedResources,
     );
 
     bool isSaves = await _dataSourceLocal.addDesignPresale(updated);
-    if(isSaves){
-      String? divisionType = updated.resource.entries
-          .where((element) => element.value.rows.isEmpty)
-          .firstOrNull
-          ?.value
-          .divisionType;
-
-      emit(DivisionResourceCalculateState.nextPage(divisionType));
+    if (isSaves) {
+      emit(DivisionResourceCalculateState.nextPage());
     }
-
-
   }
 }

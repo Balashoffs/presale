@@ -9,12 +9,10 @@ import 'package:presale/src/domain/models/v5/design/divisions_margin_table/divis
 import 'package:presale/src/presentation/bloc/v5/design/divisions_margin_calculator/divisions_margin_calculate_cubit.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v3/design/common/custom_circle_loader.dart';
+import 'package:presale/src/presentation/modules/v3/design/input/calculate/widget/next_page_widget.dart';
 import 'package:presale/src/presentation/modules/v3/design/navi/service_navi.dart';
-import 'package:presale/src/presentation/modules/v4/design/division_resource_calculate/widget/next_page_widget.dart';
-import 'package:presale/src/presentation/modules/v5/design/divisions_margin_calculate/widget/divisions_table_widget.dart'
-    show DivisionsMarginTableWidget;
+import 'package:presale/src/presentation/modules/v5/design/divisions_margin_calculate/widget/divisions_table_widget.dart';
 
-import '../navi/service_navi.dart';
 
 class DivisionsMarginCalculatePage extends StatelessWidget {
   const DivisionsMarginCalculatePage({super.key});
@@ -63,7 +61,6 @@ class DivisionsMarginCalculateProvider extends StatelessWidget {
     return BlocProvider<DivisionsMarginCalculateCubit>(
       create: (context) {
         return DivisionsMarginCalculateCubit(
-          divisionType: 'П',
           dbClient: di.dbClientImpl,
           resourceSummaryViewModel: context
               .read<DivisionsMarginSummaryViewModel>(),
@@ -92,11 +89,7 @@ class DivisionsMarginCalculateConsumer extends StatelessWidget {
       },
       listener: (context, state) {
         state.whenOrNull(
-          nextPage: (route) => route == null
-              ? context.go(
-                  '/$inputDataRoutePath/$divisionResourceCalculateRoutePath/$divisionMarginCalculateRoutePath/$designOfferPath',
-                )
-              : context.go(''),
+          nextPage: () => context.go(''),
         );
       },
     );
@@ -122,7 +115,6 @@ class DivisionsMarginCalculateWidget extends StatelessWidget {
           child: Padding(
             padding: EdgeInsetsGeometry.all(8.0),
             child: NextPageWidget(
-              buttonText: 'Расчет маржинальности',
               onTap: context.read<DivisionsMarginCalculateCubit>().onNextPage,
             ),
           ),

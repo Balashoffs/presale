@@ -44,8 +44,8 @@ class DivisionResourceSummaryViewModel {
     DivisionWithResourceDTO divisionWithResourceDTO,
     InputDataDesign inputDataDesign,
   ) {
-    _squareFactor = inputDataDesign.squareFactor;
-    _complexityFactor = inputDataDesign.complexityFactor;
+    _squareFactor = inputDataDesign.inputFactors.squareFactor;
+    _complexityFactor = inputDataDesign.inputFactors.complexityFactor;
     _resources.addAll(divisionWithResourceDTO.resources);
     allDivisions.addAll(divisionWithResourceDTO.divisions);
   }

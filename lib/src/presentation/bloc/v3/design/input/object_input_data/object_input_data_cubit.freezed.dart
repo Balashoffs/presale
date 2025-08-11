@@ -21,21 +21,21 @@ mixin _$ObjectInputDataState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(InputFactorsViewModel factors) enterInputData,
-    required TResult Function(String? type) nextPage,
+    required TResult Function() nextPage,
     required TResult Function(String errorText) errorMessage,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(InputFactorsViewModel factors)? enterInputData,
-    TResult? Function(String? type)? nextPage,
+    TResult? Function()? nextPage,
     TResult? Function(String errorText)? errorMessage,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(InputFactorsViewModel factors)? enterInputData,
-    TResult Function(String? type)? nextPage,
+    TResult Function()? nextPage,
     TResult Function(String errorText)? errorMessage,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -133,7 +133,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(InputFactorsViewModel factors) enterInputData,
-    required TResult Function(String? type) nextPage,
+    required TResult Function() nextPage,
     required TResult Function(String errorText) errorMessage,
   }) {
     return initial();
@@ -144,7 +144,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(InputFactorsViewModel factors)? enterInputData,
-    TResult? Function(String? type)? nextPage,
+    TResult? Function()? nextPage,
     TResult? Function(String errorText)? errorMessage,
   }) {
     return initial?.call();
@@ -155,7 +155,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(InputFactorsViewModel factors)? enterInputData,
-    TResult Function(String? type)? nextPage,
+    TResult Function()? nextPage,
     TResult Function(String errorText)? errorMessage,
     required TResult orElse(),
   }) {
@@ -282,7 +282,7 @@ class _$EnterInputDataImpl implements _EnterInputData {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(InputFactorsViewModel factors) enterInputData,
-    required TResult Function(String? type) nextPage,
+    required TResult Function() nextPage,
     required TResult Function(String errorText) errorMessage,
   }) {
     return enterInputData(factors);
@@ -293,7 +293,7 @@ class _$EnterInputDataImpl implements _EnterInputData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(InputFactorsViewModel factors)? enterInputData,
-    TResult? Function(String? type)? nextPage,
+    TResult? Function()? nextPage,
     TResult? Function(String errorText)? errorMessage,
   }) {
     return enterInputData?.call(factors);
@@ -304,7 +304,7 @@ class _$EnterInputDataImpl implements _EnterInputData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(InputFactorsViewModel factors)? enterInputData,
-    TResult Function(String? type)? nextPage,
+    TResult Function()? nextPage,
     TResult Function(String errorText)? errorMessage,
     required TResult orElse(),
   }) {
@@ -371,8 +371,6 @@ abstract class _$$NextPageImplCopyWith<$Res> {
     _$NextPageImpl value,
     $Res Function(_$NextPageImpl) then,
   ) = __$$NextPageImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String? type});
 }
 
 /// @nodoc
@@ -386,61 +384,36 @@ class __$$NextPageImplCopyWithImpl<$Res>
 
   /// Create a copy of ObjectInputDataState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? type = freezed}) {
-    return _then(
-      _$NextPageImpl(
-        freezed == type
-            ? _value.type
-            : type // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
 class _$NextPageImpl implements _NextPage {
-  const _$NextPageImpl(this.type);
-
-  @override
-  final String? type;
+  const _$NextPageImpl();
 
   @override
   String toString() {
-    return 'ObjectInputDataState.nextPage(type: $type)';
+    return 'ObjectInputDataState.nextPage()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$NextPageImpl &&
-            (identical(other.type, type) || other.type == type));
+        (other.runtimeType == runtimeType && other is _$NextPageImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type);
-
-  /// Create a copy of ObjectInputDataState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$NextPageImplCopyWith<_$NextPageImpl> get copyWith =>
-      __$$NextPageImplCopyWithImpl<_$NextPageImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(InputFactorsViewModel factors) enterInputData,
-    required TResult Function(String? type) nextPage,
+    required TResult Function() nextPage,
     required TResult Function(String errorText) errorMessage,
   }) {
-    return nextPage(type);
+    return nextPage();
   }
 
   @override
@@ -448,10 +421,10 @@ class _$NextPageImpl implements _NextPage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(InputFactorsViewModel factors)? enterInputData,
-    TResult? Function(String? type)? nextPage,
+    TResult? Function()? nextPage,
     TResult? Function(String errorText)? errorMessage,
   }) {
-    return nextPage?.call(type);
+    return nextPage?.call();
   }
 
   @override
@@ -459,12 +432,12 @@ class _$NextPageImpl implements _NextPage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(InputFactorsViewModel factors)? enterInputData,
-    TResult Function(String? type)? nextPage,
+    TResult Function()? nextPage,
     TResult Function(String errorText)? errorMessage,
     required TResult orElse(),
   }) {
     if (nextPage != null) {
-      return nextPage(type);
+      return nextPage();
     }
     return orElse();
   }
@@ -508,15 +481,7 @@ class _$NextPageImpl implements _NextPage {
 }
 
 abstract class _NextPage implements ObjectInputDataState {
-  const factory _NextPage(final String? type) = _$NextPageImpl;
-
-  String? get type;
-
-  /// Create a copy of ObjectInputDataState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NextPageImplCopyWith<_$NextPageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _NextPage() = _$NextPageImpl;
 }
 
 /// @nodoc
@@ -592,7 +557,7 @@ class _$ErrorMessageImpl implements _ErrorMessage {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(InputFactorsViewModel factors) enterInputData,
-    required TResult Function(String? type) nextPage,
+    required TResult Function() nextPage,
     required TResult Function(String errorText) errorMessage,
   }) {
     return errorMessage(errorText);
@@ -603,7 +568,7 @@ class _$ErrorMessageImpl implements _ErrorMessage {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function(InputFactorsViewModel factors)? enterInputData,
-    TResult? Function(String? type)? nextPage,
+    TResult? Function()? nextPage,
     TResult? Function(String errorText)? errorMessage,
   }) {
     return errorMessage?.call(errorText);
@@ -614,7 +579,7 @@ class _$ErrorMessageImpl implements _ErrorMessage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(InputFactorsViewModel factors)? enterInputData,
-    TResult Function(String? type)? nextPage,
+    TResult Function()? nextPage,
     TResult Function(String errorText)? errorMessage,
     required TResult orElse(),
   }) {

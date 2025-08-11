@@ -5,11 +5,10 @@ import 'package:presale/src/data/data_sources/v3/input_result_design_source.dart
 import 'package:presale/src/domain/models/v2/constructing/model/input/input_repository.dart';
 import 'package:presale/src/domain/models/v3/design/division_type/division_type.dart';
 import 'package:presale/src/domain/models/v3/design/input_data/input_data_design.dart';
+import 'package:presale/src/domain/models/v3/design/input_data/object_data_design.dart';
+import 'package:presale/src/domain/models/v3/design/input_factors/input_factors_pojo.dart';
 import 'package:presale/src/domain/models/v4/design/design_presale_pojo.dart';
-import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_table_pojo.dart';
-import 'package:presale/src/presentation/bloc/v3/design/input/object_input_data/data/object_data_dto.dart';
-
-import 'data/input_data_dto.dart';
+import 'package:presale/src/presentation/bloc/v3/design/input/object_input_data/object_data_viewmodel.dart';
 
 part 'object_input_data_state.dart';
 
@@ -19,9 +18,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
   final InputFactorsRepository _inputFactorRepository;
   late final InputFactorsViewModel? _inputFactors;
 
-  final InputDataBuilder _inputResultBuilder;
-  final ObjectDataBuilder _objectDataDTOBuilder;
-  late final InputDataDTO _inputDataDTO;
+  final InputDataBuilder _objectDataBuilder;
 
   final DesignPresaleDataSourceLocal _dataSourceLocal;
 
@@ -45,33 +42,32 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
 
   ObjectDataCubit(DBClient dbClient)
     : _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),
-      _inputResultBuilder = InputDataBuilder(),
-      _objectDataDTOBuilder = ObjectDataBuilder(),
+      _objectDataBuilder = InputDataBuilder(),
       _inputFactorRepository = InputFactorsRepository(),
       super(ObjectInputDataState.initial());
 
   //Данные объекте
   void setObjectName(String name) {
     if (name.isEmpty) return;
-    _objectDataDTOBuilder.setObjectName(name);
+    _objectDataBuilder.setObjectName(name);
   }
 
   void setObjectLocation(String address) {
     if (address.isEmpty) return;
-    _objectDataDTOBuilder.setObjectAddress(address);
+    _objectDataBuilder.setObjectAddress(address);
   }
 
   void setSquare(String value) {
     double? result = double.tryParse(value);
     if (result != null) {
-      _objectDataDTOBuilder.setObjectSquare(result);
+      _objectDataBuilder.setObjectSquare(result);
     }
   }
 
   void setDeadline(String value) {
     int? result = int.tryParse(value);
     if (result != null) {
-      _objectDataDTOBuilder.setDeadlineValue(result);
+      _objectDataBuilder.setDeadlineValue(result);
     }
   }
 
@@ -84,7 +80,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     );
     if (result != null) {
       result = _percentConvertor(result);
-      _inputResultBuilder.setHeightFactor(result);
+      _objectDataBuilder.setHeightFactor(result);
     }
   }
 
@@ -95,7 +91,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     );
     if (result != null) {
       result = _percentConvertor(result);
-      _inputResultBuilder.setRemotingFactor(result);
+      _objectDataBuilder.setRemotingFactor(result);
     }
   }
 
@@ -106,7 +102,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     );
     if (result != null) {
       result = _percentConvertor(result);
-      _inputResultBuilder.setSquareFactor(result);
+      _objectDataBuilder.setSquareFactor(result);
     }
   }
 
@@ -114,7 +110,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     double? result = double.tryParse(value);
     if (result != null) {
       result = _percentConvertor(result);
-      _inputResultBuilder.setSpeedFactor(result);
+      _objectDataBuilder.setSpeedFactor(result);
     }
   }
 
@@ -122,7 +118,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     double? result = double.tryParse(value);
     if (result != null) {
       result = _percentConvertor(result);
-      _inputResultBuilder.setOverPriceFactor(result);
+      _objectDataBuilder.setOverPriceFactor(result);
     }
   }
 
@@ -135,85 +131,47 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
           .reduce((value, element) => value * element);
     }
     result = double.parse(_percentConvertor(result).toStringAsFixed(2));
-    _inputResultBuilder.setComplexityFactor(result);
+    _objectDataBuilder.setComplexityFactor(result);
   }
 
-  void setConsumerFactor(String value) {
+  void setCustomerFactor(String value) {
     double? result = double.tryParse(value);
     if (result != null) {
       result = result / 100;
-      _inputResultBuilder.setConsumerFactor(result);
+      _objectDataBuilder.setCustomerFactor(result);
     }
   }
 
-  void setRateReturnFactor(String value) {
+  void setMarginFactor(String value) {
     double? result = double.tryParse(value);
     if (result != null) {
       result = result / 100;
-      _inputResultBuilder.setRateReturnFactor(result);
+      _objectDataBuilder.setMarginFactor(result);
     }
   }
 
   void setResultDesignDocumentations(String result) {
-    DivisionType dt = DivisionType.fromShortText(result);
-    _inputResultBuilder.setDivisionType(dt);
-  }
-
-  bool _checkResult() {
-    try {
-      ObjectDataDTO objectDataDTO = _objectDataDTOBuilder.build();
-      try {
-        _inputResultBuilder.setObjectData(objectDataDTO);
-        _inputDataDTO = _inputResultBuilder.build();
-      } catch (e) {
-        return false;
-      }
-    } catch (e) {
-      return false;
-    }
-
-    return true;
+    _objectDataBuilder.setDivisionType(result);
   }
 
   void nextPage() async {
-    if (_checkResult()) {
-      InputDataDesign inputData = _inputDataDTO.toModel();
+    try {
+      InputDataMV? inputDataMv = _objectDataBuilder.build();
+      ObjectDataDesign objectDataData = inputDataMv.toObject();
+      InputFactorsPojo inputFactorsPojo = inputDataMv.toFactors();
+      InputDataDesign inputDataDesign = InputDataDesign(
+        created: DateTime.now(),
+        objectData: objectDataData,
+        inputFactors: inputFactorsPojo,
+        divisionType: DivisionType.fromShortText(inputDataMv.divisionType),
+      );
       DesignPresalePojo designPresalePojo = DesignPresalePojo(
-        inputDataDesign: inputData,
-        resource: _convertDivisionType(inputData.divisionType),
+        inputDataDesign: inputDataDesign,
       );
       bool isSaves = await _dataSourceLocal.addDesignPresale(designPresalePojo);
       if (isSaves) {
-        if (designPresalePojo.resource.length == 1) {
-          String? type =
-              designPresalePojo.resource.values.firstOrNull?.divisionType;
-          emit(ObjectInputDataState.nextPage(type));
-        }
+        emit(ObjectInputDataState.nextPage());
       }
-    }
-  }
-
-  Map<String, DivisionResourceTableWithTypePojo> _convertDivisionType(
-    DivisionType type,
-  ) {
-    Map<String, DivisionResourceTableWithTypePojo> tables = {};
-    if (type == DivisionType.both) {
-      tables[DivisionType.project.shortText] =
-          DivisionResourceTableWithTypePojo(
-            divisionType: DivisionType.project.shortText,
-            rows: [],
-          );
-      tables[DivisionType.working.shortText] =
-          DivisionResourceTableWithTypePojo(
-            divisionType: DivisionType.working.shortText,
-            rows: [],
-          );
-    } else {
-      tables[type.shortText] = DivisionResourceTableWithTypePojo(
-        divisionType: type.shortText,
-        rows: [],
-      );
-    }
-    return tables;
+    } catch (_) {}
   }
 }

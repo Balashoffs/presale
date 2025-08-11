@@ -9,7 +9,7 @@ part of 'division_resource_table_pojo.dart';
 _$DivisionResourceTableWithTypePojoImpl
 _$$DivisionResourceTableWithTypePojoImplFromJson(Map<String, dynamic> json) =>
     _$DivisionResourceTableWithTypePojoImpl(
-      divisionType: json['divisionType'] as String,
+      divisionType: $enumDecode(_$DivisionTypeEnumMap, json['divisionType']),
       rows: (json['rows'] as List<dynamic>)
           .map(
             (e) => DivisionResourceRowPojo.fromJson(e as Map<String, dynamic>),
@@ -20,6 +20,11 @@ _$$DivisionResourceTableWithTypePojoImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$DivisionResourceTableWithTypePojoImplToJson(
   _$DivisionResourceTableWithTypePojoImpl instance,
 ) => <String, dynamic>{
-  'divisionType': instance.divisionType,
+  'divisionType': _$DivisionTypeEnumMap[instance.divisionType]!,
   'rows': instance.rows,
+};
+
+const _$DivisionTypeEnumMap = {
+  DivisionType.project: 'project',
+  DivisionType.working: 'working',
 };

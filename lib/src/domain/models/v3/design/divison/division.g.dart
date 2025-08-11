@@ -8,9 +8,7 @@ part of 'division.dart';
 
 _$DivisionImpl _$$DivisionImplFromJson(Map<String, dynamic> json) =>
     _$DivisionImpl(
-      type:
-          $enumDecodeNullable(_$DivisionTypeEnumMap, json['type']) ??
-          DivisionType.both,
+      type: $enumDecodeNullable(_$DivisionTypeEnumMap, json['type']),
       name: json['name'] as String,
       shortName: json['shortName'] as String,
       id: (json['id'] as num).toInt(),
@@ -19,7 +17,7 @@ _$DivisionImpl _$$DivisionImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$DivisionImplToJson(_$DivisionImpl instance) =>
     <String, dynamic>{
-      'type': _$DivisionTypeEnumMap[instance.type]!,
+      'type': _$DivisionTypeEnumMap[instance.type],
       'name': instance.name,
       'shortName': instance.shortName,
       'id': instance.id,
@@ -28,6 +26,5 @@ Map<String, dynamic> _$$DivisionImplToJson(_$DivisionImpl instance) =>
 
 const _$DivisionTypeEnumMap = {
   DivisionType.project: 'project',
-  DivisionType.both: 'both',
   DivisionType.working: 'working',
 };

@@ -23,7 +23,7 @@ DivisionsMarginTableWithTypePojo _$DivisionsMarginTableWithTypePojoFromJson(
 
 /// @nodoc
 mixin _$DivisionsMarginTableWithTypePojo {
-  String get divisionType => throw _privateConstructorUsedError;
+  DivisionType get divisionType => throw _privateConstructorUsedError;
   List<DivisionsMarginRowPojo> get rows => throw _privateConstructorUsedError;
 
   /// Serializes this DivisionsMarginTableWithTypePojo to a JSON map.
@@ -47,7 +47,7 @@ abstract class $DivisionsMarginTableWithTypePojoCopyWith<$Res> {
         DivisionsMarginTableWithTypePojo
       >;
   @useResult
-  $Res call({String divisionType, List<DivisionsMarginRowPojo> rows});
+  $Res call({DivisionType divisionType, List<DivisionsMarginRowPojo> rows});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$DivisionsMarginTableWithTypePojoCopyWithImpl<
             divisionType: null == divisionType
                 ? _value.divisionType
                 : divisionType // ignore: cast_nullable_to_non_nullable
-                      as String,
+                      as DivisionType,
             rows: null == rows
                 ? _value.rows
                 : rows // ignore: cast_nullable_to_non_nullable
@@ -93,7 +93,7 @@ abstract class _$$DivisionsMarginTableWithTypePojoImplCopyWith<$Res>
   ) = __$$DivisionsMarginTableWithTypePojoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String divisionType, List<DivisionsMarginRowPojo> rows});
+  $Res call({DivisionType divisionType, List<DivisionsMarginRowPojo> rows});
 }
 
 /// @nodoc
@@ -119,7 +119,7 @@ class __$$DivisionsMarginTableWithTypePojoImplCopyWithImpl<$Res>
         divisionType: null == divisionType
             ? _value.divisionType
             : divisionType // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as DivisionType,
         rows: null == rows
             ? _value._rows
             : rows // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ class _$DivisionsMarginTableWithTypePojoImpl
   ) => _$$DivisionsMarginTableWithTypePojoImplFromJson(json);
 
   @override
-  final String divisionType;
+  final DivisionType divisionType;
   final List<DivisionsMarginRowPojo> _rows;
   @override
   List<DivisionsMarginRowPojo> get rows {
@@ -197,7 +197,7 @@ class _$DivisionsMarginTableWithTypePojoImpl
 abstract class _DivisionsMarginTableWithTypePojo
     implements DivisionsMarginTableWithTypePojo {
   const factory _DivisionsMarginTableWithTypePojo({
-    required final String divisionType,
+    required final DivisionType divisionType,
     required final List<DivisionsMarginRowPojo> rows,
   }) = _$DivisionsMarginTableWithTypePojoImpl;
 
@@ -206,7 +206,7 @@ abstract class _DivisionsMarginTableWithTypePojo
   ) = _$DivisionsMarginTableWithTypePojoImpl.fromJson;
 
   @override
-  String get divisionType;
+  DivisionType get divisionType;
   @override
   List<DivisionsMarginRowPojo> get rows;
 

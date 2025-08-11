@@ -12,58 +12,46 @@ class DesignOfferResultController {
   final ValueNotifier<List<PersonSignDTO>> signs = ValueNotifier([]);
   final ValueNotifier<bool> isCorrect = ValueNotifier(false);
 
-  bool buildModel(DesignPresalePojo designPresalePojo, String divisionType) {
-    if (designPresalePojo.divisions.containsKey(divisionType)) {
-      DivisionsMarginTableWithTypePojo divisionResult =
-      designPresalePojo.divisions[divisionType]!;
+  bool buildModel(DesignPresalePojo designPresalePojo) {
+    DivisionsMarginTableWithTypePojo? divisionResult =
+        designPresalePojo.divisions;
+    if (divisionResult != null) {
       final List<DesignOfferResultRowVM> divisionRows = divisionResult.rows
           .map(
-            (e) =>
-            DesignOfferResultRowVM(
+            (e) => DesignOfferResultRowVM(
               id: e.id,
               divisionName: e.divisionName,
               divisionShortName: e.divisionShortName,
               deadline: 1,
               divisionSummaryWithTax: e.summaryCostWithMargin,
             ),
-      )
+          )
           .toList();
 
-      double overPrice = designPresalePojo.divisions.values
-          .map(
-            (e) =>
-            e.rows
-                .map((e) => e.overPriceFactor * e.divisionSummaryCost)
-                .reduce((value, element) => value + element),
-      )
-          .reduce((value, element) => value + element);
+      double overPrice =
+          designPresalePojo.divisions?.rows
+              .map((e) => e.overPriceFactor * e.divisionSummaryCost)
+              .reduce((value, element) => value + element) ??
+          0.0;
 
-      double marginCost = designPresalePojo.divisions.values
-          .map(
-            (e) =>
-            e.rows
-                .map(
-                  (e) =>
-              e.overPriceFactor *
-                  e.divisionSummaryCost *
-                  e.marginFactor,
-            )
-                .reduce((value, element) => value + element),
-      )
-          .reduce((value, element) => value + element);
+      double marginCost =
+          designPresalePojo.divisions?.rows
+              .map(
+                (e) =>
+                    e.overPriceFactor * e.divisionSummaryCost * e.marginFactor,
+              )
+              .reduce((value, element) => value + element) ??
+          0.0;
 
-      double summary = designPresalePojo.divisions.values
-          .map(
-            (e) =>
-            e.rows
-                .map((e) => e.summaryCostWithTax)
-                .reduce((value, element) => value + element),
-      )
-          .reduce((value, element) => value + element);
+      double summary =
+          designPresalePojo.divisions?.rows
+              .map((e) => e.summaryCostWithTax)
+              .reduce((value, element) => value + element) ??
+          0.0;
       double tax = (summary - summary * RussianTax).abs();
 
       designOfferResultVM = DesignOfferResultVM(
-        divisionType: divisionType,
+        divisionType: designPresalePojo.inputDataDesign.divisionType.shortText,
         createdDesignOffer: designPresalePojo.inputDataDesign.created!
             .toLocal()
             .toString()

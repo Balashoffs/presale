@@ -12,30 +12,19 @@ _$DesignPresalePojoImpl _$$DesignPresalePojoImplFromJson(
   inputDataDesign: InputDataDesign.fromJson(
     json['inputDataDesign'] as Map<String, dynamic>,
   ),
-  resource:
-      (json['resource'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(
-          k,
-          DivisionResourceTableWithTypePojo.fromJson(e as Map<String, dynamic>),
+  resource: json['resource'] == null
+      ? null
+      : DivisionResourceTableWithTypePojo.fromJson(
+          json['resource'] as Map<String, dynamic>,
         ),
-      ) ??
-      const {},
-  divisions:
-      (json['divisions'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(
-          k,
-          DivisionsMarginTableWithTypePojo.fromJson(e as Map<String, dynamic>),
+  divisions: json['divisions'] == null
+      ? null
+      : DivisionsMarginTableWithTypePojo.fromJson(
+          json['divisions'] as Map<String, dynamic>,
         ),
-      ) ??
-      const {},
-  offers:
-      (json['offers'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(
-          k,
-          CommercialOfferResult.fromJson(e as Map<String, dynamic>),
-        ),
-      ) ??
-      const {},
+  offers: json['offers'] == null
+      ? null
+      : CommercialOfferResult.fromJson(json['offers'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$$DesignPresalePojoImplToJson(
