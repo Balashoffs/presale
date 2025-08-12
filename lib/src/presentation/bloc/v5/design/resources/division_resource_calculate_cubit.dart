@@ -21,7 +21,6 @@ class DivisionResourceCalculateCubit
   final DesignPresaleDataSourceLocal _dataSourceLocal;
 
   DivisionResourceCalculateCubit({
-    required String divisionType,
     required DBClient dbClient,
     required ResourcesViewController resourceSummaryViewModel,
   }) : _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),
@@ -29,10 +28,13 @@ class DivisionResourceCalculateCubit
        super(const DivisionResourceCalculateState.initial());
 
   void init() async {
-    DivisionWithResourceDTO divisionWithResourceDTO =
-        await DivisionWithResourceDTO.build();
     DesignPresale designPresalePojo = await _dataSourceLocal
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
+
+
+    DivisionWithResourceDTO divisionWithResourceDTO =
+        await DivisionWithResourceDTO.build(designPresalePojo.inputDataDesign.divisionType);
+
 
     _resourceSummaryViewModel.fill(
       divisionWithResourceDTO,

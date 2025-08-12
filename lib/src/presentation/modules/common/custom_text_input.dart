@@ -50,58 +50,60 @@ class _CustomTextInputState extends State<CustomTextInput> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width != null ? widget.width! + 10 : 510,
-      child: MoonFormTextInput(
-        focusNode: FocusNode(),
-        width: widget.width ?? 500,
-        controller: _textController,
-        enabled: true,
-        textInputSize: MoonTextInputSize.md,
-        hasFloatingLabel: false,
-        textColor: colorTable(context)[40],
-        hintTextColor: colorTable(context)[40],
-        backgroundColor: colorTable(context)[40],
-        activeBorderColor: colorTable(context)[40],
-        inactiveBorderColor: colorTable(context)[40],
-        hoverBorderColor: colorTable(context)[40],
-        errorColor: colorTable(context)[40],
-        borderRadius: BorderRadius.circular(8.toDouble()),
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        validator: widget.validator,
-        autofocus: widget.autofocus,
-        hintText: widget.hintText,
-        onTap: () {
-          if (_textController.text == '0') {
-            _textController.clear();
-          }
-        },
-        onTapOutside: (PointerDownEvent _) {
-          FocusManager.instance.primaryFocus?.unfocus();
-          if(_textController.text.isEmpty){
-            if(widget.initValue == null){
-              _textController.text = '0';
-            }else{
-              _textController.text = widget.initValue!;
+    return Center(
+      child: SizedBox(
+        width: widget.width != null ? widget.width! + 10 : 510,
+        child: MoonFormTextInput(
+          focusNode: FocusNode(),
+          width: widget.width ?? 500,
+          controller: _textController,
+          enabled: true,
+          textInputSize: MoonTextInputSize.md,
+          hasFloatingLabel: false,
+          textColor: colorTable(context)[40],
+          hintTextColor: colorTable(context)[40],
+          backgroundColor: colorTable(context)[40],
+          activeBorderColor: colorTable(context)[40],
+          inactiveBorderColor: colorTable(context)[40],
+          hoverBorderColor: colorTable(context)[40],
+          errorColor: colorTable(context)[40],
+          // borderRadius: BorderRadius.circular(8.toDouble()),
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: widget.validator,
+          autofocus: widget.autofocus,
+          hintText: widget.hintText,
+          onTap: () {
+            if (_textController.text == '0') {
+              _textController.clear();
             }
+          },
+          onTapOutside: (PointerDownEvent _) {
+            FocusManager.instance.primaryFocus?.unfocus();
+            if (_textController.text.isEmpty) {
+              if (widget.initValue == null) {
+                _textController.text = '0';
+              } else {
+                _textController.text = widget.initValue!;
+              }
 
-            setState(() {
-
-            });
-          }
-        },
-        leading: widget.leading != null ? Icon(widget.leading, size: 24) : null,
-        trailing: MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            child: widget.trailing != null
-                ? Icon(widget.trailing, size: 24)
-                : null,
-            onTap: () => _textController.clear(),
+              setState(() {});
+            }
+          },
+          leading: widget.leading != null
+              ? Icon(widget.leading, size: 24)
+              : null,
+          trailing: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              child: widget.trailing != null
+                  ? Icon(widget.trailing, size: 24)
+                  : null,
+              onTap: () => _textController.clear(),
+            ),
           ),
+          onChanged: widget.onChanged,
+          helper: widget.helperText != null ? Text(widget.helperText!) : null,
         ),
-        onChanged: widget.onChanged,
-        helper: widget.helperText != null ? Text(widget.helperText!) : null,
       ),
     );
   }
@@ -131,28 +133,30 @@ class CustomTextAreaInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width != null ? width! + 10 : 510,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: MoonTextArea(
-          height: 200,
-          enabled: true,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          textColor: colorTable(context)[40],
-          hintTextColor: colorTable(context)[40],
-          backgroundColor: colorTable(context)[40],
-          activeBorderColor: colorTable(context)[40],
-          inactiveBorderColor: colorTable(context)[40],
-          hoverBorderColor: colorTable(context)[40],
-          errorColor: colorTable(context)[40],
-          borderRadius: BorderRadius.circular(8.toDouble()),
-          hintText: hintText,
-          validator: validator,
-          onTapOutside: (PointerDownEvent _) =>
-              FocusManager.instance.primaryFocus?.unfocus(),
-          onChanged: onChanged,
-          helper: helperText != null ? Text(helperText!) : null,
+    return Center(
+      child: SizedBox(
+        width: width != null ? width! + 10 : 510,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: MoonTextArea(
+            height: 200,
+            enabled: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            textColor: colorTable(context)[40],
+            hintTextColor: colorTable(context)[40],
+            backgroundColor: colorTable(context)[40],
+            activeBorderColor: colorTable(context)[40],
+            inactiveBorderColor: colorTable(context)[40],
+            hoverBorderColor: colorTable(context)[40],
+            errorColor: colorTable(context)[40],
+            borderRadius: BorderRadius.circular(8.toDouble()),
+            hintText: hintText,
+            validator: validator,
+            onTapOutside: (PointerDownEvent _) =>
+                FocusManager.instance.primaryFocus?.unfocus(),
+            onChanged: onChanged,
+            helper: helperText != null ? Text(helperText!) : null,
+          ),
         ),
       ),
     );

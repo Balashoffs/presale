@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 
 class NextPageWidget extends StatelessWidget {
-  const NextPageWidget({super.key, required this.onTap});
+  const NextPageWidget({super.key, required this.onTap, required this.text});
 
-  final String text = "Далее";
+  final String text;
   final VoidCallback? onTap;
 
   @override

@@ -77,7 +77,6 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
             Color textColor = vn.value.compareTo(0.0) > 0
                 ? colorTable(context)[MoonColor.zeno.index]!
                 : colorTable(context)[MoonColor.chichi.index]!;
-            ;
             return Text(
               textAlign: TextAlign.center,
               value.toStringAsFixed(2),
@@ -97,18 +96,16 @@ Widget buildIntInputCell(
   return Builder(
     builder: (context) {
       return Center(
-        child: SizedBox(
-          width: 56,
-          child: CustomTextInput(
-            initValue: '$defaultValue',
-            onChanged: (input) {
-              int? parsed = onChangeIntValue(input);
-              if (parsed != null) {
-                onChanged(context, parsed);
-              }
-            },
-            validator: onlyIntValidator,
-          ),
+        child: CustomTextInput(
+          width: 64,
+          initValue: '$defaultValue',
+          onChanged: (input) {
+            int? parsed = onChangeIntValue(input);
+            if (parsed != null) {
+              onChanged(context, parsed);
+            }
+          },
+          validator: onlyIntValidator,
         ),
       );
     },
@@ -139,18 +136,16 @@ Widget buildFactorInputCell(
   return Builder(
     builder: (context) {
       return Center(
-        child: SizedBox(
-          width: 56,
-          child: CustomTextInput(
-            initValue: '$defaultValue',
-            onChanged: (input) {
-              double? parsed = onChangeFactorValue(input);
-              if (parsed != null) {
-                onChanged(context, parsed);
-              }
-            },
-            validator: onlyFactorValidator,
-          ),
+        child: CustomTextInput(
+          width: 64,
+          initValue: '$defaultValue',
+          onChanged: (input) {
+            double? parsed = onChangeFactorValue(input);
+            if (parsed != null) {
+              onChanged(context, parsed);
+            }
+          },
+          validator: onlyFactorValidator,
         ),
       );
     },

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/di/di.dart';
 import 'package:presale/src/domain/models/v5/common/widget_action_type.dart';
+import 'package:presale/src/presentation/common/typography_page_options.dart';
+import 'package:presale/src/presentation/modules/common/next_page_widget.dart';
+import 'package:presale/src/presentation/modules/common/result_sum_widget.dart';
+
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/resources_view_controller.dart';
 import 'package:presale/src/presentation/bloc/v5/design/resources/division_resource_calculate_cubit.dart';
-import 'package:presale/src/presentation/common/typography_page_options.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
 import 'package:presale/src/presentation/modules/v5/design/resources/widget/custom_dropdown_with_search_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/resources/widget/divisions_resources_table_widget.dart';
-import 'package:presale/src/presentation/modules/v5/design/resources/widget/next_page_widget.dart';
-import 'package:presale/src/presentation/modules/v5/design/resources/widget/result_sum_widget.dart';
+
 
 class ResourcesPage extends StatelessWidget {
   const ResourcesPage({super.key});
@@ -24,16 +25,8 @@ class ResourcesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          MoonButton.icon(
-            icon: Icon(MoonIcons.controls_close_16_light),
-            onTap: () {
-              context.go(pathToRootRoute);
-            },
-          ),
-        ],
         title: Text(
-          "Расчет стадий проектирования",
+          "Выбор спецаилистов и разделов для проекта",
           style: getHeadingTextStyle(context, MoonTextSize.size16),
         ),
       ),
@@ -62,7 +55,6 @@ class DivisionResourceCalculateProvider extends StatelessWidget {
     return BlocProvider<DivisionResourceCalculateCubit>(
       create: (context) {
         return DivisionResourceCalculateCubit(
-          divisionType: 'П',
           dbClient: di.dbClientImpl,
           resourceSummaryViewModel: context
               .read<ResourcesViewController>(),
@@ -163,6 +155,7 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
                   .summaryVN,
               builder: (context, value, child) {
                 return NextPageWidget(
+                  text: "Далее",
                   onTap: value.compareTo(0.0) > 0
                       ? context
                             .read<DivisionResourceCalculateCubit>()

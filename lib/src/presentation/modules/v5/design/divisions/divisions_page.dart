@@ -9,7 +9,7 @@ import 'package:presale/src/domain/models/v5/design/divisions_margin_table/divis
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
 import 'package:presale/src/presentation/modules/v5/design/divisions/widget/divisions_table_widget.dart';
-import 'package:presale/src/presentation/modules/v5/design/resources/widget/next_page_widget.dart';
+import 'package:presale/src/presentation/modules/common/next_page_widget.dart';
 
 
 class DivisionsPage extends StatelessWidget {
@@ -105,6 +105,7 @@ class DivisionsMarginCalculateWidget extends StatelessWidget {
           child: Padding(
             padding: EdgeInsetsGeometry.all(8.0),
             child: NextPageWidget(
+              text: "Далее",
               onTap: context.read<DivisionsMarginCalculateCubit>().onNextPage,
             ),
           ),

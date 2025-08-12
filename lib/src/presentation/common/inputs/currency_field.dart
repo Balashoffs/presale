@@ -68,7 +68,7 @@ class _SimpleTextFieldState extends State<SimpleTextField> {
   void initState() {
     _focus = widget.focusNode ?? FocusNode();
     if (widget.initialValue != null) {
-      String text = widget.initialValue!.toCurrency + 'р.';
+      String text = widget.initialValue!.toCurrency + 'П.';
       _controller.value = TextEditingValue(
           text: text,
           selection: TextSelection(baseOffset: text.length, extentOffset: text.length));
@@ -87,7 +87,7 @@ class _SimpleTextFieldState extends State<SimpleTextField> {
   void didUpdateWidget(SimpleTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.initialValue != null && !_focus.hasFocus) {
-      String text = widget.initialValue!.toCurrency + 'р.';
+      String text = widget.initialValue!.toCurrency + 'П.';
       _controller.value = TextEditingValue(
           text: text,
           selection: TextSelection(baseOffset: text.length, extentOffset: text.length));

@@ -75,8 +75,9 @@ class LoadedWidget extends StatelessWidget {
       child: Form(
         child: Builder(
           builder: (context) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            return ListView(
+              shrinkWrap: true,
+              primary: true,
               children: [
                 CustomTextInput(
                   hintText: 'Наименование объекта',
@@ -93,7 +94,6 @@ class LoadedWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ChangeNotifierProvider(
@@ -113,7 +113,7 @@ class LoadedWidget extends StatelessWidget {
                     ),
                     CustomTextInput(
                       initValue: '0',
-                      width: 256,
+                      width: 264,
                       onChanged: cubit.setSquare,
                       leading: Icons.square_outlined,
                       trailing: MoonIcons.controls_close_small_24_light,
@@ -122,7 +122,7 @@ class LoadedWidget extends StatelessWidget {
                     ),
                     CustomTextInput(
                       initValue: '0',
-                      width: 256,
+                      width: 264,
                       onChanged: cubit.setDeadline,
                       leading: Icons.timer,
                       trailing: MoonIcons.controls_close_small_24_light,
@@ -138,7 +138,7 @@ class LoadedWidget extends StatelessWidget {
                   paddingBottom: 16,
                 ),
                 Row(
-                  spacing: 8.0,
+                  spacing: 16.0,
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -177,6 +177,7 @@ class LoadedWidget extends StatelessWidget {
                     absorbing: true,
                     child: Column(
                       children: [
+                        SizedBox(height: 16),
                         const TextDivider(
                           text: "Базовые кооэфициенты",
                           paddingTop: 8,
@@ -252,19 +253,21 @@ class LoadedWidget extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-                  child: MoonOutlinedButton(
-                    width: 256,
-                    onTap: () {
-                      Form.of(context).validate()
-                          ? cubit.nextPage()
-                          : showToast(context, 'Не все поля заполнены!');
-                    },
-                    buttonSize: MoonButtonSize.md,
-                    isFullWidth: false,
-                    showPulseEffect: true,
-                    borderColor: colorTable(context)[40],
-                    trailing: Icon(MoonIcons.arrows_right_32_regular),
-                    label: Text('Выбрать стадии'),
+                  child: Center(
+                    child: MoonOutlinedButton(
+                      width: 256,
+                      onTap: () {
+                        Form.of(context).validate()
+                            ? cubit.nextPage()
+                            : showToast(context, 'Не все поля заполнены!');
+                      },
+                      buttonSize: MoonButtonSize.md,
+                      isFullWidth: false,
+                      showPulseEffect: true,
+                      borderColor: colorTable(context)[40],
+                      trailing: Icon(MoonIcons.arrows_right_32_regular),
+                      label: Text('Далее'),
+                    ),
                   ),
                 ),
               ],

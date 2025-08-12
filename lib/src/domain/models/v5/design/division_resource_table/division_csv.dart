@@ -7,7 +7,9 @@
  */
 
 import 'package:presale/src/data/core/csv_parser.dart';
-final String pathToSrc = 'assets/calculator_data/v5/razdely_resursy.csv';
+import 'package:presale/src/domain/models/v5/design/division_type/division_type.dart';
+final String pathToWorkingSrc = 'assets/calculator_data/v5/resursy_rabochie.csv';
+final String pathToDesignSrc = 'assets/calculator_data/v5/resursy_projektnye.csv';
 
 class DivisionCSV {
   final String id;
@@ -37,7 +39,7 @@ typedef DivisionCSVParser =
     List<DivisionCSV> Function(List<List<dynamic>> rows);
 
 class DivisionCostDtoBuilder extends CsvParser<DivisionCSV> {
-  DivisionCostDtoBuilder() : super(pathToSrc);
+  DivisionCostDtoBuilder(super.pathToSrc);
 
   DivisionCSVParser get _parser =>
       (rows) => rows
@@ -49,4 +51,13 @@ class DivisionCostDtoBuilder extends CsvParser<DivisionCSV> {
   Future<List<DivisionCSV>> build() async {
     return await parse(_parser);
   }
+}
+
+DivisionCostDtoBuilder selectFrom(DivisionType type){
+  switch(type){
+    case DivisionType.working:
+      return DivisionCostDtoBuilder(pathToWorkingSrc);
+    case DivisionType.project:
+      return DivisionCostDtoBuilder(pathToDesignSrc);
+    }
 }
