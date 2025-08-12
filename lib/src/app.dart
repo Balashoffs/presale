@@ -4,7 +4,7 @@ import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/di/di.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:presale/src/presentation/core/navigation/app_router_v3.dart';
+import 'package:presale/src/presentation/core/navigation/app_router.dart';
 
 
 abstract class App extends StatelessWidget {

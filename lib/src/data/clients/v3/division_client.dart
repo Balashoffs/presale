@@ -1,9 +1,10 @@
+import 'package:dartz/dartz.dart';
+
 import 'package:presale/src/data/clients/base_client.dart';
 import 'package:presale/src/data/data_sources/v3/division_data_source.dart';
 import 'package:presale/src/domain/core/failure/failure.dart';
-import 'package:dartz/dartz.dart';
-import 'package:presale/src/domain/models/v3/design/divison/division.dart';
-import 'package:presale/src/domain/models/v3/design/employee_cost/employee_cost.dart';
+import 'package:presale/src/domain/models/v5/design/divison/division.dart';
+import 'package:presale/src/domain/models/v5/design/employee_cost/employee_cost.dart';
 
 
 abstract class DivisionClient {

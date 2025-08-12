@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:presale/src/data/common/extensions/date.dart';
 import 'package:presale/src/data/common/utils/date_utils.dart';
-import 'package:presale/src/domain/models/v3/design/commercial_offer/commercial_offer.dart';
-import 'package:presale/src/domain/models/v3/design/division_result/division_result.dart';
+import 'package:presale/src/domain/models/v5/design/offer/commercial_offer/commercial_offer.dart';
+import 'package:presale/src/domain/models/v5/design/offer/commercial_offer/division_result/division_result.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 
 class DesignOfferTemplateBuilder {

@@ -1,7 +1,7 @@
-import 'package:presale/src/domain/models/v3/design/division_type/division_type.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_csv.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/extensions.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/resource_csv.dart';
+import 'package:presale/src/domain/models/v5/design/division_type/division_type.dart';
 
 class DivisionDTO {
   final int id;

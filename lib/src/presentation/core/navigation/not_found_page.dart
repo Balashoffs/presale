@@ -1,6 +1,5 @@
 import 'package:presale/src/presentation/common/typography_page_options.dart';
 
-import 'package:presale/src/presentation/modules/auth/navi/auth_navi.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +21,7 @@ class NotFoundPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  context.go(loginRoutePath);
+                  context.go('/');
                 },
                 child: const Text('return'),
               ),

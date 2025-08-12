@@ -1,0 +1,101 @@
+import 'package:flutter/material.dart';
+import 'package:presale/src/domain/models/v5/common/person_sign_dto.dart';
+import 'package:presale/src/domain/models/v5/design/custom_factors/custom_factors.dart';
+import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_row_viewmodel.dart';
+import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_viewmodel.dart';
+import 'package:presale/src/domain/models/v5/design/design_offer_result/division_summary_viewmodel.dart';
+import 'package:presale/src/domain/models/v5/design/design_presale_pojo/design_presale_pojo.dart';
+
+import 'package:presale/src/domain/models/v5/design/design_presale_pojo/divisions_margin_table_with_type_pojo/divisions_margin_table_with_type_pojo.dart';
+
+class DesignOfferResultController {
+  late final DesignOfferResultVM? designOfferResultVM;
+  final ValueNotifier<List<PersonSignDTO>> signs = ValueNotifier([]);
+  final ValueNotifier<bool> isCorrect = ValueNotifier(false);
+
+  bool buildModel(DesignPresale designPresalePojo) {
+    DivisionsMarginTableWithTypePojo? divisionResult =
+        designPresalePojo.divisions;
+    if (divisionResult != null) {
+      final List<DesignOfferResultRowVM> divisionRows = divisionResult.rows
+          .map(
+            (e) => DesignOfferResultRowVM(
+              id: e.id,
+              divisionName: e.divisionName,
+              divisionShortName: e.divisionShortName,
+              deadline: 1,
+              divisionSummaryWithTax: e.summaryCostWithMargin,
+            ),
+          )
+          .toList();
+
+      double overPrice =
+          designPresalePojo.divisions?.rows
+              .map((e) => e.overPriceFactor * e.divisionSummaryCost)
+              .reduce((value, element) => value + element) ??
+          0.0;
+
+      double marginCost =
+          designPresalePojo.divisions?.rows
+              .map(
+                (e) =>
+                    e.overPriceFactor * e.divisionSummaryCost * e.marginFactor,
+              )
+              .reduce((value, element) => value + element) ??
+          0.0;
+
+      double summary =
+          designPresalePojo.divisions?.rows
+              .map((e) => e.summaryCostWithTax)
+              .reduce((value, element) => value + element) ??
+          0.0;
+      double tax = (summary - summary * RussianTax).abs();
+
+      designOfferResultVM = DesignOfferResultVM(
+        divisionType: designPresalePojo.inputDataDesign.divisionType.shortText,
+        createdDesignOffer: designPresalePojo.inputDataDesign.created!
+            .toLocal()
+            .toString()
+            .split('.')[0],
+        objectName: designPresalePojo.inputDataDesign.objectData.name,
+        objectLocation: designPresalePojo.inputDataDesign.objectData.address,
+        divisionRows: divisionRows,
+        summary: summary,
+        margin: marginCost,
+        tax: tax,
+        overPrice: overPrice,
+      );
+    }
+
+    return designOfferResultVM != null;
+  }
+
+  Future<void> fillSign() async {
+    List<PersonSignDTO> persons = await DivisionCostDtoBuilder().build();
+    signs.value = [...persons];
+  }
+
+  void onComments(String value) {
+    if (designOfferResultVM != null) {
+      designOfferResultVM!.comments = value;
+    }
+  }
+
+  void onWorkTime(int value) {
+    if (designOfferResultVM != null) {
+      designOfferResultVM!.totalDays = value;
+    }
+  }
+
+  void onAvance(double value) {
+    if (designOfferResultVM != null) {
+      designOfferResultVM!.avance = value;
+    }
+  }
+
+  void onSelectSign(PersonSignDTO? value) {
+    if (designOfferResultVM != null) {
+      designOfferResultVM!.signPerson = value;
+    }
+  }
+}

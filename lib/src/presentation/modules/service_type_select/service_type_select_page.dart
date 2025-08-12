@@ -5,11 +5,11 @@ import 'package:presale/src/di/di.dart';
 
 import 'package:presale/src/domain/models/v1/service_type/service_type.dart';
 import 'package:presale/src/presentation/common/typography_page_options.dart';
-
 import 'package:presale/src/presentation/modules/construction/navi/construction_navi.dart';
 import 'package:presale/src/presentation/modules/data_viewer/navi/data_viewer_navi.dart';
 import 'package:presale/src/presentation/modules/service_type_select/navi/service_navi.dart';
-import 'package:presale/src/presentation/modules/v3/design/navi/service_navi.dart';
+import 'package:presale/src/presentation/modules/v5/design/service_navi.dart';
+
 
 class ServiceTypeSelectPage extends StatelessWidget {
   const ServiceTypeSelectPage({super.key});
@@ -40,8 +40,7 @@ class ServiceTypeSelectPage extends StatelessWidget {
                 ),
                 MoonButton(
                   onTap: () {
-                    context.go('$serviceTypeRoutePath$inputDataRoutePath');
-                    // context.go('$serviceTypeRoutePath$divisionCalculateRoutePath');
+                    context.go(designInputGoRouterPath);
                   },
                   label: Text('Стоимость проектирования'),
                 ),

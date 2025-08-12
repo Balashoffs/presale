@@ -9,9 +9,6 @@ import 'package:presale/src/data/core/db_client.dart';
 import 'package:presale/src/data/data_sources/v1/employee_cost_data_source.dart';
 import 'package:presale/src/data/data_sources/v1/section_data_source.dart';
 
-import 'package:presale/src/di/app_config/app_config.dart';
-import 'package:presale/src/domain/data/data_cubit.dart';
-import 'package:presale/src/presentation/bloc/auth/auth_cubit.dart';
 import 'package:presale/src/presentation/bloc/core/core/global_bloc_observer.dart';
 import 'package:presale/src/presentation/bloc/core/navigation/navigation_cubit.dart';
 import 'package:presale/src/presentation/bloc/core/theme_cubit/theme_cubit.dart';
@@ -21,7 +18,7 @@ import 'package:presale/src/presentation/bloc/section_repository.dart';
 import 'package:presale/src/presentation/bloc/stages_table_page/cubit.dart';
 import 'package:presale/src/presentation/bloc/user/user_repository.dart';
 import 'package:presale/src/presentation/core/navigation/app_router.dart';
-import 'package:presale/src/presentation/core/navigation/app_router_v3.dart';
+import 'package:presale/src/presentation/core/navigation/app_router.dart';
 import 'package:presale/src/presentation/core/services/theme_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -62,14 +59,9 @@ class DependencyInjector {
   }
 
   Future<void> initConfig() async {
-    await _registerAppConfig();
+
   }
 
-  Future<void> _registerAppConfig() async {
-    final appConfig = await AppConfig.load();
-
-    _getItInstance.registerSingleton<AppConfig>(appConfig);
-  }
 
   void _registerRouter() =>
       _getItInstance.registerSingleton<AppRouterV3>(AppRouterV3());
@@ -125,28 +117,10 @@ class DependencyInjector {
     final themeBloc = ThemeCubit()..themeLoad();
     _getItInstance.registerFactory<ThemeCubit>(() => themeBloc);
 
-    /// Localization
 
-    _getItInstance.registerSingleton<DataCubit>(DataCubit(
-      _getItInstance<EmployeeClient>(),
-      _getItInstance<SectionClient>(),
-    ));
-
-    /// User
-    _getItInstance.registerSingleton<AuthCubit>(
-      AuthCubit(),
-    );
 
     _getItInstance.registerSingleton<UserRepository>(
       UserRepository(),
-    );
-
-    /// Navigation
-    _getItInstance.registerSingleton<NavigationCubit>(
-      NavigationCubit(
-        _getItInstance<UserRepository>(),
-        _getItInstance<AppRouter>(),
-      ),
     );
 
     /// Employees
@@ -179,19 +153,12 @@ class DependencyInjector {
   /// Core
   AppRouterV3 get appRouter => _getItInstance<AppRouterV3>();
 
-  AppConfig get appConfig => _getItInstance<AppConfig>();
-
   ThemeService get themeService => _getItInstance<ThemeService>();
 
   ThemeCubit get themeBloc => _getItInstance<ThemeCubit>();
 
   NavigationCubit get navigationCubit => _getItInstance<NavigationCubit>();
 
-
-  DataCubit get dataCubit => _getItInstance<DataCubit>();
-
-  /// Auth
-  AuthCubit get authCubit => _getItInstance<AuthCubit>();
 
   UserRepository get userRepository => _getItInstance<UserRepository>();
 

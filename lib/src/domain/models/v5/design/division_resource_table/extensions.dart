@@ -1,7 +1,6 @@
-import 'package:presale/src/domain/models/v3/design/division_type/division_type.dart';
-import 'package:presale/src/domain/models/v3/design/input_data/input_data_design.dart';
-import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_pojo.dart';
+import 'package:presale/src/domain/models/v5/design/design_presale_pojo/divisions_margin_table_with_type_pojo/division_resource_row_pojo/division_resource_row_pojo.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/resource_csv.dart';
+import 'package:presale/src/domain/models/v5/design/division_type/division_type.dart';
 
 import 'division_csv.dart';
 import 'division_resource_row_viewmodel.dart';
@@ -13,7 +12,7 @@ extension DivisionCsvExt on DivisionCSV {
       id: int.tryParse(id) ?? -1,
       divisionName: divisionName,
       divisionShortName: divisionShortName,
-      divisionType: DivisionType.fromShortText(divisionType),
+      divisionType: DivisionType.fromText(divisionType),
     );
   }
 }
