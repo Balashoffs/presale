@@ -12,7 +12,7 @@ class ObjectDataDesign with _$ObjectDataDesign {
     // Адрес объекта
     required final String address,
     // Площадь объекта
-    required final double square,
+    required final int square,
     // Сроки работ
     required final int deadlineValue,
   }) = _ObjectDataDesign;

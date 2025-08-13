@@ -9,10 +9,9 @@ class StringNotifierDropDown extends ChangeNotifier {
   final List<String> _inputData;
 
   StringNotifierDropDown({required List<String> inputData})
-      : _inputData = inputData,
-        _showMenu = false,
-        _current = inputData.first {
-  }
+    : _inputData = inputData,
+      _showMenu = false,
+      _current = '';
 
   String _current;
 
@@ -46,30 +45,37 @@ class SingleObjectValueNotifierDropDown extends ChangeNotifier {
   bool get showMenu => _showMenu;
 
   final String _type;
+
   String get type => _type;
   final Map<InputBaseFactor, bool> _factors;
 
-
   SingleObjectValueNotifierDropDown({
     required MapEntry<String, List<InputBaseFactor>> baseFactors,
-  })
-      : _factors = baseFactors.value.asMap().map((index, item) => MapEntry(item, item.factor.compareTo(1.0) == 0)),
-        _type = baseFactors.key,
-        _showMenu = false;
+  }) : _factors = baseFactors.value.asMap().map(
+         (index, item) => MapEntry(item, item.factor.compareTo(1.0) == 0),
+       ),
+       _type = baseFactors.key,
+       _showMenu = false;
 
-  InputBaseFactor get _selected => _factors.entries.firstWhere((element) => element.value == true,).key;
+  InputBaseFactor get _selected =>
+      _factors.entries.firstWhere((element) => element.value == true).key;
 
   String get selectedItems => _buildString(_selected);
 
-  String _buildString(InputBaseFactor factor) => '${factor.value} (${factor.factor})';
+  String _buildString(InputBaseFactor factor) =>
+      '${factor.value} (${factor.factor})';
 
-  List<String> get notSelected => _factors.entries.where((element) => element.value == false,).map((e) => _buildString(e.key)).toList();
-
+  List<String> get notSelected => _factors.entries
+      .where((element) => element.value == false)
+      .map((e) => _buildString(e.key))
+      .toList();
 
   void selected(String value) {
-    _factors.update(_selected, (value) => false,);
-    InputBaseFactor ibf = _factors.entries.firstWhere((entry) => value.contains(entry.key.value),).key;
-    _factors.update(ibf, (value) => true,);
+    _factors.update(_selected, (value) => false);
+    InputBaseFactor ibf = _factors.entries
+        .firstWhere((entry) => value.contains(entry.key.value))
+        .key;
+    _factors.update(ibf, (value) => true);
     _showMenu = false;
     notifyListeners();
   }
@@ -96,8 +102,8 @@ class MultiObjectValueNotifierDropDown extends ChangeNotifier {
   Map<String, bool> get availableChoices => _availableChoices;
 
   MultiObjectValueNotifierDropDown({required List<String> inputData})
-      : _inputData = inputData,
-        _showChoices = false {
+    : _inputData = inputData,
+      _showChoices = false {
     _fill(_inputData);
   }
 
@@ -111,9 +117,7 @@ class MultiObjectValueNotifierDropDown extends ChangeNotifier {
       _availableChoices.values.any((element) => element == true);
 
   int get totalSelected =>
-      _availableChoices.values
-          .where((element) => element == true)
-          .length;
+      _availableChoices.values.where((element) => element == true).length;
 
   void clearAllSelected() {
     _availableChoices.updateAll((key, value) => false);

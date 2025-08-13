@@ -19,6 +19,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
   late final InputFactorsViewModel? _inputFactors;
 
   final InputDataBuilder _objectDataBuilder;
+  InputDataBuilder get objectDataBuilder => _objectDataBuilder;
 
   final DesignPresaleDataSourceLocal _dataSourceLocal;
 
@@ -57,17 +58,50 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     _objectDataBuilder.setObjectAddress(address);
   }
 
+  void setResultDesignDocumentations(String result) {
+    _objectDataBuilder.setDivisionType(result);
+  }
+
   void setSquare(String value) {
-    double? result = double.tryParse(value);
+    value = value.contains(',') ? value.replaceFirst(',', '.') : value;
+    int? result = int.tryParse(value);
     if (result != null) {
       _objectDataBuilder.setObjectSquare(result);
     }
   }
 
   void setDeadline(String value) {
+    value = value.contains(',') ? value.replaceFirst(',', '.') : value;
     int? result = int.tryParse(value);
     if (result != null) {
       _objectDataBuilder.setDeadlineValue(result);
+    }
+  }
+
+  void setCustomerFactor(String value) {
+    value = value.contains(',') ? value.replaceFirst(',', '.') : value;
+    double? result = double.tryParse(value);
+    if (result != null) {
+      result = result / 100;
+      _objectDataBuilder.setCustomerFactor(result);
+    }
+  }
+
+  void setMarginFactor(String value) {
+    value = value.contains(',') ? value.replaceFirst(',', '.') : value;
+    double? result = double.tryParse(value);
+    if (result != null) {
+      result = result / 100;
+      _objectDataBuilder.setMarginFactor(result);
+    }
+  }
+
+  void setOverPriceFactor(String value) {
+    value = value.contains(',') ? value.replaceFirst(',', '.') : value;
+    double? result = double.tryParse(value);
+    if (result != null) {
+      result = _percentConvertor(result);
+      _objectDataBuilder.setOverPriceFactor(result);
     }
   }
 
@@ -114,13 +148,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     }
   }
 
-  void setOverPriceFactor(String value) {
-    double? result = double.tryParse(value);
-    if (result != null) {
-      result = _percentConvertor(result);
-      _objectDataBuilder.setOverPriceFactor(result);
-    }
-  }
+
 
   void setComplexityFactor(Set<String> selected) {
     double? result = 1.0;
@@ -134,29 +162,13 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     _objectDataBuilder.setComplexityFactor(result);
   }
 
-  void setCustomerFactor(String value) {
-    double? result = double.tryParse(value);
-    if (result != null) {
-      result = result / 100;
-      _objectDataBuilder.setCustomerFactor(result);
-    }
-  }
 
-  void setMarginFactor(String value) {
-    double? result = double.tryParse(value);
-    if (result != null) {
-      result = result / 100;
-      _objectDataBuilder.setMarginFactor(result);
-    }
-  }
 
-  void setResultDesignDocumentations(String result) {
-    _objectDataBuilder.setDivisionType(result);
-  }
+
 
   void nextPage() async {
     try {
-      InputDataMV? inputDataMv = _objectDataBuilder.build();
+      InputDataMV inputDataMv = _objectDataBuilder.build();
       ObjectDataDesign objectDataData = inputDataMv.toObject();
       InputFactorsPojo inputFactorsPojo = inputDataMv.toFactors();
       InputDataDesign inputDataDesign = InputDataDesign(

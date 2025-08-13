@@ -11,7 +11,7 @@ _$ObjectDataDesignImpl _$$ObjectDataDesignImplFromJson(
 ) => _$ObjectDataDesignImpl(
   name: json['name'] as String,
   address: json['address'] as String,
-  square: (json['square'] as num).toDouble(),
+  square: (json['square'] as num).toInt(),
   deadlineValue: (json['deadlineValue'] as num).toInt(),
 );
 

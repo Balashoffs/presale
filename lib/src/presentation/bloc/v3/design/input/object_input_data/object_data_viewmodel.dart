@@ -6,8 +6,8 @@ import 'package:presale/src/domain/models/v3/design/input_factors/input_factors_
 class InputDataMV {
   final String objectName;
   final String objectAddress;
-  final double objectSquare;
   final String divisionType;
+  final int objectSquare;
   final int deadlineValue;
   final double overPriceFactor;
   final double marginFactor;
@@ -43,8 +43,8 @@ class InputDataBuilder {
   String? _objectName;
   String? _objectAddress;
   String? _divisionType;
-  double? _objectSquare;
-  int? _deadlineValue;
+  int _objectSquare = 0;
+  int _deadlineValue = 0;
   double _overPriceFactor = 0.8;
   double _marginFactor = 1.2;
   double _customerFactor = 1.0;
@@ -69,7 +69,7 @@ class InputDataBuilder {
     return this;
   }
 
-  InputDataBuilder setObjectSquare(double objectSquare) {
+  InputDataBuilder setObjectSquare(int objectSquare) {
     _objectSquare = objectSquare;
     return this;
   }
@@ -120,11 +120,9 @@ class InputDataBuilder {
   }
 
   InputDataMV build() {
-    if (_objectName != null ||
-        _objectAddress != null ||
-        _divisionType != null ||
-        _objectSquare != null ||
-        _deadlineValue != null) {
+    if (_objectName == null ||
+        _objectAddress == null ||
+        _divisionType == null ) {
       throw ArgumentError(
         'All fields must be set before building ObjectDataDTO',
       );
@@ -133,8 +131,8 @@ class InputDataBuilder {
     return InputDataMV._(
       objectName: _objectName!,
       objectAddress: _objectAddress!,
-      objectSquare: _objectSquare!,
-      deadlineValue: _deadlineValue!,
+      objectSquare: _objectSquare,
+      deadlineValue: _deadlineValue,
       divisionType: _divisionType!,
       overPriceFactor: _overPriceFactor,
       marginFactor: _marginFactor,

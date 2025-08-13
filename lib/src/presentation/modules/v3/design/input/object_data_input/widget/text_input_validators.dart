@@ -41,3 +41,19 @@ FormFieldValidator<String>? onlyNumberValidator = (value) {
     return 'только в диапазоне от 1 до 999%';
   } return null;
 };
+
+FormFieldValidator<String>? onlyFactorValidator = (value) {
+  if(value == null) {
+    return 'ошибка';
+  } else if (!RegExp(r'^[1-9]$|'
+    r'^[1-9]\d$|'
+    r'^[1-9]\d\.\d$|^[1-9]\d\,\d$|'
+    r'^[1-9]\d\.\d\d$|^[1-9]\d\,\d\d$|'
+    r'^\d.\d\d$|^\d,\d\d$|'
+    r'^\d\.[1-9]$|^\d\,[1-9]$'
+  ).hasMatch(value)){
+    return '99,99';
+  }else if(value.length > 5){
+    return '99,99';
+  } return null;
+};

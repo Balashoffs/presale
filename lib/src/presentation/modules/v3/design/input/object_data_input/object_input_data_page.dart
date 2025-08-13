@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
+import 'package:presale/src/presentation/bloc/v3/design/input/object_input_data/object_data_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 import 'package:presale/src/di/di.dart';
@@ -18,7 +18,6 @@ import 'package:presale/src/presentation/modules/v3/design/common/custom_toast_w
 import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/providers/custom_dropdwon_vn.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/object_data_input/widget/custon_text_input.dart';
 import 'package:presale/src/presentation/modules/v3/design/input/object_data_input/widget/text_input_validators.dart';
-import 'package:presale/src/presentation/modules/v3/design/navi/service_navi.dart';
 
 
 import 'widget/widget.dart';
@@ -79,6 +78,7 @@ class LoadedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ObjectDataCubit cubit = context.read<ObjectDataCubit>();
+
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       child: Form(
@@ -88,7 +88,7 @@ class LoadedWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomTextInput(
-                  hintText: 'Наименование объекта',
+                  helpText: 'Наименование объекта',
                   onChanged: cubit.setObjectName,
                   trailing: MoonIcons.controls_close_small_24_light,
                   validator: objectNameValidator,
@@ -108,93 +108,37 @@ class LoadedWidget extends StatelessWidget {
                     ChangeNotifierProvider(
                       create: (context) => StringNotifierDropDown(
                         inputData: DivisionType.values
-                            .map((e) => e.shortText)
+                            .map((e) => e.text)
                             .toList(),
                       ),
                       child: CustomMoonDropDown(
+                        validator: (value){
+                          return value == "Выбрать" ? "Нужно сделать выбор": null;
+                        },
+                        initText: "Выбрать",
                         onSelected: cubit.setResultDesignDocumentations,
                         helperText: 'Виды проектной документации',
-                        leadingIcon: MoonIcons.arrows_left_curved_24_light,
-                        width: 128,
+                        leadingIcon: MoonIcons.text_bullets_list_16_light,
+                        width: 312,
                       ),
                     ),
                     CustomTextInput(
                       width: 256,
-                      hintText: '1000',
+                      initValue: '0',
                       onChanged: cubit.setSquare,
                       leading: Icons.square_outlined,
                       trailing: MoonIcons.controls_close_small_24_light,
                       validator: onlyInfiniteNumberValidator,
-                      helperText: 'Площадь объекта, м2',
+                      helpText: 'Площадь объекта, м2',
                     ),
                     CustomTextInput(
                       width: 256,
-                      hintText: '1000',
+                      initValue: '0',
                       onChanged: cubit.setDeadline,
                       leading: Icons.timer,
                       trailing: MoonIcons.controls_close_small_24_light,
                       validator: onlyInfiniteNumberValidator,
-                      helperText: 'Сроки выполнения, дн.',
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16),
-                const TextDivider(
-                  text: "Базовые кооэфициенты",
-                  paddingTop: 8,
-                  paddingBottom: 16,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 8.0,
-                  children: [
-                    Column(
-                      children: [
-                        ChangeNotifierProvider(
-                          create: (context) => SingleObjectValueNotifierDropDown(
-                            baseFactors: factors.factorsByType(InputFactorType.b.value),
-                          ),
-                          child: InputFactorMoonDropDown(
-                            onSelected: cubit.setHeightFactor,
-                            helperText: InputFactorType.b.value,
-                            leadingIcon: MoonIcons.arrows_left_curved_24_light,
-                          ),
-                        ),
-                        ChangeNotifierProvider(
-                          create: (context) => MultiObjectValueNotifierDropDown(
-                            inputData: factors.complexities,
-                          ),
-                          child: InputFactorMultiCustomMoonDropDown(
-                            onSelected: cubit.setComplexityFactor,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ChangeNotifierProvider(
-                          create: (context) => SingleObjectValueNotifierDropDown(
-                            baseFactors: factors.factorsByType(InputFactorType.c.value),
-                          ),
-                          child: InputFactorMoonDropDown(
-                            onSelected: cubit.setLocationFactor,
-                            helperText: InputFactorType.c.value,
-                            leadingIcon: MoonIcons.arrows_left_curved_24_light,
-                          ),
-                        ),
-                        ChangeNotifierProvider(
-                          create: (context) => SingleObjectValueNotifierDropDown(
-                            baseFactors: factors.factorsByType(InputFactorType.d.value),
-                          ),
-                          child: InputFactorMoonDropDown(
-                            onSelected: cubit.setSquareFactor,
-                            helperText: InputFactorType.d.value,
-                            leadingIcon: MoonIcons.arrows_left_curved_24_light,
-                          ),
-                        ),
-                      ],
+                      helpText: 'Сроки выполнения, дн.',
                     ),
                   ],
                 ),
@@ -210,35 +154,98 @@ class LoadedWidget extends StatelessWidget {
                   children: [
                     CustomTextInput(
                       width: 256,
-                      hintText: '100',
-                      initValue: 100,
+                      initValue: '1.2',
                       onChanged: cubit.setMarginFactor,
                       leading: Icons.calculate,
                       trailing: MoonIcons.controls_close_small_24_light,
-                      validator: onlyNumberValidator,
-                      helperText: 'Норма прибыли, %',
+                      validator: onlyFactorValidator,
+                      helpText: 'Норма прибыли, %',
                     ),
                     CustomTextInput(
                       width: 256,
-                      hintText: '100',
-                      initValue: 100,
-                      onChanged: cubit.setCustomerFactor,
-                      leading: Icons.person,
-                      trailing: MoonIcons.controls_close_small_24_light,
-                      validator: onlyNumberValidator,
-                      helperText: 'Заказчик, %',
-                    ),
-                    CustomTextInput(
-                      width: 256,
-                      hintText: '100',
-                      initValue: 100,
+                      initValue: '0.8',
                       onChanged: cubit.setOverPriceFactor,
                       leading: Icons.money_off,
                       trailing: MoonIcons.controls_close_small_24_light,
-                      validator: onlyNumberValidator,
-                      helperText: 'Накладные, %',
+                      validator: onlyFactorValidator,
+                      helpText: 'Накладные, %',
+                    ),
+                    CustomTextInput(
+                      width: 256,
+                      initValue: '1',
+                      onChanged: cubit.setCustomerFactor,
+                      leading: Icons.person,
+                      trailing: MoonIcons.controls_close_small_24_light,
+                      validator: onlyFactorValidator,
+                      helpText: 'Заказчик, %',
                     ),
                   ],
+                ),
+                SizedBox(height: 16),
+                const TextDivider(
+                  text: "Базовые кооэфициенты",
+                  paddingTop: 8,
+                  paddingBottom: 16,
+                ),
+                Opacity(
+                  opacity: 0.5,
+                  child: IgnorePointer(
+                    ignoring: true,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 8.0,
+                      children: [
+                        Column(
+                          children: [
+                            ChangeNotifierProvider(
+                              create: (context) => SingleObjectValueNotifierDropDown(
+                                baseFactors: factors.factorsByType(InputFactorType.b.value),
+                              ),
+                              child: InputFactorMoonDropDown(
+                                onSelected: cubit.setHeightFactor,
+                                helperText: InputFactorType.b.value,
+                                leadingIcon: MoonIcons.arrows_left_curved_24_light,
+                              ),
+                            ),
+                            ChangeNotifierProvider(
+                              create: (context) => MultiObjectValueNotifierDropDown(
+                                inputData: factors.complexities,
+                              ),
+                              child: InputFactorMultiCustomMoonDropDown(
+                                onSelected: cubit.setComplexityFactor,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ChangeNotifierProvider(
+                              create: (context) => SingleObjectValueNotifierDropDown(
+                                baseFactors: factors.factorsByType(InputFactorType.c.value),
+                              ),
+                              child: InputFactorMoonDropDown(
+                                onSelected: cubit.setLocationFactor,
+                                helperText: InputFactorType.c.value,
+                                leadingIcon: MoonIcons.arrows_left_curved_24_light,
+                              ),
+                            ),
+                            ChangeNotifierProvider(
+                              create: (context) => SingleObjectValueNotifierDropDown(
+                                baseFactors: factors.factorsByType(InputFactorType.d.value),
+                              ),
+                              child: InputFactorMoonDropDown(
+                                onSelected: cubit.setSquareFactor,
+                                helperText: InputFactorType.d.value,
+                                leadingIcon: MoonIcons.arrows_left_curved_24_light,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),

@@ -5,23 +5,21 @@ import 'package:presale/src/presentation/common/color_options.dart';
 class CustomTextInput extends StatefulWidget {
   const CustomTextInput({
     super.key,
-    required this.hintText,
-    this.helperText,
+    this.initValue,
+    this.helpText,
     this.leading,
     this.trailing,
     this.onChanged,
     this.validator,
     this.width,
-    this.initValue,
     this.autofocus = false,
   });
 
-  final String hintText;
-  final String? helperText;
+  final String? initValue;
+  final String? helpText;
   final IconData? leading;
   final IconData? trailing;
   final double? width;
-  final double? initValue;
   final ValueChanged<String>? onChanged;
   final FormFieldValidator<String>? validator;
   final bool autofocus;
@@ -33,11 +31,13 @@ class CustomTextInput extends StatefulWidget {
 class _CustomTextInputState extends State<CustomTextInput> {
   final TextEditingController _textController = TextEditingController();
 
+
   @override
   void initState() {
     super.initState();
     if (widget.initValue != null) {
-      _textController.text = widget.hintText;
+      _textController.text = widget.initValue.toString();
+
     }
   }
 
@@ -46,6 +46,11 @@ class _CustomTextInputState extends State<CustomTextInput> {
     return SizedBox(
       width: widget.width != null ? widget.width! + 10 : 510,
       child: MoonFormTextInput(
+        onTap: () {
+          if (_textController.text == widget.initValue) {
+            _textController.clear();
+          }
+        },
         width: widget.width ?? 500,
         controller: _textController,
         enabled: true,
@@ -60,14 +65,12 @@ class _CustomTextInputState extends State<CustomTextInput> {
         errorColor: colorTable(context)[40],
         borderRadius: BorderRadius.circular(8.toDouble()),
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        hintText: widget.hintText,
+        hintText: widget.initValue,
         validator: widget.validator,
         autofocus: widget.autofocus,
         onTapOutside: (PointerDownEvent _) =>
             FocusManager.instance.primaryFocus?.unfocus(),
-        leading: widget.leading != null
-            ? Icon(widget.leading, size: 24)
-            : null,
+        leading: widget.leading != null ? Icon(widget.leading, size: 24) : null,
         trailing: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
@@ -78,7 +81,7 @@ class _CustomTextInputState extends State<CustomTextInput> {
           ),
         ),
         onChanged: widget.onChanged,
-        helper: widget.helperText != null ? Text(widget.helperText!) : null,
+        helper: widget.helpText != null ? Text(widget.helpText!) : null,
       ),
     );
   }

@@ -24,7 +24,7 @@ mixin _$ObjectDataDesign {
   //Имя объекта
   String get name => throw _privateConstructorUsedError; // Адрес объекта
   String get address => throw _privateConstructorUsedError; // Площадь объекта
-  double get square => throw _privateConstructorUsedError; // Сроки работ
+  int get square => throw _privateConstructorUsedError; // Сроки работ
   int get deadlineValue => throw _privateConstructorUsedError;
 
   /// Serializes this ObjectDataDesign to a JSON map.
@@ -44,7 +44,7 @@ abstract class $ObjectDataDesignCopyWith<$Res> {
     $Res Function(ObjectDataDesign) then,
   ) = _$ObjectDataDesignCopyWithImpl<$Res, ObjectDataDesign>;
   @useResult
-  $Res call({String name, String address, double square, int deadlineValue});
+  $Res call({String name, String address, int square, int deadlineValue});
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class _$ObjectDataDesignCopyWithImpl<$Res, $Val extends ObjectDataDesign>
             square: null == square
                 ? _value.square
                 : square // ignore: cast_nullable_to_non_nullable
-                      as double,
+                      as int,
             deadlineValue: null == deadlineValue
                 ? _value.deadlineValue
                 : deadlineValue // ignore: cast_nullable_to_non_nullable
@@ -100,7 +100,7 @@ abstract class _$$ObjectDataDesignImplCopyWith<$Res>
   ) = __$$ObjectDataDesignImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String address, double square, int deadlineValue});
+  $Res call({String name, String address, int square, int deadlineValue});
 }
 
 /// @nodoc
@@ -135,7 +135,7 @@ class __$$ObjectDataDesignImplCopyWithImpl<$Res>
         square: null == square
             ? _value.square
             : square // ignore: cast_nullable_to_non_nullable
-                  as double,
+                  as int,
         deadlineValue: null == deadlineValue
             ? _value.deadlineValue
             : deadlineValue // ignore: cast_nullable_to_non_nullable
@@ -166,7 +166,7 @@ class _$ObjectDataDesignImpl implements _ObjectDataDesign {
   final String address;
   // Площадь объекта
   @override
-  final double square;
+  final int square;
   // Сроки работ
   @override
   final int deadlineValue;
@@ -214,7 +214,7 @@ abstract class _ObjectDataDesign implements ObjectDataDesign {
   const factory _ObjectDataDesign({
     required final String name,
     required final String address,
-    required final double square,
+    required final int square,
     required final int deadlineValue,
   }) = _$ObjectDataDesignImpl;
 
@@ -227,7 +227,7 @@ abstract class _ObjectDataDesign implements ObjectDataDesign {
   @override
   String get address; // Площадь объекта
   @override
-  double get square; // Сроки работ
+  int get square; // Сроки работ
   @override
   int get deadlineValue;
 

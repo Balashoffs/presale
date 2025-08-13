@@ -7,22 +7,42 @@ import 'package:provider/provider.dart';
 class CustomMoonDropDown extends StatefulWidget {
   const CustomMoonDropDown({
     super.key,
+    this.width = 256,
+    required this.initText,
     required this.onSelected,
     required this.helperText,
     required this.leadingIcon,
-    this.width = 256,
+    this.validator,
   });
 
   final Function(String result) onSelected;
   final String helperText;
+  final String initText;
   final IconData leadingIcon;
   final double width;
+  final FormFieldValidator<String>? validator;
 
   @override
   State<CustomMoonDropDown> createState() => _CustomMoonDropDownState();
 }
 
 class _CustomMoonDropDownState extends State<CustomMoonDropDown> {
+  String _currentText = '';
+  final TextEditingController _textEditController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditController.text = widget.initText;
+  }
+
+  @override
+  void dispose() {
+    _textEditController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final backgroundColor = colorTable(context)[40]?.withAlpha(100);
@@ -37,18 +57,22 @@ class _CustomMoonDropDownState extends State<CustomMoonDropDown> {
           distanceToTarget: 8.0,
           dropdownAnchorPosition: MoonDropdownAnchorPosition.bottom,
           dropdownShadows: null,
-          onTapOutside: () {
-            value.tapOutside();
-          },
+          onTapOutside: value.tapOutside,
           content: Column(children: _generateItems(value, widget.onSelected)),
-          child: MoonTextInput(
+          child: MoonFormTextInput(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            focusNode: _focusNode,
+            validator: widget.validator,
+            controller: _textEditController,
             helper: Text(widget.helperText),
             width: widget.width,
             readOnly: true,
             canRequestFocus: false,
             mouseCursor: MouseCursor.defer,
-            hintText: value.current,
-            onTap: () => value.onTap(),
+            hintText: _textEditController.text,
+            onTap: () {
+              value.onTap();
+            },
             onTapOutside: (PointerDownEvent _) =>
                 FocusManager.instance.primaryFocus?.unfocus(),
             leading: Icon(widget.leadingIcon, size: 24),
@@ -83,6 +107,9 @@ class _CustomMoonDropDownState extends State<CustomMoonDropDown> {
         onTap: () {
           onSelected(e);
           vn.selected(e);
+          setState(() {
+            _textEditController.text = e;
+          });
         },
         label: Text(e),
       );
