@@ -2,7 +2,7 @@ import 'package:presale/src/domain/models/v3/design/custom_fuctors/custom_factor
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/division_with_margin_row_viewmodel.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/division_row_data.dart';
+import 'package:presale/src/presentation/modules/v5/design/input/calculate/model/division_row_data.dart';
 
 class DesignOfferCalculator {
   /*

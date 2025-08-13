@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:presale/src/presentation/core/navigation/not_found_page.dart';
 import 'package:presale/src/presentation/modules/service_type_select/navi/service_navi.dart';
-import 'package:presale/src/presentation/modules/v3/design/navi/service_navi.dart';
+import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 
 class AppRouterV3 extends GoRouter {
@@ -19,11 +19,11 @@ class AppRouterV3 extends GoRouter {
             routes: [
               ServiceTypeSelectRoute(
                 routes: [
-                  InputDataRoute(
+                  DesignInputRoute(
                     routes: [
-                      DivisionResourceCalculateRoute(
+                      DesignResourcesRoute(
                         routes: [
-                          DivisionMarginCalculateRoute(
+                          DesignDivisionsRoute(
                             routes: [DesignOfferRoute(routes: [])],
                           ),
                         ],

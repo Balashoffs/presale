@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/presentation/bloc/v3/design/offer/design_offer_cubit.dart';
 import 'package:presale/src/presentation/bloc/v3/design/offer/design_offer_result_controller.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/design_offer/result_commerce_offer_page/widget/sign_person_dropdown.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/design_offer/result_commerce_offer_page/widget/table_utils.dart';
+import 'package:presale/src/presentation/modules/v5/design/input/design_offer/result_commerce_offer_page/widget/sign_person_dropdown.dart';
+import 'package:presale/src/presentation/modules/v5/design/input/design_offer/result_commerce_offer_page/widget/table_utils.dart';
 
 class DesignOfferFooterWidget extends StatelessWidget {
   const DesignOfferFooterWidget({super.key});

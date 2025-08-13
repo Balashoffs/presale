@@ -12,12 +12,12 @@ import 'package:presale/src/domain/models/v2/constructing/model/input/input_repo
 import 'package:presale/src/domain/models/v3/design/division_type/division_type.dart';
 
 import 'package:presale/src/presentation/bloc/v3/design/input/object_input_data/object_input_data_cubit.dart';
-import 'package:presale/src/presentation/modules/v3/design/common/custom_app_bar.dart';
-import 'package:presale/src/presentation/modules/v3/design/common/custom_circle_loader.dart';
-import 'package:presale/src/presentation/modules/v3/design/common/custom_toast_widget.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/providers/custom_dropdwon_vn.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/object_data_input/widget/custon_text_input.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/object_data_input/widget/text_input_validators.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_app_bar.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_toast_widget.dart';
+import 'package:presale/src/presentation/modules/v5/design/input/calculate/model/providers/custom_dropdwon_vn.dart';
+import 'package:presale/src/presentation/modules/v5/design/input/object_data_input/widget/custon_text_input.dart';
+import 'package:presale/src/presentation/modules/v5/design/input/object_data_input/widget/text_input_validators.dart';
 
 
 import 'widget/widget.dart';

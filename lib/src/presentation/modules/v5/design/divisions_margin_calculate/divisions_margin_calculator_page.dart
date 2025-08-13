@@ -7,10 +7,9 @@ import 'package:presale/src/presentation/common/typography_page_options.dart';
 import 'package:presale/src/di/di.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/divisions_margin_summary_viewmodel.dart';
 import 'package:presale/src/presentation/bloc/v5/design/divisions_margin_calculator/divisions_margin_calculate_cubit.dart';
-import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
-import 'package:presale/src/presentation/modules/v3/design/common/custom_circle_loader.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/calculate/widget/next_page_widget.dart';
-import 'package:presale/src/presentation/modules/v3/design/navi/service_navi.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
+import 'package:presale/src/presentation/modules/v5/design/input/calculate/widget/next_page_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/divisions_margin_calculate/widget/divisions_table_widget.dart';
 
 

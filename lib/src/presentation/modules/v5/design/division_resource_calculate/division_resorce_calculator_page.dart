@@ -8,10 +8,9 @@ import 'package:presale/src/domain/models/v5/design/division_resource_table/divi
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
 import 'package:presale/src/presentation/bloc/v5/design/division_resource_calculator/division_resource_calculate_cubit.dart';
 import 'package:presale/src/presentation/common/typography_page_options.dart';
-import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
-import 'package:presale/src/presentation/modules/v3/design/common/custom_circle_loader.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/calculate/widget/result_sum_widget.dart';
-import 'package:presale/src/presentation/modules/v3/design/navi/service_navi.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
+import 'package:presale/src/presentation/modules/v5/design/input/calculate/widget/result_sum_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/custom_dropdown_with_search_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/divisions_resources_table_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/next_page_widget.dart';

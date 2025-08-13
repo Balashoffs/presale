@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/division_with_margin_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/divisions_margin_summary_viewmodel.dart';
-import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'divisions_table_utils.dart';
 
 class DivisionsMarginTableWidget extends StatefulWidget {

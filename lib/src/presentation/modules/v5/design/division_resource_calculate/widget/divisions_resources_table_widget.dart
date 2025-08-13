@@ -4,7 +4,7 @@ import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/widget_action_type.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
-import 'package:presale/src/presentation/modules/v3/design/common/collum_attributes.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 
 import 'division_resources_table_utils.dart';
 

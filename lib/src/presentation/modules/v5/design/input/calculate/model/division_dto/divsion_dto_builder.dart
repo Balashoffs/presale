@@ -1,8 +1,8 @@
 import 'package:presale/src/data/core/csv_parser.dart';
 import 'package:presale/src/domain/models/v3/design/divison/division.dart';
 import 'package:presale/src/domain/models/v3/design/employee_cost/employee_cost.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/division_dto/division_dto.dart';
-import 'package:presale/src/presentation/modules/v3/design/input/calculate/model/division_dto/employee_cost_dto.dart';
+import 'package:presale/src/presentation/modules/v5/design/input/calculate/model/division_dto/division_dto.dart';
+import 'package:presale/src/presentation/modules/v5/design/input/calculate/model/division_dto/employee_cost_dto.dart';
 
 
 typedef EmployeeCostDtoParser =
