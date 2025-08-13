@@ -42,9 +42,9 @@ class DivisionWithResourceDTO {
     required this.resources,
   });
 
-  static Future<DivisionWithResourceDTO> build() async {
+  static Future<DivisionWithResourceDTO> build(DivisionType type) async {
     List<ResourceCSV> resourcesFromCsv = await ResourceCostDtoBuilder().build();
-    List<DivisionCSV> divisionsFromCsv = await DivisionCostDtoBuilder().build();
+    List<DivisionCSV> divisionsFromCsv = await buildOnType(type);
     Map<String, List<ResourceDTO>> allResources = {};
     for (var value in divisionsFromCsv) {
       List<ResourceDTO> resources = resourcesFromCsv

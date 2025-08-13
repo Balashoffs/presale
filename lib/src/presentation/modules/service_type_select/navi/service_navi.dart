@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:presale/src/di/di.dart';
 import 'package:presale/src/domain/models/v1/service_stage/service_stage.dart';
 import 'package:presale/src/domain/models/v1/service_type/service_type.dart';
@@ -8,9 +11,7 @@ import 'package:presale/src/presentation/modules/service_type_select/object_tabl
 import 'package:presale/src/presentation/modules/service_type_select/service_type_select_page.dart';
 import 'package:presale/src/presentation/modules/service_type_select/stage_select/stage_select_page.dart';
 import 'package:presale/src/presentation/modules/service_type_select/stages_table/stages_table_page.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:presale/src/presentation/modules/v5/design/input/object_data_input/object_input_data_page.dart';
+import 'package:presale/src/presentation/modules/v5/design/object_data_input/object_input_data_page.dart';
 
 const serviceTypeRoutePath = "/";
 const stageSelectRoutePath = "stage-select";

@@ -8,7 +8,7 @@ import 'package:presale/src/domain/models/v3/design/input_data/input_data_design
 import 'package:presale/src/domain/models/v3/design/input_data/object_data_design.dart';
 import 'package:presale/src/domain/models/v3/design/input_factors/input_factors_pojo.dart';
 import 'package:presale/src/domain/models/v4/design/design_presale_pojo.dart';
-import 'package:presale/src/presentation/bloc/v3/design/input/object_input_data/object_data_viewmodel.dart';
+import 'package:presale/src/presentation/bloc/v5/design/input/object_input_data/object_data_viewmodel.dart';
 
 part 'object_input_data_state.dart';
 
@@ -19,6 +19,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
   late final InputFactorsViewModel? _inputFactors;
 
   final InputDataBuilder _objectDataBuilder;
+
   InputDataBuilder get objectDataBuilder => _objectDataBuilder;
 
   final DesignPresaleDataSourceLocal _dataSourceLocal;
@@ -148,8 +149,6 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     }
   }
 
-
-
   void setComplexityFactor(Set<String> selected) {
     double? result = 1.0;
     if (selected.isNotEmpty) {
@@ -162,10 +161,6 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     _objectDataBuilder.setComplexityFactor(result);
   }
 
-
-
-
-
   void nextPage() async {
     try {
       InputDataMV inputDataMv = _objectDataBuilder.build();
@@ -175,7 +170,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
         created: DateTime.now(),
         objectData: objectDataData,
         inputFactors: inputFactorsPojo,
-        divisionType: DivisionType.fromShortText(inputDataMv.divisionType),
+        divisionType: DivisionType.fromText(inputDataMv.divisionType),
       );
       DesignPresalePojo designPresalePojo = DesignPresalePojo(
         inputDataDesign: inputDataDesign,

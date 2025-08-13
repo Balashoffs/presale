@@ -6,7 +6,7 @@ import 'package:presale/src/domain/models/v5/design/division_resource_table/divi
 import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:presale/src/presentation/modules/common/text_input_validators.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
-import 'package:presale/src/presentation/modules/v5/design/input/calculate/model/custon_text_input.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_text_input.dart';
 
 import 'custom_dropdown_with_search_widget.dart';
 

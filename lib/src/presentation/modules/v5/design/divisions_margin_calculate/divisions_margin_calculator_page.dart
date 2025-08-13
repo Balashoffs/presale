@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/presentation/common/typography_page_options.dart';
 
 import 'package:presale/src/di/di.dart';
@@ -9,9 +8,8 @@ import 'package:presale/src/domain/models/v5/design/divisions_margin_table/divis
 import 'package:presale/src/presentation/bloc/v5/design/divisions_margin_calculator/divisions_margin_calculate_cubit.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
-import 'package:presale/src/presentation/modules/v5/design/input/calculate/widget/next_page_widget.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/next_page_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/divisions_margin_calculate/widget/divisions_table_widget.dart';
-
 
 class DivisionsMarginCalculatePage extends StatelessWidget {
   const DivisionsMarginCalculatePage({super.key});
@@ -22,14 +20,6 @@ class DivisionsMarginCalculatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          MoonButton.icon(
-            icon: Icon(MoonIcons.controls_close_16_light),
-            onTap: () {
-              context.go(pathToRootRoute);
-            },
-          ),
-        ],
         title: Text(
           "Расчет по стадии П",
           style: getHeadingTextStyle(context, MoonTextSize.size16),
@@ -87,9 +77,7 @@ class DivisionsMarginCalculateConsumer extends StatelessWidget {
             SizedBox();
       },
       listener: (context, state) {
-        state.whenOrNull(
-          nextPage: () => context.go(''),
-        );
+        state.whenOrNull(nextPage: () => context.go(''));
       },
     );
   }

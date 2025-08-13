@@ -7,7 +7,12 @@
  */
 
 import 'package:presale/src/data/core/csv_parser.dart';
-final String pathToSrc = 'assets/calculator_data/v5/razdely_resursy.csv';
+import 'package:presale/src/domain/models/v3/design/division_type/division_type.dart';
+
+final String pathWorkToSrc =
+    'assets/calculator_data/v5/raboch_razdely_resursy.csv';
+final String pathProjectToSrc =
+    'assets/calculator_data/v5/project_razdely_resursy.csv';
 
 class DivisionCSV {
   final String id;
@@ -21,7 +26,6 @@ class DivisionCSV {
     required this.divisionShortName,
     required this.divisionType,
   });
-
 
   factory DivisionCSV.fromCsvRow(List<dynamic> row) {
     return DivisionCSV(
@@ -37,16 +41,22 @@ typedef DivisionCSVParser =
     List<DivisionCSV> Function(List<List<dynamic>> rows);
 
 class DivisionCostDtoBuilder extends CsvParser<DivisionCSV> {
-  DivisionCostDtoBuilder() : super(pathToSrc);
+  DivisionCostDtoBuilder(super.path);
 
   DivisionCSVParser get _parser =>
-      (rows) => rows
-          .skip(1)
-          .map((row) => DivisionCSV.fromCsvRow(row))
-          .toList();
+      (rows) => rows.skip(1).map((row) => DivisionCSV.fromCsvRow(row)).toList();
 
   @override
   Future<List<DivisionCSV>> build() async {
     return await parse(_parser);
+  }
+}
+
+Future<List<DivisionCSV>> buildOnType(DivisionType divisionType) async {
+  switch (divisionType) {
+    case DivisionType.project:
+      return DivisionCostDtoBuilder(pathProjectToSrc).build();
+    case DivisionType.working:
+      return DivisionCostDtoBuilder(pathWorkToSrc).build();
   }
 }

@@ -2,7 +2,6 @@ import 'package:presale/src/domain/models/v3/design/custom_fuctors/custom_factor
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/division_with_margin_row_viewmodel.dart';
-import 'package:presale/src/presentation/modules/v5/design/input/calculate/model/division_row_data.dart';
 
 class DesignOfferCalculator {
   /*
@@ -20,23 +19,6 @@ class DesignOfferCalculator {
      П = (Себестоимость * Норма прибыли)
      Итого =  Себестоимость *  Накладные расходы *  Норма прибыли * 1.2
      */
-
-  double calcClearCost(DivisionRowDataValueChangeNotifier row) {
-    return (row.data.employee.workingRatePerDay *
-            row.deadline.value *
-            row.hardFactor.value *
-            row.squareFactor.value *
-            row.userUsingFactor.value)
-        .roundToDouble();
-  }
-
-  double calcWithMargin(DivisionRowDataValueChangeNotifier row) {
-    double clearRate = row.costPrice.value;
-    double fullRate =
-        clearRate * row.overPriceFactor.value +
-        clearRate * row.marginFactor.value;
-    return (fullRate + clearRate).roundToDouble();
-  }
 
 
   double calcDivisionTotalV4(DivisionResourceRowVM divisionResourceViewModel) {

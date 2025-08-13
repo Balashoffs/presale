@@ -10,10 +10,11 @@ import 'package:presale/src/presentation/bloc/v5/design/division_resource_calcul
 import 'package:presale/src/presentation/common/typography_page_options.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
-import 'package:presale/src/presentation/modules/v5/design/input/calculate/widget/result_sum_widget.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/result_sum_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/custom_dropdown_with_search_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/divisions_resources_table_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/next_page_widget.dart';
+import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 
 class DivisionResourceCalculatePage extends StatelessWidget {
   const DivisionResourceCalculatePage({super.key});
@@ -24,14 +25,6 @@ class DivisionResourceCalculatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          MoonButton.icon(
-            icon: Icon(MoonIcons.controls_close_16_light),
-            onTap: () {
-              context.go(pathToRootRoute);
-            },
-          ),
-        ],
         title: Text(
           "Расчет стадий проектирования",
           style: getHeadingTextStyle(context, MoonTextSize.size16),
@@ -62,7 +55,6 @@ class DivisionResourceCalculateProvider extends StatelessWidget {
     return BlocProvider<DivisionResourceCalculateCubit>(
       create: (context) {
         return DivisionResourceCalculateCubit(
-          divisionType: 'П',
           dbClient: di.dbClientImpl,
           resourceSummaryViewModel: context
               .read<DivisionResourceSummaryViewModel>(),
@@ -91,7 +83,7 @@ class DivisionResourceCalculateConsumer extends StatelessWidget {
       },
       listener: (context, state) {
         state.whenOrNull(
-          nextPage: () => context.go('')
+          nextPage: () => context.go(designDivisionsRoute)
         );
       },
     );

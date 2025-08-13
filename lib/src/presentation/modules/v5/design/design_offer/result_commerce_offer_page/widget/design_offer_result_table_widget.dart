@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/division_summary_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
-import 'package:presale/src/presentation/modules/v5/design/input/design_offer/result_commerce_offer_page/widget/table_utils.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
+import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/table_utils.dart';
+
 
 class DivisionsResultAsTable extends StatefulWidget {
   const DivisionsResultAsTable({super.key, required this.results});

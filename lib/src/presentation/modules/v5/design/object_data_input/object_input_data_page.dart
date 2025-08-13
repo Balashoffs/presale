@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/presentation/bloc/v3/design/input/object_input_data/object_data_viewmodel.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/next_page_widget.dart';
+import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 import 'package:provider/provider.dart';
 
 import 'package:presale/src/di/di.dart';
@@ -11,14 +12,13 @@ import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:presale/src/domain/models/v2/constructing/model/input/input_repository.dart';
 import 'package:presale/src/domain/models/v3/design/division_type/division_type.dart';
 
-import 'package:presale/src/presentation/bloc/v3/design/input/object_input_data/object_input_data_cubit.dart';
+import 'package:presale/src/presentation/bloc/v5/design/input/object_input_data/object_input_data_cubit.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_app_bar.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_toast_widget.dart';
-import 'package:presale/src/presentation/modules/v5/design/input/calculate/model/providers/custom_dropdwon_vn.dart';
-import 'package:presale/src/presentation/modules/v5/design/input/object_data_input/widget/custon_text_input.dart';
-import 'package:presale/src/presentation/modules/v5/design/input/object_data_input/widget/text_input_validators.dart';
-
+import 'package:presale/src/presentation/modules/v5/design/common/custom_dropdwon_vn.dart';
+import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/custon_text_input.dart';
+import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/text_input_validators.dart';
 
 import 'widget/widget.dart';
 
@@ -54,10 +54,7 @@ class ObjectInputDataConsumerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ObjectDataCubit, ObjectInputDataState>(
       listener: (context, state) {
-        state.whenOrNull(
-          nextPage: () =>
-              context.go(''),
-        );
+        state.whenOrNull(nextPage: () => context.go(designResourcesRoute));
       },
       builder: (context, state) {
         return state.whenOrNull(
@@ -112,8 +109,10 @@ class LoadedWidget extends StatelessWidget {
                             .toList(),
                       ),
                       child: CustomMoonDropDown(
-                        validator: (value){
-                          return value == "Выбрать" ? "Нужно сделать выбор": null;
+                        validator: (value) {
+                          return value == "Выбрать"
+                              ? "Нужно сделать выбор"
+                              : null;
                         },
                         initText: "Выбрать",
                         onSelected: cubit.setResultDesignDocumentations,
@@ -199,19 +198,24 @@ class LoadedWidget extends StatelessWidget {
                         Column(
                           children: [
                             ChangeNotifierProvider(
-                              create: (context) => SingleObjectValueNotifierDropDown(
-                                baseFactors: factors.factorsByType(InputFactorType.b.value),
-                              ),
+                              create: (context) =>
+                                  SingleObjectValueNotifierDropDown(
+                                    baseFactors: factors.factorsByType(
+                                      InputFactorType.b.value,
+                                    ),
+                                  ),
                               child: InputFactorMoonDropDown(
                                 onSelected: cubit.setHeightFactor,
                                 helperText: InputFactorType.b.value,
-                                leadingIcon: MoonIcons.arrows_left_curved_24_light,
+                                leadingIcon:
+                                    MoonIcons.arrows_left_curved_24_light,
                               ),
                             ),
                             ChangeNotifierProvider(
-                              create: (context) => MultiObjectValueNotifierDropDown(
-                                inputData: factors.complexities,
-                              ),
+                              create: (context) =>
+                                  MultiObjectValueNotifierDropDown(
+                                    inputData: factors.complexities,
+                                  ),
                               child: InputFactorMultiCustomMoonDropDown(
                                 onSelected: cubit.setComplexityFactor,
                               ),
@@ -222,23 +226,31 @@ class LoadedWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ChangeNotifierProvider(
-                              create: (context) => SingleObjectValueNotifierDropDown(
-                                baseFactors: factors.factorsByType(InputFactorType.c.value),
-                              ),
+                              create: (context) =>
+                                  SingleObjectValueNotifierDropDown(
+                                    baseFactors: factors.factorsByType(
+                                      InputFactorType.c.value,
+                                    ),
+                                  ),
                               child: InputFactorMoonDropDown(
                                 onSelected: cubit.setLocationFactor,
                                 helperText: InputFactorType.c.value,
-                                leadingIcon: MoonIcons.arrows_left_curved_24_light,
+                                leadingIcon:
+                                    MoonIcons.arrows_left_curved_24_light,
                               ),
                             ),
                             ChangeNotifierProvider(
-                              create: (context) => SingleObjectValueNotifierDropDown(
-                                baseFactors: factors.factorsByType(InputFactorType.d.value),
-                              ),
+                              create: (context) =>
+                                  SingleObjectValueNotifierDropDown(
+                                    baseFactors: factors.factorsByType(
+                                      InputFactorType.d.value,
+                                    ),
+                                  ),
                               child: InputFactorMoonDropDown(
                                 onSelected: cubit.setSquareFactor,
                                 helperText: InputFactorType.d.value,
-                                leadingIcon: MoonIcons.arrows_left_curved_24_light,
+                                leadingIcon:
+                                    MoonIcons.arrows_left_curved_24_light,
                               ),
                             ),
                           ],
@@ -247,22 +259,12 @@ class LoadedWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-                  child: MoonOutlinedButton(
-                    width: 256,
-                    onTap: () {
-                      Form.of(context).validate()
-                          ? cubit.nextPage()
-                          : showToast(context, 'Не все поля заполнены!');
-                    },
-                    buttonSize: MoonButtonSize.md,
-                    isFullWidth: false,
-                    showPulseEffect: true,
-                    borderColor: colorTable(context)[40],
-                    trailing: Icon(MoonIcons.arrows_right_32_regular),
-                    label: Text('Выбрать стадии'),
-                  ),
+                NextPageWidget(
+                  onTap: () {
+                    Form.of(context).validate()
+                        ? cubit.nextPage()
+                        : showToast(context, 'Не все поля заполнены!');
+                  },
                 ),
               ],
             );
