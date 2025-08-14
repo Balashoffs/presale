@@ -13,6 +13,7 @@ class DivisionResourceSummaryViewModel {
       ValueNotifier([]);
   final Map<String, List<ResourceDTO>> _resources = {};
   final ValueNotifier<double> summaryVN = ValueNotifier(0.0);
+  final ValueNotifier<bool> isValid = ValueNotifier(false);
 
   double _squareFactor = 0.0;
   double _complexityFactor = 0.0;
@@ -23,6 +24,8 @@ class DivisionResourceSummaryViewModel {
             .map((e) => e.totalResourceRowCostVN.value)
             .reduce((value, element) => value + element)
       : 0.0;
+
+  bool get _isEmptyCostHas => selectedRows.value.where((element) => element.totalResourceRowCostVN.value.compareTo(0.0) == 0,).isEmpty;
 
   DivisionWithResourceRowVM? getById(int id) {
     return allDivisions
@@ -67,6 +70,7 @@ class DivisionResourceSummaryViewModel {
     if (found != null) {
       //TODO Add algorithm to remove from unselected
       selectedRows.value = [...selectedRows.value, found];
+      isValid.value = _isEmptyCostHas;
     }
   }
 
@@ -78,6 +82,7 @@ class DivisionResourceSummaryViewModel {
       selectedRows.value = [...updates];
       //TODO Add algorithm to remove from unselected
       summaryVN.value = summaryCost;
+      isValid.value = _isEmptyCostHas;
     }
   }
 
@@ -152,6 +157,7 @@ class DivisionResourceSummaryViewModel {
     if (total.compareTo(0.0) > 0) {
       value.totalResourceRowCostVN.value = total;
       summaryVN.value = summaryCost;
+      isValid.value = _isEmptyCostHas;
     }
   }
 }

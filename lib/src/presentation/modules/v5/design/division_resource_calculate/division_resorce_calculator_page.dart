@@ -149,13 +149,13 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
           flex: 1,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: ValueListenableBuilder<double>(
+            child: ValueListenableBuilder<bool>(
               valueListenable: context
                   .read<DivisionResourceSummaryViewModel>()
-                  .summaryVN,
+                  .isValid,
               builder: (context, value, child) {
                 return NextPageWidget(
-                  onTap: value.compareTo(0.0) > 0
+                  onTap: value == true
                       ? context
                             .read<DivisionResourceCalculateCubit>()
                             .onNextPage
