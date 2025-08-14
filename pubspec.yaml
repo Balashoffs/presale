@@ -143,3 +143,4 @@ flutter:
     - assets/calculator_data/v4/
     - assets/calculator_data/v5/
     - assets/calculator_data/template/
+    - assets/calculator_data/test_resources/

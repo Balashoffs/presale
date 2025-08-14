@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:presale/src/data/core/db_client.dart';
@@ -27,11 +28,20 @@ class DivisionResourceCalculateCubit
        super(const DivisionResourceCalculateState.initial());
 
   void init() async {
-    DesignPresalePojo designPresalePojo = await _dataSourceLocal
-        .getDesignPresale(DesignPresaleDataSourceLocal.key);
+    DesignPresalePojo designPresalePojo;
+    if (kDebugMode) {
+      designPresalePojo =
+          await DesignPresaleDataTest.getDevInputDesignPresale();
+    } else {
+      designPresalePojo = await _dataSourceLocal.getDesignPresale(
+        DesignPresaleDataSourceLocal.key,
+      );
+    }
 
     DivisionWithResourceDTO divisionWithResourceDTO =
-        await DivisionWithResourceDTO.build(designPresalePojo.inputDataDesign.divisionType);
+        await DivisionWithResourceDTO.build(
+          designPresalePojo.inputDataDesign.divisionType,
+        );
 
     _resourceSummaryViewModel.fill(
       divisionWithResourceDTO,

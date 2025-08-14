@@ -54,7 +54,11 @@ class ObjectInputDataConsumerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ObjectDataCubit, ObjectInputDataState>(
       listener: (context, state) {
-        state.whenOrNull(nextPage: () => context.go(designResourcesRoute));
+        state.whenOrNull(
+          nextPage: () {
+            context.go(designResourcesRoute);
+          },
+        );
       },
       builder: (context, state) {
         return state.whenOrNull(

@@ -5,13 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:presale/src/presentation/core/navigation/not_found_page.dart';
 import 'package:presale/src/presentation/modules/service_type_select/navi/service_navi.dart';
 import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
-import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 
 class AppRouterV3 extends GoRouter {
-  static final pathChangedController = StreamController<String>.broadcast();
-
-  Stream<String> get pathChangedStream => pathChangedController.stream;
-
   AppRouterV3()
     : super.routingConfig(
         routingConfig: _ConstantRoutingConfig(
@@ -34,7 +29,6 @@ class AppRouterV3 extends GoRouter {
               ),
             ],
             redirect: (context, state) {
-              pathChangedController.add(state.matchedLocation);
               return null;
             },
           ),

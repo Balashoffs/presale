@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:presale/src/data/core/db_client.dart';
@@ -175,6 +179,13 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
       DesignPresalePojo designPresalePojo = DesignPresalePojo(
         inputDataDesign: inputDataDesign,
       );
+      // if(kDebugMode){
+      //   File f = File('/Users/bau/Documents/dev/liis/presale/test_resources');
+      //   final map = designPresalePojo.toJson();
+      //   String json = jsonEncode(map);
+      //   f.writeAsStringSync(json, encoding: Utf8Codec(allowMalformed: true));
+      // }
+
       bool isSaves = await _dataSourceLocal.addDesignPresale(designPresalePojo);
       if (isSaves) {
         emit(ObjectInputDataState.nextPage());

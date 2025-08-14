@@ -34,7 +34,7 @@ class CustomTextInput extends StatefulWidget {
 
 class _CustomTextInputState extends State<CustomTextInput> {
   final TextEditingController _textController = TextEditingController();
-  Color _borderColor = Colors.transparent;
+  Color? _borderColor;
   final FocusNode _focusNode = FocusNode();
 
   @override
@@ -69,7 +69,7 @@ class _CustomTextInputState extends State<CustomTextInput> {
       hintTextColor: colorTable(context)[40],
       backgroundColor: colorTable(context)[40],
       activeBorderColor: colorTable(context)[MoonColor.zeno.index]!,
-      inactiveBorderColor: _borderColor,
+      inactiveBorderColor: _borderColor ?? getColor(context, MoonColor.whis10),
       hoverBorderColor: colorTable(context)[40],
       errorColor: colorTable(context)[MoonColor.chichi.index]!,
       autovalidateMode: AutovalidateMode.onUserInteraction,
