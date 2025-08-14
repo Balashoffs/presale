@@ -20,7 +20,6 @@ class DesignOfferCalculator {
      Итого =  Себестоимость *  Накладные расходы *  Норма прибыли * 1.2
      */
 
-
   double calcDivisionTotalV4(DivisionResourceRowVM divisionResourceViewModel) {
     return divisionResourceViewModel.totalResourceRowCostVN.value *
         divisionResourceViewModel.resourceUsingFactor *
@@ -40,16 +39,18 @@ class DesignOfferCalculator {
   }
 
   void calcDivisionCost(DivisionsWithMarginRowVM model) {
-    double withOverPrice =
-        model.divisionSummaryCost +
-        model.overPriceFactor * model.divisionSummaryCost;
+    double withOverPrice = model.overPriceFactor * model.divisionSummaryCost;
     double withMargins = withOverPrice * model.marginFactor;
 
-    model.summaryOverPriceVN.value = withOverPrice;
-    model.summaryCostWithMarginVN.value = withMargins;
+    model.overPriceValue = withOverPrice;
+    model.marginValue = withMargins;
 
-    double withTax = withMargins * RussianTax;
+    double summaryCost =
+        (model.divisionSummaryCost + model.marginValue) *
+        model.clientValue;
+    model.summaryCostWithMarginVN.value = summaryCost;
+    double withTax = summaryCost * RussianTax;
     model.summaryCostWithTaxVN.value = withTax;
-    model.taxCost.value = withTax * 20 / 120;
+    model.taxValue = withTax * 20 / 120;
   }
 }

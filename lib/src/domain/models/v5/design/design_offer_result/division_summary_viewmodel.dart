@@ -33,7 +33,7 @@ final Map<ResultType, DivisionSummaryVM> _generatedViews = {
   ),
 };
 
-String getViewText(ResultType type, double value) {
+String getViewText(ResultType type, String value) {
   return '${_generatedViews[type]!.name}: $value';
 }
 

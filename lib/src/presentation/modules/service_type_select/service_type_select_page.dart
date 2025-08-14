@@ -35,8 +35,8 @@ class ServiceTypeSelectPage extends StatelessWidget {
                 MoonButton(
                   onTap: () {
                     // context.go(designInputRoute);
-                    context.go(designResourcesRoute);
-                    // context.go(designInputRoute);
+                    // context.go(designResourcesRoute);
+                    context.go(designOfferRoute);
                   },
                   label: Text('Стоимость проектирования'),
                 ),

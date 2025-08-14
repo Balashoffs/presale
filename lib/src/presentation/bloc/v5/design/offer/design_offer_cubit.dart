@@ -28,7 +28,6 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
 
   DesignOfferCubit({
     required DesignOfferResultController controller,
-    required String divisionType,
     required DBClient dbClient,
   }) : _designOfferController = controller,
        _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),

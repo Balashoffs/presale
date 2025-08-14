@@ -38,7 +38,6 @@ class DesignOfferBlocProviderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => DesignOfferCubit(
-        divisionType: 'П',
         dbClient: di.dbClientImpl,
         controller: context.read<DesignOfferResultController>(),
       )..init(),
@@ -75,6 +74,7 @@ class DesignOfferWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      padding: EdgeInsets.all(16),
       child: Form(
         child: Builder(
           builder: (context) {
@@ -84,7 +84,7 @@ class DesignOfferWidget extends StatelessWidget {
               children: [
                 DesignOfferHeaderWidget(results: results,),
                 DivisionsResultAsTable(results: results),
-                DesignOfferFooterWidget()
+                DesignOfferFooterWidget(results: results)
               ],
             );
           },

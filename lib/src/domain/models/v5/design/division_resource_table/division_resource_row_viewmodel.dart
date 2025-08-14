@@ -24,7 +24,9 @@ final class DivisionWithResourceRowVM {
 
   // Кол-во задействованных дней
   int _workDays = 0;
+
   int get workDays => _workDays;
+
   set workDays(int value) {
     _workDays = value;
   }
@@ -32,21 +34,27 @@ final class DivisionWithResourceRowVM {
   // Коэфициент сложности
 
   double _complexFactor = 1.0;
+
   double get complexFactor => _complexFactor;
+
   set complexFactor(double value) {
     _complexFactor = value;
   }
 
   // Коэфициент по площади
   double _squareFactor;
+
   double get squareFactor => _squareFactor;
+
   set squareFactor(double value) {
     _squareFactor = value;
   }
 
   // Коэфициент участия
   double _resourceUsingFactor = 1.0;
+
   double get resourceUsingFactor => _resourceUsingFactor;
+
   set resourceUsingFactor(double value) {
     _resourceUsingFactor = value;
   }
@@ -86,18 +94,29 @@ final class DivisionWithResourceRowVM {
     double? complexFactor,
     double? squareFactor,
     double? resourceUsingFactor,
-    double? resourceCostPerDay,}) {
+    double? resourceCostPerDay,
+  }) {
     return DivisionWithResourceRowVM(
       id: DateTime.now().microsecondsSinceEpoch,
       divisionName: divisionName ?? this.divisionName,
       divisionShortName: divisionShortName ?? this.divisionShortName,
       resourceName: '',
       resourceQnt: 0,
-      workDays:  0,
+      workDays: 0,
       complexFactor: 0.0,
       squareFactor: 0.0,
-      resourceUsingFactor:  0.0,
-      resourceCostPerDay:  0.0,
+      resourceUsingFactor: 0.0,
+      resourceCostPerDay: 0.0,
     );
+  }
+
+  void clear() {
+    resourceQnt = 0;
+    workDays = 0;
+    complexFactor = 0.0;
+    squareFactor = 0.0;
+    resourceUsingFactor = 0.0;
+    resourceCostPerDayVN.value = 0.0;
+    totalResourceRowCostVN.value = 0.0;
   }
 }

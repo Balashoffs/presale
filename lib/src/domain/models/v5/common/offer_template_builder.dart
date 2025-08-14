@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:presale/src/data/common/extensions/date.dart';
 import 'package:presale/src/data/common/utils/date_utils.dart';
+import 'package:presale/src/data/core/string_converter.dart';
 import 'package:presale/src/domain/models/v3/design/commercial_offer/commercial_offer.dart';
 import 'package:presale/src/domain/models/v3/design/division_result/division_result.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
@@ -51,7 +52,7 @@ class DesignOfferTemplateBuilder {
     return _worksheet.workbook.saveSync();
   }
 
-  void _addTable(){
+  void _addTable() {
     int start = _rowPos;
     _addTableHeader();
     _increment();
@@ -225,7 +226,7 @@ class DesignOfferTemplateBuilder {
       alignType: HAlignType.right,
     );
     _buildCell(
-      _offerResult.designOfferSummaryCost.toStringAsFixed(2),
+      convertToString(_offerResult.designOfferSummaryCost, 0),
       'E$_rowPos',
       // width: 100,
       alignType: HAlignType.center,
@@ -240,7 +241,7 @@ class DesignOfferTemplateBuilder {
       alignType: HAlignType.right,
     );
     _buildCell(
-      _offerResult.designOfferSummaryTax.toStringAsFixed(2),
+      convertToString(_offerResult.designOfferSummaryTax, 0),
       'E$_rowPos',
       // width: 100,
       alignType: HAlignType.center,

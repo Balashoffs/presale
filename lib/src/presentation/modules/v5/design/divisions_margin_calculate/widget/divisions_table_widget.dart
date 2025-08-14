@@ -40,6 +40,47 @@ class _DivisionsMarginTableWidgetState
     );
   }
 
+  List<MoonTableRow> _generateTableRows() {
+    return List.generate(widget.tableDataRows.length, (int index) {
+      final row = widget.tableDataRows[index];
+      return MoonTableRow(
+        height: 72,
+        cells: [
+          addDecoration(buildStringTextCell(row.id.toString())),
+          addDecoration(buildStringTextCell(row.divisionShortName)),
+          addDecoration(buildCellWithMultiLine(row.divisionName)),
+          addDecoration(buildIntTextCell(row.divisionSummaryCost)),
+          addDecoration(
+            buildFactorInputCell(row.overPriceFactor, (context, value) {
+              context.read<DivisionsMarginSummaryViewController>().onOverPriceFactor(
+                row.id,
+                value,
+              );
+            }),
+          ),
+          addDecoration(
+            buildFactorInputCell(row.marginFactor, (context, value) {
+              context.read<DivisionsMarginSummaryViewController>().onMarginFactor(
+                row.id,
+                value,
+              );
+            }),
+          ),
+          addDecoration(
+            buildFactorInputCell(row.clientFactor, (context, value) {
+              context.read<DivisionsMarginSummaryViewController>().onMarginFactor(
+                row.id,
+                value,
+              );
+            }),
+          ),
+          addDecoration(buildTextWithNotifier(row.summaryCostWithMarginVN)),
+          addDecoration(buildTextWithNotifier(row.summaryCostWithTaxVN)),
+        ],
+      );
+    });
+  }
+
   MoonTableFooter _generateTableFooter() {
     return MoonTableFooter(
       cells: List.generate(widget.rowAttributes.length, (int index) {
@@ -52,7 +93,7 @@ class _DivisionsMarginTableWidgetState
               return addDecoration(
                 buildTextWithNotifier(
                   context
-                      .read<DivisionsMarginSummaryViewModel>()
+                      .read<DivisionsMarginSummaryViewController>()
                       .divisionClearSummaryVN,
                 ),
               );
@@ -68,7 +109,7 @@ class _DivisionsMarginTableWidgetState
               return addDecoration(
                 buildTextWithNotifier(
                   context
-                      .read<DivisionsMarginSummaryViewModel>()
+                      .read<DivisionsMarginSummaryViewController>()
                       .divisionsWithMarginSummaryVN,
                 ),
               );
@@ -83,50 +124,17 @@ class _DivisionsMarginTableWidgetState
               return addDecoration(
                 buildTextWithNotifier(
                   context
-                      .read<DivisionsMarginSummaryViewModel>()
+                      .read<DivisionsMarginSummaryViewController>()
                       .divisionsWithTaxSummaryVN,
                 ),
               );
             },
           );
         }
-        return SizedBox(child: Center(child: Text('-')));
+        return addDecoration(SizedBox(child: Center(child: Text(''))), index == 0);
       }),
       height: 48,
     );
-  }
-
-  List<MoonTableRow> _generateTableRows() {
-    return List.generate(widget.tableDataRows.length, (int index) {
-      final row = widget.tableDataRows[index];
-      return MoonTableRow(
-        height: 72,
-        cells: [
-          addDecoration(buildTextCell(row.id)),
-          addDecoration(buildTextCell(row.divisionShortName)),
-          addDecoration(buildCellWithMultiLine(row.divisionName)),
-          addDecoration(buildTextCell(row.divisionSummaryCost)),
-          addDecoration(
-            buildFactorInputCell(row.overPriceFactor, (context, value) {
-              context.read<DivisionsMarginSummaryViewModel>().onOverPriceFactor(
-                row.id,
-                value,
-              );
-            }),
-          ),
-          addDecoration(
-            buildFactorInputCell(row.marginFactor, (context, value) {
-              context.read<DivisionsMarginSummaryViewModel>().onMarginFactor(
-                row.id,
-                value,
-              );
-            }),
-          ),
-          addDecoration(buildTextWithNotifier(row.summaryCostWithMarginVN)),
-          addDecoration(buildTextWithNotifier(row.summaryCostWithTaxVN)),
-        ],
-      );
-    });
   }
 
   @override

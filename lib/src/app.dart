@@ -87,6 +87,7 @@ class ServiceCalcApp extends App {
         ],
       ),
       routerConfig: AppRouterV3(),
+
     );
   }
 }

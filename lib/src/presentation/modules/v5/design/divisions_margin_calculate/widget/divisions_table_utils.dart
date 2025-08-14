@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/presentation/modules/common/text_input_validators.dart';
+import 'package:presale/src/data/core/string_converter.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_text_input.dart';
+import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/text_input_validators.dart';
 
 typedef ValueChangedWithContext<T> =
     void Function(BuildContext context, T value);
@@ -52,11 +53,20 @@ Widget buildHeaderCell(CollumAttribute attribute) {
   );
 }
 
-Widget buildTextCell(dynamic label) {
+Widget buildStringTextCell(String value) {
   return Center(
     child: Padding(
       padding: const EdgeInsetsDirectional.all(8.0),
-      child: Text(textAlign: TextAlign.center, label.toString()),
+      child: Text(textAlign: TextAlign.center, value),
+    ),
+  );
+}
+
+Widget buildIntTextCell(double value) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsetsDirectional.all(8.0),
+      child: Text(textAlign: TextAlign.center, convertToString(value, 0)),
     ),
   );
 }
@@ -68,7 +78,7 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
       child: ValueListenableBuilder<double>(
         valueListenable: vn,
         builder: (context, value, child) =>
-            Text(textAlign: TextAlign.center, value.toStringAsFixed(2)),
+            Text(textAlign: TextAlign.center, convertToString(value, 0)),
       ),
     ),
   );

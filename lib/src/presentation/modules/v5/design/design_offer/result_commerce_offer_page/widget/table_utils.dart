@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/presentation/common/color_options.dart';
-import 'package:presale/src/presentation/modules/common/text_input_validators.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_text_input.dart';
+import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/text_input_validators.dart';
 
 typedef ValueChangedWithContext<T> =
     void Function(BuildContext context, T value);
@@ -100,52 +100,48 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
   );
 }
 
-Widget buildIntInputCell(
-  int defaultValue,
+Widget buildAvanceInputCell(
+  double defaultValue,
   ValueChangedWithContext<int> onChanged,
 ) {
   return Builder(
     builder: (context) {
-      return Center(
-        child: SizedBox(
-          width: 256,
-          child: CustomTextInput(
-            isEnables: true,
-            hintText: '$defaultValue',
-            onChanged: (input) {
-              int? parsed = onChangeIntValue(input);
-              if (parsed != null) {
-                onChanged(context, parsed);
-              }
-            },
-            validator: onlyIntValidator,
-          ),
+      return SizedBox(
+        width: 256,
+        child: CustomTextInput(
+          isEnables: true,
+          hintText: '$defaultValue',
+          onChanged: (input) {
+            int? parsed = onChangeIntValue(input);
+            if (parsed != null) {
+              onChanged(context, parsed);
+            }
+          },
+          validator: ananceValidator,
         ),
       );
     },
   );
 }
 
-Widget buildFactorInputCell(
-  double defaultValue,
-  ValueChangedWithContext<double> onChanged,
-) {
+Widget buildIntInputCell(
+    double defaultValue,
+    ValueChangedWithContext<double> onChanged,
+    ) {
   return Builder(
     builder: (context) {
-      return Center(
-        child: SizedBox(
-          width: 256,
-          child: CustomTextInput(
-            isEnables: true,
-            hintText: '$defaultValue',
-            onChanged: (input) {
-              double? parsed = onChangeFactorValue(input);
-              if (parsed != null) {
-                onChanged(context, parsed);
-              }
-            },
-            validator: onlyFactorValidator,
-          ),
+      return SizedBox(
+        width: 256,
+        child: CustomTextInput(
+          isEnables: true,
+          hintText: '$defaultValue',
+          onChanged: (input) {
+            double? parsed = onChangeFactorValue(input);
+            if (parsed != null) {
+              onChanged(context, parsed);
+            }
+          },
+          validator: onlyInfiniteNumberValidator,
         ),
       );
     },

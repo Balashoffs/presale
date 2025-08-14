@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
@@ -103,7 +105,7 @@ class _CustomDropdownWithSearchWidgetState
         dropdownShadows: [],
         onTapOutside: () => _handleDropdownTapOutside(),
         content: ConstrainedBox(
-          constraints: const BoxConstraints(maxHeight: 200),
+          constraints:  BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 2 / 3),
           child: ScrollConfiguration(
             behavior: const ScrollBehavior().copyWith(scrollbars: false),
             child: _filteredOptionsList.isEmpty
@@ -181,11 +183,27 @@ class ResourceDropDownSelector extends StatefulWidget {
 class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
   bool _showMenu = false;
   String _hintText = '';
+  final GlobalKey _dropWidgetKey = GlobalKey();
+  bool _isUpper = false;
 
+  void _getPosition(){
+    final s = _dropWidgetKey.currentContext;
+    final RenderBox? renderBox = _dropWidgetKey.currentContext?.findRenderObject() as RenderBox?;
+    print('find render: ${renderBox.toString()}');
+    if(renderBox != null){
+      final Offset globalPosition = renderBox.localToGlobal(Offset.zero);
+      print(globalPosition);
+      final height = MediaQuery.of(context).size.height;
+      setState(() {
+        _isUpper = globalPosition.dy.compareTo(height/2) > 0;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return MoonDropdown(
+      key: _dropWidgetKey,
       show: _showMenu,
       groupId: Uuid().v4(),
       maxWidth: 312,
@@ -193,7 +211,7 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
       backgroundColor: colorTable(context)[40],
       constrainWidthToChild: true,
       distanceToTarget: 8.0,
-      dropdownAnchorPosition: MoonDropdownAnchorPosition.bottom,
+      dropdownAnchorPosition: _isUpper ? MoonDropdownAnchorPosition.top: MoonDropdownAnchorPosition.bottom,
       dropdownShadows: null,
       onTapOutside: () => setState(() {
         _showMenu = false;
@@ -218,13 +236,16 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
         canRequestFocus: false,
         mouseCursor: MouseCursor.defer,
         hintText: _hintText.isEmpty ? widget.hintText : _hintText,
-        onTap: () => setState(() {
-          _showMenu = !_showMenu;
-          _hintText = '';
-          if (!_showMenu) {
-            widget.onSelected(null);
-          }
-        }),
+        onTap: () {
+          _getPosition();
+          setState(() {
+            _showMenu = !_showMenu;
+            _hintText = '';
+            if (!_showMenu) {
+              widget.onSelected(null);
+            }
+          });
+        },
         onTapOutside: (PointerDownEvent _) {
           FocusManager.instance.primaryFocus?.unfocus();
           _hintText = '';

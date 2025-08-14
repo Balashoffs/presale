@@ -6,7 +6,7 @@ import 'package:presale/src/domain/models/v5/design/division_resource_table/divi
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/extensions.dart';
 
-class DivisionResourceSummaryViewModel {
+class DivisionResourceSummaryViewController {
   final List<DivisionDTO> allDivisions = [];
 
   final ValueNotifier<List<DivisionWithResourceRowVM>> selectedRows =
@@ -25,7 +25,14 @@ class DivisionResourceSummaryViewModel {
             .reduce((value, element) => value + element)
       : 0.0;
 
-  bool get _isEmptyCostHas => selectedRows.value.where((element) => element.totalResourceRowCostVN.value.compareTo(0.0) == 0,).isEmpty;
+  bool get _isEmptyCostHas =>
+      selectedRows.value.isNotEmpty &&
+      selectedRows.value
+          .where(
+            (element) =>
+                element.totalResourceRowCostVN.value.compareTo(0.0) == 0,
+          )
+          .isEmpty;
 
   DivisionWithResourceRowVM? getById(int id) {
     return allDivisions
@@ -63,6 +70,7 @@ class DivisionResourceSummaryViewModel {
       case WidgetActionType.delete:
         _onDelete(id);
     }
+    isValid.value = _isEmptyCostHas;
   }
 
   void _onAdd(int id) {
@@ -70,7 +78,6 @@ class DivisionResourceSummaryViewModel {
     if (found != null) {
       //TODO Add algorithm to remove from unselected
       selectedRows.value = [...selectedRows.value, found];
-      isValid.value = _isEmptyCostHas;
     }
   }
 
@@ -82,18 +89,8 @@ class DivisionResourceSummaryViewModel {
       selectedRows.value = [...updates];
       //TODO Add algorithm to remove from unselected
       summaryVN.value = summaryCost;
-      isValid.value = _isEmptyCostHas;
     }
   }
-
-  /*
-    complexFactor
-    squareFactor
-    resourceQnt
-    resourceUsingFactor
-    summaryResourceRowCost
-    workDays
-   */
 
   void onResourceName(int id, String resourceName) {
     DivisionWithResourceRowVM? found = getByIdVM(id);

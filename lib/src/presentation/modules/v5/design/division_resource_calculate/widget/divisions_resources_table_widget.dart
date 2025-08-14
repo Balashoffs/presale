@@ -95,11 +95,11 @@ class _DivisionsResourceTableWidgetState
                   buildIntDropdownCell(
                     (context, value) {
                       context
-                          .read<DivisionResourceSummaryViewModel>()
+                          .read<DivisionResourceSummaryViewController>()
                           .onResourceName(row.id, value);
                     },
                     context
-                        .read<DivisionResourceSummaryViewModel>()
+                        .read<DivisionResourceSummaryViewController>()
                         .resourcesByDivisionShortName(row.divisionShortName),
                   ),
                 )
@@ -107,7 +107,7 @@ class _DivisionsResourceTableWidgetState
           addDecoration(buildTextWithNotifier(row.resourceCostPerDayVN)),
           addDecoration(
             buildIntInputCell(row.resourceQnt, (context, value) {
-              context.read<DivisionResourceSummaryViewModel>().onResourceQnt(
+              context.read<DivisionResourceSummaryViewController>().onResourceQnt(
                 row.id,
                 value,
               );
@@ -115,7 +115,7 @@ class _DivisionsResourceTableWidgetState
           ),
           addDecoration(
             buildIntInputCell(row.workDays, (context, value) {
-              context.read<DivisionResourceSummaryViewModel>().onWorkDays(
+              context.read<DivisionResourceSummaryViewController>().onWorkDays(
                 row.id,
                 value,
               );
@@ -123,7 +123,7 @@ class _DivisionsResourceTableWidgetState
           ),
           addDecoration(
             buildFactorInputCell(row.complexFactor, (context, value) {
-              context.read<DivisionResourceSummaryViewModel>().onComplexFactor(
+              context.read<DivisionResourceSummaryViewController>().onComplexFactor(
                 row.id,
                 value,
               );
@@ -131,7 +131,7 @@ class _DivisionsResourceTableWidgetState
           ),
           addDecoration(
             buildFactorInputCell(row.squareFactor, (context, value) {
-              context.read<DivisionResourceSummaryViewModel>().onSquareFactor(
+              context.read<DivisionResourceSummaryViewController>().onSquareFactor(
                 row.id,
                 value,
               );
@@ -140,7 +140,7 @@ class _DivisionsResourceTableWidgetState
           addDecoration(
             buildFactorInputCell(row.resourceUsingFactor, (context, value) {
               context
-                  .read<DivisionResourceSummaryViewModel>()
+                  .read<DivisionResourceSummaryViewController>()
                   .onResourceUsingFactor(row.id, value);
             }),
           ),

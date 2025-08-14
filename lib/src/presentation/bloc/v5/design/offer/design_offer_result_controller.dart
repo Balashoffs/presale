@@ -22,7 +22,6 @@ class DesignOfferResultController {
               id: e.id,
               divisionName: e.divisionName,
               divisionShortName: e.divisionShortName,
-              deadline: 1,
               divisionSummaryWithTax: e.summaryCostWithMargin,
             ),
           )
@@ -48,10 +47,11 @@ class DesignOfferResultController {
               .map((e) => e.summaryCostWithTax)
               .reduce((value, element) => value + element) ??
           0.0;
+      summary = double.parse(summary.toStringAsFixed(0));
       double tax = (summary - summary * RussianTax).abs();
 
       designOfferResultVM = DesignOfferResultVM(
-        divisionType: designPresalePojo.inputDataDesign.divisionType.shortText,
+        divisionType: designPresalePojo.inputDataDesign.divisionType.text,
         createdDesignOffer: designPresalePojo.inputDataDesign.created!
             .toLocal()
             .toString()
@@ -97,4 +97,6 @@ class DesignOfferResultController {
       designOfferResultVM!.signPerson = value;
     }
   }
+
+
 }

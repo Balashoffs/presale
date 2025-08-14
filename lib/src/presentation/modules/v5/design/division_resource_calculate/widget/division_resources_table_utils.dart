@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
+import 'package:presale/src/data/core/string_converter.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
 import 'package:presale/src/presentation/common/color_options.dart';
-import 'package:presale/src/presentation/modules/common/text_input_validators.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_text_input.dart';
+import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/text_input_validators.dart';
 
 import 'custom_dropdown_with_search_widget.dart';
 
@@ -79,10 +78,9 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
             Color textColor = vn.value.compareTo(0.0) > 0
                 ? colorTable(context)[MoonColor.zeno.index]!
                 : colorTable(context)[MoonColor.chichi.index]!;
-            ;
             return Text(
               textAlign: TextAlign.center,
-              value.toStringAsFixed(2),
+              convertToString(value, 0),
               style: TextStyle(color: textColor),
             );
           },

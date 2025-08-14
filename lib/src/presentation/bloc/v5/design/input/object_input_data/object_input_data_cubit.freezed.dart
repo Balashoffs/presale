@@ -111,12 +111,19 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
+class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   const _$InitialImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ObjectInputDataState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ObjectInputDataState.initial'));
   }
 
   @override
@@ -244,15 +251,25 @@ class __$$EnterInputDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$EnterInputDataImpl implements _EnterInputData {
+class _$EnterInputDataImpl
+    with DiagnosticableTreeMixin
+    implements _EnterInputData {
   const _$EnterInputDataImpl(this.factors);
 
   @override
   final InputFactorsViewModel factors;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ObjectInputDataState.enterInputData(factors: $factors)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ObjectInputDataState.enterInputData'))
+      ..add(DiagnosticsProperty('factors', factors));
   }
 
   @override
@@ -388,12 +405,19 @@ class __$$NextPageImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NextPageImpl implements _NextPage {
+class _$NextPageImpl with DiagnosticableTreeMixin implements _NextPage {
   const _$NextPageImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ObjectInputDataState.nextPage()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ObjectInputDataState.nextPage'));
   }
 
   @override
@@ -521,15 +545,23 @@ class __$$ErrorMessageImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorMessageImpl implements _ErrorMessage {
+class _$ErrorMessageImpl with DiagnosticableTreeMixin implements _ErrorMessage {
   const _$ErrorMessageImpl(this.errorText);
 
   @override
   final String errorText;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ObjectInputDataState.errorMessage(errorText: $errorText)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ObjectInputDataState.errorMessage'))
+      ..add(DiagnosticsProperty('errorText', errorText));
   }
 
   @override

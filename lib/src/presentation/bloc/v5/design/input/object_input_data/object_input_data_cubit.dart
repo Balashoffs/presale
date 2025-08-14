@@ -179,12 +179,10 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
       DesignPresalePojo designPresalePojo = DesignPresalePojo(
         inputDataDesign: inputDataDesign,
       );
-      // if(kDebugMode){
-      //   File f = File('/Users/bau/Documents/dev/liis/presale/test_resources');
-      //   final map = designPresalePojo.toJson();
-      //   String json = jsonEncode(map);
-      //   f.writeAsStringSync(json, encoding: Utf8Codec(allowMalformed: true));
-      // }
+      if(kDebugMode){
+        String result = json.encode(designPresalePojo.toJson());
+        print(result);
+      }
 
       bool isSaves = await _dataSourceLocal.addDesignPresale(designPresalePojo);
       if (isSaves) {

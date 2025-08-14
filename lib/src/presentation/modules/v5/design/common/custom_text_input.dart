@@ -43,8 +43,8 @@ class _CustomTextInputState extends State<CustomTextInput> {
     _focusNode.addListener(() {
       setState(() {
         _borderColor = widget.hintText == '0' && _textController.text.isEmpty
-            ? colorTable(context)[MoonColor.chichi.index]!
-            : colorTable(context)[MoonColor.zeno.index]!;
+            ? getColor(context, MoonColor.chichi)
+            : getColor(context, MoonColor.whis10);
       });
     });
   }
@@ -54,6 +54,12 @@ class _CustomTextInputState extends State<CustomTextInput> {
     _textController.clear();
     _textController.dispose();
     super.dispose(); //
+  }
+
+
+  @override
+  void didUpdateWidget(CustomTextInput oldWidget) {
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -68,7 +74,7 @@ class _CustomTextInputState extends State<CustomTextInput> {
       textColor: colorTable(context)[40],
       hintTextColor: colorTable(context)[40],
       backgroundColor: colorTable(context)[40],
-      activeBorderColor: colorTable(context)[MoonColor.zeno.index]!,
+      activeBorderColor: getColor(context, MoonColor.zeno),
       inactiveBorderColor: _borderColor ?? getColor(context, MoonColor.whis10),
       hoverBorderColor: colorTable(context)[40],
       errorColor: colorTable(context)[MoonColor.chichi.index]!,

@@ -13,7 +13,7 @@ const designResourcesRoute = "$designInputRoute/$designResourcesRoutePath";
 const designDivisionsRoutePath = "design-divisions";
 const designDivisionsRoute = "$designResourcesRoute/$designDivisionsRoutePath";
 const designOfferRoutePath = "design-offer";
-const designOfferRoute = "$designDivisionsRoutePath/$designOfferRoutePath";
+const designOfferRoute = "$designDivisionsRoute/$designOfferRoutePath";
 
 class DesignInputRoute extends GoRoute {
   DesignInputRoute({

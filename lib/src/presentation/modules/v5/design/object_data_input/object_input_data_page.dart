@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import 'package:presale/src/di/di.dart';
 import 'package:presale/src/presentation/common/widget/text_divider.dart';
-import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:presale/src/domain/models/v2/constructing/model/input/input_repository.dart';
 import 'package:presale/src/domain/models/v3/design/division_type/division_type.dart';
 

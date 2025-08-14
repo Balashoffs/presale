@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:presale/src/presentation/common/typography_page_options.dart';
 
 import 'package:presale/src/di/di.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/divisions_margin_summary_viewmodel.dart';
@@ -9,7 +8,9 @@ import 'package:presale/src/presentation/bloc/v5/design/divisions_margin_calcula
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/next_page_widget.dart';
+import 'package:presale/src/presentation/modules/v5/design/divisions_margin_calculate/widget/division_app_bar_title.dart';
 import 'package:presale/src/presentation/modules/v5/design/divisions_margin_calculate/widget/divisions_table_widget.dart';
+import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 
 class DivisionsMarginCalculatePage extends StatelessWidget {
   const DivisionsMarginCalculatePage({super.key});
@@ -20,10 +21,7 @@ class DivisionsMarginCalculatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Расчет по стадии П",
-          style: getHeadingTextStyle(context, MoonTextSize.size16),
-        ),
+        title: DivisionAppBarTitle(),
       ),
       body: DivisionsMarginCalculateRepository(),
     );
@@ -36,7 +34,7 @@ class DivisionsMarginCalculateRepository extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => DivisionsMarginSummaryViewModel(),
+      create: (context) => DivisionsMarginSummaryViewController(),
       child: DivisionsMarginCalculateProvider(),
     );
   }
@@ -52,7 +50,7 @@ class DivisionsMarginCalculateProvider extends StatelessWidget {
         return DivisionsMarginCalculateCubit(
           dbClient: di.dbClientImpl,
           resourceSummaryViewModel: context
-              .read<DivisionsMarginSummaryViewModel>(),
+              .read<DivisionsMarginSummaryViewController>(),
         )..init();
       },
       child: DivisionsMarginCalculateConsumer(),
@@ -77,7 +75,7 @@ class DivisionsMarginCalculateConsumer extends StatelessWidget {
             SizedBox();
       },
       listener: (context, state) {
-        state.whenOrNull(nextPage: () => context.go(''));
+        state.whenOrNull(nextPage: () => context.go(designOfferRoute));
       },
     );
   }
@@ -94,7 +92,7 @@ class DivisionsMarginCalculateWidget extends StatelessWidget {
           flex: 9,
           child: DivisionsMarginTableWidget(
             rowAttributes: divisionMarginTableAttributes,
-            tableDataRows: context.read<DivisionsMarginSummaryViewModel>().rows,
+            tableDataRows: context.read<DivisionsMarginSummaryViewController>().rows,
           ),
         ),
         Expanded(

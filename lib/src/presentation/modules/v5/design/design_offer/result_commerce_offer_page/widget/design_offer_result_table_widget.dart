@@ -52,12 +52,12 @@ class _DivisionsResultAsTableState extends State<DivisionsResultAsTable> {
                       buildTextCell(
                         getViewText(
                           ResultType.overPrice,
-                          widget.results.overPrice,
+                          widget.results.overPriceS,
                         ),
                         10.0,
                       ),
                       buildTextCell(
-                        getViewText(ResultType.margin, widget.results.margin),
+                        getViewText(ResultType.margin, widget.results.marginS),
                         10.0,
                       ),
                     ],
@@ -66,10 +66,10 @@ class _DivisionsResultAsTableState extends State<DivisionsResultAsTable> {
                 Column(
                   children: [
                     buildTextCell(
-                      getViewText(ResultType.summary, widget.results.summary),
+                      getViewText(ResultType.summary, widget.results.summaryS),
                     ),
                     buildTextCell(
-                      getViewText(ResultType.tax, widget.results.tax),
+                      getViewText(ResultType.tax, widget.results.taxS),
                     ),
                   ],
                 ),
@@ -117,13 +117,9 @@ class DivisionsDataSource extends DataGridSource {
                 columnName: 'Наименование раздела',
                 value: e.divisionName,
               ),
-              DataGridCell<int>(
-                columnName: 'Срок выполнения работ',
-                value: e.deadline,
-              ),
-              DataGridCell<double>(
+              DataGridCell<String>(
                 columnName: 'Стоимость с НДС',
-                value: e.divisionSummaryWithTax,
+                value: e.divisionSummaryWithTaxS,
               ),
             ],
           ),

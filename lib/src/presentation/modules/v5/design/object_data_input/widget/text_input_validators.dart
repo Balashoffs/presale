@@ -32,13 +32,13 @@ FormFieldValidator<String>? onlyInfiniteNumberValidator = (value) {
   }return null;
 };
 
-FormFieldValidator<String>? onlyNumberValidator = (value) {
+FormFieldValidator<String>? onlyIntValidator = (value) {
   if(value == null) {
     return 'Начните вводить адрес объекта';
-  } else if (!RegExp(r'^\d+$').hasMatch(value)){
+  } else if (!RegExp(r'^[1-9]$|^[1-9]\d$|^[1-9]\d\d$').hasMatch(value)){
     return 'только цифры от 0 до 9';
   }else if(value.length > 3){
-    return 'только в диапазоне от 1 до 999%';
+    return 'только в диапазоне от 1 до 999';
   } return null;
 };
 
@@ -51,6 +51,18 @@ FormFieldValidator<String>? onlyFactorValidator = (value) {
     r'^[1-9]\d\.\d\d$|^[1-9]\d\,\d\d$|'
     r'^\d.\d\d$|^\d,\d\d$|'
     r'^\d\.[1-9]$|^\d\,[1-9]$'
+  ).hasMatch(value)){
+    return '99,99';
+  }else if(value.length > 5){
+    return '99,99';
+  } return null;
+};
+
+
+FormFieldValidator<String>? ananceValidator = (value) {
+  if(value == null) {
+    return 'ошибка';
+  } else if (!RegExp(r'^[1-9]$|^[1-9]\d+$'
   ).hasMatch(value)){
     return '99,99';
   }else if(value.length > 5){

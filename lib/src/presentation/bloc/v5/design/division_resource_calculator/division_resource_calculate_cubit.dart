@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,12 +19,12 @@ part 'division_resource_calculate_cubit.freezed.dart';
 
 class DivisionResourceCalculateCubit
     extends Cubit<DivisionResourceCalculateState> {
-  final DivisionResourceSummaryViewModel _resourceSummaryViewModel;
+  final DivisionResourceSummaryViewController _resourceSummaryViewModel;
   final DesignPresaleDataSourceLocal _dataSourceLocal;
 
   DivisionResourceCalculateCubit({
     required DBClient dbClient,
-    required DivisionResourceSummaryViewModel resourceSummaryViewModel,
+    required DivisionResourceSummaryViewController resourceSummaryViewModel,
   }) : _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),
        _resourceSummaryViewModel = resourceSummaryViewModel,
        super(const DivisionResourceCalculateState.initial());
@@ -70,8 +72,14 @@ class DivisionResourceCalculateCubit
       resource: updatedResources,
     );
 
+    if(kDebugMode){
+      String result = json.encode(updated.toJson());
+      print(result);
+    }
+
     bool isSaves = await _dataSourceLocal.addDesignPresale(updated);
     if (isSaves) {
+
       emit(DivisionResourceCalculateState.nextPage());
     }
   }
