@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_viewmodel.dart';
+import 'package:presale/src/presentation/bloc/v5/design/offer/design_offer_cubit.dart';
 import 'package:presale/src/presentation/bloc/v5/design/offer/design_offer_result_controller.dart';
 import 'package:presale/src/presentation/common/color_options.dart';
-import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/sign_person_dropdown.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/drop_down_text_controller.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/text_input_validators.dart';
 import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/table_utils.dart';
+import 'package:provider/provider.dart';
+
+import '../../../common/custom_moon_drop_down.dart';
 
 class DesignOfferHeaderWidget extends StatelessWidget {
   const DesignOfferHeaderWidget({super.key, required this.results});
@@ -14,200 +18,172 @@ class DesignOfferHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 8.0,
-      children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          spacing: 8.0,
-          children: [
-            Flexible(
-              flex: 2,
-              child: MoonMenuItem(
-                label: Text(
-                  "Тип документации",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: getColor(context, MoonColor.trunks),
+    return Form(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: Builder(
+        builder: (context) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 16.0,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                spacing: 8.0,
+                children: [
+                  HeaderCellWidget(
+                    title: "Тип документации",
+                    value: results.divisionType,
+                    width: 256,
                   ),
-                ),
-                content: Text(
-                  results.divisionType,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: getColor(context, MoonColor.popo),
+                  HeaderCellWidget(
+                    title: "Дата создания",
+                    value: results.createdDesignOffer,
+                    width: 128,
                   ),
-                ),
+                  HeaderCellWidget(
+                    title: "Сроки",
+                    value: '${results.totalDays.toString()}, дн.',
+                    width: 96,
+                  ),
+                  HeaderCellWidget(
+                    title: "Площадь",
+                    value: '${results.objectSquare.toString()}, дн.',
+                    width: 96,
+                  ),
+                  HeaderEditableWidget(
+                    editbledWidget: [
+                      Text(
+                        'Авансирование, рубл.*',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: getColor(context, MoonColor.trunks),
+                        ),
+                      ),
+                      AvanceInputWidget(
+                        onChanged: (value) {
+                          context
+                              .read<DesignOfferResultController>()
+                              .onAvance(value);
+                        },
+                      ),
+                    ],
+                  ),
+                  HeaderEditableWidget(
+                    editbledWidget: [
+                      Text(
+                        'Подготовил*',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: getColor(context, MoonColor.trunks),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 196,
+                        child: ChangeNotifierProvider(
+                          create: (context) => DropDownTextController(
+                            inputData: context
+                                .read<DesignOfferResultController>()
+                                .signsNames
+                                .value,
+                          ),
+                          child: CustomMoonDropDown(
+                            validator: personSignDropDownValidator,
+                            initText: "Выбрать",
+                            onSelected: context
+                                .read<DesignOfferResultController>()
+                                .onSelectSign,
+                            leadingIcon: MoonIcons.other_player_24_light,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  HeaderEditableWidget(
+                    editbledWidget: [
+                      Text(
+                        'Сформировать КП',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: getColor(context, MoonColor.trunks),
+                        ),
+                      ),
+                      MoonButton(
+                        width: 128,
+                        showBorder: true,
+                        label: Icon(MoonIcons.generic_download_16_light),
+                        onTap: () {
+                          if (Form.of(context).validate()) {
+                            context.read<DesignOfferCubit>().saveToFile();
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ),
-            Flexible(
-              flex: 2,
-              child: MoonMenuItem(
-                label: Text(
-                  "Дата создания",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: getColor(context, MoonColor.trunks),
+              Row(
+                children: [
+                  Flexible(
+                    flex: 2,
+                    child: HeaderAreaWidget(
+                      title: "Название объекта",
+                      value: results.objectName,
+                    ),
                   ),
-                ),
-                content: Text(
-                  results.createdDesignOffer,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: getColor(context, MoonColor.popo),
+                  Flexible(
+                    flex: 4,
+                    child: HeaderAreaWidget(
+                      title: "Адрес объекта",
+                      value: results.objectLocation,
+                    ),
                   ),
-                ),
+                ],
               ),
-            ),
-            Flexible(
-              flex: 7,
-              child: MoonMenuItem(
-                width: 1000,
-                label: Text(
-                  "Название объекта",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: getColor(context, MoonColor.trunks),
-                  ),
-                ),
-                content: MoonTextInput(
-                  controller: TextEditingController.fromValue(
-                    TextEditingValue(text: results.objectName),
-                  ),
-                  readOnly: true,
-                  textAlign: TextAlign.start,
-                ),
-              ),
-            ),
-          ],
-        ),
-        MoonMenuItem(
-          label: Text(
-            "Адрес объекта",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: getColor(context, MoonColor.trunks),
-            ),
-          ),
-          content: MoonTextArea(
-            controller: TextEditingController.fromValue(
-              TextEditingValue(text: results.objectLocation),
-            ),
-            textAlign: TextAlign.start,
-            textStyle: TextStyle(
-              fontSize: 16,
-              color: getColor(context, MoonColor.popo),
-            ),
-            minLines: 2,
-            height: 72,
-          ),
-        ),
-        Row(
-          spacing: 8.0,
-          children: [
-            Flexible(
-              flex: 1,
-              child: MoonMenuItem(
-                width: 256,
-                label: Text(
-                  "Сроки проведения работ:",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: getColor(context, MoonColor.trunks),
-                  ),
-                ),
-                content: Text(
-                  '${results.totalDays.toString()}, дн.',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: getColor(context, MoonColor.popo),
-                  ),
-                ),
-              ),
-            ),
-            Flexible(
-              flex: 2,
-              child: SizedBox(
-                width: 256,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
+                  spacing: 8.0,
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 4.0,
                   children: [
                     Text(
-                      "Авансирование",
+                      'Поле для примечаний',
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontSize: 14,
                         color: getColor(context, MoonColor.trunks),
+                        decoration: TextDecoration.underline,
                       ),
                     ),
-                    buildAvanceInputCell(0, (context, value) {
-                      context.read<DesignOfferResultController>().onAvance(
-                        0.0,
-                      );
-                    }),
+                    MoonTextArea(
+                      textColor: colorTable(context)[40],
+                      hintTextColor: colorTable(context)[40],
+                      backgroundColor: colorTable(context)[40],
+                      activeBorderColor: getColor(context, MoonColor.zeno),
+                      inactiveBorderColor: getColor(context, MoonColor.whis10),
+                      hoverBorderColor: colorTable(context)[40],
+                      errorColor: colorTable(context)[MoonColor.chichi.index]!,
+                      expands: true,
+                      textAlign: TextAlign.start,
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                        color: getColor(context, MoonColor.popo),
+                      ),
+                      onChanged: context
+                          .read<DesignOfferResultController>()
+                          .onComments,
+                    ),
                   ],
                 ),
               ),
-            ),
-            Flexible(
-              flex: 2,
-              child: Column(
-                children: [
-                  SizedBox(width: 250, child: Text('Подготовил')),
-                  ValueListenableBuilder(
-                    valueListenable: context
-                        .read<DesignOfferResultController>()
-                        .signs,
-                    builder: (context, value, child) {
-                      return PersonSignDropDownSelector(
-                        hintText: 'Выбрать подписанта',
-                        onSelected: (value) {
-                          context
-                              .read<DesignOfferResultController>()
-                              .onSelectSign(value);
-                        },
-                        resources: value,
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              flex: 4,
-              child: Column(
-                children: [
-                  buildMultilineTextInput('Поле для примечаний', (
-                    context,
-                    value,
-                  ) {
-                    context.read<DesignOfferResultController>().onComments(
-                      value,
-                    );
-                  }),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          );
+        },
+      ),
     );
   }
 }

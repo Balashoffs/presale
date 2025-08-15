@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/next_page_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
+import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/drop_down_factors_controller.dart';
+import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/drop_down_factors_widgets.dart';
 import 'package:provider/provider.dart';
 
 import 'package:presale/src/di/di.dart';
@@ -15,9 +17,9 @@ import 'package:presale/src/presentation/bloc/v5/design/input/object_input_data/
 import 'package:presale/src/presentation/modules/v5/design/common/custom_app_bar.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_toast_widget.dart';
-import 'package:presale/src/presentation/modules/v5/design/common/custom_dropdwon_vn.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/drop_down_text_controller.dart';
 import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/custon_text_input.dart';
-import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/text_input_validators.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/text_input_validators.dart';
 
 import 'widget/widget.dart';
 
@@ -106,7 +108,7 @@ class LoadedWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ChangeNotifierProvider(
-                      create: (context) => StringNotifierDropDown(
+                      create: (context) => DropDownTextController(
                         inputData: DivisionType.values
                             .map((e) => e.text)
                             .toList(),

@@ -95,7 +95,7 @@ class _CustomTextInputState extends State<CustomTextInput> {
 class CustomTextAreaInput extends StatelessWidget {
   const CustomTextAreaInput({
     super.key,
-    required this.hintText,
+    this.hintText,
     this.helperText,
     this.leading,
     this.trailing,
@@ -105,7 +105,7 @@ class CustomTextAreaInput extends StatelessWidget {
     this.validator,
   });
 
-  final String hintText;
+  final String? hintText;
   final String? helperText;
   final IconData? leading;
   final IconData? trailing;
@@ -119,8 +119,9 @@ class CustomTextAreaInput extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MoonTextArea(
-        height: 200,
+        height: null,
         enabled: true,
+        expands: true,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         textColor: colorTable(context)[40],
         hintTextColor: colorTable(context)[40],

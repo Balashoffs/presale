@@ -14,7 +14,8 @@ class DesignOfferResultVM{
   final double tax;
   String comments = '';
   int totalDays;
-  double avance = 0.0;
+  int objectSquare;
+  int avance = 0;
   PersonSignDTO? signPerson;
 
    String get overPriceS => convertToString(overPrice, 0);
@@ -33,6 +34,7 @@ class DesignOfferResultVM{
     required this.summary,
     required this.tax,
     this.totalDays = 0,
+    this.objectSquare = 0,
     this.signPerson,
   });
 }

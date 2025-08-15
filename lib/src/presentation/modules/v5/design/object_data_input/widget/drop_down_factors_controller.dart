@@ -1,43 +1,5 @@
-import 'package:flutter/foundation.dart';
-import 'package:presale/src/domain/models/v2/constructing/model/input/factors/base_factor/input_base_factor.dart';
-
-class StringNotifierDropDown extends ChangeNotifier {
-  bool _showMenu;
-
-  bool get showMenu => _showMenu;
-
-  final List<String> _inputData;
-
-  StringNotifierDropDown({required List<String> inputData})
-    : _inputData = inputData,
-      _showMenu = false,
-      _current = '';
-
-  String _current;
-
-  String get current => _current;
-
-  List<String> get items => _calc;
-
-  List<String> get _calc =>
-      _inputData.where((element) => element != _current).toList();
-
-  void selected(String value) {
-    _current = value;
-    _showMenu = false;
-    notifyListeners();
-  }
-
-  void onTap() {
-    _showMenu = !_showMenu;
-    notifyListeners();
-  }
-
-  void tapOutside() {
-    _showMenu = false;
-    notifyListeners();
-  }
-}
+import 'package:flutter/material.dart';
+import 'package:presale/src/domain/models/v2/constructing/model/input/factors/base_factor/input_base_factor.dart' show InputBaseFactor;
 
 class SingleObjectValueNotifierDropDown extends ChangeNotifier {
   bool _showMenu;
@@ -52,10 +14,10 @@ class SingleObjectValueNotifierDropDown extends ChangeNotifier {
   SingleObjectValueNotifierDropDown({
     required MapEntry<String, List<InputBaseFactor>> baseFactors,
   }) : _factors = baseFactors.value.asMap().map(
-         (index, item) => MapEntry(item, item.factor.compareTo(1.0) == 0),
-       ),
-       _type = baseFactors.key,
-       _showMenu = false;
+        (index, item) => MapEntry(item, item.factor.compareTo(1.0) == 0),
+  ),
+        _type = baseFactors.key,
+        _showMenu = false;
 
   InputBaseFactor get _selected =>
       _factors.entries.firstWhere((element) => element.value == true).key;
@@ -102,8 +64,8 @@ class MultiObjectValueNotifierDropDown extends ChangeNotifier {
   Map<String, bool> get availableChoices => _availableChoices;
 
   MultiObjectValueNotifierDropDown({required List<String> inputData})
-    : _inputData = inputData,
-      _showChoices = false {
+      : _inputData = inputData,
+        _showChoices = false {
     _fill(_inputData);
   }
 

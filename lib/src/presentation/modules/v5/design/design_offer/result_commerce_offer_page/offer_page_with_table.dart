@@ -6,7 +6,6 @@ import 'package:presale/src/domain/models/v5/design/design_offer_result/design_o
 import 'package:presale/src/presentation/bloc/v5/design/offer/design_offer_cubit.dart';
 import 'package:presale/src/presentation/bloc/v5/design/offer/design_offer_result_controller.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
-import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/design_offer_footer_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/design_offer_header.dart';
 import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/design_offer_result_table_widget.dart';
 
@@ -75,20 +74,14 @@ class DesignOfferWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.all(16),
-      child: Form(
-        child: Builder(
-          builder: (context) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                DesignOfferHeaderWidget(results: results,),
-                DivisionsResultAsTable(results: results),
-                DesignOfferFooterWidget(results: results)
-              ],
-            );
-          },
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          DesignOfferHeaderWidget(results: results,),
+          Divider(indent: 16,endIndent: 16,),
+          DivisionsResultAsTable(results: results),
+        ],
       ),
     );
   }

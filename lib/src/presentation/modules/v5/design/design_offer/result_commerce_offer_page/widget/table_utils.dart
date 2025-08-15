@@ -1,224 +1,143 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:presale/src/domain/models/v5/design/design_offer_result/division_summary_viewmodel.dart';
 import 'package:presale/src/presentation/common/color_options.dart';
-import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_text_input.dart';
-import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/text_input_validators.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/text_input_validators.dart';
 
-typedef ValueChangedWithContext<T> =
-    void Function(BuildContext context, T value);
+class FormattedTextWidget extends StatelessWidget {
+  const FormattedTextWidget({
+    super.key,
+    required this.fontSize,
+    required this.type,
+    required this.value,
+  });
 
-Widget addDecoration(Widget child, [bool isFistCell = false]) {
-  return Builder(
-    builder: (context) {
-      return DecoratedBox(
-        decoration: isFistCell
-            ? BoxDecoration()
-            : BoxDecoration(
-                border: Border(
-                  left: Directionality.of(context) == TextDirection.ltr
-                      ? Divider.createBorderSide(
-                          context,
-                          color: context.moonColors!.beerus,
-                          width: 1,
-                        )
-                      : BorderSide.none,
-                  right: Directionality.of(context) == TextDirection.rtl
-                      ? Divider.createBorderSide(
-                          context,
-                          color: context.moonColors!.beerus,
-                          width: 1,
-                        )
-                      : BorderSide.none,
-                ),
-              ),
-        child: child,
-      );
-    },
-  );
+  final ResultType type;
+  final String value;
+  final double fontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsetsDirectional.all(8.0),
+      child: Text(
+        textAlign: TextAlign.center,
+        getViewText(type, value),
+        style: TextStyle(fontSize: fontSize),
+      ),
+    );
+  }
 }
 
-Widget buildColumnCell(List<String> strings) {
-  return Expanded(
-    child: Column(
-      children: [
-        Center(child: Text(textAlign: TextAlign.center, strings[0])),
-        Center(child: Text(textAlign: TextAlign.center, strings[1])),
-      ],
-    ),
-  );
+class AvanceInputWidget extends StatelessWidget {
+  const AvanceInputWidget({super.key, required this.onChanged});
+
+  final ValueChanged<String> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 196,
+      child: CustomTextInput(
+        isEnables: true,
+        hintText: '0',
+        onChanged: onChanged,
+        validator: ananceValidator,
+      ),
+    );
+    ;
+  }
 }
 
-Widget buildHeaderCell(CollumAttribute attribute) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      InkWell(
-        onTap: () {}, // Optional tap handler
-        child: Tooltip(
-          message: attribute.tooltip,
-          child: Text(textAlign: TextAlign.center, attribute.name),
+class HeaderCellWidget extends StatelessWidget {
+  const HeaderCellWidget({
+    super.key,
+    required this.title,
+    required this.value,
+    required this.width,
+  });
+
+  final String title;
+  final String value;
+  final double width;
+
+  @override
+  Widget build(BuildContext context) {
+    return MoonMenuItem(
+      width: width,
+      label: Text(
+        title,
+        textAlign: TextAlign.left,
+        style: TextStyle(
+          fontSize: 14,
+          color: getColor(context, MoonColor.trunks),
+          decoration: TextDecoration.underline,
         ),
       ),
-    ],
-  );
-}
-
-Widget buildTextCell(dynamic label, [double? fontSize]) {
-  return Padding(
-    padding: const EdgeInsetsDirectional.all(8.0),
-    child: Text(
-      textAlign: TextAlign.center,
-      label.toString(),
-      style: TextStyle(fontSize: fontSize),
-    ),
-  );
-}
-
-Widget buildTextWithNotifier(ValueNotifier<double> vn) {
-  return Center(
-    child: DecoratedBox(
-      decoration: const BoxDecoration(),
-      child: Padding(
-        padding: const EdgeInsetsDirectional.all(8.0),
-        child: ValueListenableBuilder<double>(
-          valueListenable: vn,
-          builder: (context, value, child) {
-            Color textColor = vn.value.compareTo(0.0) > 0
-                ? colorTable(context)[MoonColor.zeno.index]!
-                : colorTable(context)[MoonColor.chichi.index]!;
-            ;
-            return Text(
-              textAlign: TextAlign.center,
-              value.toStringAsFixed(2),
-              style: TextStyle(color: textColor),
-            );
-          },
+      content: Text(
+        value,
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          fontSize: 16,
+          color: getColor(context, MoonColor.popo),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
-Widget buildAvanceInputCell(
-  double defaultValue,
-  ValueChangedWithContext<int> onChanged,
-) {
-  return Builder(
-    builder: (context) {
-      return SizedBox(
-        width: 256,
-        child: CustomTextInput(
-          isEnables: true,
-          hintText: '$defaultValue',
-          onChanged: (input) {
-            int? parsed = onChangeIntValue(input);
-            if (parsed != null) {
-              onChanged(context, parsed);
-            }
-          },
-          validator: ananceValidator,
-        ),
-      );
-    },
-  );
-}
+class HeaderAreaWidget extends StatelessWidget {
+  const HeaderAreaWidget({super.key, required this.title, required this.value});
 
-Widget buildIntInputCell(
-    double defaultValue,
-    ValueChangedWithContext<double> onChanged,
-    ) {
-  return Builder(
-    builder: (context) {
-      return SizedBox(
-        width: 256,
-        child: CustomTextInput(
-          isEnables: true,
-          hintText: '$defaultValue',
-          onChanged: (input) {
-            double? parsed = onChangeFactorValue(input);
-            if (parsed != null) {
-              onChanged(context, parsed);
-            }
-          },
-          validator: onlyInfiniteNumberValidator,
-        ),
-      );
-    },
-  );
-}
+  final String title;
+  final String value;
 
-Widget buildStringInputCell(
-  String defaultValue,
-  ValueChangedWithContext<String> onChanged,
-) {
-  return Builder(
-    builder: (context) {
-      return Center(
-        child: SizedBox(
-          width: 56,
-          child: CustomTextInput(
-            isEnables: true,
-            hintText: defaultValue,
-            onChanged: (input) {
-              if (input.isNotEmpty) {
-                onChanged(context, input);
-              }
-            },
-            validator: objectNameValidator,
+  @override
+  Widget build(BuildContext context) {
+    return MoonMenuItem(
+      label: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Text(
+          title,
+          textAlign: TextAlign.left,
+          style: TextStyle(
+            fontSize: 14,
+            color: getColor(context, MoonColor.trunks),
+            decoration: TextDecoration.underline,
           ),
         ),
-      );
-    },
-  );
-}
-
-Widget buildCellWithIcon(Widget widget, VoidCallback onRemove) {
-  return DecoratedBox(
-    decoration: const BoxDecoration(),
-    child: Padding(
-      padding: const EdgeInsetsDirectional.all(8.0),
-      child: MoonButton.icon(icon: widget, onTap: onRemove),
-    ),
-  );
-}
-
-Widget buildCellWithMultiLine(String label) {
-  return Center(
-    child: InkWell(
-      onTap: () {}, // Optional tap handler
-      child: Tooltip(
-        message: label.toString(),
-        child: Text(
-          label,
-          maxLines: 3,
-          textAlign: TextAlign.center,
-          softWrap: true,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(),
+      ),
+      content: MoonTextArea(
+        hintText: value,
+        expands: true,
+        readOnly: true,
+        textAlign: TextAlign.start,
+        textStyle: TextStyle(
+          fontSize: 16,
+          color: getColor(context, MoonColor.popo),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
-Widget buildMultilineTextInput(
-  String label,
-  ValueChangedWithContext<String> onChanged,
-) {
-  return Builder(
-    builder: (context) {
-      return CustomTextAreaInput(
-        hintText: label,
-        width: 1000,
-        onChanged: (value) {
-          if (value.isNotEmpty) {
-            onChanged(context, value);
-          }
-        },
-      );
-    },
-  );
+class HeaderEditableWidget extends StatelessWidget {
+  const HeaderEditableWidget({super.key, required this.editbledWidget});
+
+  final List<Widget> editbledWidget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: 8.0,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: MoonMenuItem.divideMenuItems(
+        context: context,
+        menuItems: editbledWidget,
+      ).toList(),
+    );
+  }
 }
 
 double? onChangeFactorValue(String? newValue) {

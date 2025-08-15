@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:presale/src/domain/models/v5/design/design_offer_result/division_summary_viewmodel.dart';
+import 'package:presale/src/presentation/common/color_options.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
+import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/table_utils.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_viewmodel.dart';
-import 'package:presale/src/domain/models/v5/design/design_offer_result/division_summary_viewmodel.dart';
-import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
-import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/table_utils.dart';
-
 
 class DivisionsResultAsTable extends StatefulWidget {
   const DivisionsResultAsTable({super.key, required this.results});
@@ -20,23 +20,33 @@ class DivisionsResultAsTable extends StatefulWidget {
 class _DivisionsResultAsTableState extends State<DivisionsResultAsTable> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(),
-      child: Padding(
-        padding: const EdgeInsets.only(
-          top: 8.0,
-          bottom: 8.0,
-          left: 8.0,
-          right: 64,
-        ),
-        child: SizedBox(
-          height: widget.results.divisionRows.length <= 10
-              ? widget.results.divisionRows.length * 72 + 144
-              : MediaQuery.of(context).size.height * 2 / 3,
-          child: SfDataGrid(
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 8.0,
+        left: 8.0,
+        right: 64,
+      ),
+      child: ListView(
+        padding: EdgeInsetsGeometry.all(8.0),
+        shrinkWrap: true,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16.0),
+            child: Text(
+              'Таблица с результатами',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 14,
+                color: getColor(context, MoonColor.trunks),
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
+          SfDataGrid(
             footerFrozenRowsCount: 1,
             columnWidthMode: ColumnWidthMode.fill,
             footerHeight: 88,
+            shrinkWrapRows: true,
             footer: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -49,35 +59,36 @@ class _DivisionsResultAsTableState extends State<DivisionsResultAsTable> {
                   ),
                   child: Column(
                     children: [
-                      buildTextCell(
-                        getViewText(
-                          ResultType.overPrice,
-                          widget.results.overPriceS,
-                        ),
-                        10.0,
+                      FormattedTextWidget(
+                        value: widget.results.overPriceS,
+                        type: ResultType.overPrice,
+                        fontSize: 10.0,
                       ),
-                      buildTextCell(
-                        getViewText(ResultType.margin, widget.results.marginS),
-                        10.0,
+                      FormattedTextWidget(
+                        value: widget.results.marginS,
+                        type: ResultType.margin,
+                        fontSize: 10.0,
                       ),
                     ],
                   ),
                 ),
                 Column(
                   children: [
-                    buildTextCell(
-                      getViewText(ResultType.summary, widget.results.summaryS),
+                    FormattedTextWidget(
+                      value: widget.results.summaryS,
+                      type: ResultType.summary,
+                      fontSize: 14.0,
                     ),
-                    buildTextCell(
-                      getViewText(ResultType.tax, widget.results.taxS),
+                    FormattedTextWidget(
+                      value: widget.results.taxS,
+                      type: ResultType.tax,
+                      fontSize: 14.0,
                     ),
                   ],
                 ),
               ],
             ),
-            source: DivisionsDataSource(
-              employeeData: widget.results.divisionRows,
-            ),
+            source: DivisionsDataSource(employeeData: widget.results.divisionRows),
             columns: List.generate(designOfferTableAttribute.length, (index) {
               CollumAttribute attribute = designOfferTableAttribute[index];
               return GridColumn(
@@ -94,8 +105,12 @@ class _DivisionsResultAsTableState extends State<DivisionsResultAsTable> {
               );
             }),
           ),
-        ),
+        ],
       ),
+
+
+
+
     );
   }
 
@@ -106,7 +121,8 @@ class DivisionsDataSource extends DataGridSource {
   DivisionsDataSource({required List<DesignOfferResultRowVM> employeeData}) {
     _divisionData = employeeData
         .map<DataGridRow>(
-          (e) => DataGridRow(
+          (e) =>
+          DataGridRow(
             cells: [
               DataGridCell<int>(columnName: '№', value: e.id),
               DataGridCell<String>(
@@ -123,7 +139,7 @@ class DivisionsDataSource extends DataGridSource {
               ),
             ],
           ),
-        )
+    )
         .toList();
   }
 
