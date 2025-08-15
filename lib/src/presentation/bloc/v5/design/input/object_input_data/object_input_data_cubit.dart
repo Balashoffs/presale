@@ -165,7 +165,7 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     _objectDataBuilder.setComplexityFactor(result);
   }
 
-  void nextPage() async {
+  Future<void> nextPage() async {
     try {
       InputDataMV inputDataMv = _objectDataBuilder.build();
       ObjectDataDesign objectDataData = inputDataMv.toObject();

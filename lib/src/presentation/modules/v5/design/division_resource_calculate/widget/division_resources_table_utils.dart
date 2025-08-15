@@ -6,186 +6,266 @@ import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_text_input.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/text_input_validators.dart';
-
-import 'custom_dropdown_with_search_widget.dart';
+import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/custom_dropdown_with_search_widget.dart';
 
 typedef ValueChangedWithContext<T> =
     void Function(BuildContext context, T value);
 
-Widget addDecoration(Widget child, [bool isFistCell = false]) {
-  return Builder(
-    builder: (context) {
-      return DecoratedBox(
-        decoration: isFistCell
-            ? BoxDecoration()
-            : BoxDecoration(
-                border: Border(
-                  left: Directionality.of(context) == TextDirection.ltr
-                      ? Divider.createBorderSide(
-                          context,
-                          color: context.moonColors!.beerus,
-                          width: 1,
-                        )
-                      : BorderSide.none,
-                  right: Directionality.of(context) == TextDirection.rtl
-                      ? Divider.createBorderSide(
-                          context,
-                          color: context.moonColors!.beerus,
-                          width: 1,
-                        )
-                      : BorderSide.none,
+class CellDecorationWidget extends StatelessWidget {
+  const CellDecorationWidget({
+    super.key,
+    this.isFistCell = false,
+    required this.child,
+  });
+
+  final bool isFistCell;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(
+      builder: (context) {
+        return DecoratedBox(
+          decoration: isFistCell
+              ? BoxDecoration()
+              : BoxDecoration(
+                  border: Border(
+                    left: Directionality.of(context) == TextDirection.ltr
+                        ? Divider.createBorderSide(
+                            context,
+                            color: context.moonColors!.beerus,
+                            width: 1,
+                          )
+                        : BorderSide.none,
+                    right: Directionality.of(context) == TextDirection.rtl
+                        ? Divider.createBorderSide(
+                            context,
+                            color: context.moonColors!.beerus,
+                            width: 1,
+                          )
+                        : BorderSide.none,
+                  ),
                 ),
-              ),
-        child: child,
-      );
-    },
-  );
+          child: child,
+        );
+      },
+    );
+  }
 }
 
-Widget buildHeaderCell(CollumAttribute attribute) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      InkWell(
-        onTap: () {}, // Optional tap handler
-        child: Tooltip(
-          message: attribute.tooltip,
-          child: Text(textAlign: TextAlign.center, attribute.name),
+
+class HeaderCellWidget extends StatelessWidget {
+  const HeaderCellWidget({super.key, required this.attribute});
+
+  final CollumAttribute attribute;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        InkWell(
+          onTap: () {}, // Optional tap handler
+          child: Tooltip(
+            message: attribute.tooltip,
+            child: Text(textAlign: TextAlign.center, attribute.name),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class TextCellWidget extends StatelessWidget {
+  const TextCellWidget({super.key, this.label});
+
+  final dynamic label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsetsDirectional.all(8.0),
+        child: Text(textAlign: TextAlign.center, label.toString()),
+      ),
+    );
+  }
+}
+
+class TextWithNotifier extends StatelessWidget {
+  const TextWithNotifier({super.key, required this.vn});
+
+  final ValueNotifier<double> vn;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: DecoratedBox(
+        decoration: const BoxDecoration(),
+        child: Padding(
+          padding: const EdgeInsetsDirectional.all(8.0),
+          child: ValueListenableBuilder<double>(
+            valueListenable: vn,
+            builder: (context, value, child) {
+              Color textColor = vn.value.compareTo(0.0) > 0
+                  ? colorTable(context)[MoonColor.zeno.index]!
+                  : colorTable(context)[MoonColor.chichi.index]!;
+              return Text(
+                textAlign: TextAlign.center,
+                convertToString(value, 0),
+                style: TextStyle(color: textColor),
+              );
+            },
+          ),
         ),
       ),
-    ],
-  );
+    );
+  }
 }
 
-Widget buildTextCell(dynamic label) {
-  return Center(
-    child: Padding(
-      padding: const EdgeInsetsDirectional.all(8.0),
-      child: Text(textAlign: TextAlign.center, label.toString()),
-    ),
-  );
+class IntInputCellWidget extends StatelessWidget {
+  const IntInputCellWidget({
+    super.key,
+    required this.defaultValue,
+    required this.onChanged,
+  });
+
+  final int defaultValue;
+  final ValueChangedWithContext<int> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(
+      builder: (context) {
+        return Center(
+          child: SizedBox(
+            width: 56,
+            child: CustomTextInput(
+              isEnables: true,
+              hintText: '$defaultValue',
+              onChanged: (input) {
+                int? parsed = onChangeIntValue(input);
+                if (parsed != null) {
+                  onChanged(context, parsed);
+                }
+              },
+              validator: onlyIntValidator,
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
 
-Widget buildTextWithNotifier(ValueNotifier<double> vn) {
-  return Center(
-    child: DecoratedBox(
+class FloatInputCellWidget extends StatelessWidget {
+  const FloatInputCellWidget({
+    super.key,
+    required this.defaultValue,
+    required this.onChanged,
+  });
+
+  final double defaultValue;
+  final ValueChangedWithContext<double> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(
+      builder: (context) {
+        return Center(
+          child: SizedBox(
+            width: 56,
+            child: CustomTextInput(
+              isEnables: true,
+              hintText: '$defaultValue',
+              onChanged: (input) {
+                double? parsed = onChangeFactorValue(input);
+                if (parsed != null) {
+                  onChanged(context, parsed);
+                }
+              },
+              validator: onlyFactorValidator,
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class ResourcesDropdownWidget extends StatelessWidget {
+  const ResourcesDropdownWidget({
+    super.key,
+    required this.onChanged,
+    required this.resources,
+  });
+
+  final ValueChangedWithContext<String> onChanged;
+  final List<ResourceDTO> resources;
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(
+      builder: (context) {
+        return Center(
+          child: ResourceDropDownSelector(
+            hintText: 'Выберите ресурс',
+            onSelected: (p0) => onChanged(context, p0?.resourceName ?? ''),
+            resources: resources,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class CellWithIconWidget extends StatelessWidget {
+  const CellWithIconWidget({super.key, required this.iconData, this.onTap});
+
+  final IconData iconData;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
       decoration: const BoxDecoration(),
       child: Padding(
         padding: const EdgeInsetsDirectional.all(8.0),
-        child: ValueListenableBuilder<double>(
-          valueListenable: vn,
-          builder: (context, value, child) {
-            Color textColor = vn.value.compareTo(0.0) > 0
-                ? colorTable(context)[MoonColor.zeno.index]!
-                : colorTable(context)[MoonColor.chichi.index]!;
-            return Text(
-              textAlign: TextAlign.center,
-              convertToString(value, 0),
-              style: TextStyle(color: textColor),
-            );
-          },
-        ),
+        child: MoonButton.icon(icon: Icon(iconData), onTap: onTap),
       ),
-    ),
-  );
+    );
+  }
 }
 
-Widget buildIntInputCell(
-  int defaultValue,
-  ValueChangedWithContext<int> onChanged,
-) {
-  return Builder(
-    builder: (context) {
-      return Center(
-        child: SizedBox(
-          width: 56,
-          child: CustomTextInput(
-            isEnables: true,
-            hintText: '$defaultValue',
-            onChanged: (input) {
-              int? parsed = onChangeIntValue(input);
-              if (parsed != null) {
-                onChanged(context, parsed);
-              }
-            },
-            validator: onlyIntValidator,
+class CellWithMultiLineWidget extends StatelessWidget {
+  const CellWithMultiLineWidget({
+    super.key,
+    required this.label,
+    required this.hint,
+  });
+
+  final String hint;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: InkWell(
+        onTap: () {}, // Optional tap handler
+        child: Tooltip(
+          message: hint,
+          child: Text(
+            label,
+            maxLines: 3,
+            textAlign: TextAlign.center,
+            softWrap: true,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(),
           ),
         ),
-      );
-    },
-  );
-}
-
-Widget buildIntDropdownCell(
-  ValueChangedWithContext<String> onChanged,
-  List<ResourceDTO> resources,
-) {
-  return Builder(
-    builder: (context) {
-      return Center(
-        child: ResourceDropDownSelector(
-          hintText: 'Выберите ресурс',
-          onSelected: (p0) => onChanged(context, p0?.resourceName ?? ''),
-          resources: resources,
-        ),
-      );
-    },
-  );
-}
-
-Widget buildFactorInputCell(
-  double defaultValue,
-  ValueChangedWithContext<double> onChanged,
-) {
-  return Builder(
-    builder: (context) {
-      return Center(
-        child: SizedBox(
-          width: 56,
-          child: CustomTextInput(
-            isEnables: true,
-            hintText: '$defaultValue',
-            onChanged: (input) {
-              double? parsed = onChangeFactorValue(input);
-              if (parsed != null) {
-                onChanged(context, parsed);
-              }
-            },
-            validator: onlyFactorValidator,
-          ),
-        ),
-      );
-    },
-  );
-}
-
-Widget buildCellWithIcon(Widget widget, VoidCallback onRemove) {
-  return DecoratedBox(
-    decoration: const BoxDecoration(),
-    child: Padding(
-      padding: const EdgeInsetsDirectional.all(8.0),
-      child: MoonButton.icon(icon: widget, onTap: onRemove),
-    ),
-  );
-}
-
-Widget buildCellWithMultiLine(String label) {
-  return Center(
-    child: InkWell(
-      onTap: () {}, // Optional tap handler
-      child: Tooltip(
-        message: label.toString(),
-        child: Text(
-          label,
-          maxLines: 3,
-          textAlign: TextAlign.center,
-          softWrap: true,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(),
-        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 double? onChangeFactorValue(String? newValue) {

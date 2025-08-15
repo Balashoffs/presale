@@ -7,8 +7,8 @@ import 'package:presale/src/domain/models/v4/design/division_resource_table/widg
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
 import 'package:presale/src/presentation/bloc/v5/design/division_resource_calculator/division_resource_calculate_cubit.dart';
-import 'package:presale/src/presentation/common/typography_page_options.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_app_bar.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/result_sum_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/custom_dropdown_with_search_widget.dart';
@@ -22,11 +22,9 @@ class DivisionResourceCalculatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title:ResourceAppBarTitle(),
-      ),
-      body: DivisionResourceCalculateRepository(),
+    return CustomAppBar(
+      title: ResourceAppBarTitle(),
+      child: DivisionResourceCalculateRepository(),
     );
   }
 }
@@ -78,9 +76,7 @@ class DivisionResourceCalculateConsumer extends StatelessWidget {
             SizedBox();
       },
       listener: (context, state) {
-        state.whenOrNull(
-          nextPage: () => context.go(designDivisionsRoute)
-        );
+        state.whenOrNull(nextPage: () => context.push(designDivisionsRoute));
       },
     );
   }
@@ -91,6 +87,7 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.read<DivisionResourceSummaryViewController>();
     return Column(
       children: [
         Expanded(
@@ -100,19 +97,14 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
             children: [
               CustomDropdownWithSearchWidget(
                 enabled: true,
-                divisions: context
-                    .read<DivisionResourceSummaryViewController>()
-                    .allDivisions,
-                onSelected: (p0) => context
-                    .read<DivisionResourceSummaryViewController>()
-                    .onRowAction(p0.id, WidgetActionType.add),
+                divisions: controller.allDivisions,
+                onSelected: (p0) =>
+                    controller.onRowAction(p0.id, WidgetActionType.add),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ValueListenableBuilder<double>(
-                  valueListenable: context
-                      .read<DivisionResourceSummaryViewController>()
-                      .summaryVN,
+                  valueListenable: controller.summaryVN,
                   builder: (context, value, child) {
                     return ResultSumWidget(
                       name: 'Себестоимость',
@@ -127,16 +119,12 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
         Expanded(
           flex: 8,
           child: ValueListenableBuilder<List<DivisionWithResourceRowVM>>(
-            valueListenable: context
-                .read<DivisionResourceSummaryViewController>()
-                .selectedRows,
+            valueListenable: controller.selectedRows,
             builder: (context, value, child) {
               return DivisionsResourceTableWidget(
                 rowAttributes: divisionResourceTableAttributes,
                 tableDataRows: value,
-                onRowAction: context
-                    .read<DivisionResourceSummaryViewController>()
-                    .onRowAction,
+                onRowAction: controller.onRowAction,
               );
             },
           ),
@@ -146,9 +134,7 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ValueListenableBuilder<bool>(
-              valueListenable: context
-                  .read<DivisionResourceSummaryViewController>()
-                  .isValid,
+              valueListenable: controller.isValid,
               builder: (context, value, child) {
                 return NextPageWidget(
                   onTap: value == true

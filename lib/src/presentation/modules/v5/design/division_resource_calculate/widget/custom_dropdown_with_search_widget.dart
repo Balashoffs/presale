@@ -187,7 +187,6 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
   bool _isUpper = false;
 
   void _getPosition(){
-    final s = _dropWidgetKey.currentContext;
     final RenderBox? renderBox = _dropWidgetKey.currentContext?.findRenderObject() as RenderBox?;
     print('find render: ${renderBox.toString()}');
     if(renderBox != null){
@@ -206,7 +205,7 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
       key: _dropWidgetKey,
       show: _showMenu,
       groupId: Uuid().v4(),
-      maxWidth: 312,
+      maxWidth: 196,
       borderColor: colorTable(context)[40] ?? Colors.transparent,
       backgroundColor: colorTable(context)[40],
       constrainWidthToChild: true,
@@ -231,7 +230,7 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
         }),
       ),
       child: MoonTextInput(
-        width: 256,
+        width: 196,
         readOnly: true,
         canRequestFocus: false,
         mouseCursor: MouseCursor.defer,

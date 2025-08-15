@@ -6,6 +6,7 @@ import 'package:presale/src/di/di.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/divisions_margin_summary_viewmodel.dart';
 import 'package:presale/src/presentation/bloc/v5/design/divisions_margin_calculator/divisions_margin_calculate_cubit.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_app_bar.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/next_page_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/divisions_margin_calculate/widget/division_app_bar_title.dart';
@@ -15,15 +16,12 @@ import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dar
 class DivisionsMarginCalculatePage extends StatelessWidget {
   const DivisionsMarginCalculatePage({super.key});
 
-  final String pathToRootRoute = '/';
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: DivisionAppBarTitle(),
-      ),
-      body: DivisionsMarginCalculateRepository(),
+    return CustomAppBar(
+      title: DivisionAppBarTitle(),
+
+      child: DivisionsMarginCalculateRepository(),
     );
   }
 }

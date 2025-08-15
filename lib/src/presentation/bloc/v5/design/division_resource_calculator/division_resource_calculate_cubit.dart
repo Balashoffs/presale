@@ -31,14 +31,18 @@ class DivisionResourceCalculateCubit
 
   void init() async {
     DesignPresalePojo designPresalePojo;
-    if (kDebugMode) {
-      designPresalePojo =
-          await DesignPresaleDataTest.getDevInputDesignPresale();
-    } else {
-      designPresalePojo = await _dataSourceLocal.getDesignPresale(
-        DesignPresaleDataSourceLocal.key,
-      );
-    }
+    // if (kDebugMode) {
+    //   designPresalePojo =
+    //       await DesignPresaleDataTest.getDevInputDesignPresale();
+    // } else {
+    //   designPresalePojo = await _dataSourceLocal.getDesignPresale(
+    //     DesignPresaleDataSourceLocal.key,
+    //   );
+    // }
+
+    designPresalePojo = await _dataSourceLocal.getDesignPresale(
+      DesignPresaleDataSourceLocal.key,
+    );
 
     DivisionWithResourceDTO divisionWithResourceDTO =
         await DivisionWithResourceDTO.build(
@@ -72,14 +76,13 @@ class DivisionResourceCalculateCubit
       resource: updatedResources,
     );
 
-    if(kDebugMode){
+    if (kDebugMode) {
       String result = json.encode(updated.toJson());
       print(result);
     }
 
     bool isSaves = await _dataSourceLocal.addDesignPresale(updated);
     if (isSaves) {
-
       emit(DivisionResourceCalculateState.nextPage());
     }
   }

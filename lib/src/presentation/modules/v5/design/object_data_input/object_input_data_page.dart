@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/next_page_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/drop_down_factors_controller.dart';
@@ -29,8 +30,15 @@ class InputDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomAppBar(
-      title: 'Расчет стадий проектирования',
-      pathToRootRoute: '/',
+      title: Text(
+        'Первоначальные данные о проекте',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 14,
+          color: getColor(context, MoonColor.piccolo),
+        ),
+      ),
+
       child: ObjectInputDataBlocBuilderWidget(),
     );
   }
@@ -266,9 +274,12 @@ class LoadedWidget extends StatelessWidget {
                 ),
                 NextPageWidget(
                   onTap: () {
-                    Form.of(context).validate()
-                        ? cubit.nextPage()
-                        : showToast(context, 'Не все поля заполнены!');
+                    bool isValid = Form.of(context).validate();
+                    if (isValid) {
+                      cubit.nextPage();
+                    } else {
+                      showToast(context, 'Не все поля заполнены!');
+                    }
                   },
                 ),
               ],

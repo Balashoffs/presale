@@ -282,7 +282,7 @@ class ObjectTablePage extends StatelessWidget {
                     ),
                   MoonButton(
                     onTap: () {
-                        context.go('${di.appRouter.routerDelegate.currentConfiguration.uri}/$stagesTableRoutePath');
+                        // context.go('${di.appRouter.routerDelegate.currentConfiguration.uri}/$stagesTableRoutePath');
                       },
                     label: Text('Далее'),
                   ),

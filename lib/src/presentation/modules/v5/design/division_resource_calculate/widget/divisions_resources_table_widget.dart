@@ -63,9 +63,9 @@ class _DivisionsResourceTableWidgetState
       columns: List.generate(widget.rowAttributes.length, (int index) {
         return MoonTableColumn(
           width: widget.rowAttributes[index].width,
-          cell: addDecoration(
-            buildHeaderCell(widget.rowAttributes[index]),
-            index == 0,
+          cell: CellDecorationWidget(
+            isFistCell: index == 0,
+            child: HeaderCellWidget(attribute: widget.rowAttributes[index]),
           ),
         );
       }),
@@ -74,77 +74,90 @@ class _DivisionsResourceTableWidgetState
 
   List<MoonTableRow> _generateTableRows() {
     return List.generate(widget.tableDataRows.length, (int index) {
+      final controller = context.read<DivisionResourceSummaryViewController>();
       final row = widget.tableDataRows[index];
       return MoonTableRow(
         height: 72,
         cells: [
-          addDecoration(
-            buildCellWithIcon(
-              const Icon(MoonIcons.controls_close_16_light),
-              () {
+          CellDecorationWidget(
+            isFistCell: true,
+            child: CellWithIconWidget(
+              iconData: MoonIcons.controls_close_16_light,
+              onTap: () {
                 widget.onRowAction(row.id, WidgetActionType.delete);
                 _isRemoveAction = true;
               },
             ),
-            true,
           ),
-          addDecoration(buildTextCell(row.divisionShortName)),
-          addDecoration(buildCellWithMultiLine(row.divisionName)),
+          CellDecorationWidget(
+            child: TextCellWidget(label: row.divisionShortName),
+          ),
+          CellDecorationWidget(
+            child: CellWithMultiLineWidget(
+              label: row.divisionName,
+              hint: row.divisionName,
+            ),
+          ),
           row.resourceNameVN.value.isEmpty
-              ? addDecoration(
-                  buildIntDropdownCell(
-                    (context, value) {
-                      context
-                          .read<DivisionResourceSummaryViewController>()
-                          .onResourceName(row.id, value);
+              ? CellDecorationWidget(
+                  child: ResourcesDropdownWidget(
+                    onChanged: (context, value) {
+                      controller.onResourceName(row.id, value);
                     },
-                    context
-                        .read<DivisionResourceSummaryViewController>()
-                        .resourcesByDivisionShortName(row.divisionShortName),
+                    resources: controller.resourcesByDivisionShortName(
+                      row.divisionShortName,
+                    ),
                   ),
                 )
-              : addDecoration(buildTextCell(row.resourceNameVN.value)),
-          addDecoration(buildTextWithNotifier(row.resourceCostPerDayVN)),
-          addDecoration(
-            buildIntInputCell(row.resourceQnt, (context, value) {
-              context.read<DivisionResourceSummaryViewController>().onResourceQnt(
-                row.id,
-                value,
-              );
-            }),
+              : CellDecorationWidget(
+                  child: TextCellWidget(label: row.resourceNameVN.value),
+                ),
+          CellDecorationWidget(
+            child: TextWithNotifier(vn: row.resourceCostPerDayVN),
           ),
-          addDecoration(
-            buildIntInputCell(row.workDays, (context, value) {
-              context.read<DivisionResourceSummaryViewController>().onWorkDays(
-                row.id,
-                value,
-              );
-            }),
+          CellDecorationWidget(
+            child: IntInputCellWidget(
+              onChanged: (context, value) {
+                controller.onResourceQnt(row.id, value);
+              },
+              defaultValue: row.resourceQnt,
+            ),
           ),
-          addDecoration(
-            buildFactorInputCell(row.complexFactor, (context, value) {
-              context.read<DivisionResourceSummaryViewController>().onComplexFactor(
-                row.id,
-                value,
-              );
-            }),
+          CellDecorationWidget(
+            child: IntInputCellWidget(
+              onChanged: (context, value) {
+                controller.onWorkDays(row.id, value);
+              },
+              defaultValue: row.workDays,
+            ),
           ),
-          addDecoration(
-            buildFactorInputCell(row.squareFactor, (context, value) {
-              context.read<DivisionResourceSummaryViewController>().onSquareFactor(
-                row.id,
-                value,
-              );
-            }),
+          CellDecorationWidget(
+            child: FloatInputCellWidget(
+              onChanged: (context, value) {
+                controller.onComplexFactor(row.id, value);
+              },
+              defaultValue: row.complexFactor,
+            ),
           ),
-          addDecoration(
-            buildFactorInputCell(row.resourceUsingFactor, (context, value) {
-              context
-                  .read<DivisionResourceSummaryViewController>()
-                  .onResourceUsingFactor(row.id, value);
-            }),
+          CellDecorationWidget(
+            child: FloatInputCellWidget(
+              onChanged: (context, value) {
+                controller.onSquareFactor(row.id, value);
+              },
+              defaultValue: row.squareFactor,
+            ),
           ),
-          addDecoration(buildTextWithNotifier(row.totalResourceRowCostVN)),
+          CellDecorationWidget(
+            child: FloatInputCellWidget(
+              onChanged: (context, value) {
+                controller.onResourceUsingFactor(row.id, value);
+              },
+              defaultValue: row.resourceUsingFactor,
+            ),
+          ),
+          CellDecorationWidget(
+            child: TextWithNotifier(vn: row.totalResourceRowCostVN),
+          ),
         ],
       );
     });

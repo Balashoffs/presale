@@ -24,20 +24,20 @@ FormFieldValidator<String>? objectLocationValidator = (value) {
 
 FormFieldValidator<String>? onlyInfiniteNumberValidator = (value) {
   if (value == null) {
-    return 'Начните вводить адрес объекта';
+    return 'Начните вводить';
   } else if (!RegExp(r'^\d+$').hasMatch(value)) {
-    return 'только цифры от 0 до 9';
+    return 'только цифры';
   }
   return null;
 };
 
 FormFieldValidator<String>? onlyIntValidator = (value) {
   if (value == null) {
-    return 'Начните вводить адрес объекта';
+    return '???';
   } else if (!RegExp(r'^[1-9]$|^[1-9]\d$|^[1-9]\d\d$').hasMatch(value)) {
-    return 'только цифры от 0 до 9';
+    return '1 до 9';
   } else if (value.length > 3) {
-    return 'только в диапазоне от 1 до 999';
+    return 'от 1 до 999';
   }
   return null;
 };
@@ -64,7 +64,7 @@ FormFieldValidator<String>? ananceValidator = (value) {
   if (value == null) {
     return 'ошибка';
   } else if (!RegExp(r'^[1-9]$|^[1-9]\d+$').hasMatch(value)) {
-    return 'только цыфры';
+    return 'от 1';
   }
   return null;
 };

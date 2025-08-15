@@ -5,6 +5,7 @@ import 'package:presale/src/di/di.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_viewmodel.dart';
 import 'package:presale/src/presentation/bloc/v5/design/offer/design_offer_cubit.dart';
 import 'package:presale/src/presentation/bloc/v5/design/offer/design_offer_result_controller.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_app_bar.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
 import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/design_offer_header.dart';
 import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/design_offer_result_table_widget.dart';
@@ -14,7 +15,9 @@ class DesignOfferPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: DesignOfferRepository());
+    return CustomAppBar(
+      child: DesignOfferRepository(),
+    );
   }
 }
 

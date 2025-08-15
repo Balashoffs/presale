@@ -71,6 +71,7 @@ class DivisionResourceSummaryViewController {
         _onDelete(id);
     }
     isValid.value = _isEmptyCostHas;
+    summaryVN.value = summaryCost;
   }
 
   void _onAdd(int id) {
@@ -88,7 +89,6 @@ class DivisionResourceSummaryViewController {
       updates.removeWhere((element) => element.id == id);
       selectedRows.value = [...updates];
       //TODO Add algorithm to remove from unselected
-      summaryVN.value = summaryCost;
     }
   }
 
@@ -105,6 +105,7 @@ class DivisionResourceSummaryViewController {
       if (foundResource != null) {
         found.resourceNameVN.value = foundResource.resourceName;
         found.resourceCostPerDayVN.value = foundResource.resourceCostPerDay;
+        _calcResourceTotal(found);
       }
     }
   }
@@ -113,7 +114,6 @@ class DivisionResourceSummaryViewController {
     DivisionWithResourceRowVM? found = getByIdVM(id);
     if (found != null) {
       found.complexFactor = value;
-      _calcResourceTotal(found);
     }
   }
 

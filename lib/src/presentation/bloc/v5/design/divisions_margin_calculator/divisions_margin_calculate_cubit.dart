@@ -30,14 +30,18 @@ class DivisionsMarginCalculateCubit
 
   void init() async {
     DesignPresalePojo designPresalePojo;
-    if (kDebugMode) {
-      designPresalePojo =
-          await DesignPresaleDataTest.getDevInputDesignPresale();
-    } else {
-      designPresalePojo = await _dataSourceLocal.getDesignPresale(
-        DesignPresaleDataSourceLocal.key,
-      );
-    }
+    // if (kDebugMode) {
+    //   designPresalePojo =
+    //       await DesignPresaleDataTest.getDevInputDesignPresale();
+    // } else {
+    //   designPresalePojo = await _dataSourceLocal.getDesignPresale(
+    //     DesignPresaleDataSourceLocal.key,
+    //   );
+    // }
+
+    designPresalePojo = await _dataSourceLocal.getDesignPresale(
+      DesignPresaleDataSourceLocal.key,
+    );
 
     List<DivisionResourceRowPojo> divisionsByType =
         designPresalePojo.resource?.rows ?? [];

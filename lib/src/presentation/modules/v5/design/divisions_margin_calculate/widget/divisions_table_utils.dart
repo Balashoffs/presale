@@ -84,33 +84,6 @@ Widget buildTextWithNotifier(ValueNotifier<double> vn) {
   );
 }
 
-Widget buildIntInputCell(
-  int defaultValue,
-  ValueChangedWithContext<int> onChanged,
-) {
-  return Builder(
-    builder: (context) {
-      return Center(
-        child: SizedBox(
-          width: 56,
-          child: CustomTextInput(
-            isEnables: true,
-            hintText: '$defaultValue',
-            onChanged: (input) {
-              int? parsed = onChangeIntValue(input);
-              if (parsed != null) {
-                onChanged(context, parsed);
-              }else{
-                onChanged(context, 0);
-              }
-            },
-            validator: onlyIntValidator,
-          ),
-        ),
-      );
-    },
-  );
-}
 
 Widget buildFactorInputCell(
   double defaultValue,

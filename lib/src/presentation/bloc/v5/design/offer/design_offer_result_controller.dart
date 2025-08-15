@@ -104,6 +104,7 @@ class DesignOfferResultController {
         objectLocation: designPresalePojo.inputDataDesign.objectData.address,
         divisionRows: divisionRows,
         summary: summary,
+        totalDays: designPresalePojo.inputDataDesign.objectData.deadlineValue,
         margin: marginCost,
         tax: tax,
         overPrice: overPrice,

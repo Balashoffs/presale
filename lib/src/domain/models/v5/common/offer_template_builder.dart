@@ -151,7 +151,7 @@ class DesignOfferTemplateBuilder {
     if (_offerResult.inputDataDesign.objectData.square != 0) {
       _increment();
       String objectLocation =
-          'Площадь объекта: ${_offerResult.inputDataDesign.objectData.square}';
+          'Площадь объекта: ${_offerResult.inputDataDesign.objectData.square} м2';
       _buildCell(
         objectLocation,
         'B$_rowPos:D$_rowPos',
@@ -353,7 +353,7 @@ class DesignOfferTemplateBuilder {
     if (_offerResult.inputDataDesign.objectData.deadlineValue != 0) {
       _increment();
       _buildCell(
-        'Срок выполнения работ - ${(_offerResult.inputDataDesign.objectData.deadlineValue / 30).round()}',
+        'Срок выполнения работ: ${_offerResult.inputDataDesign.objectData.deadlineValue} дн.',
         'B$_rowPos',
       );
     }

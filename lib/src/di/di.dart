@@ -47,18 +47,7 @@ class DependencyInjector {
 
   Future<void> init() async {
     await _registerDBClient();
-    // _registerThemeService();
-    // await _registerLocalNotifications();
     await _setupStorageAndObserver();
-
-    // await _registerApiClients();
-    _registerRouter();
-
-    // _registerDataSources();
-    // _registerClients();
-
-    // _registerBlocs();
-
   }
 
   Future<void> initConfig() async {
@@ -71,8 +60,6 @@ class DependencyInjector {
     _getItInstance.registerSingleton<AppConfig>(appConfig);
   }
 
-  void _registerRouter() =>
-      _getItInstance.registerSingleton<AppRouterV3>(AppRouterV3());
 
   void _registerThemeService() =>
       _getItInstance.registerSingleton<ThemeService>(
@@ -177,7 +164,6 @@ class DependencyInjector {
 
 
   /// Core
-  AppRouterV3 get appRouter => _getItInstance<AppRouterV3>();
 
   AppConfig get appConfig => _getItInstance<AppConfig>();
 
