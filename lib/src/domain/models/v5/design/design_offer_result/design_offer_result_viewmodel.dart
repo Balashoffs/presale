@@ -12,7 +12,7 @@ class DesignOfferResultVM{
   final double margin;
   final double summary;
   final double tax;
-  String comments = '';
+  String notes = '';
   int totalDays;
   int objectSquare;
   int avance = 0;

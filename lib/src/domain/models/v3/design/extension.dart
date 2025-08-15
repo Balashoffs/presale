@@ -17,12 +17,14 @@ extension DesignOfferResultExt on DesignOfferResultVM {
       footerData: FooterData(
         workCompletionTime: totalDays.toString(),
         prepayment: avance.toStringAsFixed(2),
+        noteText: notes,
         signPerson: SignPerson(
           jobTitle: signPerson!.jobTitle,
           companyName: signPerson!.companyTitle,
           fullName: signPerson!.fullName,
           phoneNumber: signPerson!.phoneNumber,
           email: signPerson!.jobEmail,
+
         ),
       ),
     );

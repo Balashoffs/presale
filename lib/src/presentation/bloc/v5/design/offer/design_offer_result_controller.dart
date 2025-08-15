@@ -26,7 +26,7 @@ class DesignOfferResultController {
 
   void onComments(String value) {
     if (designOfferResultVM != null) {
-      designOfferResultVM!.comments = value;
+      designOfferResultVM!.notes = value;
     }
   }
 

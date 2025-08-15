@@ -32,12 +32,15 @@ class DesignOfferTemplateBuilder {
     _addObjectName();
     _increment();
     _addObjectLocation();
+    _addObjectSquare();
+    _addDeadLine();
     _increment(2);
     _addTableTitle();
     _increment();
     _addTable();
+    _addOfferNotes();
     _increment(2);
-    _addDeadLine();
+    _addAvance();
     _increment(2);
     _addCompanyJobTitle();
     _increment();
@@ -144,6 +147,21 @@ class DesignOfferTemplateBuilder {
     );
   }
 
+  void _addObjectSquare() {
+    if (_offerResult.inputDataDesign.objectData.square != 0) {
+      _increment();
+      String objectLocation =
+          'Площадь объекта: ${_offerResult.inputDataDesign.objectData.square}';
+      _buildCell(
+        objectLocation,
+        'B$_rowPos:D$_rowPos',
+        alignType: HAlignType.left,
+        fontSize: 14,
+        isMerge: true,
+      );
+    }
+  }
+
   void _addTableTitle() {
     String title = 'Рассчет стоимости';
     _buildCell(
@@ -248,6 +266,63 @@ class DesignOfferTemplateBuilder {
     );
   }
 
+  void _addOfferNotes() {
+    if (_offerResult.footerData.noteText.isNotEmpty) {
+      _increment(2);
+      _buildCell(
+        'Примечание',
+        'B$_rowPos:D$_rowPos',
+        isMerge: true,
+        alignType: HAlignType.left,
+        fontSize: 12,
+        isBold: true,
+      );
+    }
+    String note = _offerResult.footerData.noteText;
+    if(note.contains('\n')){
+      List<String> lines = note.split('\n');
+      for(final line in lines){
+        _increment(1);
+        _buildCell(
+          line,
+          'B$_rowPos:D$_rowPos',
+          isMerge: true,
+          alignType: HAlignType.left,
+        );
+      }
+    }else{
+      _increment(1);
+      _buildCell(
+        note,
+        'B$_rowPos:D$_rowPos',
+        isMerge: true,
+        alignType: HAlignType.left,
+      );
+    }
+
+
+  }
+
+  void _addAvance() {
+    if (_offerResult.footerData.noteText.isNotEmpty) {
+      _buildCell(
+        'Авансирование',
+        'B$_rowPos:D$_rowPos',
+        isMerge: true,
+        alignType: HAlignType.left,
+        fontSize: 12,
+        isBold: true,
+      );
+    }
+    _increment(1);
+    _buildCell(
+      '${_offerResult.footerData.prepayment} рубл.',
+      'B$_rowPos:D$_rowPos',
+      isMerge: true,
+      alignType: HAlignType.left,
+    );
+  }
+
   _buildCell(
     String value,
     String range, {
@@ -275,10 +350,13 @@ class DesignOfferTemplateBuilder {
   }
 
   void _addDeadLine() {
-    _buildCell(
-      'Срок выполнения работ - ${(_offerResult.inputDataDesign.objectData.deadlineValue / 30).round()}',
-      'B$_rowPos',
-    );
+    if (_offerResult.inputDataDesign.objectData.deadlineValue != 0) {
+      _increment();
+      _buildCell(
+        'Срок выполнения работ - ${(_offerResult.inputDataDesign.objectData.deadlineValue / 30).round()}',
+        'B$_rowPos',
+      );
+    }
   }
 
   void _addCompanyJobTitle() {
