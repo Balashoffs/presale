@@ -21,7 +21,6 @@ import 'package:presale/src/presentation/bloc/section_repository.dart';
 import 'package:presale/src/presentation/bloc/stages_table_page/cubit.dart';
 import 'package:presale/src/presentation/bloc/user/user_repository.dart';
 import 'package:presale/src/presentation/core/navigation/app_router.dart';
-import 'package:presale/src/presentation/core/navigation/app_router_v3.dart';
 import 'package:presale/src/presentation/core/services/theme_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

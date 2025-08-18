@@ -16,6 +16,9 @@ import 'package:presale/src/domain/models/v4/design/design_presale_pojo.dart';
 import 'package:presale/src/domain/models/v5/common/offer_template_builder.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_viewmodel.dart';
 
+import 'package:presale/src/data/xlsx_helper/save_file_mobile.dart'
+    if (dart.library.html) 'package:presale/src/data/xlsx_helper/save_file_web.dart';
+
 import 'design_offer_result_controller.dart';
 
 part 'design_offer_state.dart';
@@ -37,9 +40,7 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
     DesignPresalePojo designPresalePojo = await _dataSourceLocal
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
     await _designOfferController.fillSign();
-    bool isBuild = _designOfferController.buildModel(
-      designPresalePojo
-    );
+    bool isBuild = _designOfferController.buildModel(designPresalePojo);
     if (isBuild) {
       emit(
         DesignOfferState.showPage(_designOfferController.designOfferResultVM!),
@@ -55,7 +56,7 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
         ?.toPojo(designPresalePojo.inputDataDesign);
     if (commercialOfferResult != null) {
       int total = designPresalePojo.divisions?.rows.length ?? 0;
-      if(total != 0){
+      if (total != 0) {
         final Workbook workbook = Workbook(total);
         final Worksheet sheet = workbook.worksheets[0];
         DesignOfferTemplateBuilder builder = DesignOfferTemplateBuilder(
@@ -64,10 +65,11 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
         );
         await builder.fillRows();
         List<int> fileBytes = builder.saveToBytes();
-        print('results in bytes: ${fileBytes.length}');
-        _saveFile(fileBytes);
+        DateTime dateTime = designPresalePojo.inputDataDesign.created!;
+        String offerId =
+            'исх. №${dateTime.day}${dateTime.month}${dateTime.year}';
+        saveAndLaunchFile(fileBytes, '$offerId.xlsx');
       }
-
     }
   }
 
