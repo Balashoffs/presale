@@ -69,18 +69,20 @@ dependencies:
   share_plus: ^10.1.4
   uni_links: ^0.5.1
   file_picker: ^10.0.0
+  device_info_plus: ^11.5.0
   excel: ^4.0.6
   flutter_web_plugins:
     sdk: flutter
   moon_design: ^1.1.0
-
+  dart_seq: ^2.0.1
   storybook_flutter:
     git:
       url: https://github.com/coingaming/storybook_flutter.git
       ref: 506c73296c85a0bb970645036baa1c9213df1c6c
       path: packages/storybook_flutter
   transparent_image: ^2.0.1
-  package_info_plus: ^8.0.2
+  package_info_plus: ^8.3.1
+  dart_seq_http_client: ^1.0.0
 dependency_overrides:
   intl: ^0.18.0
   collection: ^1.19.0

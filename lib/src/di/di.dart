@@ -1,3 +1,5 @@
+import 'package:dart_seq/dart_seq.dart';
+import 'package:dart_seq_http_client/dart_seq_http_client.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -47,6 +49,18 @@ class DependencyInjector {
   Future<void> init() async {
     await _registerDBClient();
     await _setupStorageAndObserver();
+    await _initSegClient();
+  }
+
+  Future<void> _initSegClient()async{
+    SeqLogger logger = SeqHttpLogger.create(
+
+      host: 'http://localhost:5341',
+      globalContext: {
+        'App': 'PresaleCalc',
+      },
+    );
+    _getItInstance.registerSingleton<SeqLogger>(logger);
   }
 
   Future<void> initConfig() async {
@@ -192,6 +206,7 @@ class DependencyInjector {
       _getItInstance<SectionRepository>();
 
   ObjectTableCubit get objectTableCubit => _getItInstance<ObjectTableCubit>();
+  SeqLogger get segLogger => _getItInstance<SeqLogger>();
 
   StagesTableCubit get stagesTableCubit => _getItInstance<StagesTableCubit>();
 

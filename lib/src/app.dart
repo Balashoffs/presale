@@ -6,14 +6,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:presale/src/presentation/core/navigation/app_router_v3.dart';
 
-
 abstract class App extends StatelessWidget {
-  const App({
-    Key? key,
-  }) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   void initAndRun() => runZoned<void>(
-        () => _init().whenComplete(_run),
+    () => _init().whenComplete(_run),
     zoneSpecification: ZoneSpecification(print: _print),
   );
 
@@ -37,10 +34,7 @@ abstract class App extends StatelessWidget {
 }
 
 class ServiceCalcApp extends App {
-  const ServiceCalcApp({Key? key})
-      : super(
-    key: key,
-  );
+  const ServiceCalcApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +45,6 @@ class ServiceCalcApp extends App {
         extensions: <ThemeExtension<dynamic>>[
           MoonTheme(
             tokens: MoonTokens.light.copyWith(
-              
               colors: mdsLightColors,
               typography: MoonTypography.typography.copyWith(
                 heading: MoonTypography.typography.heading.apply(
@@ -88,7 +81,6 @@ class ServiceCalcApp extends App {
         ],
       ),
       routerConfig: appRouter,
-
     );
   }
 }
