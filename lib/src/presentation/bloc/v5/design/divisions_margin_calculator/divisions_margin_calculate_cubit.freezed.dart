@@ -115,12 +115,20 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
+class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   const _$InitialImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DivisionsMarginCalculateState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(
+      DiagnosticsProperty('type', 'DivisionsMarginCalculateState.initial'),
+    );
   }
 
   @override
@@ -234,12 +242,20 @@ class __$$NextPageImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NextPageImpl implements _NextPage {
+class _$NextPageImpl with DiagnosticableTreeMixin implements _NextPage {
   const _$NextPageImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DivisionsMarginCalculateState.nextPage()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(
+      DiagnosticsProperty('type', 'DivisionsMarginCalculateState.nextPage'),
+    );
   }
 
   @override
@@ -353,12 +369,20 @@ class __$$ShowTableImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ShowTableImpl implements _ShowTable {
+class _$ShowTableImpl with DiagnosticableTreeMixin implements _ShowTable {
   const _$ShowTableImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DivisionsMarginCalculateState.showPage()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(
+      DiagnosticsProperty('type', 'DivisionsMarginCalculateState.showPage'),
+    );
   }
 
   @override
@@ -486,15 +510,23 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
+class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   const _$ErrorImpl(this.errorText);
 
   @override
   final String errorText;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'DivisionsMarginCalculateState.error(errorText: $errorText)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'DivisionsMarginCalculateState.error'))
+      ..add(DiagnosticsProperty('errorText', errorText));
   }
 
   @override

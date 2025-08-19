@@ -103,7 +103,7 @@ class _ServiceTypeSelectPageState extends State<ServiceTypeSelectPage> {
   @override
   void initState() {
     super.initState();
-    _initPackageInfo();
+    // _initPackageInfo();
   }
 
   void _initPackageInfo() async {

@@ -13,7 +13,7 @@ import 'package:presale/src/presentation/modules/service_type_select/stage_selec
 import 'package:presale/src/presentation/modules/service_type_select/stages_table/stages_table_page.dart';
 import 'package:presale/src/presentation/modules/v5/design/object_data_input/object_input_data_page.dart';
 
-const serviceTypeRoutePath = "/";
+const serviceTypeRoutePath = "/service_type";
 const stageSelectRoutePath = "stage-select";
 const objectTableRoutePath = "object-table";
 const stagesTableRoutePath = "stages-table";
