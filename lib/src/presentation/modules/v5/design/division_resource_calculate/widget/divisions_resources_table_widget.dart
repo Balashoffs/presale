@@ -42,7 +42,15 @@ class _DivisionsResourceTableWidgetState
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('DivisionsResourceTableWidget::didChangeDependencies');
+    //
+  }
+
+  @override
   void didUpdateWidget(DivisionsResourceTableWidget oldWidget) {
+    print('DivisionsResourceTableWidget::didUpdateWidget');
     super.didUpdateWidget(oldWidget);
     if (!_isRemoveAction) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -82,6 +90,7 @@ class _DivisionsResourceTableWidgetState
           CellDecorationWidget(
             isFistCell: true,
             child: CellWithIconWidget(
+              key: Key(row.id.toString()),
               iconData: MoonIcons.controls_close_16_light,
               onTap: () {
                 widget.onRowAction(row.id, WidgetActionType.delete);
@@ -90,10 +99,14 @@ class _DivisionsResourceTableWidgetState
             ),
           ),
           CellDecorationWidget(
-            child: TextCellWidget(label: row.divisionShortName),
+            child: TextCellWidget(
+              label: row.divisionShortName,
+              key: Key(row.id.toString()),
+            ),
           ),
           CellDecorationWidget(
             child: CellWithMultiLineWidget(
+              key: Key(row.id.toString()),
               label: row.divisionName,
               hint: row.divisionName,
             ),
@@ -101,6 +114,7 @@ class _DivisionsResourceTableWidgetState
           row.resourceCostPerDayVN.value.compareTo(0.0) == 0
               ? CellDecorationWidget(
                   child: ResourcesDropdownWidget(
+                    key: Key(row.id.toString()),
                     onChanged: (context, value) {
                       controller.onResourceName(row.id, value);
                     },
@@ -111,10 +125,14 @@ class _DivisionsResourceTableWidgetState
                 )
               : row.resourceCostPerDayVN.value.compareTo(0.0) > 0
               ? CellDecorationWidget(
-                  child: TextCellWidget(label: row.resourceNameVN.value),
+                  child: TextCellWidget(
+                    key: Key(row.id.toString()),
+                    label: row.resourceNameVN.value,
+                  ),
                 )
               : CellDecorationWidget(
                   child: TextInputCellWidget(
+                    key: Key(row.id.toString()),
                     defaultValue: 'Введите специализацию',
                     onChanged: (context, value) {
                       controller.onCustomResourceName(row.id, value);
@@ -123,10 +141,14 @@ class _DivisionsResourceTableWidgetState
                 ),
           row.resourceCostPerDayVN.value.compareTo(0.0) >= 0
               ? CellDecorationWidget(
-                  child: TextWithNotifier(vn: row.resourceCostPerDayVN),
+                  child: TextWithNotifier(
+                    key: Key(row.id.toString()),
+                    vn: row.resourceCostPerDayVN,
+                  ),
                 )
               : CellDecorationWidget(
                   child: FloatInputCellWidget(
+                    key: Key(row.id.toString()),
                     onChanged: (context, value) {
                       controller.onResourceCostPerDay(row.id, value);
                     },
@@ -135,6 +157,7 @@ class _DivisionsResourceTableWidgetState
                 ),
           CellDecorationWidget(
             child: IntInputCellWidget(
+              key: Key(row.id.toString()),
               onChanged: (context, value) {
                 controller.onResourceQnt(row.id, value);
               },
@@ -143,6 +166,7 @@ class _DivisionsResourceTableWidgetState
           ),
           CellDecorationWidget(
             child: IntInputCellWidget(
+              key: Key(row.id.toString()),
               onChanged: (context, value) {
                 controller.onWorkDays(row.id, value);
               },
@@ -151,6 +175,7 @@ class _DivisionsResourceTableWidgetState
           ),
           CellDecorationWidget(
             child: FloatInputCellWidget(
+              key: Key(row.id.toString()),
               onChanged: (context, value) {
                 controller.onComplexFactor(row.id, value);
               },
@@ -159,6 +184,7 @@ class _DivisionsResourceTableWidgetState
           ),
           CellDecorationWidget(
             child: FloatInputCellWidget(
+              key: Key(row.id.toString()),
               onChanged: (context, value) {
                 controller.onSquareFactor(row.id, value);
               },
@@ -167,6 +193,7 @@ class _DivisionsResourceTableWidgetState
           ),
           CellDecorationWidget(
             child: FloatInputCellWidget(
+              key: Key(row.id.toString()),
               onChanged: (context, value) {
                 controller.onResourceUsingFactor(row.id, value);
               },
@@ -174,6 +201,7 @@ class _DivisionsResourceTableWidgetState
             ),
           ),
           CellDecorationWidget(
+            key: Key(row.id.toString()),
             child: TextWithNotifier(vn: row.totalResourceRowCostVN),
           ),
         ],
@@ -183,6 +211,7 @@ class _DivisionsResourceTableWidgetState
 
   @override
   Widget build(BuildContext context) {
+    print('DivisionsResourceTableWidget::build');
     return OverflowBox(
       // maxWidth: MediaQuery.of(context).size.width,
       child: MoonTable(

@@ -7,7 +7,7 @@ abstract class CsvParser<T> {
   CsvParser(String file) : _pathToFile = file;
 
   Future<String> _readFromAssets() async {
-    print(_pathToFile);
+    ;
     return rootBundle.loadString(_pathToFile);
   }
 

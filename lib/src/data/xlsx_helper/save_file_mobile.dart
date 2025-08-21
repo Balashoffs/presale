@@ -39,8 +39,8 @@ Future<void> saveAndLaunchFile(List<int> bytes, String fileName) async {
       ], runInShell: true);
     }
   } on PlatformException catch (e) {
-    print(e.message);
+    ;
   } catch (e) {
-    print(e.toString());
+    ;
   }
 }

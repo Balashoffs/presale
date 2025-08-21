@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/data/core/string_converter.dart';
-import 'package:presale/src/domain/models/v5/design/division_resource_table/division_and_resources_dto.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/divisions_with_resources_dto.dart';
 import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
@@ -53,7 +52,6 @@ class CellDecorationWidget extends StatelessWidget {
     );
   }
 }
-
 
 class HeaderCellWidget extends StatelessWidget {
   const HeaderCellWidget({super.key, required this.attribute});
@@ -136,25 +134,23 @@ class IntInputCellWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        return Center(
-          child: SizedBox(
-            width: 56,
-            child: CustomTextInput(
-              isEnables: true,
-              hintText: '$defaultValue',
-              onChanged: (input) {
-                int? parsed = onChangeIntValue(input);
-                if (parsed != null) {
-                  onChanged(context, parsed);
-                }
-              },
-              validator: onlyIntValidator,
-            ),
-          ),
-        );
-      },
+    print('IntInputCellWidget::build::defaultValue - $defaultValue');
+    return Center(
+      child: SizedBox(
+        width: 56,
+        child: CustomTextInput(
+          key: super.key,
+          isEnables: true,
+          hintText: '$defaultValue',
+          onChanged: (input) {
+            int? parsed = onChangeIntValue(input);
+            if (parsed != null) {
+              onChanged(context, parsed);
+            }
+          },
+          validator: onlyIntValidator,
+        ),
+      ),
     );
   }
 }
@@ -171,25 +167,23 @@ class FloatInputCellWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        return Center(
-          child: SizedBox(
-            width: 56,
-            child: CustomTextInput(
-              isEnables: true,
-              hintText: '$defaultValue',
-              onChanged: (input) {
-                double? parsed = onChangeFactorValue(input);
-                if (parsed != null) {
-                  onChanged(context, parsed);
-                }
-              },
-              validator: onlyFactorValidator,
-            ),
-          ),
-        );
-      },
+    print('FloatInputCellWidget::build::defaultValue - $defaultValue');
+    return Center(
+      child: SizedBox(
+        width: 56,
+        child: CustomTextInput(
+          key: super.key,
+          isEnables: true,
+          hintText: '$defaultValue',
+          onChanged: (input) {
+            double? parsed = onChangeFactorValue(input);
+            if (parsed != null) {
+              onChanged(context, parsed);
+            }
+          },
+          validator: onlyFactorValidator,
+        ),
+      ),
     );
   }
 }
@@ -212,6 +206,7 @@ class TextInputCellWidget extends StatelessWidget {
           child: SizedBox(
             width: 56,
             child: CustomTextInput(
+              key: super.key,
               isEnables: true,
               hintText: defaultValue,
               onChanged: (input) {

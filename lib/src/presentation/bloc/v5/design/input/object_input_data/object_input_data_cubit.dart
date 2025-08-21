@@ -179,10 +179,6 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
       DesignPresalePojo designPresalePojo = DesignPresalePojo(
         inputDataDesign: inputDataDesign,
       );
-      if(kDebugMode){
-        String result = json.encode(designPresalePojo.toJson());
-        print(result);
-      }
 
       bool isSaves = await _dataSourceLocal.addDesignPresale(designPresalePojo);
       if (isSaves) {

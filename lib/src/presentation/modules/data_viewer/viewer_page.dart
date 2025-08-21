@@ -114,7 +114,7 @@ class _ViewerPageState extends State<ViewerPage> with SingleTickerProviderStateM
         // key: ValueKey(widget.tabs.length.toString() + _tabIndex.toString()),
         tabs: _tabs,
         tabIndexChanged: (index) {
-          print(index);
+
           widget.shell.goBranch(index, initialLocation: _tabIndex == index);
           _tabIndex = index;
         },
@@ -153,7 +153,7 @@ class _BottomNavigationState extends State<_BottomNavigation> with TickerProvide
     _tabsKeys = widget.tabs.map((e) => LabeledGlobalKey(e.index.toString())).toList();
     _controller = TabController(length: widget.tabs.length, vsync: this);
     _controller?.addListener(() {
-      print('listen');
+
       if (_currentIndex != _controller?.index) {
         _currentIndex = _controller!.index;
         widget.tabIndexChanged(_controller!.index);

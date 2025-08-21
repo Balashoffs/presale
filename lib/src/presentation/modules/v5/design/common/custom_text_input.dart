@@ -60,11 +60,17 @@ class _CustomTextInputState extends State<CustomTextInput> {
   @override
   void didUpdateWidget(CustomTextInput oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if(oldWidget.key != widget.key){
+      _textController.text = widget.hintText;
+    }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
     return MoonFormTextInput(
+      key: widget.key,
       focusNode: _focusNode,
       textAlign: TextAlign.center,
       controller: _textController,
@@ -81,6 +87,7 @@ class _CustomTextInputState extends State<CustomTextInput> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       hintText: widget.hintText,
       helperTextStyle: TextStyle(fontSize: 8),
+
       validator: widget.validator,
       autofocus: widget.autofocus,
       onTapOutside: (PointerDownEvent _) {

@@ -7,10 +7,10 @@
 //   for (var value in subSection) {
 //     if (value.path.contains('.DS')) continue;
 //     String folderName = value.path.split('/').last;
-//     print(folderName);
+//     ;
 //
 //     Hierarchy? hr = hierarchies.firstWhere((element) {
-//       print(element);
+//       ;
 //       return element.section == folderName;
 //     });
 //     Directory dir = Directory(value.path);

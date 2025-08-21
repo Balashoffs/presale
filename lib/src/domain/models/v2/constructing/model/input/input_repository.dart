@@ -89,11 +89,11 @@ class InputFactorsViewModel {
   List<String> get complexities => complexity.map((e) => e.value).toList();
 
   double? factorSelectedItem(String type, String selected){
-    print(selected);
+    ;
     selected = selected.split(' (')[0];
-    print(selected);
+    ;
     double? result = factorsByType(type).value.firstWhereOrNull((element) => element.value == selected,)?.factor;
-    print(result);
+    ;
     return result;
   }
 }

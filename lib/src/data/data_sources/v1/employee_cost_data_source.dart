@@ -63,9 +63,9 @@ class EmployeeDataSourceLocal implements EmployeeDataSource {
   Future<bool> loadEmployeesFromExcel(Uint8List data) async {
     var excel = Excel.decodeBytes(data);
     for (var table in excel.tables.keys) {
-      print(table);
-      print(excel.tables[table]?.maxColumns);
-      print(excel.tables[table]?.maxRows);
+      ;
+      ;
+      ;
       for (final row in excel.tables[table]?.rows ?? []) {
         CellValue? value = row[0].value;
 

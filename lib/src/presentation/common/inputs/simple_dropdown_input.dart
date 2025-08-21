@@ -116,7 +116,6 @@ class _SimpleDropdownInputState<T> extends State<SimpleDropdownInput<T>> with Ti
       } else {
         top = true;
       }
-      print(top);
     }
     _opened.value = true;
     _animationController!.animateTo(1);
@@ -192,8 +191,6 @@ class _SimpleDropdownInputState<T> extends State<SimpleDropdownInput<T>> with Ti
                                   currentItem: currentValue,
                                   onChanged: (value) {
                                     widget.onChanged?.call(value);
-                                    print('blank1');
-                                    print(widget.blank);
                                     if (!widget.blank) {
                                       _currentValue.value = value;
                                     }

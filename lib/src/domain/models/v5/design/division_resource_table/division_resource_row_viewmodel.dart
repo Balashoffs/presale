@@ -65,6 +65,12 @@ final class DivisionWithResourceRowVM {
   // Стоимость задествия должности по конкретному разделу
   final ValueNotifier<double> totalResourceRowCostVN;
 
+
+  @override
+  String toString() {
+    return 'DivisionWithResourceRowVM{id: $id, divisionName: $divisionName, divisionShortName: $divisionShortName, resourceNameVN: $resourceNameVN, _resourceQnt: $_resourceQnt, _workDays: $_workDays, _complexFactor: $_complexFactor, _squareFactor: $_squareFactor, _resourceUsingFactor: $_resourceUsingFactor, resourceCostPerDayVN: $resourceCostPerDayVN, totalResourceRowCostVN: $totalResourceRowCostVN}';
+  }
+
   DivisionWithResourceRowVM({
     required this.id,
     required this.divisionName,

@@ -65,8 +65,7 @@ class StagesTableCubit extends HydratedCubit<StagesTableState> {
       durationOfWork: objectState.workDuration,
       cost: cost,
     );
-
-    print(newEntity);
+    
 
     emit(state.copyWith(entities: [
       ...state.entities,
@@ -171,7 +170,7 @@ class StagesTableCubit extends HydratedCubit<StagesTableState> {
   }
 
   void makeXlsx() {
-    // print(AppColorsDark.primaryTooLight);
+    // ;
     // final data = ExcelClient.generateDiarySheet(state, objectState);
     //
     // final blob = html.Blob([data], 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

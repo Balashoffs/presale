@@ -54,7 +54,7 @@ class DivisionWithResourceSummaryVM {
 
   void _onDelete(int id) {
     print('_onDelete');
-    print(id);
+    ;
     DivisionResourceRowVM? found = getByIdVM(id);
     if (found != null) {
       final updates = List<DivisionResourceRowVM>.from(selectedRows.value);

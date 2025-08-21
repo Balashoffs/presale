@@ -71,7 +71,7 @@ class DivisionResourceCalculateCubit
 
     if (kDebugMode) {
       String result = json.encode(updated.toJson());
-      print(result);
+      ;
     }
 
     bool isSaves = await _dataSourceLocal.addDesignPresale(updated);

@@ -126,7 +126,6 @@ class StagesSelectorCubit extends Cubit<StagesSelectorState> {
           _sectionInfoRepository.addData(dats);
           StageData? stageInfo = _infoRepository.getInfo(_path);
           if (stageInfo != null) {
-            print('Load section data from $_path');
             emit(StagesSelectorState.section(
                 SectionDataVewModel(stageInfo: stageInfo, subStages: dats)));
           }

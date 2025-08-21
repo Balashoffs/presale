@@ -10,7 +10,7 @@ class ObjectTableCubit extends HydratedCubit<ObjectTableState> {
   ObjectTableCubit() : super(const ObjectTableState());
 
   void setServiceStage(ServiceStage stage){
-    print(stage);
+
     if (_serviceStage == null) {
       _serviceStage = stage;
       return;

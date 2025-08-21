@@ -37,9 +37,9 @@ extension DivisionDtoExt on DivisionDTO {
     double resourceCostPerDay = 0.0,
   }) {
     return DivisionWithResourceRowVM(
+      workDays: 0,
       resourceQnt: 0,
       resourceUsingFactor: 1.0,
-      workDays: 0,
       divisionShortName: divisionShortName,
       divisionName: divisionName,
       id: DateTime.now().microsecondsSinceEpoch,
