@@ -98,7 +98,7 @@ class _DivisionsResourceTableWidgetState
               hint: row.divisionName,
             ),
           ),
-          row.resourceNameVN.value.isEmpty
+          row.resourceCostPerDayVN.value.compareTo(0.0) == 0
               ? CellDecorationWidget(
                   child: ResourcesDropdownWidget(
                     onChanged: (context, value) {
@@ -109,12 +109,30 @@ class _DivisionsResourceTableWidgetState
                     ),
                   ),
                 )
-              : CellDecorationWidget(
+              : row.resourceCostPerDayVN.value.compareTo(0.0) > 0
+              ? CellDecorationWidget(
                   child: TextCellWidget(label: row.resourceNameVN.value),
+                )
+              : CellDecorationWidget(
+                  child: TextInputCellWidget(
+                    defaultValue: 'Введите специализацию',
+                    onChanged: (context, value) {
+                      controller.onCustomResourceName(row.id, value);
+                    },
+                  ),
                 ),
-          CellDecorationWidget(
-            child: TextWithNotifier(vn: row.resourceCostPerDayVN),
-          ),
+          row.resourceCostPerDayVN.value.compareTo(0.0) >= 0
+              ? CellDecorationWidget(
+                  child: TextWithNotifier(vn: row.resourceCostPerDayVN),
+                )
+              : CellDecorationWidget(
+                  child: FloatInputCellWidget(
+                    onChanged: (context, value) {
+                      controller.onResourceCostPerDay(row.id, value);
+                    },
+                    defaultValue: 0.0,
+                  ),
+                ),
           CellDecorationWidget(
             child: IntInputCellWidget(
               onChanged: (context, value) {

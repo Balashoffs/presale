@@ -194,6 +194,38 @@ class FloatInputCellWidget extends StatelessWidget {
   }
 }
 
+class TextInputCellWidget extends StatelessWidget {
+  const TextInputCellWidget({
+    super.key,
+    required this.defaultValue,
+    required this.onChanged,
+  });
+
+  final String defaultValue;
+  final ValueChangedWithContext<String> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(
+      builder: (context) {
+        return Center(
+          child: SizedBox(
+            width: 56,
+            child: CustomTextInput(
+              isEnables: true,
+              hintText: defaultValue,
+              onChanged: (input) {
+                onChanged(context, input);
+              },
+              validator: onlyStringValidator,
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
 class ResourcesDropdownWidget extends StatelessWidget {
   const ResourcesDropdownWidget({
     super.key,
@@ -285,6 +317,13 @@ int? onChangeIntValue(String? newValue) {
     if (tryParse != null) {
       return tryParse;
     }
+  }
+  return null;
+}
+
+String? onChangeTextValue(String? newValue) {
+  if (newValue != null) {
+    int? tryParse = newValue.length < 4 ? int.tryParse(newValue) : null;
   }
   return null;
 }

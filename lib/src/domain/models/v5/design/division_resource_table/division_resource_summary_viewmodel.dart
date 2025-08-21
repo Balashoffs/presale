@@ -13,7 +13,7 @@ class ResourcesViewController {
 
   final ValueNotifier<List<DivisionWithResourceRowVM>> selectedRows =
       ValueNotifier([]);
-  final Map<String, List<ResourceDTO>> _resources = {};
+  final Map<String, List<ResourceDTO>> _selectedResources = {};
   final ValueNotifier<double> summaryVN = ValueNotifier(0.0);
   final ValueNotifier<bool> isValid = ValueNotifier(false);
 
@@ -58,12 +58,12 @@ class ResourcesViewController {
   ) {
     _squareFactor = inputDataDesign.inputFactors.squareFactor;
     _complexityFactor = inputDataDesign.inputFactors.complexityFactor;
-    _resources.addAll(divisionWithResourceDTO.resources);
+    _selectedResources.addAll(divisionWithResourceDTO.resources);
     allDivisions.addAll(divisionWithResourceDTO.divisions);
   }
 
   List<ResourceDTO> resourcesByDivisionShortName(String divisionShortName) =>
-      _resources[divisionShortName] ?? [];
+      _selectedResources[divisionShortName] ?? [];
 
   void onRowAction(int id, WidgetActionType type) {
     switch (type) {
@@ -80,6 +80,17 @@ class ResourcesViewController {
     DivisionWithResourceRowVM? found = getById(id);
     if (found != null) {
       //TODO Add algorithm to remove from unselected
+
+      List<ResourceDTO> resources = resourcesByDivisionShortName(
+        found.divisionShortName,
+      );
+      if (resources.length == 1) {
+        found.resourceCostPerDayVN.value = resources[0].resourceCostPerDay;
+        found.resourceNameVN.value = resources[0].resourceName;
+      } else if (resources.isEmpty) {
+        found.resourceCostPerDayVN.value = -1;
+        found.resourceNameVN.value = '';
+      }
       selectedRows.value = [...selectedRows.value, found];
     }
   }
@@ -101,7 +112,7 @@ class ResourcesViewController {
         found.resourceNameVN.value = '';
         found.resourceCostPerDayVN.value = 0.0;
       }
-      ResourceDTO? foundResource = _resources[found.divisionShortName]
+      ResourceDTO? foundResource = _selectedResources[found.divisionShortName]
           ?.where((element) => element.resourceName == resourceName)
           .firstOrNull;
       if (foundResource != null) {
@@ -112,10 +123,30 @@ class ResourcesViewController {
     }
   }
 
+  void onCustomResourceName(int id, String resourceName) {
+    DivisionWithResourceRowVM? found = getByIdVM(id);
+    if (found != null) {
+      if (resourceName.isEmpty) {
+        found.resourceNameVN.value = '';
+        found.resourceCostPerDayVN.value = 0.0;
+      }
+      found.resourceNameVN.value = resourceName;
+    }
+  }
+
+  void onResourceCostPerDay(int id, double value) {
+    DivisionWithResourceRowVM? found = getByIdVM(id);
+    if (found != null) {
+      found.resourceCostPerDayVN.value = value;
+      _calcResourceTotal(found);
+    }
+  }
+
   void onComplexFactor(int id, double value) {
     DivisionWithResourceRowVM? found = getByIdVM(id);
     if (found != null) {
       found.complexFactor = value;
+      _calcResourceTotal(found);
     }
   }
 

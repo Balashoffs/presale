@@ -42,6 +42,17 @@ FormFieldValidator<String>? onlyIntValidator = (value) {
   return null;
 };
 
+FormFieldValidator<String>? onlyStringValidator = (value) {
+  if (value == null) {
+    return '???';
+  } else if (!RegExp(r'^[а-яА-Я]+$').hasMatch(value)) {
+    return '[а-яА-Я]';
+  } else if (value.length > 20) {
+    return 'до 20';
+  }
+  return null;
+};
+
 FormFieldValidator<String>? onlyFactorValidator = (value) {
   if (value == null) {
     return 'ошибка';
