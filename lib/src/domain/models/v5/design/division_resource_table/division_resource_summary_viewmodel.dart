@@ -9,13 +9,19 @@ import 'package:presale/src/domain/models/v5/design/division_resource_table/exte
 import 'divisions_with_resources_dto.dart';
 
 class ResourcesViewController {
-  final List<DivisionDTO> allDivisions = [];
+  final ValueNotifier<List<DivisionDTO>> unselectedDivisionsVN = ValueNotifier(
+    [],
+  );
+  final Map<String, DivisionDTO> _unselectedDivisions = {};
+  final Map<String, DivisionDTO> _selectedDivisions = {};
 
   final ValueNotifier<List<DivisionWithResourceRowVM>> selectedRows =
       ValueNotifier([]);
-  final Map<String, List<ResourceDTO>> _selectedResources = {};
+
   final ValueNotifier<double> summaryVN = ValueNotifier(0.0);
   final ValueNotifier<bool> isValid = ValueNotifier(false);
+  final ValueNotifier<String> divisionTypeVN = ValueNotifier('');
+  final ValueNotifier<bool> isAllow = ValueNotifier(true);
 
   double _squareFactor = 0.0;
   double _complexityFactor = 0.0;
@@ -37,7 +43,7 @@ class ResourcesViewController {
           .isEmpty;
 
   DivisionWithResourceRowVM? getById(int id) {
-    return allDivisions
+    return _unselectedDivisions.values
         .where((element) => element.id == id)
         .map(
           (e) => e.toDivisionResourceRowVM(
@@ -53,17 +59,18 @@ class ResourcesViewController {
   }
 
   void fill(
-    ResourcesDTO divisionWithResourceDTO,
+    Map<String, DivisionDTO> divisions,
     InputDataDesign inputDataDesign,
   ) {
     _squareFactor = inputDataDesign.inputFactors.squareFactor;
     _complexityFactor = inputDataDesign.inputFactors.complexityFactor;
-    _selectedResources.addAll(divisionWithResourceDTO.resources);
-    allDivisions.addAll(divisionWithResourceDTO.divisions);
+    _unselectedDivisions.addAll(divisions);
+    unselectedDivisionsVN.value = [...divisions.values];
+    divisionTypeVN.value = inputDataDesign.divisionType.text;
   }
 
   List<ResourceDTO> resourcesByDivisionShortName(String divisionShortName) =>
-      _selectedResources[divisionShortName] ?? [];
+      _unselectedDivisions[divisionShortName]?.resources ?? [];
 
   void onRowAction(int id, WidgetActionType type) {
     switch (type) {
@@ -77,12 +84,13 @@ class ResourcesViewController {
   }
 
   void _onAdd(int id) {
+    _updateUnselectedDivision();
+
     DivisionWithResourceRowVM? found = getById(id);
     if (found != null) {
-      //TODO Add algorithm to remove from unselected
-
+      String divisionShortName = found.divisionShortName;
       List<ResourceDTO> resources = resourcesByDivisionShortName(
-        found.divisionShortName,
+        divisionShortName,
       );
       if (resources.length == 1) {
         found.resourceCostPerDayVN.value = resources[0].resourceCostPerDay;
@@ -92,6 +100,8 @@ class ResourcesViewController {
         found.resourceNameVN.value = '';
       }
       selectedRows.value = [...selectedRows.value, found];
+      isAllow.value = false;
+      _updateUnselectedDivision();
     }
   }
 
@@ -101,6 +111,7 @@ class ResourcesViewController {
       final updates = List<DivisionWithResourceRowVM>.from(selectedRows.value);
       updates.removeWhere((element) => element.id == id);
       selectedRows.value = [...updates];
+      isAllow.value = _isEmptyCostHas || selectedRows.value.isEmpty;
       //TODO Add algorithm to remove from unselected
     }
   }
@@ -112,13 +123,16 @@ class ResourcesViewController {
         found.resourceNameVN.value = '';
         found.resourceCostPerDayVN.value = 0.0;
       }
-      ResourceDTO? foundResource = _selectedResources[found.divisionShortName]
-          ?.where((element) => element.resourceName == resourceName)
-          .firstOrNull;
-      if (foundResource != null) {
-        found.resourceNameVN.value = foundResource.resourceName;
-        found.resourceCostPerDayVN.value = foundResource.resourceCostPerDay;
-        _calcResourceTotal(found);
+      DivisionDTO? divisionDTO = _unselectedDivisions[found.divisionShortName];
+      if (divisionDTO != null) {
+        ResourceDTO? foundResource = divisionDTO.resources
+            .where((element) => element.resourceName == resourceName)
+            .firstOrNull;
+        if (foundResource != null) {
+          found.resourceNameVN.value = foundResource.resourceName;
+          found.resourceCostPerDayVN.value = foundResource.resourceCostPerDay;
+          _calcResourceTotal(found);
+        }
       }
     }
   }
@@ -188,6 +202,44 @@ class ResourcesViewController {
       value.totalResourceRowCostVN.value = total;
       summaryVN.value = summaryCost;
       isValid.value = _isEmptyCostHas;
+      isAllow.value = _isEmptyCostHas;
     }
+  }
+
+  void _updateUnselectedDivision() {
+    Map<String, Set<String>> selectedResources = {};
+    for (var value in selectedRows.value) {
+      String divisionShortName = value.divisionShortName;
+      String resourcesName = value.resourceNameVN.value;
+      selectedResources.putIfAbsent(divisionShortName, () => {});
+      selectedResources[divisionShortName]?.add(resourcesName);
+    }
+
+    for (var selected in selectedResources.entries) {
+      DivisionDTO? unselectedDivisionDTO = _unselectedDivisions[selected.key];
+      DivisionDTO? selectedDivisionDTO = _selectedDivisions[selected.key];
+
+      if (unselectedDivisionDTO != null) {
+        List<ResourceDTO> maybeSelected = unselectedDivisionDTO.resources
+            .where((element) => selected.value.contains(element.resourceName))
+            .toList();
+        unselectedDivisionDTO.resources.removeWhere(
+          (element) => selected.value.contains(element.resourceName),
+        );
+        if (selectedDivisionDTO == null) {
+          selectedDivisionDTO = unselectedDivisionDTO.copyWith(
+            resources: maybeSelected,
+          );
+        } else {
+          selectedDivisionDTO.resources.addAll(maybeSelected);
+        }
+
+        if (unselectedDivisionDTO.resources.isEmpty) {
+          _unselectedDivisions.remove(selected.key);
+        }
+      }
+    }
+
+    unselectedDivisionsVN.value = [..._unselectedDivisions.values];
   }
 }

@@ -10,7 +10,6 @@ import 'package:presale/src/domain/models/v4/design/design_presale_pojo.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_pojo.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_table_pojo.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
-import 'package:presale/src/domain/models/v5/design/division_resource_table/division_and_resources_dto.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/divisions_with_resources_dto.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/extensions.dart';
 import 'package:presale/src/utils/dart_define/model/design_class/design_class.dart';
@@ -38,13 +37,13 @@ class DivisionResourceCalculateCubit
       DesignPresaleDataSourceLocal.key,
     );
     DesignClass dc = di.dartDefineModel.design;
-    ResourcesDTO resourcesDTO = await ResourcesDTO.build(
+    Map<String,DivisionDTO> divisions = await ResourcesDTO.build(
       designPresalePojo.inputDataDesign.divisionType,
       dc,
     );
 
     _resourcesViewController.fill(
-      resourcesDTO,
+      divisions,
       designPresalePojo.inputDataDesign,
     );
     emit(DivisionResourceCalculateState.showPage());

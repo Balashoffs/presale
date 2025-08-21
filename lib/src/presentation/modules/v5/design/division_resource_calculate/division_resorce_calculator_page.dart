@@ -6,6 +6,7 @@ import 'package:presale/src/di/di.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/widget_action_type.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
+import 'package:presale/src/domain/models/v5/design/division_resource_table/divisions_with_resources_dto.dart';
 import 'package:presale/src/presentation/bloc/v5/design/division_resource_calculator/division_resource_calculate_cubit.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_app_bar.dart';
@@ -50,8 +51,7 @@ class DivisionResourceCalculateProvider extends StatelessWidget {
       create: (context) {
         return DivisionResourceCalculateCubit(
           dbClient: di.dbClientImpl,
-          resourcesViewController: context
-              .read<ResourcesViewController>(),
+          resourcesViewController: context.read<ResourcesViewController>(),
         )..init();
       },
       child: DivisionResourceCalculateConsumer(),
@@ -76,7 +76,7 @@ class DivisionResourceCalculateConsumer extends StatelessWidget {
             SizedBox();
       },
       listener: (context, state) {
-        state.whenOrNull(nextPage: () => context.push(designDivisionsRoute));
+        state.whenOrNull(nextPage: () => context.go(designDivisionsRoute));
       },
     );
   }
@@ -95,11 +95,37 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomDropdownWithSearchWidget(
-                enabled: true,
-                divisions: controller.allDivisions,
-                onSelected: (p0) =>
-                    controller.onRowAction(p0.id, WidgetActionType.add),
+              ValueListenableBuilder(
+                valueListenable: controller.isAllow,
+                builder: (context, isAllow, child) {
+                  return ValueListenableBuilder<List<DivisionDTO>>(
+                    valueListenable: controller.unselectedDivisionsVN,
+                    builder: (context, value, child) {
+                      return CustomDropdownWithSearchWidget(
+                        enabled:isAllow,
+                        divisions: value,
+                        onSelected: (p0) =>
+                            controller.onRowAction(p0.id, WidgetActionType.add),
+                      );
+                    }
+                  );
+                }
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ValueListenableBuilder<String>(
+                  valueListenable: controller.divisionTypeVN,
+                  builder: (context, value, child) {
+                    return Text(
+                      value,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        decoration: TextDecoration.underline,
+                      ),
+                    );
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -107,7 +133,7 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
                   valueListenable: controller.summaryVN,
                   builder: (context, value, child) {
                     return ResultSumWidget(
-                      name: 'Себестоимость',
+                      name: 'Итого',
                       value: convertToString(value, 0),
                     );
                   },
@@ -121,10 +147,12 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
           child: ValueListenableBuilder<List<DivisionWithResourceRowVM>>(
             valueListenable: controller.selectedRows,
             builder: (context, value, child) {
-              return DivisionsResourceTableWidget(
-                rowAttributes: divisionResourceTableAttributes,
-                tableDataRows: value,
-                onRowAction: controller.onRowAction,
+              return Center(
+                child: DivisionsResourceTableWidget(
+                  rowAttributes: divisionResourceTableAttributes,
+                  tableDataRows: value,
+                  onRowAction: controller.onRowAction,
+                ),
               );
             },
           ),

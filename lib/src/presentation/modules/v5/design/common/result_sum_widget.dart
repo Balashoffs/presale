@@ -26,7 +26,8 @@ class ResultSumWidget extends StatelessWidget {
             value,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 16,
+              decoration: TextDecoration.underline,
             ),
           ),
         ],

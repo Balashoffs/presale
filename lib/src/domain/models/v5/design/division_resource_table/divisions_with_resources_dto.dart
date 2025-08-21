@@ -36,20 +36,36 @@ class DivisionDTO {
     required this.divisionDescription,
     required this.resources,
   });
+
+  DivisionDTO copyWith({
+    int? id,
+    String? divisionName,
+    String? divisionShortName,
+    String? divisionDescription,
+    List<ResourceDTO>? resources,
+  }) {
+    return DivisionDTO(
+      id: id ?? this.id,
+      divisionName: divisionName ?? this.divisionName,
+      divisionShortName: divisionShortName ?? this.divisionShortName,
+      divisionDescription: divisionDescription ?? this.divisionDescription,
+      resources: resources ?? this.resources,
+    );
+  }
 }
 
 
 
 class ResourcesDTO {
-  final List<DivisionDTO> divisions;
-  final Map<String, List<ResourceDTO>> resources;
+  // final List<DivisionDTO> divisions;
+  // final Map<String, List<ResourceDTO>> resources;
+  //
+  // const ResourcesDTO({
+  //   required this.divisions,
+  //   required this.resources,
+  // });
 
-  const ResourcesDTO({
-    required this.divisions,
-    required this.resources,
-  });
-
-  static Future<ResourcesDTO> build(DivisionType type, DesignClass dc) async {
+  static Future<Map<String,DivisionDTO>> build(DivisionType type, DesignClass dc) async {
     List<ResourceCSV> resourcesFromCsv = await ResourceCostDtoBuilder(dc.resources).build();
     String divisionPath = type == DivisionType.working ? dc.workDivisions : dc.projectDivisions;
     List<DivisionCSV> divisionsFromCsv = await DivisionCostDtoBuilder(divisionPath).build();
@@ -75,10 +91,11 @@ class ResourcesDTO {
         divisions.putIfAbsent(newDivision.divisionShortName,() => newDivision,);
       }
     }
+    return divisions;
 
-    return ResourcesDTO(
-      divisions: divisions.values.toList(),
-      resources: allResources,
-    );
+    // return ResourcesDTO(
+    //   divisions: divisions.values.toList(),
+    //   resources: allResources,
+    // );
   }
 }

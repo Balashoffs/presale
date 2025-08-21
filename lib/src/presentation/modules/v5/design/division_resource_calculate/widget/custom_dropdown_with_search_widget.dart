@@ -98,15 +98,21 @@ class _CustomDropdownWithSearchWidgetState
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MoonDropdown(
+
         show: _showDropdown,
         constrainWidthToChild: true,
         backgroundColor: colorTable(context)[40],
         borderRadius: BorderRadius.circular(8.0),
         distanceToTarget: 8,
         dropdownShadows: [],
-        onTapOutside: () => _handleDropdownTapOutside(),
+        onTapOutside: () {
+
+          _handleDropdownTapOutside();
+        },
         content: ConstrainedBox(
-          constraints:  BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 2 / 3),
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 2 / 3,
+          ),
           child: ScrollConfiguration(
             behavior: const ScrollBehavior().copyWith(scrollbars: false),
             child: _filteredOptionsList.isEmpty
@@ -124,7 +130,10 @@ class _CustomDropdownWithSearchWidgetState
                         }
                         final DivisionDTO option = _filteredOptionsList[index];
                         return MoonMenuItem(
-                          onTap: () => _handleSelect(option),
+                          onTap: () {
+                  
+                            _handleSelect(option);
+                          },
                           label: Text(option.divisionName),
                         );
                       },
@@ -133,7 +142,7 @@ class _CustomDropdownWithSearchWidgetState
           ),
         ),
         child: MoonTextInput(
-          enabled: true,
+          enabled: widget.enabled,
           hasFloatingLabel: false,
           width: 320,
           focusNode: _focusNode,
@@ -145,13 +154,21 @@ class _CustomDropdownWithSearchWidgetState
           textInputSize: MoonTextInputSize.md,
           hintText: "Найти раздел",
           controller: _searchController,
-          onTap: () => _performSearch(),
-          onTapOutside: (PointerDownEvent _) => _handleInputTapOutside(),
+          onTap: () {
+            _performSearch();
+          },
+          onTapOutside: (PointerDownEvent _) {
+  
+            _handleInputTapOutside();
+          },
           onChanged: (String _) => _performSearch(),
           trailing: MoonButton.icon(
             buttonSize: MoonButtonSize.xs,
             hoverEffectColor: Colors.transparent,
-            onTap: () => _showAllOptionsList(),
+            onTap: () {
+    
+              _showAllOptionsList();
+            },
             icon: AnimatedRotation(
               duration: const Duration(milliseconds: 200),
               turns: _showDropdown ? -0.5 : 0,
@@ -187,15 +204,16 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
   final GlobalKey _dropWidgetKey = GlobalKey();
   bool _isUpper = false;
 
-  void _getPosition(){
-    final RenderBox? renderBox = _dropWidgetKey.currentContext?.findRenderObject() as RenderBox?;
+  void _getPosition() {
+    final RenderBox? renderBox =
+        _dropWidgetKey.currentContext?.findRenderObject() as RenderBox?;
     print('find render: ${renderBox.toString()}');
-    if(renderBox != null){
+    if (renderBox != null) {
       final Offset globalPosition = renderBox.localToGlobal(Offset.zero);
       print(globalPosition);
       final height = MediaQuery.of(context).size.height;
       setState(() {
-        _isUpper = globalPosition.dy.compareTo(height/2) > 0;
+        _isUpper = globalPosition.dy.compareTo(height / 2) > 0;
       });
     }
   }
@@ -211,7 +229,9 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
       backgroundColor: colorTable(context)[40],
       constrainWidthToChild: true,
       distanceToTarget: 8.0,
-      dropdownAnchorPosition: _isUpper ? MoonDropdownAnchorPosition.top: MoonDropdownAnchorPosition.bottom,
+      dropdownAnchorPosition: _isUpper
+          ? MoonDropdownAnchorPosition.top
+          : MoonDropdownAnchorPosition.bottom,
       dropdownShadows: null,
       onTapOutside: () => setState(() {
         _showMenu = false;
