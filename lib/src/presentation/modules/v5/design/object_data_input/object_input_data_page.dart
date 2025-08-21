@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/next_page_widget.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/opacity_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/drop_down_factors_controller.dart';
 import 'package:presale/src/presentation/modules/v5/design/object_data_input/widget/drop_down_factors_widgets.dart';
@@ -199,77 +200,73 @@ class LoadedWidget extends StatelessWidget {
                   paddingTop: 8,
                   paddingBottom: 16,
                 ),
-                Opacity(
-                  opacity: 0.5,
-                  child: IgnorePointer(
-                    ignoring: true,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      spacing: 8.0,
-                      children: [
-                        Column(
-                          children: [
-                            ChangeNotifierProvider(
-                              create: (context) =>
-                                  SingleObjectValueNotifierDropDown(
-                                    baseFactors: factors.factorsByType(
-                                      InputFactorType.b.value,
-                                    ),
+                OpacityWidget(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: 8.0,
+                    children: [
+                      Column(
+                        children: [
+                          ChangeNotifierProvider(
+                            create: (context) =>
+                                SingleObjectValueNotifierDropDown(
+                                  baseFactors: factors.factorsByType(
+                                    InputFactorType.b.value,
                                   ),
-                              child: InputFactorMoonDropDown(
-                                onSelected: cubit.setHeightFactor,
-                                helperText: InputFactorType.b.value,
-                                leadingIcon:
-                                    MoonIcons.arrows_left_curved_24_light,
-                              ),
+                                ),
+                            child: InputFactorMoonDropDown(
+                              onSelected: cubit.setHeightFactor,
+                              helperText: InputFactorType.b.value,
+                              leadingIcon:
+                                  MoonIcons.arrows_left_curved_24_light,
                             ),
-                            ChangeNotifierProvider(
-                              create: (context) =>
-                                  MultiObjectValueNotifierDropDown(
-                                    inputData: factors.complexities,
+                          ),
+                          ChangeNotifierProvider(
+                            create: (context) =>
+                                MultiObjectValueNotifierDropDown(
+                                  inputData: factors.complexities,
+                                ),
+                            child: InputFactorMultiCustomMoonDropDown(
+                              onSelected: cubit.setComplexityFactor,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ChangeNotifierProvider(
+                            create: (context) =>
+                                SingleObjectValueNotifierDropDown(
+                                  baseFactors: factors.factorsByType(
+                                    InputFactorType.c.value,
                                   ),
-                              child: InputFactorMultiCustomMoonDropDown(
-                                onSelected: cubit.setComplexityFactor,
-                              ),
+                                ),
+                            child: InputFactorMoonDropDown(
+                              onSelected: cubit.setLocationFactor,
+                              helperText: InputFactorType.c.value,
+                              leadingIcon:
+                                  MoonIcons.arrows_left_curved_24_light,
                             ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ChangeNotifierProvider(
-                              create: (context) =>
-                                  SingleObjectValueNotifierDropDown(
-                                    baseFactors: factors.factorsByType(
-                                      InputFactorType.c.value,
-                                    ),
+                          ),
+                          ChangeNotifierProvider(
+                            create: (context) =>
+                                SingleObjectValueNotifierDropDown(
+                                  baseFactors: factors.factorsByType(
+                                    InputFactorType.d.value,
                                   ),
-                              child: InputFactorMoonDropDown(
-                                onSelected: cubit.setLocationFactor,
-                                helperText: InputFactorType.c.value,
-                                leadingIcon:
-                                    MoonIcons.arrows_left_curved_24_light,
-                              ),
+                                ),
+                            child: InputFactorMoonDropDown(
+                              onSelected: cubit.setSquareFactor,
+                              helperText: InputFactorType.d.value,
+                              leadingIcon:
+                                  MoonIcons.arrows_left_curved_24_light,
                             ),
-                            ChangeNotifierProvider(
-                              create: (context) =>
-                                  SingleObjectValueNotifierDropDown(
-                                    baseFactors: factors.factorsByType(
-                                      InputFactorType.d.value,
-                                    ),
-                                  ),
-                              child: InputFactorMoonDropDown(
-                                onSelected: cubit.setSquareFactor,
-                                helperText: InputFactorType.d.value,
-                                leadingIcon:
-                                    MoonIcons.arrows_left_curved_24_light,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
                 NextPageWidget(

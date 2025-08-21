@@ -13,7 +13,7 @@ import 'package:presale/src/presentation/modules/service_type_select/stage_selec
 import 'package:presale/src/presentation/modules/service_type_select/stages_table/stages_table_page.dart';
 import 'package:presale/src/presentation/modules/v5/design/object_data_input/object_input_data_page.dart';
 
-const serviceTypeRoutePath = "/service_type";
+const serviceTypeRoutePath = "/";
 const stageSelectRoutePath = "stage-select";
 const objectTableRoutePath = "object-table";
 const stagesTableRoutePath = "stages-table";
@@ -33,103 +33,103 @@ class ServiceTypeSelectRoute extends GoRoute {
         );
 }
 
-class InputRoute extends AuthNeedRoute {
-  InputRoute({
-    String? path,
-    String? name,
-    super.builder,
-    Page Function(BuildContext, GoRouterState)? pageBuilder,
-    super.parentNavigatorKey,
-    super.routes,
-  }) : super(
-    path: ':type/$stageSelectRoutePath',
-    name: name ?? (path ?? stageSelectRoutePath).toUpperCase(),
-    pageBuilder: (context, state) => AppPage(
-      child: InputDataPage(
-      ),
-    ),
-    redirect: (context, state) {
-      if (ServiceType.fromUrl(state.pathParameters['type']) == null) {
-        return defaultAuthorizedPath;
-      }
-      return null;
-    },
-  );
-}
-
-class StageTableRoute extends AuthNeedRoute {
-  StageTableRoute({
-    String? path,
-    String? name,
-    super.builder,
-    Page Function(BuildContext, GoRouterState)? pageBuilder,
-    super.parentNavigatorKey,
-    super.routes,
-  }) : super(
-          path: ':type/$stageSelectRoutePath',
-          name: name ?? (path ?? stageSelectRoutePath).toUpperCase(),
-          pageBuilder: (context, state) => AppPage(
-            child: StageSelectPage(
-              serviceType: ServiceType.fromUrl(state.pathParameters['type'])!,
-            ),
-          ),
-          redirect: (context, state) {
-            if (ServiceType.fromUrl(state.pathParameters['type']) == null) {
-              return defaultAuthorizedPath;
-            }
-            return null;
-          },
-        );
-}
-
-class ObjectTableRoute extends AuthNeedRoute {
-  ObjectTableRoute({
-    String? path,
-    String? name,
-    super.builder,
-    Page Function(BuildContext, GoRouterState)? pageBuilder,
-    super.parentNavigatorKey,
-    super.routes,
-  }) : super(
-          path: ':stage/$objectTableRoutePath',
-          name: name ?? (path ?? objectTableRoutePath).toUpperCase(),
-          pageBuilder: (context, state) => AppPage(
-            child: ObjectTablePage(
-              serviceStage: ServiceStage.fromUrl(state.pathParameters['stage'])!,
-            ),
-          ),
-          redirect: (context, state) {
-            if (ServiceStage.fromUrl(state.pathParameters['stage']) == null) {
-              return defaultAuthorizedPath;
-            }
-            di.objectTableCubit.setServiceStage(ServiceStage.fromUrl(state.pathParameters['stage'])!);
-            return null;
-          },
-        );
-}
-
-class StagesTableRoute extends AuthNeedRoute {
-  StagesTableRoute({
-    String? path,
-    String? name,
-    super.builder,
-    Page Function(BuildContext, GoRouterState)? pageBuilder,
-    super.parentNavigatorKey,
-    super.routes,
-  }) : super(
-    path: stagesTableRoutePath,
-    name: name ?? (path ?? stagesTableRoutePath).toUpperCase(),
-    pageBuilder: (context, state) => AppPage(
-      child: StagesTablePage(
-        serviceStage: ServiceStage.fromUrl(state.pathParameters['stage'])!,
-      ),
-    ),
-    redirect: (context, state) {
-      if (ServiceStage.fromUrl(state.pathParameters['stage']) == null) {
-        return defaultAuthorizedPath;
-      }
-      di.stagesTableCubit.setServiceStage(ServiceStage.fromUrl(state.pathParameters['stage'])!);
-      return null;
-    },
-  );
-}
+// class InputRoute extends AuthNeedRoute {
+//   InputRoute({
+//     String? path,
+//     String? name,
+//     super.builder,
+//     Page Function(BuildContext, GoRouterState)? pageBuilder,
+//     super.parentNavigatorKey,
+//     super.routes,
+//   }) : super(
+//     path: ':type/$stageSelectRoutePath',
+//     name: name ?? (path ?? stageSelectRoutePath).toUpperCase(),
+//     pageBuilder: (context, state) => AppPage(
+//       child: InputDataPage(
+//       ),
+//     ),
+//     redirect: (context, state) {
+//       if (ServiceType.fromUrl(state.pathParameters['type']) == null) {
+//         return defaultAuthorizedPath;
+//       }
+//       return null;
+//     },
+//   );
+// }
+//
+// class StageTableRoute extends AuthNeedRoute {
+//   StageTableRoute({
+//     String? path,
+//     String? name,
+//     super.builder,
+//     Page Function(BuildContext, GoRouterState)? pageBuilder,
+//     super.parentNavigatorKey,
+//     super.routes,
+//   }) : super(
+//           path: ':type/$stageSelectRoutePath',
+//           name: name ?? (path ?? stageSelectRoutePath).toUpperCase(),
+//           pageBuilder: (context, state) => AppPage(
+//             child: StageSelectPage(
+//               serviceType: ServiceType.fromUrl(state.pathParameters['type'])!,
+//             ),
+//           ),
+//           redirect: (context, state) {
+//             if (ServiceType.fromUrl(state.pathParameters['type']) == null) {
+//               return defaultAuthorizedPath;
+//             }
+//             return null;
+//           },
+//         );
+// }
+//
+// class ObjectTableRoute extends AuthNeedRoute {
+//   ObjectTableRoute({
+//     String? path,
+//     String? name,
+//     super.builder,
+//     Page Function(BuildContext, GoRouterState)? pageBuilder,
+//     super.parentNavigatorKey,
+//     super.routes,
+//   }) : super(
+//           path: ':stage/$objectTableRoutePath',
+//           name: name ?? (path ?? objectTableRoutePath).toUpperCase(),
+//           pageBuilder: (context, state) => AppPage(
+//             child: ObjectTablePage(
+//               serviceStage: ServiceStage.fromUrl(state.pathParameters['stage'])!,
+//             ),
+//           ),
+//           redirect: (context, state) {
+//             if (ServiceStage.fromUrl(state.pathParameters['stage']) == null) {
+//               return defaultAuthorizedPath;
+//             }
+//             di.objectTableCubit.setServiceStage(ServiceStage.fromUrl(state.pathParameters['stage'])!);
+//             return null;
+//           },
+//         );
+// }
+//
+// class StagesTableRoute extends AuthNeedRoute {
+//   StagesTableRoute({
+//     String? path,
+//     String? name,
+//     super.builder,
+//     Page Function(BuildContext, GoRouterState)? pageBuilder,
+//     super.parentNavigatorKey,
+//     super.routes,
+//   }) : super(
+//     path: stagesTableRoutePath,
+//     name: name ?? (path ?? stagesTableRoutePath).toUpperCase(),
+//     pageBuilder: (context, state) => AppPage(
+//       child: StagesTablePage(
+//         serviceStage: ServiceStage.fromUrl(state.pathParameters['stage'])!,
+//       ),
+//     ),
+//     redirect: (context, state) {
+//       if (ServiceStage.fromUrl(state.pathParameters['stage']) == null) {
+//         return defaultAuthorizedPath;
+//       }
+//       di.stagesTableCubit.setServiceStage(ServiceStage.fromUrl(state.pathParameters['stage'])!);
+//       return null;
+//     },
+//   );
+// }

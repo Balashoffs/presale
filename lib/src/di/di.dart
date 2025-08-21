@@ -3,6 +3,7 @@ import 'package:dart_seq_http_client/dart_seq_http_client.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:presale/src/data/clients/v1/employee_client.dart';
@@ -22,8 +23,11 @@ import 'package:presale/src/presentation/bloc/object_table_page/cubit.dart';
 import 'package:presale/src/presentation/bloc/section_repository.dart';
 import 'package:presale/src/presentation/bloc/stages_table_page/cubit.dart';
 import 'package:presale/src/presentation/bloc/user/user_repository.dart';
-import 'package:presale/src/presentation/core/navigation/app_router.dart';
+import 'package:presale/src/presentation/core/navigation/routers/debug_app_router.dart';
+import 'package:presale/src/presentation/core/navigation/routers/release_app_router.dart';
 import 'package:presale/src/presentation/core/services/theme_service.dart';
+import 'package:presale/src/utils/dart_define/dart_define_utils.dart';
+import 'package:presale/src/utils/dart_define/model/dart_define_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const di = DependencyInjector();
@@ -35,36 +39,52 @@ class DependencyInjector {
 
   final FlutterSecureStorage flutterAuthSecureStorage =
       const FlutterSecureStorage(
-    wOptions: WindowsOptions(useBackwardCompatibility: true),
-    mOptions: MacOsOptions(),
-    webOptions: WebOptions(
-      dbName: 'Auth',
-    ),
-    aOptions: AndroidOptions(
-      storageCipherAlgorithm: StorageCipherAlgorithm.AES_GCM_NoPadding,
-      resetOnError: true,
-    ),
-  );
+        wOptions: WindowsOptions(useBackwardCompatibility: true),
+        mOptions: MacOsOptions(),
+        webOptions: WebOptions(dbName: 'Auth'),
+        aOptions: AndroidOptions(
+          storageCipherAlgorithm: StorageCipherAlgorithm.AES_GCM_NoPadding,
+          resetOnError: true,
+        ),
+      );
 
   Future<void> init() async {
+    _initBuildConfig();
     await _registerDBClient();
     await _setupStorageAndObserver();
     await _initSegClient();
+
+    _registerRouter();
+    // _registerBlocs();
   }
 
-  Future<void> _initSegClient()async{
-    SeqLogger logger = SeqHttpLogger.create(
+  void _initBuildConfig() {
+    DartDefineModel dartDefineModel = buildFrom();
+    _getItInstance.registerSingleton<DartDefineModel>(dartDefineModel);
+  }
 
+  Future<void> _initSegClient() async {
+    SeqLogger logger = SeqHttpLogger.create(
       host: 'http://localhost:5341',
-      globalContext: {
-        'App': 'PresaleCalc',
-      },
+      globalContext: {'App': 'PresaleCalc'},
     );
     _getItInstance.registerSingleton<SeqLogger>(logger);
   }
 
+  void _registerRouter() {
+    DartDefineModel ddm = dartDefineModel;
+    GoRouter? goRouter = switch (ddm.type) {
+      "dev" => appRouterDebug,
+      "prod" => appRouterRelease,
+      String() => null,
+    };
+    if (goRouter != null) {
+      _getItInstance.registerSingleton<GoRouter>(goRouter);
+    }
+  }
+
   Future<void> initConfig() async {
-    await _registerAppConfig();
+    // await _registerAppConfig();
   }
 
   Future<void> _registerAppConfig() async {
@@ -73,16 +93,16 @@ class DependencyInjector {
     _getItInstance.registerSingleton<AppConfig>(appConfig);
   }
 
-
   void _registerThemeService() =>
       _getItInstance.registerSingleton<ThemeService>(
-          ThemeService(_getItInstance<DBClient>()));
+        ThemeService(_getItInstance<DBClient>()),
+      );
 
   Future<void> _registerDBClient() async {
     final preferences = await SharedPreferences.getInstance();
-
-    _getItInstance
-        .registerLazySingleton<DBClient>(() => DBClientImpl(preferences));
+    _getItInstance.registerLazySingleton<DBClient>(
+      () => DBClientImpl(preferences),
+    );
   }
 
   Future<void> _registerLocalNotifications() async {}
@@ -90,24 +110,23 @@ class DependencyInjector {
   Future<void> _registerApiClients() async {}
 
   void _registerDataSources() {
-    _getItInstance
-        .registerSingleton<EmployeeDataSource>(EmployeeDataSourceLocal(
-      _getItInstance<DBClient>(),
-    ));
+    _getItInstance.registerSingleton<EmployeeDataSource>(
+      EmployeeDataSourceLocal(_getItInstance<DBClient>()),
+    );
 
-    _getItInstance.registerSingleton<SectionDataSource>(SectionDataSourceLocal(
-      _getItInstance<DBClient>(),
-    ));
+    _getItInstance.registerSingleton<SectionDataSource>(
+      SectionDataSourceLocal(_getItInstance<DBClient>()),
+    );
   }
 
   void _registerClients() {
-    _getItInstance.registerSingleton<EmployeeClient>(EmployeeClientImpl(
-      _getItInstance<EmployeeDataSource>(),
-    ));
+    _getItInstance.registerSingleton<EmployeeClient>(
+      EmployeeClientImpl(_getItInstance<EmployeeDataSource>()),
+    );
 
-    _getItInstance.registerSingleton<SectionClient>(SectionClientImpl(
-      _getItInstance<SectionDataSource>(),
-    ));
+    _getItInstance.registerSingleton<SectionClient>(
+      SectionClientImpl(_getItInstance<SectionDataSource>()),
+    );
   }
 
   Future<void> _setupStorageAndObserver() async {
@@ -121,60 +140,23 @@ class DependencyInjector {
   }
 
   void _registerBlocs() {
-    /// Appearance
-    final themeBloc = ThemeCubit()..themeLoad();
-    _getItInstance.registerFactory<ThemeCubit>(() => themeBloc);
-
-    /// Localization
-
-    _getItInstance.registerSingleton<DataCubit>(DataCubit(
-      _getItInstance<EmployeeClient>(),
-      _getItInstance<SectionClient>(),
-    ));
-
-    /// User
-    _getItInstance.registerSingleton<AuthCubit>(
-      AuthCubit(),
-    );
-
-    _getItInstance.registerSingleton<UserRepository>(
-      UserRepository(),
-    );
-
-    /// Navigation
-    _getItInstance.registerSingleton<NavigationCubit>(
-      NavigationCubit(
-        _getItInstance<UserRepository>(),
-        _getItInstance<AppRouter>(),
-      ),
-    );
-
-    /// Employees
-    _getItInstance.registerSingleton<EmployeeRepository>(
-      EmployeeRepository(
-        _getItInstance<EmployeeClient>(),
-      ),
-    );
-
-    _getItInstance.registerSingleton<SectionRepository>(
-      SectionRepository(
-        _getItInstance<SectionClient>(),
-        _getItInstance<EmployeeClient>(),
-      ),
-    );
-
-    _getItInstance.registerSingleton<ObjectTableCubit>(
-      ObjectTableCubit(),
-    );
-
-    _getItInstance.registerSingleton<StagesTableCubit>(
-      StagesTableCubit(
-        _getItInstance<ObjectTableCubit>(),
-      ),
-    );
+    // /// User
+    // _getItInstance.registerSingleton<AuthCubit>(
+    //   AuthCubit(),
+    // );
+    //
+    // _getItInstance.registerSingleton<UserRepository>(
+    //   UserRepository(),
+    // );
+    //
+    // /// Navigation
+    // _getItInstance.registerSingleton<NavigationCubit>(
+    //   NavigationCubit(
+    //     _getItInstance<UserRepository>(),
+    //     _getItInstance<AppRouter>(),
+    //   ),
+    // );
   }
-
-
 
   /// Core
 
@@ -185,7 +167,6 @@ class DependencyInjector {
   ThemeCubit get themeBloc => _getItInstance<ThemeCubit>();
 
   NavigationCubit get navigationCubit => _getItInstance<NavigationCubit>();
-
 
   DataCubit get dataCubit => _getItInstance<DataCubit>();
 
@@ -206,12 +187,14 @@ class DependencyInjector {
       _getItInstance<SectionRepository>();
 
   ObjectTableCubit get objectTableCubit => _getItInstance<ObjectTableCubit>();
+
   SeqLogger get segLogger => _getItInstance<SeqLogger>();
 
   StagesTableCubit get stagesTableCubit => _getItInstance<StagesTableCubit>();
 
   DBClient get dbClientImpl => _getItInstance<DBClient>();
 
+  DartDefineModel get dartDefineModel => _getItInstance<DartDefineModel>();
 
-
+  GoRouter get appGoRouter => _getItInstance<GoRouter>();
 }

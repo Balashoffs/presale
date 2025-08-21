@@ -24,7 +24,7 @@ mixin _$FooterData {
   String get noteText => throw _privateConstructorUsedError;
   String get workCompletionTime => throw _privateConstructorUsedError;
   String get prepayment => throw _privateConstructorUsedError;
-  SignPerson get signPerson => throw _privateConstructorUsedError;
+  SignPerson? get signPerson => throw _privateConstructorUsedError;
 
   /// Serializes this FooterData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,10 +47,10 @@ abstract class $FooterDataCopyWith<$Res> {
     String noteText,
     String workCompletionTime,
     String prepayment,
-    SignPerson signPerson,
+    SignPerson? signPerson,
   });
 
-  $SignPersonCopyWith<$Res> get signPerson;
+  $SignPersonCopyWith<$Res>? get signPerson;
 }
 
 /// @nodoc
@@ -71,7 +71,7 @@ class _$FooterDataCopyWithImpl<$Res, $Val extends FooterData>
     Object? noteText = null,
     Object? workCompletionTime = null,
     Object? prepayment = null,
-    Object? signPerson = null,
+    Object? signPerson = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -87,10 +87,10 @@ class _$FooterDataCopyWithImpl<$Res, $Val extends FooterData>
                 ? _value.prepayment
                 : prepayment // ignore: cast_nullable_to_non_nullable
                       as String,
-            signPerson: null == signPerson
+            signPerson: freezed == signPerson
                 ? _value.signPerson
                 : signPerson // ignore: cast_nullable_to_non_nullable
-                      as SignPerson,
+                      as SignPerson?,
           )
           as $Val,
     );
@@ -100,8 +100,12 @@ class _$FooterDataCopyWithImpl<$Res, $Val extends FooterData>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $SignPersonCopyWith<$Res> get signPerson {
-    return $SignPersonCopyWith<$Res>(_value.signPerson, (value) {
+  $SignPersonCopyWith<$Res>? get signPerson {
+    if (_value.signPerson == null) {
+      return null;
+    }
+
+    return $SignPersonCopyWith<$Res>(_value.signPerson!, (value) {
       return _then(_value.copyWith(signPerson: value) as $Val);
     });
   }
@@ -120,11 +124,11 @@ abstract class _$$FooterDataImplCopyWith<$Res>
     String noteText,
     String workCompletionTime,
     String prepayment,
-    SignPerson signPerson,
+    SignPerson? signPerson,
   });
 
   @override
-  $SignPersonCopyWith<$Res> get signPerson;
+  $SignPersonCopyWith<$Res>? get signPerson;
 }
 
 /// @nodoc
@@ -144,7 +148,7 @@ class __$$FooterDataImplCopyWithImpl<$Res>
     Object? noteText = null,
     Object? workCompletionTime = null,
     Object? prepayment = null,
-    Object? signPerson = null,
+    Object? signPerson = freezed,
   }) {
     return _then(
       _$FooterDataImpl(
@@ -160,10 +164,10 @@ class __$$FooterDataImplCopyWithImpl<$Res>
             ? _value.prepayment
             : prepayment // ignore: cast_nullable_to_non_nullable
                   as String,
-        signPerson: null == signPerson
+        signPerson: freezed == signPerson
             ? _value.signPerson
             : signPerson // ignore: cast_nullable_to_non_nullable
-                  as SignPerson,
+                  as SignPerson?,
       ),
     );
   }
@@ -176,7 +180,7 @@ class _$FooterDataImpl implements _FooterData {
     this.noteText = '',
     required this.workCompletionTime,
     required this.prepayment,
-    required this.signPerson,
+    this.signPerson,
   });
 
   factory _$FooterDataImpl.fromJson(Map<String, dynamic> json) =>
@@ -190,7 +194,7 @@ class _$FooterDataImpl implements _FooterData {
   @override
   final String prepayment;
   @override
-  final SignPerson signPerson;
+  final SignPerson? signPerson;
 
   @override
   String toString() {
@@ -241,7 +245,7 @@ abstract class _FooterData implements FooterData {
     final String noteText,
     required final String workCompletionTime,
     required final String prepayment,
-    required final SignPerson signPerson,
+    final SignPerson? signPerson,
   }) = _$FooterDataImpl;
 
   factory _FooterData.fromJson(Map<String, dynamic> json) =
@@ -254,7 +258,7 @@ abstract class _FooterData implements FooterData {
   @override
   String get prepayment;
   @override
-  SignPerson get signPerson;
+  SignPerson? get signPerson;
 
   /// Create a copy of FooterData
   /// with the given fields replaced by the non-null parameter values.

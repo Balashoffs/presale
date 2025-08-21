@@ -74,7 +74,7 @@ class _DivisionsResourceTableWidgetState
 
   List<MoonTableRow> _generateTableRows() {
     return List.generate(widget.tableDataRows.length, (int index) {
-      final controller = context.read<DivisionResourceSummaryViewController>();
+      final controller = context.read<ResourcesViewController>();
       final row = widget.tableDataRows[index];
       return MoonTableRow(
         height: 72,

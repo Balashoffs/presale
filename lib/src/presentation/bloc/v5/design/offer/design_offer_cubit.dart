@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:presale/src/di/di.dart';
+import 'package:presale/src/utils/dart_define/model/design_class/design_class.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'package:open_file/open_file.dart' as open_file;
 
@@ -39,7 +41,8 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
   void init() async {
     DesignPresalePojo designPresalePojo = await _dataSourceLocal
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
-    await _designOfferController.fillSign();
+    DesignClass dc = di.dartDefineModel.design;
+    await _designOfferController.fillSign(dc);
     bool isBuild = _designOfferController.buildModel(designPresalePojo);
     if (isBuild) {
       emit(
@@ -72,44 +75,4 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
       }
     }
   }
-
-  Future<void> _saveFile(List<int> fileBytes) async {
-    String? pickedSaveFilePath;
-
-    try {
-      Directory w = await getApplicationDocumentsDirectory();
-      pickedSaveFilePath = await FilePicker.platform.saveFile(
-        allowedExtensions: ['.xlsx'],
-        type: FileType.custom,
-        dialogTitle: 'Сохранить КП в xlsx',
-        fileName: 'КП.xlsx',
-        initialDirectory: w.path,
-        lockParentWindow: true,
-        bytes: Uint8List.fromList(fileBytes),
-      );
-
-      if (Platform.isAndroid || Platform.isIOS) {
-        //Launch the file (used open_file package)
-        await open_file.OpenFile.open('$pickedSaveFilePath');
-      } else if (Platform.isWindows) {
-        await Process.run('start', <String>[
-          '$pickedSaveFilePath',
-        ], runInShell: true);
-      } else if (Platform.isMacOS) {
-        await Process.run('open', <String>[
-          '$pickedSaveFilePath',
-        ], runInShell: true);
-      } else if (Platform.isLinux) {
-        await Process.run('xdg-open', <String>[
-          '$pickedSaveFilePath',
-        ], runInShell: true);
-      }
-    } on PlatformException catch (e) {
-      print(e.message);
-    } catch (e) {
-      print(e.toString());
-    }
-  }
-
-  void toMainPage() async {}
 }

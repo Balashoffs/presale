@@ -32,7 +32,7 @@ class DivisionsMarginCalculateRepository extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => DivisionsMarginSummaryViewController(),
+      create: (context) => DivisionsViewController(),
       child: DivisionsMarginCalculateProvider(),
     );
   }
@@ -48,7 +48,7 @@ class DivisionsMarginCalculateProvider extends StatelessWidget {
         return DivisionsMarginCalculateCubit(
           dbClient: di.dbClientImpl,
           resourceSummaryViewModel: context
-              .read<DivisionsMarginSummaryViewController>(),
+              .read<DivisionsViewController>(),
         )..init();
       },
       child: DivisionsMarginCalculateConsumer(),
@@ -90,7 +90,7 @@ class DivisionsMarginCalculateWidget extends StatelessWidget {
           flex: 9,
           child: DivisionsMarginTableWidget(
             rowAttributes: divisionMarginTableAttributes,
-            tableDataRows: context.read<DivisionsMarginSummaryViewController>().rows,
+            tableDataRows: context.read<DivisionsViewController>().rows,
           ),
         ),
         Expanded(

@@ -7,14 +7,15 @@ abstract class CsvParser<T> {
   CsvParser(String file) : _pathToFile = file;
 
   Future<String> _readFromAssets() async {
+    print(_pathToFile);
     return rootBundle.loadString(_pathToFile);
   }
 
   Future<List<T>> parse(List<T> Function(List<List<dynamic>>) rowParse) async {
     String csv = await _readFromAssets();
     List<List<dynamic>> csvData = const CsvToListConverter(
-      eol: '\n',
-      textDelimiter: ',',
+      eol: '\r',
+      fieldDelimiter: ';',
       shouldParseNumbers: false,
     ).convert(csv);
     return rowParse(csvData);

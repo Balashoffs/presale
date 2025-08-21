@@ -3,10 +3,12 @@ import 'package:presale/src/data/v3/design_calculator.dart';
 import 'package:presale/src/domain/models/v3/design/input_data/input_data_design.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/widget_action_type.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
-import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
+import 'package:presale/src/domain/models/v5/design/division_resource_table/division_and_resources_dto.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/extensions.dart';
 
-class DivisionResourceSummaryViewController {
+import 'divisions_with_resources_dto.dart';
+
+class ResourcesViewController {
   final List<DivisionDTO> allDivisions = [];
 
   final ValueNotifier<List<DivisionWithResourceRowVM>> selectedRows =
@@ -51,7 +53,7 @@ class DivisionResourceSummaryViewController {
   }
 
   void fill(
-    DivisionWithResourceDTO divisionWithResourceDTO,
+    ResourcesDTO divisionWithResourceDTO,
     InputDataDesign inputDataDesign,
   ) {
     _squareFactor = inputDataDesign.inputFactors.squareFactor;

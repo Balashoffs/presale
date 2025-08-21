@@ -9,30 +9,29 @@
 import 'package:presale/src/data/core/csv_parser.dart';
 import 'package:presale/src/domain/models/v3/design/division_type/division_type.dart';
 
-final String pathWorkToSrc =
-    'assets/calculator_data/v5/raboch_razdely_resursy.csv';
-final String pathProjectToSrc =
-    'assets/calculator_data/v5/project_razdely_resursy.csv';
-
 class DivisionCSV {
   final String id;
-  final String divisionName;
   final String divisionShortName;
-  final String divisionType;
+  final String divisionName;
+  final String divisionDescription;
+  final String resourceCode;
 
   const DivisionCSV({
     required this.id,
-    required this.divisionName,
     required this.divisionShortName,
-    required this.divisionType,
+    required this.divisionName,
+    required this.divisionDescription,
+    required this.resourceCode,
   });
 
   factory DivisionCSV.fromCsvRow(List<dynamic> row) {
+    print(row);
     return DivisionCSV(
       id: row[0],
       divisionShortName: row[1],
       divisionName: row[2],
-      divisionType: row[3],
+      divisionDescription: row[3],
+      resourceCode: row[4],
     );
   }
 }
@@ -49,14 +48,5 @@ class DivisionCostDtoBuilder extends CsvParser<DivisionCSV> {
   @override
   Future<List<DivisionCSV>> build() async {
     return await parse(_parser);
-  }
-}
-
-Future<List<DivisionCSV>> buildOnType(DivisionType divisionType) async {
-  switch (divisionType) {
-    case DivisionType.project:
-      return DivisionCostDtoBuilder(pathProjectToSrc).build();
-    case DivisionType.working:
-      return DivisionCostDtoBuilder(pathWorkToSrc).build();
   }
 }

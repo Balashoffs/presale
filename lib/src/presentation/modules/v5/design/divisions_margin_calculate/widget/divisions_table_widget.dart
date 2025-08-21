@@ -52,7 +52,7 @@ class _DivisionsMarginTableWidgetState
           addDecoration(buildIntTextCell(row.divisionSummaryCost)),
           addDecoration(
             buildFactorInputCell(row.overPriceFactor, (context, value) {
-              context.read<DivisionsMarginSummaryViewController>().onOverPriceFactor(
+              context.read<DivisionsViewController>().onOverPriceFactor(
                 row.id,
                 value,
               );
@@ -60,7 +60,7 @@ class _DivisionsMarginTableWidgetState
           ),
           addDecoration(
             buildFactorInputCell(row.marginFactor, (context, value) {
-              context.read<DivisionsMarginSummaryViewController>().onMarginFactor(
+              context.read<DivisionsViewController>().onMarginFactor(
                 row.id,
                 value,
               );
@@ -68,7 +68,7 @@ class _DivisionsMarginTableWidgetState
           ),
           addDecoration(
             buildFactorInputCell(row.clientFactor, (context, value) {
-              context.read<DivisionsMarginSummaryViewController>().onMarginFactor(
+              context.read<DivisionsViewController>().onMarginFactor(
                 row.id,
                 value,
               );
@@ -93,7 +93,7 @@ class _DivisionsMarginTableWidgetState
               return addDecoration(
                 buildTextWithNotifier(
                   context
-                      .read<DivisionsMarginSummaryViewController>()
+                      .read<DivisionsViewController>()
                       .divisionClearSummaryVN,
                 ),
               );
@@ -109,7 +109,7 @@ class _DivisionsMarginTableWidgetState
               return addDecoration(
                 buildTextWithNotifier(
                   context
-                      .read<DivisionsMarginSummaryViewController>()
+                      .read<DivisionsViewController>()
                       .divisionsWithMarginSummaryVN,
                 ),
               );
@@ -124,7 +124,7 @@ class _DivisionsMarginTableWidgetState
               return addDecoration(
                 buildTextWithNotifier(
                   context
-                      .read<DivisionsMarginSummaryViewController>()
+                      .read<DivisionsViewController>()
                       .divisionsWithTaxSummaryVN,
                 ),
               );

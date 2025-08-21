@@ -6,6 +6,7 @@ import 'package:presale/src/domain/models/v5/common/person_sign_dto.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/division_summary_viewmodel.dart';
+import 'package:presale/src/utils/dart_define/model/design_class/design_class.dart';
 
 class DesignOfferResultController {
   late final DesignOfferResultVM? designOfferResultVM;
@@ -18,10 +19,13 @@ class DesignOfferResultController {
     return designOfferResultVM != null;
   }
 
-  Future<void> fillSign() async {
-    List<PersonSignDTO> persons = await DivisionCostDtoBuilder().build();
-    sign.addAll(persons);
-    signsNames.value = [...sign.map((e) => e.fullName)];
+  Future<void> fillSign(DesignClass dc) async {
+    if(dc.sign != null){
+      List<PersonSignDTO> persons = await DivisionCostDtoBuilder(dc.sign!).build();
+      sign.addAll(persons);
+      signsNames.value = [...sign.map((e) => e.fullName)];
+    }
+
   }
 
   void onComments(String value) {

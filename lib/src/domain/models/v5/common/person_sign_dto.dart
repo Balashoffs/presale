@@ -43,7 +43,7 @@ typedef DivisionCSVParser =
 const path = 'assets/calculator_data/v5/sign_person.csv';
 
 class DivisionCostDtoBuilder extends CsvParser<PersonSignDTO> {
-  DivisionCostDtoBuilder() : super(path);
+  DivisionCostDtoBuilder(super.path);
 
   DivisionCSVParser get _parser =>
       (rows) => rows.skip(1).map((row) => PersonSignDTO.fromCsvRow(row)).toList();

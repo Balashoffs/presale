@@ -35,7 +35,7 @@ class DivisionResourceCalculateRepository extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-      create: (context) => DivisionResourceSummaryViewController(),
+      create: (context) => ResourcesViewController(),
       child: DivisionResourceCalculateProvider(),
     );
   }
@@ -50,8 +50,8 @@ class DivisionResourceCalculateProvider extends StatelessWidget {
       create: (context) {
         return DivisionResourceCalculateCubit(
           dbClient: di.dbClientImpl,
-          resourceSummaryViewModel: context
-              .read<DivisionResourceSummaryViewController>(),
+          resourcesViewController: context
+              .read<ResourcesViewController>(),
         )..init();
       },
       child: DivisionResourceCalculateConsumer(),
@@ -87,7 +87,7 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<DivisionResourceSummaryViewController>();
+    final controller = context.read<ResourcesViewController>();
     return Column(
       children: [
         Expanded(

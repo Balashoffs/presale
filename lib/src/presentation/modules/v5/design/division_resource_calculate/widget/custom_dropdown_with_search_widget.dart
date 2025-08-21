@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/domain/models/v5/design/division_resource_table/division_with_resources_dto.dart';
+import 'package:presale/src/domain/models/v5/design/division_resource_table/division_and_resources_dto.dart';
+import 'package:presale/src/domain/models/v5/design/division_resource_table/divisions_with_resources_dto.dart';
 import 'package:presale/src/presentation/common/color_options.dart'
     show colorTable;
 import 'package:uuid/uuid.dart';

@@ -86,37 +86,4 @@ final class DivisionWithResourceRowVM {
        _squareFactor = squareFactor,
        _resourceUsingFactor = resourceUsingFactor;
 
-  DivisionWithResourceRowVM copyWithClear({
-    String? divisionName,
-    String? divisionShortName,
-    String? resourceName,
-    int? workDays,
-    double? complexFactor,
-    double? squareFactor,
-    double? resourceUsingFactor,
-    double? resourceCostPerDay,
-  }) {
-    return DivisionWithResourceRowVM(
-      id: DateTime.now().microsecondsSinceEpoch,
-      divisionName: divisionName ?? this.divisionName,
-      divisionShortName: divisionShortName ?? this.divisionShortName,
-      resourceName: '',
-      resourceQnt: 0,
-      workDays: 0,
-      complexFactor: 0.0,
-      squareFactor: 0.0,
-      resourceUsingFactor: 0.0,
-      resourceCostPerDay: 0.0,
-    );
-  }
-
-  void clear() {
-    resourceQnt = 0;
-    workDays = 0;
-    complexFactor = 0.0;
-    squareFactor = 0.0;
-    resourceUsingFactor = 0.0;
-    resourceCostPerDayVN.value = 0.0;
-    totalResourceRowCostVN.value = 0.0;
-  }
 }

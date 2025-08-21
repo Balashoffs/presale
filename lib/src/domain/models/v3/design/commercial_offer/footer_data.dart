@@ -9,8 +9,7 @@ class FooterData with _$FooterData {
   const factory FooterData({
     @Default('') String noteText,
     required String workCompletionTime,
-    required String prepayment,
-   required SignPerson signPerson,
+    required String prepayment, SignPerson? signPerson,
   }) = _FooterData;
 
   factory FooterData.fromJson(Map<String, dynamic> json) =>

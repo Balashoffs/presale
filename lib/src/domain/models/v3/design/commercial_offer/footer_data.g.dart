@@ -11,9 +11,9 @@ _$FooterDataImpl _$$FooterDataImplFromJson(Map<String, dynamic> json) =>
       noteText: json['noteText'] as String? ?? '',
       workCompletionTime: json['workCompletionTime'] as String,
       prepayment: json['prepayment'] as String,
-      signPerson: SignPerson.fromJson(
-        json['signPerson'] as Map<String, dynamic>,
-      ),
+      signPerson: json['signPerson'] == null
+          ? null
+          : SignPerson.fromJson(json['signPerson'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$FooterDataImplToJson(_$FooterDataImpl instance) =>

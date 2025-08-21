@@ -18,26 +18,18 @@ part 'divisions_margin_calculate_cubit.freezed.dart';
 
 class DivisionsMarginCalculateCubit
     extends Cubit<DivisionsMarginCalculateState> {
-  final DivisionsMarginSummaryViewController _resourceSummaryViewModel;
+  final DivisionsViewController _divisionsViewController;
   final DesignPresaleDataSourceLocal _dataSourceLocal;
 
   DivisionsMarginCalculateCubit({
     required DBClient dbClient,
-    required DivisionsMarginSummaryViewController resourceSummaryViewModel,
+    required DivisionsViewController resourceSummaryViewModel,
   }) : _dataSourceLocal = DesignPresaleDataSourceLocal(dbClient),
-       _resourceSummaryViewModel = resourceSummaryViewModel,
+       _divisionsViewController = resourceSummaryViewModel,
        super(const DivisionsMarginCalculateState.initial());
 
   void init() async {
     DesignPresalePojo designPresalePojo;
-    // if (kDebugMode) {
-    //   designPresalePojo =
-    //       await DesignPresaleDataTest.getDevInputDesignPresale();
-    // } else {
-    //   designPresalePojo = await _dataSourceLocal.getDesignPresale(
-    //     DesignPresaleDataSourceLocal.key,
-    //   );
-    // }
 
     designPresalePojo = await _dataSourceLocal.getDesignPresale(
       DesignPresaleDataSourceLocal.key,
@@ -46,13 +38,13 @@ class DivisionsMarginCalculateCubit
     List<DivisionResourceRowPojo> divisionsByType =
         designPresalePojo.resource?.rows ?? [];
     if (divisionsByType.isNotEmpty) {
-      _resourceSummaryViewModel.fill(divisionsByType);
+      _divisionsViewController.fill(divisionsByType);
       emit(DivisionsMarginCalculateState.showPage());
     }
   }
 
   void onNextPage() async {
-    List<DivisionsMarginRowPojo> rows = _resourceSummaryViewModel.rows
+    List<DivisionsMarginRowPojo> rows = _divisionsViewController.rows
         .map((e) => e.toRowPojo())
         .toList();
 

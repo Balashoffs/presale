@@ -8,28 +8,23 @@ import 'package:presale/src/presentation/modules/service_type_select/navi/servic
 import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 import 'package:presale/src/presentation/modules/v5/user_login/navi/service_navi.dart';
 
-final  appRouter = GoRouter(
+final  appRouterRelease = GoRouter(
   routes: [
-    UserLoginPageRoute(
+    ServiceTypeSelectRoute(
       routes: [
-        // ServiceTypeSelectRoute(
-        //   routes: [
-        //     DesignInputRoute(
-        //       routes: [
-        //         DesignResourcesRoute(
-        //           routes: [
-        //             DesignDivisionsRoute(
-        //               routes: [DesignOfferRoute(routes: [])],
-        //             ),
-        //           ],
-        //         ),
-        //       ],
-        //     ),
-        //   ],
-        // ),
-      ]
-    )
-
+        DesignInputRoute(
+          routes: [
+            DesignResourcesRoute(
+              routes: [
+                DesignDivisionsRoute(
+                  routes: [DesignOfferRoute(routes: [])],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    ),
   ],
   initialLocation: userLoginPageRoutePath,
   debugLogDiagnostics: true,

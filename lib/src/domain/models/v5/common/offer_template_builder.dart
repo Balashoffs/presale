@@ -42,10 +42,7 @@ class DesignOfferTemplateBuilder {
     _increment(2);
     _addAvance();
     _increment(2);
-    _addCompanyJobTitle();
-    _increment();
-    _addCreaterName();
-    _increment();
+    _addSignRows();
     _addSignPlace();
     _increment();
     _addText('м.п.');
@@ -53,6 +50,15 @@ class DesignOfferTemplateBuilder {
 
   List<int> saveToBytes() {
     return _worksheet.workbook.saveSync();
+  }
+
+  void _addSignRows() {
+    if (_offerResult.footerData.signPerson != null) {
+      _addCompanyJobTitle();
+      _increment();
+      _addCreaterName();
+      _increment();
+    }
   }
 
   void _addTable() {
@@ -279,9 +285,9 @@ class DesignOfferTemplateBuilder {
       );
     }
     String note = _offerResult.footerData.noteText;
-    if(note.contains('\n')){
+    if (note.contains('\n')) {
       List<String> lines = note.split('\n');
-      for(final line in lines){
+      for (final line in lines) {
         _increment(1);
         _buildCell(
           line,
@@ -290,7 +296,7 @@ class DesignOfferTemplateBuilder {
           alignType: HAlignType.left,
         );
       }
-    }else{
+    } else {
       _increment(1);
       _buildCell(
         note,
@@ -299,8 +305,6 @@ class DesignOfferTemplateBuilder {
         alignType: HAlignType.left,
       );
     }
-
-
   }
 
   void _addAvance() {
@@ -361,13 +365,13 @@ class DesignOfferTemplateBuilder {
 
   void _addCompanyJobTitle() {
     _buildCell(
-      '${_offerResult.footerData.signPerson.jobTitle} - ${_offerResult.footerData.signPerson.companyName}',
+      '${_offerResult.footerData.signPerson!.jobTitle} - ${_offerResult.footerData.signPerson!.companyName}',
       'B$_rowPos',
     );
   }
 
   void _addCreaterName() {
-    _buildCell(_offerResult.footerData.signPerson.fullName, 'B$_rowPos');
+    _buildCell(_offerResult.footerData.signPerson!.fullName, 'B$_rowPos');
   }
 
   void _addSignPlace() {

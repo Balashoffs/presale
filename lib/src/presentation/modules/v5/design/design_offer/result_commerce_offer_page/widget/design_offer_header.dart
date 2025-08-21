@@ -5,6 +5,7 @@ import 'package:presale/src/presentation/bloc/v5/design/offer/design_offer_cubit
 import 'package:presale/src/presentation/bloc/v5/design/offer/design_offer_result_controller.dart';
 import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/drop_down_text_controller.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/opacity_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/text_input_validators.dart';
 import 'package:presale/src/presentation/modules/v5/design/design_offer/result_commerce_offer_page/widget/table_utils.dart';
 import 'package:provider/provider.dart';
@@ -63,9 +64,9 @@ class DesignOfferHeaderWidget extends StatelessWidget {
                       ),
                       AvanceInputWidget(
                         onChanged: (value) {
-                          context
-                              .read<DesignOfferResultController>()
-                              .onAvance(value);
+                          context.read<DesignOfferResultController>().onAvance(
+                            value,
+                          );
                         },
                       ),
                     ],
@@ -80,22 +81,26 @@ class DesignOfferHeaderWidget extends StatelessWidget {
                           color: getColor(context, MoonColor.trunks),
                         ),
                       ),
-                      SizedBox(
-                        width: 196,
-                        child: ChangeNotifierProvider(
-                          create: (context) => DropDownTextController(
-                            inputData: context
-                                .read<DesignOfferResultController>()
-                                .signsNames
-                                .value,
-                          ),
-                          child: CustomMoonDropDown(
-                            validator: personSignDropDownValidator,
-                            initText: "Выбрать",
-                            onSelected: context
-                                .read<DesignOfferResultController>()
-                                .onSelectSign,
-                            leadingIcon: MoonIcons.other_player_24_light,
+                      OpacityWidget(
+                        isNotUse: context
+                            .read<DesignOfferResultController>().sign.isEmpty,
+                        child: SizedBox(
+                          width: 196,
+                          child: ChangeNotifierProvider(
+                            create: (context) => DropDownTextController(
+                              inputData: context
+                                  .read<DesignOfferResultController>()
+                                  .signsNames
+                                  .value,
+                            ),
+                            child: CustomMoonDropDown(
+                              validator: personSignDropDownValidator,
+                              initText: "Выбрать",
+                              onSelected: context
+                                  .read<DesignOfferResultController>()
+                                  .onSelectSign,
+                              leadingIcon: MoonIcons.other_player_24_light,
+                            ),
                           ),
                         ),
                       ),

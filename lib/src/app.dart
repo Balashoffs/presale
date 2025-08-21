@@ -4,7 +4,7 @@ import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/di/di.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:presale/src/presentation/core/navigation/app_router_v3.dart';
+import 'package:presale/src/presentation/core/navigation/routers/debug_app_router.dart';
 
 abstract class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -16,6 +16,7 @@ abstract class App extends StatelessWidget {
 
   Future<void> _init() async {
     _ensureWidgetsInitialized();
+
     await _initAppComponents();
   }
 
@@ -34,7 +35,7 @@ abstract class App extends StatelessWidget {
 }
 
 class ServiceCalcApp extends App {
-  const ServiceCalcApp({Key? key}) : super(key: key);
+  const ServiceCalcApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,7 @@ class ServiceCalcApp extends App {
           ),
         ],
       ),
-      routerConfig: appRouter,
+      routerConfig: di.appGoRouter,
     );
   }
 }
