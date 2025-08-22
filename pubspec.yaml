@@ -83,6 +83,7 @@ dependencies:
   transparent_image: ^2.0.1
   package_info_plus: ^8.3.1
   dart_seq_http_client: ^1.0.0
+  flutter_fullscreen: ^1.2.0
 dependency_overrides:
   flutter_launcher_icons: ^0.14.4
   intl: ^0.18.0

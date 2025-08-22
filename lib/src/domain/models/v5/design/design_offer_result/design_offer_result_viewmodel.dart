@@ -13,7 +13,14 @@ class DesignOfferResultVM{
   final double summary;
   final double tax;
   String notes = '';
-  int totalDays;
+  int _totalDays;
+
+  int get totalDays => _totalDays;
+
+  set totalDays(int value) {
+    _totalDays = value;
+  }
+
   int objectSquare;
   int avance = 0;
   PersonSignDTO? signPerson;
@@ -33,8 +40,8 @@ class DesignOfferResultVM{
     required this.margin,
     required this.summary,
     required this.tax,
-    this.totalDays = 0,
+    int totalDays = 0,
     this.objectSquare = 0,
     this.signPerson,
-  });
+  }):_totalDays = totalDays;
 }

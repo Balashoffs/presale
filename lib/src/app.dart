@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_fullscreen/flutter_fullscreen.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/di/di.dart';
 import 'package:flutter/foundation.dart';
@@ -16,17 +17,21 @@ abstract class App extends StatelessWidget {
 
   Future<void> _init() async {
     _ensureWidgetsInitialized();
-
+    await FullScreen.ensureInitialized();
     await _initAppComponents();
   }
 
   void _run() => runApp(this);
 
-  void _ensureWidgetsInitialized() => WidgetsFlutterBinding.ensureInitialized();
+  void _ensureWidgetsInitialized(){
+    WidgetsFlutterBinding.ensureInitialized();
+
+  }
 
   Future<void> _initAppComponents() async {
     await di.initConfig();
     await di.init();
+
   }
 
   void _print(Zone self, ZoneDelegate parent, Zone zone, String message) {
@@ -76,12 +81,42 @@ class ServiceCalcApp extends App {
                 body: MoonTypography.typography.body.apply(
                   fontFamily: "DMSans",
                 ),
+
+
               ),
             ),
           ),
         ],
       ),
+      builder: (context, child) {
+        return FullScreenWidget(child: child!,);
+      },
       routerConfig: di.appGoRouter,
     );
+  }
+}
+
+
+class FullScreenWidget extends StatefulWidget {
+  const FullScreenWidget({super.key, required this.child});
+  final Widget child;
+
+  @override
+  State<FullScreenWidget> createState() => _FullScreenWidgetState();
+}
+
+class _FullScreenWidgetState extends State<FullScreenWidget> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.child;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    FullScreen.setFullScreen(true);
+
   }
 }
