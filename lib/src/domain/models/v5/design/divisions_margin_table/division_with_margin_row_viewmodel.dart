@@ -4,6 +4,7 @@ class DivisionsWithMarginRowVM {
   final int id;
   final String divisionName;
   final String divisionShortName;
+  final String divisionDescription;
   final double divisionSummaryCost;
   double overPriceFactor;
   double marginFactor;
@@ -48,6 +49,7 @@ class DivisionsWithMarginRowVM {
     required this.id,
     required this.divisionName,
     required this.divisionShortName,
+    required this.divisionDescription,
     required this.divisionSummaryCost,
   }) : overPriceFactor = 0.8,
        marginFactor = 1.2,

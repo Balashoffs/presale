@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/presentation/common/typography_page_options.dart';
+
 import 'package:presale/src/presentation/modules/service_type_select/navi/service_navi.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -33,3 +33,27 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
+
+
+class TextCellWidget extends StatelessWidget {
+  const TextCellWidget({
+    super.key,
+    required this.data,
+    this.fontSize = 16.0,
+    this.letterSpacing = 0.0,
+  });
+
+  final String data;
+  final double fontSize;
+  final double letterSpacing;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      data,
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: fontSize, letterSpacing: letterSpacing),
+    );
+  }
+}
+

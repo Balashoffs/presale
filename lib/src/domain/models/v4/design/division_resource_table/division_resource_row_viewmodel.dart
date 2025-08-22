@@ -10,6 +10,7 @@ final class DivisionResourceRowVM {
 
   // Аббвеатура
   final String divisionShortName;
+  final String divisionDescription;
 
   // Должность
   final String resourceName;
@@ -70,6 +71,7 @@ final class DivisionResourceRowVM {
     required this.divisionName,
     required this.divisionShortName,
     required this.resourceName,
+    required this.divisionDescription,
     required this.resourceCostPerDay,
     required int resourceQnt,
     required int workDays,
@@ -88,6 +90,7 @@ final class DivisionResourceRowVM {
     int? id,
     String? divisionName,
     String? divisionShortName,
+    String? divisionDescription,
     String? resourceName,
     int? resourceQnt,
     int? workDays,
@@ -98,6 +101,7 @@ final class DivisionResourceRowVM {
     double? totalResourceRowCost,
   }) {
     return DivisionResourceRowVM(
+      divisionDescription: divisionDescription ?? this.divisionDescription,
       id: id ?? this.id,
       divisionName: divisionName ?? this.divisionName,
       divisionShortName: divisionShortName ?? this.divisionShortName,

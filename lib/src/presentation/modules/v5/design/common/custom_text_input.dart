@@ -94,7 +94,6 @@ class _CustomTextInputState extends State<CustomTextInput> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       onChanged: widget.onChanged,
-      // helper: widget.helperText != null ? Text(widget.helperText!) : null,
     );
   }
 }

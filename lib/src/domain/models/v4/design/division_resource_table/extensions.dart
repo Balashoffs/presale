@@ -10,6 +10,7 @@ import 'division_resource_row_pojo.dart';
 extension ExtDivisionResourceRow on DivisionResourceRowVM {
   DivisionResourceRowPojo toPojo() {
     return DivisionResourceRowPojo(
+      divisionDescription: divisionDescription,
       divisionName: divisionName,
       divisionShortName: divisionShortName,
       resourceName: resourceName,
@@ -28,6 +29,7 @@ extension DivisionResourceDtoExt on DivisionResourceDTO {
 
   DivisionResourceRowVM toDivisionResourceRowVM(InputDataDesign inputDataDesign,){
     return DivisionResourceRowVM(
+      divisionDescription: '',
       resourceQnt: 0,
       resourceUsingFactor: 1.0,
       workDays: 0,

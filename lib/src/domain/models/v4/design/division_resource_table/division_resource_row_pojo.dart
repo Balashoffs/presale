@@ -9,6 +9,7 @@ class DivisionResourceRowPojo with _$DivisionResourceRowPojo {
   const factory DivisionResourceRowPojo({
     required String divisionName,
     required String divisionShortName,
+    required String divisionDescription,
     required String resourceName,
     required int resourceQnt,
     required int workDays,

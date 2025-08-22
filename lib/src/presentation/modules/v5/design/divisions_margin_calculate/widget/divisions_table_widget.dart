@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:presale/src/data/core/string_converter.dart';
+
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/division_with_margin_row_viewmodel.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/divisions_margin_summary_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
-import 'divisions_table_utils.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/table/division_resources_table_utils.dart';
 
 class DivisionsMarginTableWidget extends StatefulWidget {
   const DivisionsMarginTableWidget({
@@ -31,9 +33,9 @@ class _DivisionsMarginTableWidgetState
       columns: List.generate(widget.rowAttributes.length, (int index) {
         return MoonTableColumn(
           width: widget.rowAttributes[index].width,
-          cell: addDecoration(
-            buildHeaderCell(widget.rowAttributes[index]),
-            index == 0,
+          cell: CellDecorationWidget(
+            isFistCell: index == 0,
+            child: HeaderCellWidget(attribute: widget.rowAttributes[index]),
           ),
         );
       }),
@@ -41,97 +43,114 @@ class _DivisionsMarginTableWidgetState
   }
 
   List<MoonTableRow> _generateTableRows() {
+    final controller = context.read<DivisionsViewController>();
     return List.generate(widget.tableDataRows.length, (int index) {
       final row = widget.tableDataRows[index];
       return MoonTableRow(
         height: 72,
         cells: [
-          addDecoration(buildStringTextCell(row.id.toString())),
-          addDecoration(buildStringTextCell(row.divisionShortName)),
-          addDecoration(buildCellWithMultiLine(row.divisionName)),
-          addDecoration(buildIntTextCell(row.divisionSummaryCost)),
-          addDecoration(
-            buildFactorInputCell(row.overPriceFactor, (context, value) {
-              context.read<DivisionsViewController>().onOverPriceFactor(
-                row.id,
-                value,
-              );
-            }),
+          CellDecorationWidget(
+            isFistCell: true,
+            child: TextCellWidget(
+              label: row.id.toString(),
+              key: Key(row.id.toString()),
+            ),
           ),
-          addDecoration(
-            buildFactorInputCell(row.marginFactor, (context, value) {
-              context.read<DivisionsViewController>().onMarginFactor(
-                row.id,
-                value,
-              );
-            }),
+          CellDecorationWidget(
+            child: TextCellWidget(
+              label: row.divisionShortName,
+              key: Key(row.id.toString()),
+            ),
           ),
-          addDecoration(
-            buildFactorInputCell(row.clientFactor, (context, value) {
-              context.read<DivisionsViewController>().onMarginFactor(
-                row.id,
-                value,
-              );
-            }),
+          CellDecorationWidget(
+            child: CellWithMultiLineWidget(
+              key: Key(row.id.toString()),
+              label: row.divisionName,
+              hint: row.divisionDescription,
+            ),
           ),
-          addDecoration(buildTextWithNotifier(row.summaryCostWithMarginVN)),
-          addDecoration(buildTextWithNotifier(row.summaryCostWithTaxVN)),
+          CellDecorationWidget(
+            child: TextCellWidget(
+              label: convertToString(row.divisionSummaryCost, 0),
+              key: Key(row.id.toString()),
+            ),
+          ),
+          CellDecorationWidget(
+            child: FloatInputCellWidget(
+              key: Key(row.id.toString()),
+              onChanged: (context, value) {
+                controller.onOverPriceFactor(row.id, value);
+              },
+              defaultValue: row.overPriceFactor,
+            ),
+          ),
+          CellDecorationWidget(
+            child: FloatInputCellWidget(
+              key: Key(row.id.toString()),
+              onChanged: (context, value) {
+                controller.onMarginFactor(row.id, value);
+              },
+              defaultValue: row.marginFactor,
+            ),
+          ),
+          CellDecorationWidget(
+            child: FloatInputCellWidget(
+              key: Key(row.id.toString()),
+              onChanged: (context, value) {
+                controller.onClientFactor(row.id, value);
+              },
+              defaultValue: row.clientFactor,
+            ),
+          ),
+          CellDecorationWidget(
+            key: Key(row.id.toString()),
+            child: TextWithNotifier(vn: row.summaryCostWithMarginVN),
+          ),
+          CellDecorationWidget(
+            key: Key(row.id.toString()),
+            child: TextWithNotifier(vn: row.summaryCostWithTaxVN),
+          ),
         ],
       );
     });
   }
 
   MoonTableFooter _generateTableFooter() {
+    final controller = context.read<DivisionsViewController>();
     return MoonTableFooter(
       cells: List.generate(widget.rowAttributes.length, (int index) {
         if (widget.rowAttributes.indexWhere(
-              (element) => element.name == 'Себестоимость',
+              (element) => element.name == 'СР',
             ) ==
             index) {
-          return Builder(
-            builder: (context) {
-              return addDecoration(
-                buildTextWithNotifier(
-                  context
-                      .read<DivisionsViewController>()
-                      .divisionClearSummaryVN,
-                ),
-              );
-            },
+          return CellDecorationWidget(
+            key: Key('clear_cost'),
+            child: TextWithNotifier(vn: controller.divisionClearSummaryVN),
           );
         }
         if (widget.rowAttributes.indexWhere(
               (element) => element.name == 'Итого',
             ) ==
             index) {
-          return Builder(
-            builder: (context) {
-              return addDecoration(
-                buildTextWithNotifier(
-                  context
-                      .read<DivisionsViewController>()
-                      .divisionsWithMarginSummaryVN,
-                ),
-              );
-            },
+          return CellDecorationWidget(
+            key: Key('total_cost'),
+            child: TextWithNotifier(
+              vn: controller.divisionsWithMarginSummaryVN,
+            ),
           );
         } else if (widget.rowAttributes.indexWhere(
               (element) => element.name == 'с НДС',
             ) ==
             index) {
-          return Builder(
-            builder: (context) {
-              return addDecoration(
-                buildTextWithNotifier(
-                  context
-                      .read<DivisionsViewController>()
-                      .divisionsWithTaxSummaryVN,
-                ),
-              );
-            },
+          return CellDecorationWidget(
+            key: Key('total_cost'),
+            child: TextWithNotifier(vn: controller.divisionsWithTaxSummaryVN),
           );
         }
-        return addDecoration(SizedBox(child: Center(child: Text(''))), index == 0);
+        return CellDecorationWidget(
+          isFistCell: index == 0,
+          child: SizedBox(child: Center(child: Text(''))),
+        );
       }),
       height: 48,
     );
@@ -140,7 +159,6 @@ class _DivisionsMarginTableWidgetState
   @override
   Widget build(BuildContext context) {
     return OverflowBox(
-      // maxWidth: MediaQuery.of(context).size.width,
       child: MoonTable(
         columnsCount: widget.rowAttributes.length,
         isHeaderPinned: true,

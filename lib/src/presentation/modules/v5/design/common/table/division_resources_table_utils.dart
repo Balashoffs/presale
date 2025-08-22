@@ -138,7 +138,6 @@ class IntInputCellWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('IntInputCellWidget::build::defaultValue - $defaultValue');
     return Center(
       child: SizedBox(
         width: 56,
@@ -174,7 +173,6 @@ class FloatInputCellWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('FloatInputCellWidget::build::defaultValue - $defaultValue');
     return Center(
       child: SizedBox(
         width: 56,
@@ -285,32 +283,34 @@ class CellWithMultiLineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Flexible(
-          flex: 2,
-          child: Text(
-            label,
-            maxLines: 3,
-            textAlign: TextAlign.center,
-            softWrap: true,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(),
-          ),
-        ),
-        Flexible(
-          flex: 1,
-          child: InkWell(
-            onTap: () {}, // Optional tap handler
-            child: Tooltip(
-                message: hint,
-                child: Icon(MoonIcons.generic_info_16_light, size: 16.0,)
+    return Center(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Flexible(
+            flex: 2,
+            child: Text(
+              label,
+              maxLines: 3,
+              textAlign: TextAlign.center,
+              softWrap: true,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(),
             ),
           ),
-        )
-      ],
+          Flexible(
+            flex: 1,
+            child: InkWell(
+              onTap: () {}, // Optional tap handler
+              child: Tooltip(
+                  message: hint,
+                  child: Icon(MoonIcons.generic_info_16_light, size: 16.0,)
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -335,9 +335,3 @@ int? onChangeIntValue(String? newValue) {
   return null;
 }
 
-String? onChangeTextValue(String? newValue) {
-  if (newValue != null) {
-    int? tryParse = newValue.length < 4 ? int.tryParse(newValue) : null;
-  }
-  return null;
-}

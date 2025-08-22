@@ -42,17 +42,17 @@ final List<CollumAttribute> divisionMarginTableAttributes = [
   CollumAttribute(name: 'Шифр', width: 64, tooltip: ''),
   CollumAttribute(name: 'Раздел', width: 368, tooltip: ''),
   CollumAttribute(
-    name: 'Себестоимость',
+    name: 'СР',
     width: 196.0,
     tooltip: 'Себестоимость раздела',
   ),
   CollumAttribute(
-    name: 'Накладные',
+    name: 'КР',
     width: 96.0,
-    tooltip: 'Накладные расходы',
+    tooltip: 'Коэфициент накладных расходов',
   ),
-  CollumAttribute(name: 'Наценка', width: 96.0, tooltip: 'Маржинальность'),
-  CollumAttribute(name: 'Клиент', width: 96.0, tooltip: 'Процент Клиента'),
+  CollumAttribute(name: 'КМ', width: 96.0, tooltip: 'Коэфициент маржинальности'),
+  CollumAttribute(name: 'КК', width: 96.0, tooltip: 'Коэфициент клиента'),
   CollumAttribute(
     name: 'Итого',
     width: 196.0,

@@ -25,6 +25,7 @@ DivisionResourceRowPojo _$DivisionResourceRowPojoFromJson(
 mixin _$DivisionResourceRowPojo {
   String get divisionName => throw _privateConstructorUsedError;
   String get divisionShortName => throw _privateConstructorUsedError;
+  String get divisionDescription => throw _privateConstructorUsedError;
   String get resourceName => throw _privateConstructorUsedError;
   int get resourceQnt => throw _privateConstructorUsedError;
   int get workDays => throw _privateConstructorUsedError;
@@ -57,6 +58,7 @@ abstract class $DivisionResourceRowPojoCopyWith<$Res> {
   $Res call({
     String divisionName,
     String divisionShortName,
+    String divisionDescription,
     String resourceName,
     int resourceQnt,
     int workDays,
@@ -91,6 +93,7 @@ class _$DivisionResourceRowPojoCopyWithImpl<
   $Res call({
     Object? divisionName = null,
     Object? divisionShortName = null,
+    Object? divisionDescription = null,
     Object? resourceName = null,
     Object? resourceQnt = null,
     Object? workDays = null,
@@ -112,6 +115,10 @@ class _$DivisionResourceRowPojoCopyWithImpl<
             divisionShortName: null == divisionShortName
                 ? _value.divisionShortName
                 : divisionShortName // ignore: cast_nullable_to_non_nullable
+                      as String,
+            divisionDescription: null == divisionDescription
+                ? _value.divisionDescription
+                : divisionDescription // ignore: cast_nullable_to_non_nullable
                       as String,
             resourceName: null == resourceName
                 ? _value.resourceName
@@ -175,6 +182,7 @@ abstract class _$$DivisionResourceRowPojoImplCopyWith<$Res>
   $Res call({
     String divisionName,
     String divisionShortName,
+    String divisionDescription,
     String resourceName,
     int resourceQnt,
     int workDays,
@@ -209,6 +217,7 @@ class __$$DivisionResourceRowPojoImplCopyWithImpl<$Res>
   $Res call({
     Object? divisionName = null,
     Object? divisionShortName = null,
+    Object? divisionDescription = null,
     Object? resourceName = null,
     Object? resourceQnt = null,
     Object? workDays = null,
@@ -230,6 +239,10 @@ class __$$DivisionResourceRowPojoImplCopyWithImpl<$Res>
         divisionShortName: null == divisionShortName
             ? _value.divisionShortName
             : divisionShortName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        divisionDescription: null == divisionDescription
+            ? _value.divisionDescription
+            : divisionDescription // ignore: cast_nullable_to_non_nullable
                   as String,
         resourceName: null == resourceName
             ? _value.resourceName
@@ -286,6 +299,7 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
   const _$DivisionResourceRowPojoImpl({
     required this.divisionName,
     required this.divisionShortName,
+    required this.divisionDescription,
     required this.resourceName,
     required this.resourceQnt,
     required this.workDays,
@@ -306,6 +320,8 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
   final String divisionName;
   @override
   final String divisionShortName;
+  @override
+  final String divisionDescription;
   @override
   final String resourceName;
   @override
@@ -333,7 +349,7 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
 
   @override
   String toString() {
-    return 'DivisionResourceRowPojo(divisionName: $divisionName, divisionShortName: $divisionShortName, resourceName: $resourceName, resourceQnt: $resourceQnt, workDays: $workDays, complexFactor: $complexFactor, squareFactor: $squareFactor, resourceUsingFactor: $resourceUsingFactor, resourceRowCost: $resourceRowCost, resourceCostPerDay: $resourceCostPerDay, overPriceFactor: $overPriceFactor, marginFactor: $marginFactor, resourceSummaryCost: $resourceSummaryCost)';
+    return 'DivisionResourceRowPojo(divisionName: $divisionName, divisionShortName: $divisionShortName, divisionDescription: $divisionDescription, resourceName: $resourceName, resourceQnt: $resourceQnt, workDays: $workDays, complexFactor: $complexFactor, squareFactor: $squareFactor, resourceUsingFactor: $resourceUsingFactor, resourceRowCost: $resourceRowCost, resourceCostPerDay: $resourceCostPerDay, overPriceFactor: $overPriceFactor, marginFactor: $marginFactor, resourceSummaryCost: $resourceSummaryCost)';
   }
 
   @override
@@ -345,6 +361,8 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
                 other.divisionName == divisionName) &&
             (identical(other.divisionShortName, divisionShortName) ||
                 other.divisionShortName == divisionShortName) &&
+            (identical(other.divisionDescription, divisionDescription) ||
+                other.divisionDescription == divisionDescription) &&
             (identical(other.resourceName, resourceName) ||
                 other.resourceName == resourceName) &&
             (identical(other.resourceQnt, resourceQnt) ||
@@ -375,6 +393,7 @@ class _$DivisionResourceRowPojoImpl implements _DivisionResourceRowPojo {
     runtimeType,
     divisionName,
     divisionShortName,
+    divisionDescription,
     resourceName,
     resourceQnt,
     workDays,
@@ -409,6 +428,7 @@ abstract class _DivisionResourceRowPojo implements DivisionResourceRowPojo {
   const factory _DivisionResourceRowPojo({
     required final String divisionName,
     required final String divisionShortName,
+    required final String divisionDescription,
     required final String resourceName,
     required final int resourceQnt,
     required final int workDays,
@@ -429,6 +449,8 @@ abstract class _DivisionResourceRowPojo implements DivisionResourceRowPojo {
   String get divisionName;
   @override
   String get divisionShortName;
+  @override
+  String get divisionDescription;
   @override
   String get resourceName;
   @override

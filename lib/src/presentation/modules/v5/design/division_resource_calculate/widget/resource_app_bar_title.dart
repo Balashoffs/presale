@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_app_bar.dart';
 
 class ResourceAppBarTitle extends StatelessWidget {
   const ResourceAppBarTitle({super.key});
@@ -25,28 +26,6 @@ class ResourceAppBarTitle extends StatelessWidget {
           TextCellWidget(data: ')'),
         ],
       ),
-    );
-  }
-}
-
-class TextCellWidget extends StatelessWidget {
-  const TextCellWidget({
-    super.key,
-    required this.data,
-    this.fontSize = 16.0,
-    this.letterSpacing = 0.0,
-  });
-
-  final String data;
-  final double fontSize;
-  final double letterSpacing;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      data,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: fontSize, letterSpacing: letterSpacing),
     );
   }
 }

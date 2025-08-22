@@ -20,7 +20,6 @@ class DivisionsMarginCalculatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomAppBar(
       title: DivisionAppBarTitle(),
-
       child: DivisionsMarginCalculateRepository(),
     );
   }
@@ -47,8 +46,7 @@ class DivisionsMarginCalculateProvider extends StatelessWidget {
       create: (context) {
         return DivisionsMarginCalculateCubit(
           dbClient: di.dbClientImpl,
-          resourceSummaryViewModel: context
-              .read<DivisionsViewController>(),
+          resourceSummaryViewModel: context.read<DivisionsViewController>(),
         )..init();
       },
       child: DivisionsMarginCalculateConsumer(),

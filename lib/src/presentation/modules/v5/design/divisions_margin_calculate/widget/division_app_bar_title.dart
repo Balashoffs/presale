@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/custom_app_bar.dart';
 
 class DivisionAppBarTitle extends StatelessWidget {
   const DivisionAppBarTitle({super.key});
@@ -9,104 +10,18 @@ class DivisionAppBarTitle extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Всего',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            '= \u2211(',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'Собестоимость',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ' * ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'Расходы [0,8]',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ' * ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'Прибыль [1,2]',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ' + ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'Собестоимость',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ') * ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'Клиент [1,0]',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ') * ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'НДС [1,2]',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ')',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
+          TextCellWidget(data: 'Итого'),
+          TextCellWidget(data: '= \u2211('),
+          TextCellWidget(data: 'СР'),
+          TextCellWidget(data: '*', letterSpacing: 8.0),
+          TextCellWidget(data: 'КН'),
+          TextCellWidget(data: '*',letterSpacing: 8.0),
+          TextCellWidget(data: 'КМ'),
+          TextCellWidget(data: '*',letterSpacing: 8.0),
+          TextCellWidget(data: 'КК'),
+          TextCellWidget(data: '*',letterSpacing: 8.0),
+          TextCellWidget(data: 'НДС'),
+          TextCellWidget(data: ')'),
         ],
       ),
     );

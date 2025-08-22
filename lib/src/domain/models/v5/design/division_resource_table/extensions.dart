@@ -58,6 +58,7 @@ extension DivisionWithResourceRowExt on DivisionWithResourceRowVM {
     double marginFactor = 1.0,
   }) {
     return DivisionResourceRowPojo(
+      divisionDescription: divisionDescription,
       divisionName: divisionName,
       divisionShortName: divisionShortName,
       resourceName: resourceNameVN.value,

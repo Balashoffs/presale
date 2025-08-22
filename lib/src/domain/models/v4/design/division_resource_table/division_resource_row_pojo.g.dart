@@ -11,6 +11,7 @@ _$DivisionResourceRowPojoImpl _$$DivisionResourceRowPojoImplFromJson(
 ) => _$DivisionResourceRowPojoImpl(
   divisionName: json['divisionName'] as String,
   divisionShortName: json['divisionShortName'] as String,
+  divisionDescription: json['divisionDescription'] as String,
   resourceName: json['resourceName'] as String,
   resourceQnt: (json['resourceQnt'] as num).toInt(),
   workDays: (json['workDays'] as num).toInt(),
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$DivisionResourceRowPojoImplToJson(
 ) => <String, dynamic>{
   'divisionName': instance.divisionName,
   'divisionShortName': instance.divisionShortName,
+  'divisionDescription': instance.divisionDescription,
   'resourceName': instance.resourceName,
   'resourceQnt': instance.resourceQnt,
   'workDays': instance.workDays,

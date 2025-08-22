@@ -38,6 +38,7 @@ class DivisionsViewController {
             divisionSummaryCost: summary,
             divisionName: pojo.divisionName,
             divisionShortName: pojo.divisionShortName,
+            divisionDescription: pojo.divisionDescription,
           );
           _calcRowValues(row);
           rows.add(row);
@@ -65,6 +66,15 @@ class DivisionsViewController {
     DivisionsWithMarginRowVM? found = getById(id);
     if (found != null) {
       found.marginFactor = value;
+      _calcRowValues(found);
+    }
+    _calcTotal();
+  }
+
+  void onClientFactor(int id, double value) {
+    DivisionsWithMarginRowVM? found = getById(id);
+    if (found != null) {
+      found.clientValue = value;
       _calcRowValues(found);
     }
     _calcTotal();

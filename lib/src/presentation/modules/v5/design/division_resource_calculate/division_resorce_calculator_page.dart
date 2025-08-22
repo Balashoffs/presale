@@ -103,14 +103,14 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
                     builder: (context, value, child) {
                       return CustomDropdownWithSearchWidget(
                         autoFocus: true,
-                        enabled:isAllow,
+                        enabled: isAllow,
                         divisions: value,
                         onSelected: (p0) =>
                             controller.onRowAction(p0.id, WidgetActionType.add),
                       );
-                    }
+                    },
                   );
-                }
+                },
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),

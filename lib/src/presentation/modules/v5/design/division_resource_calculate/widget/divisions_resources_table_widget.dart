@@ -6,7 +6,7 @@ import 'package:presale/src/domain/models/v5/design/division_resource_table/divi
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_summary_viewmodel.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 
-import 'division_resources_table_utils.dart';
+import '../../common/table/division_resources_table_utils.dart';
 
 typedef OnRowAction = Function(int id, WidgetActionType actionType);
 
@@ -81,8 +81,8 @@ class _DivisionsResourceTableWidgetState
   }
 
   List<MoonTableRow> _generateTableRows() {
+    final controller = context.read<ResourcesViewController>();
     return List.generate(widget.tableDataRows.length, (int index) {
-      final controller = context.read<ResourcesViewController>();
       final row = widget.tableDataRows[index];
       return MoonTableRow(
         height: 72,
@@ -211,9 +211,7 @@ class _DivisionsResourceTableWidgetState
 
   @override
   Widget build(BuildContext context) {
-    print('DivisionsResourceTableWidget::build');
     return OverflowBox(
-      // maxWidth: MediaQuery.of(context).size.width,
       child: MoonTable(
         columnsCount: widget.rowAttributes.length,
         isHeaderPinned: true,
