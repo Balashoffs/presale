@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/widget_action_type.dart';
@@ -212,6 +213,7 @@ class _DivisionsResourceTableWidgetState
   @override
   Widget build(BuildContext context) {
     return OverflowBox(
+      fit: OverflowBoxFit.deferToChild,
       child: MoonTable(
         columnsCount: widget.rowAttributes.length,
         isHeaderPinned: true,
@@ -219,6 +221,10 @@ class _DivisionsResourceTableWidgetState
         rowSize: MoonTableRowSize.md,
         header: _generateTableHeader(),
         rows: _generateTableRows(),
+        scrollBehaviour: MaterialScrollBehavior().copyWith(
+          scrollbars: true,
+          overscroll: true,
+        ),
         tablePadding: const EdgeInsets.symmetric(horizontal: 16),
         cellPadding: const EdgeInsets.symmetric(vertical: 8),
         onScrollControllersReady:

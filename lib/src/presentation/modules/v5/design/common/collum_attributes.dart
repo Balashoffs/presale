@@ -32,7 +32,7 @@ final List<CollumAttribute> divisionResourceTableAttributes = [
   CollumAttribute(name: 'КУ', width: 72.0, tooltip: 'Коэфициент участия'),
   CollumAttribute(
     name: 'Всего',
-    width: 256.0,
+    width: 196.0,
     tooltip: 'Всего по конкретной должности',
   ),
 ];

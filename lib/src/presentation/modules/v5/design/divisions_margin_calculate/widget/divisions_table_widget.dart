@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/data/core/string_converter.dart';
@@ -47,7 +48,7 @@ class _DivisionsMarginTableWidgetState
     return List.generate(widget.tableDataRows.length, (int index) {
       final row = widget.tableDataRows[index];
       return MoonTableRow(
-        height: 72,
+        height: 56,
         cells: [
           CellDecorationWidget(
             isFistCell: true,
@@ -159,11 +160,16 @@ class _DivisionsMarginTableWidgetState
   @override
   Widget build(BuildContext context) {
     return OverflowBox(
+      fit: OverflowBoxFit.deferToChild,
       child: MoonTable(
         columnsCount: widget.rowAttributes.length,
         isHeaderPinned: true,
         isFooterPinned: true,
         rowGap: 2.0,
+        scrollBehaviour: MaterialScrollBehavior().copyWith(
+          scrollbars: true,
+          overscroll: true,
+        ),
         rowSize: MoonTableRowSize.md,
         header: _generateTableHeader(),
         rows: _generateTableRows(),
