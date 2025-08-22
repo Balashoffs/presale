@@ -9,106 +9,44 @@ class ResourceAppBarTitle extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Всего',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            '= \u2211(',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'Ставка [8ч]',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ' * ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'Люди [1]',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ' * ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'Дни [1]',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ' * ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'За сложность [1,0]',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ' * ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'По площади [1,0]',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ' * ',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            'Участие [1,0]',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-          Text(
-            ')',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
+          TextCellWidget(data: 'Итого'),
+          TextCellWidget(data: '= \u2211('),
+          TextCellWidget(data: 'Ставка'),
+          TextCellWidget(data: '*', letterSpacing: 8.0),
+          TextCellWidget(data: 'ЧЕЛ'),
+          TextCellWidget(data: '*',letterSpacing: 8.0),
+          TextCellWidget(data: 'РД'),
+          TextCellWidget(data: '*',letterSpacing: 8.0),
+          TextCellWidget(data: 'КС'),
+          TextCellWidget(data: '*',letterSpacing: 8.0),
+          TextCellWidget(data: 'КП'),
+          TextCellWidget(data: '*',letterSpacing: 8.0),
+          TextCellWidget(data: 'КУ'),
+          TextCellWidget(data: ')'),
         ],
       ),
+    );
+  }
+}
+
+class TextCellWidget extends StatelessWidget {
+  const TextCellWidget({
+    super.key,
+    required this.data,
+    this.fontSize = 16.0,
+    this.letterSpacing = 0.0,
+  });
+
+  final String data;
+  final double fontSize;
+  final double letterSpacing;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      data,
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: fontSize, letterSpacing: letterSpacing),
     );
   }
 }

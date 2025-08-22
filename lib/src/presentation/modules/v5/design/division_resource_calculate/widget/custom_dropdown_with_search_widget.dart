@@ -1,11 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:presale/src/domain/models/v5/design/division_resource_table/division_and_resources_dto.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/divisions_with_resources_dto.dart';
-import 'package:presale/src/presentation/common/color_options.dart'
-    show colorTable;
+import 'package:presale/src/presentation/common/color_options.dart';
 import 'package:uuid/uuid.dart';
 
 class CustomDropdownWithSearchWidget extends StatefulWidget {
@@ -14,11 +10,13 @@ class CustomDropdownWithSearchWidget extends StatefulWidget {
     required this.divisions,
     required this.onSelected,
     required this.enabled,
+    required this.autoFocus,
   });
 
   final List<DivisionDTO> divisions;
   final Function(DivisionDTO) onSelected;
   final bool enabled;
+  final bool autoFocus;
 
   @override
   State<CustomDropdownWithSearchWidget> createState() =>
@@ -89,8 +87,13 @@ class _CustomDropdownWithSearchWidgetState
   @override
   void dispose() {
     _searchController.dispose();
-
     super.dispose();
+  }
+
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   @override
@@ -98,7 +101,6 @@ class _CustomDropdownWithSearchWidgetState
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MoonDropdown(
-
         show: _showDropdown,
         constrainWidthToChild: true,
         backgroundColor: colorTable(context)[40],
@@ -106,7 +108,6 @@ class _CustomDropdownWithSearchWidgetState
         distanceToTarget: 8,
         dropdownShadows: [],
         onTapOutside: () {
-
           _handleDropdownTapOutside();
         },
         content: ConstrainedBox(
@@ -131,7 +132,6 @@ class _CustomDropdownWithSearchWidgetState
                         final DivisionDTO option = _filteredOptionsList[index];
                         return MoonMenuItem(
                           onTap: () {
-                  
                             _handleSelect(option);
                           },
                           label: Text(option.divisionName),
@@ -142,6 +142,7 @@ class _CustomDropdownWithSearchWidgetState
           ),
         ),
         child: MoonTextInput(
+          autofocus: widget.autoFocus,
           enabled: widget.enabled,
           hasFloatingLabel: false,
           width: 320,
@@ -152,13 +153,12 @@ class _CustomDropdownWithSearchWidgetState
           hoverBorderColor: colorTable(context)[40],
           borderRadius: BorderRadius.circular(8.0),
           textInputSize: MoonTextInputSize.md,
-          hintText: "Найти раздел",
+          hintText: "Начните вводить текст...",
           controller: _searchController,
           onTap: () {
             _performSearch();
           },
           onTapOutside: (PointerDownEvent _) {
-  
             _handleInputTapOutside();
           },
           onChanged: (String _) => _performSearch(),
@@ -166,7 +166,6 @@ class _CustomDropdownWithSearchWidgetState
             buttonSize: MoonButtonSize.xs,
             hoverEffectColor: Colors.transparent,
             onTap: () {
-    
               _showAllOptionsList();
             },
             icon: AnimatedRotation(
@@ -251,7 +250,7 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
         }),
       ),
       child: MoonTextInput(
-        width: 196,
+        width: 256,
         readOnly: true,
         canRequestFocus: false,
         mouseCursor: MouseCursor.defer,

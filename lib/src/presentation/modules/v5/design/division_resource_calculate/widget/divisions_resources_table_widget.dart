@@ -108,7 +108,7 @@ class _DivisionsResourceTableWidgetState
             child: CellWithMultiLineWidget(
               key: Key(row.id.toString()),
               label: row.divisionName,
-              hint: row.divisionName,
+              hint: row.divisionDescription,
             ),
           ),
           row.resourceCostPerDayVN.value.compareTo(0.0) == 0

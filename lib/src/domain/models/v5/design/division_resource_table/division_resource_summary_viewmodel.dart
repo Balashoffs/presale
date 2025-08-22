@@ -3,7 +3,6 @@ import 'package:presale/src/data/v3/design_calculator.dart';
 import 'package:presale/src/domain/models/v3/design/input_data/input_data_design.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/widget_action_type.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/division_resource_row_viewmodel.dart';
-import 'package:presale/src/domain/models/v5/design/division_resource_table/division_and_resources_dto.dart';
 import 'package:presale/src/domain/models/v5/design/division_resource_table/extensions.dart';
 
 import 'divisions_with_resources_dto.dart';
@@ -113,10 +112,8 @@ class ResourcesViewController {
     print('_onDelete::id - $id');
     DivisionWithResourceRowVM? found = getByIdVM(id);
     if (found != null) {
-      ;
       selectedRows.value.removeWhere((element) => element.id == id);
       selectedRows.value = [...selectedRows.value];
-      ;
       isAllow.value = _isEmptyCostHas || selectedRows.value.isEmpty;
       summaryVN.value =  summaryCost;
       _updateSelectedDivision(

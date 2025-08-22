@@ -37,6 +37,7 @@ extension DivisionDtoExt on DivisionDTO {
     double resourceCostPerDay = 0.0,
   }) {
     return DivisionWithResourceRowVM(
+      divisionDescription: divisionDescription,
       workDays: 0,
       resourceQnt: 0,
       resourceUsingFactor: 1.0,

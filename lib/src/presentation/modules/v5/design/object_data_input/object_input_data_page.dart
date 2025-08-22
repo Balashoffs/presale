@@ -113,7 +113,7 @@ class LoadedWidget extends StatelessWidget {
                           Flexible(
                             flex: 2,
                             child: CustomTextInput(
-                              initValue: 'Наименование объекта*',
+                              hintText: 'Наименование объекта*',
                               onChanged: cubit.setObjectName,
                               trailing: MoonIcons.controls_close_small_24_light,
                               validator: objectNameValidator,

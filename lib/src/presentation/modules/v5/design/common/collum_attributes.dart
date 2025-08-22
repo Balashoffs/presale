@@ -16,24 +16,24 @@ final List<CollumAttribute> divisionResourceTableAttributes = [
   CollumAttribute(name: 'Шифр', width: 64, tooltip: ''),
   CollumAttribute(name: 'Раздел*', width: 312, tooltip: ''),
   CollumAttribute(
-    name: 'Ресурс*',
-    width: 256.0,
+    name: 'Должность*',
+    width: 312.0,
     tooltip: 'Должность специалиста',
   ),
-  CollumAttribute(name: 'За день', width: 128, tooltip: 'Ставка в день'),
+  CollumAttribute(name: 'Ставка*', width: 128, tooltip: 'Ставка в день'),
   CollumAttribute(
-    name: 'Кол-во*',
+    name: 'ЧЕЛ*',
     width: 88.0,
-    tooltip: 'Количество сотрудников',
+    tooltip: 'Количество привлеченных специалистов',
   ),
-  CollumAttribute(name: 'Дни*', width: 72.0, tooltip: 'Рабочие дни'),
+  CollumAttribute(name: 'РД*', width: 72.0, tooltip: 'Рабочие дни'),
   CollumAttribute(name: 'КС', width: 72.0, tooltip: 'Коэфициент по сложности'),
   CollumAttribute(name: 'КП', width: 72.0, tooltip: 'Коэфициент по площади'),
-  CollumAttribute(name: 'Участие', width: 72.0, tooltip: 'Коэфициент участия'),
+  CollumAttribute(name: 'КУ', width: 72.0, tooltip: 'Коэфициент участия'),
   CollumAttribute(
-    name: 'Итого',
+    name: 'Всего',
     width: 256.0,
-    tooltip: 'Итого по конкретной должности',
+    tooltip: 'Всего по конкретной должности',
   ),
 ];
 

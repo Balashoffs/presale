@@ -63,13 +63,15 @@ class HeaderCellWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        InkWell(
-          onTap: () {}, // Optional tap handler
-          child: Tooltip(
-            message: attribute.tooltip,
-            child: Text(textAlign: TextAlign.center, attribute.name),
+        Text(textAlign: TextAlign.center, attribute.name, style: TextStyle()),
+        if (attribute.tooltip.isNotEmpty)
+          InkWell(
+            onTap: () {}, // Optional tap handler
+            child: Tooltip(
+              message: attribute.tooltip,
+              child: Icon(MoonIcons.generic_info_16_light, size: 16.0),
+            ),
           ),
-        ),
       ],
     );
   }
@@ -127,10 +129,12 @@ class IntInputCellWidget extends StatelessWidget {
     super.key,
     required this.defaultValue,
     required this.onChanged,
+    this.autoFocus = false,
   });
 
   final int defaultValue;
   final ValueChangedWithContext<int> onChanged;
+  final bool autoFocus;
 
   @override
   Widget build(BuildContext context) {
@@ -139,6 +143,7 @@ class IntInputCellWidget extends StatelessWidget {
       child: SizedBox(
         width: 56,
         child: CustomTextInput(
+          autofocus: autoFocus,
           key: super.key,
           isEnables: true,
           hintText: '$defaultValue',
@@ -160,10 +165,12 @@ class FloatInputCellWidget extends StatelessWidget {
     super.key,
     required this.defaultValue,
     required this.onChanged,
+    this.autoFocus = false,
   });
 
   final double defaultValue;
   final ValueChangedWithContext<double> onChanged;
+  final bool autoFocus;
 
   @override
   Widget build(BuildContext context) {
@@ -172,6 +179,7 @@ class FloatInputCellWidget extends StatelessWidget {
       child: SizedBox(
         width: 56,
         child: CustomTextInput(
+          autofocus: autoFocus,
           key: super.key,
           isEnables: true,
           hintText: '$defaultValue',
@@ -277,11 +285,12 @@ class CellWithMultiLineWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: InkWell(
-        onTap: () {}, // Optional tap handler
-        child: Tooltip(
-          message: hint,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Flexible(
+          flex: 2,
           child: Text(
             label,
             maxLines: 3,
@@ -291,7 +300,17 @@ class CellWithMultiLineWidget extends StatelessWidget {
             style: TextStyle(),
           ),
         ),
-      ),
+        Flexible(
+          flex: 1,
+          child: InkWell(
+            onTap: () {}, // Optional tap handler
+            child: Tooltip(
+                message: hint,
+                child: Icon(MoonIcons.generic_info_16_light, size: 16.0,)
+            ),
+          ),
+        )
+      ],
     );
   }
 }

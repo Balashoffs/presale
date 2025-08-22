@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 
 final class DivisionWithResourceRowVM {
@@ -10,6 +8,7 @@ final class DivisionWithResourceRowVM {
 
   // Аббвеатура
   final String divisionShortName;
+  final String divisionDescription;
 
   // Должность
   final ValueNotifier<String> resourceNameVN;
@@ -75,6 +74,7 @@ final class DivisionWithResourceRowVM {
     required this.id,
     required this.divisionName,
     required this.divisionShortName,
+    required this.divisionDescription,
     required String resourceName,
     required double resourceCostPerDay,
     required int resourceQnt,
