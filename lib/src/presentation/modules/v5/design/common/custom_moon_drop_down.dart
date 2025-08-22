@@ -52,7 +52,6 @@ class _CustomMoonDropDownState extends State<CustomMoonDropDown> {
           borderColor:  getColor(context, MoonColor.trunks),
           backgroundColor: backgroundColor,
           constrainWidthToChild: true,
-          distanceToTarget: 8.0,
           dropdownAnchorPosition: MoonDropdownAnchorPosition.bottom,
           dropdownShadows: null,
           onTapOutside: value.tapOutside,
@@ -98,9 +97,9 @@ class _CustomMoonDropDownState extends State<CustomMoonDropDown> {
   ) {
     return vn.items.map((e) {
       return MoonMenuItem(
+        menuItemPadding: EdgeInsetsGeometry.symmetric(vertical: 4.0),
         menuItemCrossAxisAlignment: CrossAxisAlignment.center,
         labelAndContentCrossAxisAlignment: CrossAxisAlignment.center,
-        width: 312,
         onTap: () {
           onSelected(e);
           vn.selected(e);

@@ -84,6 +84,7 @@ dependencies:
   package_info_plus: ^8.3.1
   dart_seq_http_client: ^1.0.0
 dependency_overrides:
+  flutter_launcher_icons: ^0.14.4
   intl: ^0.18.0
   collection: ^1.19.0
   go_router: ^12.1.1
@@ -124,3 +125,21 @@ flutter:
     - assets/calculator_data/test_resources/
     - assets/calculator_data/design/debug/
     - assets/calculator_data/design/release/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/calculator_data/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/calculator_data/icon.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/calculator_data/icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/calculator_data/icon.png"
