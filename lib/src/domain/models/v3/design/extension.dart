@@ -37,6 +37,8 @@ extension DesignOfferResultRowExt on DesignOfferResultRowVM {
       divisionShortName: divisionShortName,
       divisionName: divisionName,
       divisionSummaryWithTax: divisionSummaryWithTax,
+      divisionSummaryWithMargin: divisionSummaryWithMargin
+
     );
   }
 }

@@ -13,6 +13,8 @@ _$DivisionResultImpl _$$DivisionResultImplFromJson(Map<String, dynamic> json) =>
       divisionName: json['divisionName'] as String,
       divisionSummaryWithTax: (json['divisionSummaryWithTax'] as num)
           .toDouble(),
+      divisionSummaryWithMargin: (json['divisionSummaryWithMargin'] as num)
+          .toDouble(),
     );
 
 Map<String, dynamic> _$$DivisionResultImplToJson(
@@ -22,4 +24,5 @@ Map<String, dynamic> _$$DivisionResultImplToJson(
   'divisionShortName': instance.divisionShortName,
   'divisionName': instance.divisionName,
   'divisionSummaryWithTax': instance.divisionSummaryWithTax,
+  'divisionSummaryWithMargin': instance.divisionSummaryWithMargin,
 };

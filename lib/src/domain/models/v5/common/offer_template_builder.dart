@@ -225,13 +225,13 @@ class DesignOfferTemplateBuilder {
         alignType: HAlignType.center,
       );
       _buildCell(
-        result.divisionSummaryWithTax.toStringAsFixed(2),
+        convertToString(result.divisionSummaryWithMargin, 2),
         'D$_rowPos',
         width: 25,
         alignType: HAlignType.center,
       );
       _buildCell(
-        result.divisionSummaryWithTax.toStringAsFixed(2),
+          convertToString(result.divisionSummaryWithTax, 2),
         'E$_rowPos',
         width: 25,
         alignType: HAlignType.center,

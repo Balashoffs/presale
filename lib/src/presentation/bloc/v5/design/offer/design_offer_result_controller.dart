@@ -20,12 +20,13 @@ class DesignOfferResultController {
   }
 
   Future<void> fillSign(DesignClass dc) async {
-    if(dc.sign != null){
-      List<PersonSignDTO> persons = await DivisionCostDtoBuilder(dc.sign!).build();
+    if (dc.sign != null) {
+      List<PersonSignDTO> persons = await DivisionCostDtoBuilder(
+        dc.sign!,
+      ).build();
       sign.addAll(persons);
       signsNames.value = [...sign.map((e) => e.fullName)];
     }
-
   }
 
   void onComments(String value) {
@@ -60,41 +61,42 @@ class DesignOfferResultController {
     }
   }
 
-  DesignOfferResultVM? _buildFrom(DesignPresalePojo designPresalePojo){
+  DesignOfferResultVM? _buildFrom(DesignPresalePojo designPresalePojo) {
     DivisionsMarginTableWithTypePojo? divisionResult =
         designPresalePojo.divisions;
-    if(divisionResult != null){
+    if (divisionResult != null) {
       final List<DesignOfferResultRowVM> divisionRows = divisionResult.rows
           .map(
             (e) => DesignOfferResultRowVM(
-          id: e.id,
-          divisionName: e.divisionName,
-          divisionShortName: e.divisionShortName,
-          divisionSummaryWithTax: e.summaryCostWithMargin,
-        ),
-      )
+              id: e.id,
+              divisionName: e.divisionName,
+              divisionShortName: e.divisionShortName,
+              divisionSummaryWithTax: e.summaryCostWithTax,
+              divisionSummaryWithMargin: e.summaryCostWithMargin,
+            ),
+          )
           .toList();
 
       double overPrice =
           designPresalePojo.divisions?.rows
               .map((e) => e.overPriceFactor * e.divisionSummaryCost)
               .reduce((value, element) => value + element) ??
-              0.0;
+          0.0;
 
       double marginCost =
           designPresalePojo.divisions?.rows
               .map(
                 (e) =>
-            e.overPriceFactor * e.divisionSummaryCost * e.marginFactor,
-          )
+                    e.overPriceFactor * e.divisionSummaryCost * e.marginFactor,
+              )
               .reduce((value, element) => value + element) ??
-              0.0;
+          0.0;
 
       double summary =
           designPresalePojo.divisions?.rows
               .map((e) => e.summaryCostWithTax)
               .reduce((value, element) => value + element) ??
-              0.0;
+          0.0;
       summary = double.parse(summary.toStringAsFixed(0));
       double tax = (summary - summary * RussianTax).abs();
 
@@ -117,5 +119,4 @@ class DesignOfferResultController {
     }
     return null;
   }
-
 }

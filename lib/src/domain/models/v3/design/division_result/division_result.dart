@@ -12,6 +12,7 @@ class DivisionResult with _$DivisionResult {
     required final String divisionShortName,
     required final String divisionName,
     required final double divisionSummaryWithTax,
+    required final double divisionSummaryWithMargin,
   }) = _DivisionResult;
 
   factory DivisionResult.fromJson(Map<String, dynamic> json) =>

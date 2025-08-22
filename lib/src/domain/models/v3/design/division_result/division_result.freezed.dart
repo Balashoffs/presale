@@ -25,6 +25,7 @@ mixin _$DivisionResult {
   String get divisionShortName => throw _privateConstructorUsedError;
   String get divisionName => throw _privateConstructorUsedError;
   double get divisionSummaryWithTax => throw _privateConstructorUsedError;
+  double get divisionSummaryWithMargin => throw _privateConstructorUsedError;
 
   /// Serializes this DivisionResult to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ abstract class $DivisionResultCopyWith<$Res> {
     String divisionShortName,
     String divisionName,
     double divisionSummaryWithTax,
+    double divisionSummaryWithMargin,
   });
 }
 
@@ -70,6 +72,7 @@ class _$DivisionResultCopyWithImpl<$Res, $Val extends DivisionResult>
     Object? divisionShortName = null,
     Object? divisionName = null,
     Object? divisionSummaryWithTax = null,
+    Object? divisionSummaryWithMargin = null,
   }) {
     return _then(
       _value.copyWith(
@@ -88,6 +91,10 @@ class _$DivisionResultCopyWithImpl<$Res, $Val extends DivisionResult>
             divisionSummaryWithTax: null == divisionSummaryWithTax
                 ? _value.divisionSummaryWithTax
                 : divisionSummaryWithTax // ignore: cast_nullable_to_non_nullable
+                      as double,
+            divisionSummaryWithMargin: null == divisionSummaryWithMargin
+                ? _value.divisionSummaryWithMargin
+                : divisionSummaryWithMargin // ignore: cast_nullable_to_non_nullable
                       as double,
           )
           as $Val,
@@ -109,6 +116,7 @@ abstract class _$$DivisionResultImplCopyWith<$Res>
     String divisionShortName,
     String divisionName,
     double divisionSummaryWithTax,
+    double divisionSummaryWithMargin,
   });
 }
 
@@ -130,6 +138,7 @@ class __$$DivisionResultImplCopyWithImpl<$Res>
     Object? divisionShortName = null,
     Object? divisionName = null,
     Object? divisionSummaryWithTax = null,
+    Object? divisionSummaryWithMargin = null,
   }) {
     return _then(
       _$DivisionResultImpl(
@@ -149,6 +158,10 @@ class __$$DivisionResultImplCopyWithImpl<$Res>
             ? _value.divisionSummaryWithTax
             : divisionSummaryWithTax // ignore: cast_nullable_to_non_nullable
                   as double,
+        divisionSummaryWithMargin: null == divisionSummaryWithMargin
+            ? _value.divisionSummaryWithMargin
+            : divisionSummaryWithMargin // ignore: cast_nullable_to_non_nullable
+                  as double,
       ),
     );
   }
@@ -162,6 +175,7 @@ class _$DivisionResultImpl implements _DivisionResult {
     required this.divisionShortName,
     required this.divisionName,
     required this.divisionSummaryWithTax,
+    required this.divisionSummaryWithMargin,
   });
 
   factory _$DivisionResultImpl.fromJson(Map<String, dynamic> json) =>
@@ -175,10 +189,12 @@ class _$DivisionResultImpl implements _DivisionResult {
   final String divisionName;
   @override
   final double divisionSummaryWithTax;
+  @override
+  final double divisionSummaryWithMargin;
 
   @override
   String toString() {
-    return 'DivisionResult(id: $id, divisionShortName: $divisionShortName, divisionName: $divisionName, divisionSummaryWithTax: $divisionSummaryWithTax)';
+    return 'DivisionResult(id: $id, divisionShortName: $divisionShortName, divisionName: $divisionName, divisionSummaryWithTax: $divisionSummaryWithTax, divisionSummaryWithMargin: $divisionSummaryWithMargin)';
   }
 
   @override
@@ -192,7 +208,12 @@ class _$DivisionResultImpl implements _DivisionResult {
             (identical(other.divisionName, divisionName) ||
                 other.divisionName == divisionName) &&
             (identical(other.divisionSummaryWithTax, divisionSummaryWithTax) ||
-                other.divisionSummaryWithTax == divisionSummaryWithTax));
+                other.divisionSummaryWithTax == divisionSummaryWithTax) &&
+            (identical(
+                  other.divisionSummaryWithMargin,
+                  divisionSummaryWithMargin,
+                ) ||
+                other.divisionSummaryWithMargin == divisionSummaryWithMargin));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -203,6 +224,7 @@ class _$DivisionResultImpl implements _DivisionResult {
     divisionShortName,
     divisionName,
     divisionSummaryWithTax,
+    divisionSummaryWithMargin,
   );
 
   /// Create a copy of DivisionResult
@@ -228,6 +250,7 @@ abstract class _DivisionResult implements DivisionResult {
     required final String divisionShortName,
     required final String divisionName,
     required final double divisionSummaryWithTax,
+    required final double divisionSummaryWithMargin,
   }) = _$DivisionResultImpl;
 
   factory _DivisionResult.fromJson(Map<String, dynamic> json) =
@@ -241,6 +264,8 @@ abstract class _DivisionResult implements DivisionResult {
   String get divisionName;
   @override
   double get divisionSummaryWithTax;
+  @override
+  double get divisionSummaryWithMargin;
 
   /// Create a copy of DivisionResult
   /// with the given fields replaced by the non-null parameter values.
