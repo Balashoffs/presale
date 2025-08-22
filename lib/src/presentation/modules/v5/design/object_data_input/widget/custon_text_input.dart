@@ -7,6 +7,7 @@ class CustomTextInput extends StatefulWidget {
     super.key,
     this.initValue,
     this.helpText,
+    this.hintText,
     this.leading,
     this.trailing,
     this.onChanged,
@@ -17,6 +18,7 @@ class CustomTextInput extends StatefulWidget {
 
   final String? initValue;
   final String? helpText;
+  final String? hintText;
   final IconData? leading;
   final IconData? trailing;
   final double? width;
@@ -35,54 +37,48 @@ class _CustomTextInputState extends State<CustomTextInput> {
   @override
   void initState() {
     super.initState();
-    if (widget.initValue != null) {
-      _textController.text = widget.initValue.toString();
-
+    if(widget.initValue != null){
+      _textController.text = widget.initValue!;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width != null ? widget.width! + 10 : 510,
-      child: MoonFormTextInput(
-        onTap: () {
-          if (_textController.text == widget.initValue) {
-            _textController.clear();
-          }
-        },
-        width: widget.width ?? 500,
-        controller: _textController,
-        enabled: true,
-        textInputSize: MoonTextInputSize.md,
-        hasFloatingLabel: false,
-        textColor: colorTable(context)[40],
-        hintTextColor: colorTable(context)[40],
-        backgroundColor: colorTable(context)[40],
-        activeBorderColor: colorTable(context)[40],
-        inactiveBorderColor: colorTable(context)[40],
-        hoverBorderColor: colorTable(context)[40],
-        errorColor: colorTable(context)[40],
-        borderRadius: BorderRadius.circular(8.toDouble()),
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        hintText: widget.initValue,
-        validator: widget.validator,
-        autofocus: widget.autofocus,
-        onTapOutside: (PointerDownEvent _) =>
-            FocusManager.instance.primaryFocus?.unfocus(),
-        leading: widget.leading != null ? Icon(widget.leading, size: 24) : null,
-        trailing: MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            child: widget.trailing != null
-                ? Icon(widget.trailing, size: 24)
-                : null,
-            onTap: () => _textController.clear(),
-          ),
+    return MoonFormTextInput(
+      focusNode: FocusNode(),
+      width: widget.width,
+      controller: _textController,
+      enabled: true,
+      textInputSize: MoonTextInputSize.md,
+      hasFloatingLabel: false,
+      onChanged: widget.onChanged,
+      helper: widget.helpText != null ? Text(widget.helpText!) : null,
+      textColor: colorTable(context)[40],
+      hintTextColor: colorTable(context)[40],
+      backgroundColor: colorTable(context)[40],
+      activeBorderColor: colorTable(context)[40],
+      inactiveBorderColor: colorTable(context)[40],
+      hoverBorderColor: colorTable(context)[40],
+      errorColor: colorTable(context)[40],
+      borderRadius: BorderRadius.circular(8.toDouble()),
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      hintText: widget.hintText,
+      validator: widget.validator,
+      autofocus: widget.autofocus,
+      onTap: (){_textController.clear();},
+      onTapOutside: (PointerDownEvent _) =>
+          FocusManager.instance.primaryFocus?.unfocus(),
+      leading: widget.leading != null ? Icon(widget.leading, size: 24) : null,
+      trailing: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          child: widget.trailing != null
+              ? Icon(widget.trailing, size: 24)
+              : null,
+          onTap: () => _textController.clear(),
         ),
-        onChanged: widget.onChanged,
-        helper: widget.helpText != null ? Text(widget.helpText!) : null,
       ),
+
     );
   }
 }
@@ -111,30 +107,25 @@ class CustomTextAreaInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width != null ? width! + 10 : 510,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: MoonTextArea(
-          height: 200,
-          enabled: true,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          textColor: colorTable(context)[40],
-          hintTextColor: colorTable(context)[40],
-          backgroundColor: colorTable(context)[40],
-          activeBorderColor: colorTable(context)[40],
-          inactiveBorderColor: colorTable(context)[40],
-          hoverBorderColor: colorTable(context)[40],
-          errorColor: colorTable(context)[40],
-          borderRadius: BorderRadius.circular(8.toDouble()),
-          hintText: hintText,
-          validator: validator,
-          onTapOutside: (PointerDownEvent _) =>
-              FocusManager.instance.primaryFocus?.unfocus(),
-          onChanged: onChanged,
-          helper: helperText != null ? Text(helperText!) : null,
-        ),
-      ),
+    return MoonTextArea(
+      enabled: true,
+      expands: true,
+      height: 128,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      textColor: colorTable(context)[40],
+      hintTextColor: colorTable(context)[40],
+      backgroundColor: colorTable(context)[40],
+      activeBorderColor: colorTable(context)[40],
+      inactiveBorderColor: colorTable(context)[40],
+      hoverBorderColor: colorTable(context)[40],
+      errorColor: colorTable(context)[40],
+      borderRadius: BorderRadius.circular(8.toDouble()),
+      hintText: hintText,
+      validator: validator,
+      onTapOutside: (PointerDownEvent _) =>
+          FocusManager.instance.primaryFocus?.unfocus(),
+      onChanged: onChanged,
+      helper: helperText != null ? Text(helperText!) : null,
     );
   }
 }

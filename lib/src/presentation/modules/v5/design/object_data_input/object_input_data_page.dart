@@ -35,9 +35,10 @@ class InputDataPage extends StatelessWidget {
         'Первоначальные данные о проекте',
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 14,
-          color: getColor(context, MoonColor.piccolo),
+          fontSize: 16,
+
         ),
+
       ),
 
       child: ObjectInputDataBlocBuilderWidget(),
@@ -96,47 +97,63 @@ class LoadedWidget extends StatelessWidget {
         child: Builder(
           builder: (context) {
             return Column(
+              spacing: 32.0,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomTextInput(
-                  helpText: 'Наименование объекта',
-                  onChanged: cubit.setObjectName,
-                  trailing: MoonIcons.controls_close_small_24_light,
-                  validator: objectNameValidator,
-                  autofocus: true,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 3 / 4,
+                  child: Column(
+                    spacing: 16.0,
+                    children: [
+                      Row(
+                        spacing: 16.0,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            flex: 2,
+                            child: CustomTextInput(
+                              initValue: 'Наименование объекта*',
+                              onChanged: cubit.setObjectName,
+                              trailing: MoonIcons.controls_close_small_24_light,
+                              validator: objectNameValidator,
+                              autofocus: true,
+                            ),
+                          ),
+                          Flexible(
+                            flex: 1,
+                            child: ChangeNotifierProvider(
+                              create: (context) => DropDownTextController(
+                                inputData: DivisionType.values
+                                    .map((e) => e.text)
+                                    .toList(),
+                              ),
+                              child: CustomMoonDropDown(
+                                helperText:"Виды проектной документации*" ,
+                                validator: divisionTypeValidator('Нужно выбрать'),
+                                initText: 'Нужно выбрать',
+                                onSelected: cubit.setResultDesignDocumentations,
+                                leadingIcon: MoonIcons.text_bullets_list_16_light,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      CustomTextAreaInput(
+                        hintText: 'Адрес объекта*',
+                        onChanged: cubit.setObjectLocation,
+                        trailing: MoonIcons.controls_close_small_24_light,
+                        validator: objectLocationValidator,
+                      ),                    ],
+                  ),
                 ),
-                CustomTextAreaInput(
-                  hintText: 'Адрес объекта',
-                  onChanged: cubit.setObjectLocation,
-                  trailing: MoonIcons.controls_close_small_24_light,
-                  validator: objectLocationValidator,
-                ),
-                SizedBox(height: 16),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: 16.0,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ChangeNotifierProvider(
-                      create: (context) => DropDownTextController(
-                        inputData: DivisionType.values
-                            .map((e) => e.text)
-                            .toList(),
-                      ),
-                      child: CustomMoonDropDown(
-                        validator: (value) {
-                          return value == "Выбрать"
-                              ? "Нужно сделать выбор"
-                              : null;
-                        },
-                        initText: "Выбрать",
-                        onSelected: cubit.setResultDesignDocumentations,
-                        helperText: 'Виды проектной документации',
-                        leadingIcon: MoonIcons.text_bullets_list_16_light,
-                        width: 312,
-                      ),
-                    ),
                     CustomTextInput(
-                      width: 256,
+                      width: 196,
                       initValue: '0',
                       onChanged: cubit.setSquare,
                       leading: Icons.square_outlined,
@@ -145,7 +162,7 @@ class LoadedWidget extends StatelessWidget {
                       helpText: 'Площадь объекта, м2',
                     ),
                     CustomTextInput(
-                      width: 256,
+                      width: 196,
                       initValue: '0',
                       onChanged: cubit.setDeadline,
                       leading: Icons.timer,
@@ -153,20 +170,8 @@ class LoadedWidget extends StatelessWidget {
                       validator: onlyInfiniteNumberValidator,
                       helpText: 'Сроки выполнения, дн.',
                     ),
-                  ],
-                ),
-                const TextDivider(
-                  text: "Доп. кооэфициенты",
-                  paddingTop: 8,
-                  paddingBottom: 16,
-                ),
-                Row(
-                  spacing: 8.0,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
                     CustomTextInput(
-                      width: 256,
+                      width: 196,
                       initValue: '1.2',
                       onChanged: cubit.setMarginFactor,
                       leading: Icons.calculate,
@@ -175,7 +180,7 @@ class LoadedWidget extends StatelessWidget {
                       helpText: 'Норма прибыли, %',
                     ),
                     CustomTextInput(
-                      width: 256,
+                      width: 196,
                       initValue: '0.8',
                       onChanged: cubit.setOverPriceFactor,
                       leading: Icons.money_off,
@@ -184,7 +189,7 @@ class LoadedWidget extends StatelessWidget {
                       helpText: 'Накладные, %',
                     ),
                     CustomTextInput(
-                      width: 256,
+                      width: 196,
                       initValue: '1',
                       onChanged: cubit.setCustomerFactor,
                       leading: Icons.person,
@@ -193,12 +198,6 @@ class LoadedWidget extends StatelessWidget {
                       helpText: 'Заказчик, %',
                     ),
                   ],
-                ),
-                SizedBox(height: 16),
-                const TextDivider(
-                  text: "Базовые кооэфициенты",
-                  paddingTop: 8,
-                  paddingBottom: 16,
                 ),
                 OpacityWidget(
                   child: Row(

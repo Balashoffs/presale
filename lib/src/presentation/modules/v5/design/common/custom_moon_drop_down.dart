@@ -63,14 +63,13 @@ class _CustomMoonDropDownState extends State<CustomMoonDropDown> {
             validator: widget.validator,
             controller: _textEditController,
             helper: widget.helperText != null ? Text(widget.helperText!) : null,
-            width: widget.width,
+            // width: widget.width,
             readOnly: true,
+            textAlign: TextAlign.center,
             canRequestFocus: false,
             mouseCursor: MouseCursor.defer,
-            hintText: _textEditController.text,
-            onTap: () {
-              value.onTap();
-            },
+            hintText: widget.initText,
+            onTap: value.onTap,
             onTapOutside: (PointerDownEvent _) =>
                 FocusManager.instance.primaryFocus?.unfocus(),
             leading: Icon(widget.leadingIcon, size: 24),

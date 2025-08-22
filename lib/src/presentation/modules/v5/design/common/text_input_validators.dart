@@ -83,3 +83,9 @@ FormFieldValidator<String>? ananceValidator = (value) {
 FormFieldValidator<String>? personSignDropDownValidator = (value) {
   return value == "Выбрать" ? "Нужно сделать выбор" : null;
 };
+
+FormFieldValidator<String>? divisionTypeValidator (String forCheck) => (value) {
+  return value == forCheck
+      ? "Нужно сделать выбор"
+      : null;
+};
