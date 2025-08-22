@@ -101,6 +101,7 @@ class _CustomDropdownWithSearchWidgetState
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MoonDropdown(
+        borderColor:  getColor(context, MoonColor.trunks),
         show: _showDropdown,
         constrainWidthToChild: true,
         backgroundColor: colorTable(context)[40],
@@ -147,7 +148,7 @@ class _CustomDropdownWithSearchWidgetState
           hasFloatingLabel: false,
           width: 320,
           focusNode: _focusNode,
-          activeBorderColor: colorTable(context)[40],
+          activeBorderColor:  getColor(context, MoonColor.trunks),
           inactiveBorderColor: colorTable(context)[40],
           backgroundColor: colorTable(context)[40],
           hoverBorderColor: colorTable(context)[40],
@@ -224,8 +225,7 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
       show: _showMenu,
       groupId: Uuid().v4(),
       maxWidth: 196,
-      borderColor: colorTable(context)[40] ?? Colors.transparent,
-      backgroundColor: colorTable(context)[40],
+      borderColor: getColor(context, MoonColor.trunks),
       constrainWidthToChild: true,
       distanceToTarget: 8.0,
       dropdownAnchorPosition: _isUpper
@@ -250,6 +250,7 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
         }),
       ),
       child: MoonTextInput(
+        activeBorderColor:  getColor(context, MoonColor.trunks),
         width: 256,
         readOnly: true,
         canRequestFocus: false,
