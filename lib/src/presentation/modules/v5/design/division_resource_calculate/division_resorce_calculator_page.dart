@@ -11,10 +11,10 @@ import 'package:presale/src/presentation/bloc/v5/design/division_resource_calcul
 import 'package:presale/src/presentation/modules/v5/design/common/collum_attributes.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_app_bar.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/custom_circle_loader.dart';
+import 'package:presale/src/presentation/modules/v5/design/common/next_page_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/common/result_sum_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/custom_dropdown_with_search_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/divisions_resources_table_widget.dart';
-import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/next_page_widget.dart';
 import 'package:presale/src/presentation/modules/v5/design/division_resource_calculate/widget/resource_app_bar_title.dart';
 import 'package:presale/src/presentation/modules/v5/design/navi/service_navi.dart';
 

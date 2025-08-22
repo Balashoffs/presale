@@ -95,11 +95,8 @@ class DivisionsMarginCalculateWidget extends StatelessWidget {
         ),
         Expanded(
           flex: 1,
-          child: Padding(
-            padding: EdgeInsetsGeometry.all(8.0),
-            child: NextPageWidget(
-              onTap: context.read<DivisionsMarginCalculateCubit>().onNextPage,
-            ),
+          child: NextPageWidget(
+            onTap: context.read<DivisionsMarginCalculateCubit>().onNextPage,
           ),
         ),
       ],

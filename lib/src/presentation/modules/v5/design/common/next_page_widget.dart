@@ -9,15 +9,26 @@ class NextPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MoonButton(
-      buttonSize: MoonButtonSize.md,
-      onTap: onTap,
-      trailing: Icon(MoonIcons.arrows_chevron_right_double_32_regular),
-      showBorder: true,
-      label: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 16),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0, right: 16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          MoonButton(
+            buttonSize: MoonButtonSize.md,
+            onTap: onTap,
+            trailing:
+            Icon(MoonIcons.arrows_chevron_right_double_32_regular),
+            showBorder: true,
+            label: Text(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

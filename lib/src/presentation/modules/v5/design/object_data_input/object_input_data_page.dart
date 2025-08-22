@@ -268,16 +268,24 @@ class LoadedWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                NextPageWidget(
-                  onTap: () {
-                    bool isValid = Form.of(context).validate();
-                    if (isValid) {
-                      cubit.nextPage();
-                    } else {
-                      showToast(context, 'Не все поля заполнены!');
-                    }
-                  },
-                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 3 / 4,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      NextPageWidget(
+                        onTap: () {
+                          bool isValid = Form.of(context).validate();
+                          if (isValid) {
+                            cubit.nextPage();
+                          } else {
+                            showToast(context, 'Не все поля заполнены!');
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                )
               ],
             );
           },
