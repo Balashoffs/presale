@@ -45,9 +45,7 @@ class DesignOfferCalculator {
     model.overPriceValue = withOverPrice;
     model.marginValue = withMargins;
 
-    double summaryCost =
-        (model.divisionSummaryCost + model.marginValue) *
-        model.clientValue;
+    double summaryCost = withMargins * model.clientValue;
     model.summaryCostWithMarginVN.value = summaryCost;
     double withTax = summaryCost * RussianTax;
     model.summaryCostWithTaxVN.value = withTax;
