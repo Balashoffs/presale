@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 #
 #      - name: Setup Flutter
 #        uses: subosito/flutter-action@v2
@@ -38,7 +38,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/presale:latest  # Замените myapp на имя образа
+          tags: ${{ secrets.DOCKER_USERNAME }}/presale  # Замените myapp на имя образа
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
