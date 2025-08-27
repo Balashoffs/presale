@@ -5,7 +5,6 @@ import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/di/di.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:presale/src/presentation/core/navigation/routers/debug_app_router.dart';
 
 abstract class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

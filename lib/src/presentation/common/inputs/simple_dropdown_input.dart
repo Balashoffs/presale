@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_portal/flutter_portal.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:presale/src/data/common/extensions/list.dart';
 import 'package:presale/src/presentation/common/color_options.dart';
@@ -148,137 +147,72 @@ class _SimpleDropdownInputState<T> extends State<SimpleDropdownInput<T>> with Ti
                 initialData: [],
                 stream: widget.itemsStream,
                 builder: (context, snapshot) {
-                  return PortalTarget(
-                    visible: opened,
-                    portalFollower: GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () => _close(),
-                      child: const ColoredBox(color: Colors.transparent),
+                  return ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxHeight: 200,
                     ),
-                    child: PortalTarget(
-                      visible: widget.isNested ? true : opened,
-                      portalFollower: Visibility(
-                        visible: widget.isNested ? opened : true,
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxHeight: 386,
-                            maxWidth: widget.maxWidth ?? double.infinity,
-                          ),
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: getColor(context, MoonColor.dodoria),
-                                width: 1,
-                              ),
-                              color: getColor(context, MoonColor.gohan),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 4,
-                                  offset: Offset(0, 2),
-                                )
-                              ],
-                              borderRadius: const BorderRadius.all(Radius.circular(8)),
-                            ),
-                            child: FadeTransition(
-                              opacity: _animation!,
-                              child: SizeTransition(
-                                axisAlignment: 1,
-                                axis: Axis.vertical,
-                                sizeFactor: _animation!,
-                                child: SimpleDropdownInputMenu<T>(
-                                  items: snapshot.data ?? [],
-                                  currentItem: currentValue,
-                                  onChanged: (value) {
-                                    widget.onChanged?.call(value);
-                                    if (!widget.blank) {
-                                      _currentValue.value = value;
-                                    }
-                                    _close();
-                                  },
-                                  padding: widget.menuPadding,
-                                  itemBuilder: widget.itemBuilder,
-                                  maxWidth: widget.maxWidth,
-                                ),
-                              ),
+                    child: TextFormField(
+                      autofocus: false,
+                      focusNode: _focusNode,
+                      controller: _textEditingController,
+                      // keyboardType: widget.inputType,
+                      // inputFormatters: widget.inputFormatters,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+                          isDense: true,
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          focusedErrorBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                          labelText: widget.label,
+                          errorText: null,
+                          helperText: null,
+                          helperMaxLines: 3,
+                          helperStyle: getBodyTextStyle(context,  MoonTextSize.size10),
+                          fillColor: getColor(context, MoonColor.bulma),
+                          filled: false,
+                          errorStyle: getBodyTextStyle(context,  MoonTextSize.size10),
+                          // contentPadding: EdgeInsets.zero,
+                          hoverColor: getColor(context, MoonColor.gohan),
+                          labelStyle: getBodyTextStyle(context, MoonTextSize.size16),
+                          suffixIcon: IconButton(
+                            visualDensity: VisualDensity.compact,
+                            onPressed: () {
+                              if (opened) {
+                                _close();
+                              } else {
+                                widget.onLoadItems(_textEditingController.value.text);
+                                _open();
+                              }
+                            },
+                            icon: Icon(
+                              opened
+                                  ? Icons.arrow_upward
+                                  : Icons.arrow_downward_outlined,
+                              size: 16,
                             ),
                           ),
-                        ),
-                      ),
-                      anchor: Aligned(
-                        follower: top ? Alignment.bottomLeft : Alignment.topLeft,
-                        target: top ? Alignment.topLeft : Alignment.bottomLeft,
-                        widthFactor: widget.maxWidth == null ? 1 : null,
-                        offset: widget.offset + Offset(0, offsetForDrop()),
-                      ),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          maxHeight: 200,
-                        ),
-                        child: TextFormField(
-                          autofocus: false,
-                          focusNode: _focusNode,
-                          controller: _textEditingController,
-                          // keyboardType: widget.inputType,
-                          // inputFormatters: widget.inputFormatters,
-                          decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-                              isDense: true,
-                              border: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              focusedErrorBorder: InputBorder.none,
-                              errorBorder: InputBorder.none,
-                              enabledBorder: InputBorder.none,
-                              disabledBorder: InputBorder.none,
-                              labelText: widget.label,
-                              errorText: null,
-                              helperText: null,
-                              helperMaxLines: 3,
-                              helperStyle: getBodyTextStyle(context,  MoonTextSize.size10),
-                              fillColor: getColor(context, MoonColor.bulma),
-                              filled: false,
-                              errorStyle: getBodyTextStyle(context,  MoonTextSize.size10),
-                              // contentPadding: EdgeInsets.zero,
-                              hoverColor: getColor(context, MoonColor.gohan),
-                              labelStyle: getBodyTextStyle(context, MoonTextSize.size16),
-                              suffixIcon: IconButton(
-                                visualDensity: VisualDensity.compact,
-                                onPressed: () {
-                                  if (opened) {
-                                    _close();
-                                  } else {
-                                    widget.onLoadItems(_textEditingController.value.text);
-                                    _open();
-                                  }
-                                },
-                                icon: Icon(
-                                  opened
-                                      ? Icons.arrow_upward
-                                      : Icons.arrow_downward_outlined,
-                                  size: 16,
-                                ),
-                              ),
-                              errorMaxLines: 3,
-                              alignLabelWithHint: true,
-                              floatingLabelBehavior: FloatingLabelBehavior.auto),
-                          obscureText: false,
-                          obscuringCharacter: '*',
-                          enabled: true,
-                          style: getBodyTextStyle(context,  MoonTextSize.size12),
-                          onChanged: (text) {
-                            widget.onLoadItems(text);
-                            // widget.onChanged?.call(text);
-                          },
-                          onTapOutside: (event) {
-                            _focusNode.unfocus();
-                          },
-                          // onFieldSubmitted: widget.onSubmit,
-                          maxLines: null,
-                          expands: false,
-                          keyboardType: TextInputType.multiline,
-                          // textAlignVertical: widget.multiline ? TextAlignVertical.top : TextAlignVertical.center,
-                        ),
-                      ),
+                          errorMaxLines: 3,
+                          alignLabelWithHint: true,
+                          floatingLabelBehavior: FloatingLabelBehavior.auto),
+                      obscureText: false,
+                      obscuringCharacter: '*',
+                      enabled: true,
+                      style: getBodyTextStyle(context,  MoonTextSize.size12),
+                      onChanged: (text) {
+                        widget.onLoadItems(text);
+                        // widget.onChanged?.call(text);
+                      },
+                      onTapOutside: (event) {
+                        _focusNode.unfocus();
+                      },
+                      // onFieldSubmitted: widget.onSubmit,
+                      maxLines: null,
+                      expands: false,
+                      keyboardType: TextInputType.multiline,
+                      // textAlignVertical: widget.multiline ? TextAlignVertical.top : TextAlignVertical.center,
                     ),
                   );
                 });

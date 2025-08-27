@@ -10,7 +10,6 @@ import 'package:presale/src/presentation/core/navigation/nested_route.dart';
 import 'package:presale/src/presentation/modules/data_viewer/viewer_info.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_portal/flutter_portal.dart';
 import 'package:go_router/go_router.dart';
 
 class ViewerPage extends StatefulWidget {
@@ -65,47 +64,45 @@ class _ViewerPageState extends State<ViewerPage> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     // if (_tabIndex < 0) return const SizedBox.shrink();
-    return Portal(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-            ),
-            onPressed: () => context.go(defaultAuthorizedPath),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
           ),
-          actions: [
-            if (_tabIndex == 0)
-              MoonButton(
-                width: 64,
-                height: 64,
-                leading: Icon(Icons.arrow_downward),
-                onTap: () {
-                  FilePicker.platform
-                      .pickFiles(
-                    type: FileType.custom,
-                    allowedExtensions: ['xlsx'],
-                    allowMultiple: false,
-                  )
-                      .then((value) {
-                    if (value != null) {
-                      var bytes = value.files.single.bytes;
-                      if (bytes != null) di.employeeRepository.loadData(bytes);
-                    }
-                  });
-                },
-              ),
-          ],
+          onPressed: () => context.go(defaultAuthorizedPath),
         ),
-        body: Column(
-          children: [
-            Flexible(child: widget.shell),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: _bottomBar(),
+        actions: [
+          if (_tabIndex == 0)
+            MoonButton(
+              width: 64,
+              height: 64,
+              leading: Icon(Icons.arrow_downward),
+              onTap: () {
+                FilePicker.platform
+                    .pickFiles(
+                  type: FileType.custom,
+                  allowedExtensions: ['xlsx'],
+                  allowMultiple: false,
+                )
+                    .then((value) {
+                  if (value != null) {
+                    var bytes = value.files.single.bytes;
+                    if (bytes != null) di.employeeRepository.loadData(bytes);
+                  }
+                });
+              },
             ),
-          ],
-        ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Flexible(child: widget.shell),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: _bottomBar(),
+          ),
+        ],
       ),
     );
   }

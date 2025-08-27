@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:presale/src/data/core/db_client.dart';
 import 'package:presale/src/data/core/exceptions.dart';
-import 'package:excel/excel.dart';
 import 'package:presale/src/domain/models/v1/employee/employee.dart';
 import 'package:uuid/uuid.dart';
 
@@ -61,24 +60,6 @@ class EmployeeDataSourceLocal implements EmployeeDataSource {
 
   @override
   Future<bool> loadEmployeesFromExcel(Uint8List data) async {
-    var excel = Excel.decodeBytes(data);
-    for (var table in excel.tables.keys) {
-      ;
-      ;
-      ;
-      for (final row in excel.tables[table]?.rows ?? []) {
-        CellValue? value = row[0].value;
-
-        assert (value is TextCellValue);
-        String title = (value as TextCellValue).value as String;
-
-        CellValue? value2 = row[1].value;
-        assert (value2 is DoubleCellValue);
-        double salary = (value2 as DoubleCellValue).value;
-
-      }
-      break;
-    }
     return true;
   }
 

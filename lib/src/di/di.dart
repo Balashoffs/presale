@@ -12,7 +12,6 @@ import 'package:presale/src/data/core/db_client.dart';
 import 'package:presale/src/data/data_sources/v1/employee_cost_data_source.dart';
 import 'package:presale/src/data/data_sources/v1/section_data_source.dart';
 
-import 'package:presale/src/di/app_config/app_config.dart';
 import 'package:presale/src/domain/data/data_cubit.dart';
 import 'package:presale/src/presentation/bloc/auth/auth_cubit.dart';
 import 'package:presale/src/presentation/bloc/core/core/global_bloc_observer.dart';
@@ -88,9 +87,7 @@ class DependencyInjector {
   }
 
   Future<void> _registerAppConfig() async {
-    final appConfig = await AppConfig.load();
 
-    _getItInstance.registerSingleton<AppConfig>(appConfig);
   }
 
   void _registerThemeService() =>
@@ -160,7 +157,6 @@ class DependencyInjector {
 
   /// Core
 
-  AppConfig get appConfig => _getItInstance<AppConfig>();
 
   ThemeService get themeService => _getItInstance<ThemeService>();
 

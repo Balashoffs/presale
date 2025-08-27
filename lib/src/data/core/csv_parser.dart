@@ -14,7 +14,7 @@ abstract class CsvParser<T> {
   Future<List<T>> parse(List<T> Function(List<List<dynamic>>) rowParse) async {
     String csv = await _readFromAssets();
     List<List<dynamic>> csvData = const CsvToListConverter(
-      eol: '\r',
+      eol: '\n',
       fieldDelimiter: ';',
       shouldParseNumbers: false,
     ).convert(csv);

@@ -21,7 +21,7 @@ class AuthCubit extends Cubit<AuthState> {
     }
     emit(state.copyWith(formStage: FormStage.loading));
 
-    if (state.password == di.appConfig.password){
+    if (state.password == ''){
       emit(state.copyWith(
         formStage: FormStage.common,
         formError: null,
