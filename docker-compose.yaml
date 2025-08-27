@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    image: alexbeard/presale  # Замените на ваш Docker Hub образ
+    image: alexbeard/presale:latest  # Замените на ваш Docker Hub образ
     container_name: presale_web
     ports:
       - "5566:80"  # Или 443:443 для HTTPS
