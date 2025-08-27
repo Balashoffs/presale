@@ -20,7 +20,7 @@ class ResourcesViewController {
   final ValueNotifier<double> summaryVN = ValueNotifier(0.0);
   final ValueNotifier<bool> isValid = ValueNotifier(false);
   final ValueNotifier<String> divisionTypeVN = ValueNotifier('');
-  final ValueNotifier<bool> isAllow = ValueNotifier(true);
+
 
   double _squareFactor = 0.0;
   double _complexityFactor = 0.0;
@@ -103,7 +103,6 @@ class ResourcesViewController {
         found.resourceNameVN.value = '';
       }
       selectedRows.value = [...selectedRows.value, found];
-      isAllow.value = false;
       _updateUnselectedDivision();
     }
   }
@@ -114,7 +113,6 @@ class ResourcesViewController {
     if (found != null) {
       selectedRows.value.removeWhere((element) => element.id == id);
       selectedRows.value = [...selectedRows.value];
-      isAllow.value = _isEmptyCostHas || selectedRows.value.isEmpty;
       summaryVN.value =  summaryCost;
       _updateSelectedDivision(
         found.divisionShortName,
@@ -210,7 +208,6 @@ class ResourcesViewController {
       value.totalResourceRowCostVN.value = total;
       summaryVN.value = summaryCost;
       isValid.value = _isEmptyCostHas;
-      isAllow.value = _isEmptyCostHas;
     }
   }
 

@@ -95,20 +95,15 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ValueListenableBuilder(
-                valueListenable: controller.isAllow,
-                builder: (context, isAllow, child) {
-                  return ValueListenableBuilder<List<DivisionDTO>>(
-                    valueListenable: controller.unselectedDivisionsVN,
-                    builder: (context, value, child) {
-                      return CustomDropdownWithSearchWidget(
-                        autoFocus: true,
-                        enabled: isAllow,
-                        divisions: value,
-                        onSelected: (p0) =>
-                            controller.onRowAction(p0.id, WidgetActionType.add),
-                      );
-                    },
+              ValueListenableBuilder<List<DivisionDTO>>(
+                valueListenable: controller.unselectedDivisionsVN,
+                builder: (context, value, child) {
+                  return CustomDropdownWithSearchWidget(
+                    autoFocus: true,
+                    enabled: true,
+                    divisions: value,
+                    onSelected: (p0) =>
+                        controller.onRowAction(p0.id, WidgetActionType.add),
                   );
                 },
               ),
