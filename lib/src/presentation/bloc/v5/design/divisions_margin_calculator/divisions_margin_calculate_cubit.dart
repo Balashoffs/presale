@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:presale/src/data/core/db_client.dart';
 import 'package:presale/src/data/data_sources/v3/input_result_design_source.dart';
+import 'package:presale/src/domain/models/v3/design/input_factors/input_factors_pojo.dart';
 import 'package:presale/src/domain/models/v4/design/design_presale_pojo.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_pojo.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/divisions_margin_table_with_type_pojo.dart';
@@ -38,7 +39,8 @@ class DivisionsMarginCalculateCubit
     List<DivisionResourceRowPojo> divisionsByType =
         designPresalePojo.resource?.rows ?? [];
     if (divisionsByType.isNotEmpty) {
-      _divisionsViewController.fill(designPresalePojo.inputDataDesign.inputFactors, divisionsByType);
+      InputFactorsPojo inputFactors  = designPresalePojo.inputDataDesign.inputFactors;
+      _divisionsViewController.fill(inputFactors, divisionsByType);
       emit(DivisionsMarginCalculateState.showPage());
     }
   }

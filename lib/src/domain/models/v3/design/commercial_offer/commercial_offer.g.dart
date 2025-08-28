@@ -6,9 +6,9 @@ part of 'commercial_offer.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CommercialOfferResultImpl _$$CommercialOfferResultImplFromJson(
+_CommercialOfferResult _$CommercialOfferResultFromJson(
   Map<String, dynamic> json,
-) => _$CommercialOfferResultImpl(
+) => _CommercialOfferResult(
   inputDataDesign: InputDataDesign.fromJson(
     json['inputDataDesign'] as Map<String, dynamic>,
   ),
@@ -20,8 +20,8 @@ _$CommercialOfferResultImpl _$$CommercialOfferResultImplFromJson(
   footerData: FooterData.fromJson(json['footerData'] as Map<String, dynamic>),
 );
 
-Map<String, dynamic> _$$CommercialOfferResultImplToJson(
-  _$CommercialOfferResultImpl instance,
+Map<String, dynamic> _$CommercialOfferResultToJson(
+  _CommercialOfferResult instance,
 ) => <String, dynamic>{
   'inputDataDesign': instance.inputDataDesign,
   'divisionResults': instance.divisionResults,

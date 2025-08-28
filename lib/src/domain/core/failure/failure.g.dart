@@ -6,17 +6,15 @@ part of 'failure.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FailureImpl _$$FailureImplFromJson(Map<String, dynamic> json) =>
-    _$FailureImpl(
-      $enumDecode(_$FailureTypeEnumMap, json['failureType']),
-      json['description'] as String?,
-    );
+_Failure _$FailureFromJson(Map<String, dynamic> json) => _Failure(
+  $enumDecode(_$FailureTypeEnumMap, json['failureType']),
+  json['description'] as String?,
+);
 
-Map<String, dynamic> _$$FailureImplToJson(_$FailureImpl instance) =>
-    <String, dynamic>{
-      'failureType': _$FailureTypeEnumMap[instance.failureType]!,
-      'description': instance.description,
-    };
+Map<String, dynamic> _$FailureToJson(_Failure instance) => <String, dynamic>{
+  'failureType': _$FailureTypeEnumMap[instance.failureType]!,
+  'description': instance.description,
+};
 
 const _$FailureTypeEnumMap = {
   FailureType.api: 'api',

@@ -165,22 +165,22 @@ class LoadedWidget extends StatelessWidget {
                           ),
                         ),
                         TextWithRowHint(
-                          leading: Icons.calculate,
-                          hintText: 'Норма прибыли,',
+                          leading: Icons.money_off,
+                          hintText: 'Накладные, ',
                           textWidget: CustomTextInput(
                             width: 128,
-                            onChanged: cubit.setMarginFactor,
+                            onChanged: cubit.setOverPriceFactor,
                             trailing: MoonIcons.controls_close_small_24_light,
                             validator: onlyFactorValidator,
                             initValue: '1.0',
                           ),
                         ),
                         TextWithRowHint(
-                          leading: Icons.money_off,
-                          hintText: 'Накладные, ',
+                          leading: Icons.calculate,
+                          hintText: 'Норма прибыли,',
                           textWidget: CustomTextInput(
                             width: 128,
-                            onChanged: cubit.setOverPriceFactor,
+                            onChanged: cubit.setMarginFactor,
                             trailing: MoonIcons.controls_close_small_24_light,
                             validator: onlyFactorValidator,
                             initValue: '1.0',

@@ -6,20 +6,19 @@ part of 'input_result.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$InputResultImpl _$$InputResultImplFromJson(Map<String, dynamic> json) =>
-    _$InputResultImpl(
-      id: json['id'] as String,
-      objectName: json['objectName'] as String? ?? '',
-      estateCostType: json['estateCostType'] as String? ?? '',
-      estateClassType: json['estateClassType'] as String? ?? '',
-      totalFactor: (json['totalFactor'] as num?)?.toDouble() ?? 0.0,
-      totalPlannedCost: (json['totalPlannedCost'] as num?)?.toDouble() ?? 0.0,
-      plannedSquare: (json['plannedSquare'] as num?)?.toDouble() ?? 0.0,
-      averageMeterPerSquare:
-          (json['averageMeterPerSquare'] as num?)?.toDouble() ?? 0.0,
-    );
+_InputResult _$InputResultFromJson(Map<String, dynamic> json) => _InputResult(
+  id: json['id'] as String,
+  objectName: json['objectName'] as String? ?? '',
+  estateCostType: json['estateCostType'] as String? ?? '',
+  estateClassType: json['estateClassType'] as String? ?? '',
+  totalFactor: (json['totalFactor'] as num?)?.toDouble() ?? 0.0,
+  totalPlannedCost: (json['totalPlannedCost'] as num?)?.toDouble() ?? 0.0,
+  plannedSquare: (json['plannedSquare'] as num?)?.toDouble() ?? 0.0,
+  averageMeterPerSquare:
+      (json['averageMeterPerSquare'] as num?)?.toDouble() ?? 0.0,
+);
 
-Map<String, dynamic> _$$InputResultImplToJson(_$InputResultImpl instance) =>
+Map<String, dynamic> _$InputResultToJson(_InputResult instance) =>
     <String, dynamic>{
       'id': instance.id,
       'objectName': instance.objectName,

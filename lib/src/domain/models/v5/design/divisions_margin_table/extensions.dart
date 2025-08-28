@@ -6,12 +6,12 @@ extension DivisionWithMarginRowVMExt on DivisionsWithMarginRowVM {
   DivisionsMarginRowPojo toRowPojo() {
     return DivisionsMarginRowPojo(
       id: id,
-
+      margin: marginValue,
+      client: clientValue,
+      overPrice: overPriceValue,
       divisionName: divisionName,
       divisionShortName: divisionShortName,
       divisionSummaryCost: divisionSummaryCost,
-      overPriceFactor: overPriceFactor,
-      marginFactor: marginFactor,
       summaryCostWithMargin: summaryCostWithMarginVN.value,
       summaryCostWithTax: summaryCostWithTaxVN.value,
     );

@@ -146,7 +146,7 @@ class _CustomDropdownWithSearchWidgetState
           autofocus: widget.autoFocus,
           enabled: widget.enabled,
           hasFloatingLabel: false,
-          width: 320,
+          width: 480,
           focusNode: _focusNode,
           activeBorderColor:  getColor(context, MoonColor.trunks),
           inactiveBorderColor: colorTable(context)[40],
@@ -154,7 +154,7 @@ class _CustomDropdownWithSearchWidgetState
           hoverBorderColor: colorTable(context)[40],
           borderRadius: BorderRadius.circular(8.0),
           textInputSize: MoonTextInputSize.md,
-          hintText: "Начните вводить текст...",
+          hintText: "Нажмите на поле ввода, чтобы найти нужный раздел",
           controller: _searchController,
           onTap: () {
             _performSearch();
@@ -163,6 +163,7 @@ class _CustomDropdownWithSearchWidgetState
             _handleInputTapOutside();
           },
           onChanged: (String _) => _performSearch(),
+          leading: const Icon(MoonIcons.generic_search_16_light),
           trailing: MoonButton.icon(
             buttonSize: MoonButtonSize.xs,
             hoverEffectColor: Colors.transparent,

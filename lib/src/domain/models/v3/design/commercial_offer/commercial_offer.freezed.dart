@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,310 +9,323 @@ part of 'commercial_offer.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
-CommercialOfferResult _$CommercialOfferResultFromJson(
-  Map<String, dynamic> json,
-) {
-  return _CommercialOfferResult.fromJson(json);
-}
 
 /// @nodoc
 mixin _$CommercialOfferResult {
-  InputDataDesign get inputDataDesign => throw _privateConstructorUsedError;
-  List<DivisionResult> get divisionResults =>
-      throw _privateConstructorUsedError;
-  double get designOfferSummaryCost => throw _privateConstructorUsedError;
-  double get designOfferSummaryTax => throw _privateConstructorUsedError;
-  FooterData get footerData => throw _privateConstructorUsedError;
+
+ InputDataDesign get inputDataDesign; List<DivisionResult> get divisionResults; double get designOfferSummaryCost; double get designOfferSummaryTax; FooterData get footerData;
+/// Create a copy of CommercialOfferResult
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CommercialOfferResultCopyWith<CommercialOfferResult> get copyWith => _$CommercialOfferResultCopyWithImpl<CommercialOfferResult>(this as CommercialOfferResult, _$identity);
 
   /// Serializes this CommercialOfferResult to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of CommercialOfferResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CommercialOfferResultCopyWith<CommercialOfferResult> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CommercialOfferResult&&(identical(other.inputDataDesign, inputDataDesign) || other.inputDataDesign == inputDataDesign)&&const DeepCollectionEquality().equals(other.divisionResults, divisionResults)&&(identical(other.designOfferSummaryCost, designOfferSummaryCost) || other.designOfferSummaryCost == designOfferSummaryCost)&&(identical(other.designOfferSummaryTax, designOfferSummaryTax) || other.designOfferSummaryTax == designOfferSummaryTax)&&(identical(other.footerData, footerData) || other.footerData == footerData));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,inputDataDesign,const DeepCollectionEquality().hash(divisionResults),designOfferSummaryCost,designOfferSummaryTax,footerData);
+
+@override
+String toString() {
+  return 'CommercialOfferResult(inputDataDesign: $inputDataDesign, divisionResults: $divisionResults, designOfferSummaryCost: $designOfferSummaryCost, designOfferSummaryTax: $designOfferSummaryTax, footerData: $footerData)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CommercialOfferResultCopyWith<$Res> {
-  factory $CommercialOfferResultCopyWith(
-    CommercialOfferResult value,
-    $Res Function(CommercialOfferResult) then,
-  ) = _$CommercialOfferResultCopyWithImpl<$Res, CommercialOfferResult>;
-  @useResult
-  $Res call({
-    InputDataDesign inputDataDesign,
-    List<DivisionResult> divisionResults,
-    double designOfferSummaryCost,
-    double designOfferSummaryTax,
-    FooterData footerData,
-  });
+abstract mixin class $CommercialOfferResultCopyWith<$Res>  {
+  factory $CommercialOfferResultCopyWith(CommercialOfferResult value, $Res Function(CommercialOfferResult) _then) = _$CommercialOfferResultCopyWithImpl;
+@useResult
+$Res call({
+ InputDataDesign inputDataDesign, List<DivisionResult> divisionResults, double designOfferSummaryCost, double designOfferSummaryTax, FooterData footerData
+});
 
-  $InputDataDesignCopyWith<$Res> get inputDataDesign;
-  $FooterDataCopyWith<$Res> get footerData;
+
+$InputDataDesignCopyWith<$Res> get inputDataDesign;$FooterDataCopyWith<$Res> get footerData;
+
 }
-
 /// @nodoc
-class _$CommercialOfferResultCopyWithImpl<
-  $Res,
-  $Val extends CommercialOfferResult
->
+class _$CommercialOfferResultCopyWithImpl<$Res>
     implements $CommercialOfferResultCopyWith<$Res> {
-  _$CommercialOfferResultCopyWithImpl(this._value, this._then);
+  _$CommercialOfferResultCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CommercialOfferResult _self;
+  final $Res Function(CommercialOfferResult) _then;
 
-  /// Create a copy of CommercialOfferResult
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? inputDataDesign = null,
-    Object? divisionResults = null,
-    Object? designOfferSummaryCost = null,
-    Object? designOfferSummaryTax = null,
-    Object? footerData = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            inputDataDesign: null == inputDataDesign
-                ? _value.inputDataDesign
-                : inputDataDesign // ignore: cast_nullable_to_non_nullable
-                      as InputDataDesign,
-            divisionResults: null == divisionResults
-                ? _value.divisionResults
-                : divisionResults // ignore: cast_nullable_to_non_nullable
-                      as List<DivisionResult>,
-            designOfferSummaryCost: null == designOfferSummaryCost
-                ? _value.designOfferSummaryCost
-                : designOfferSummaryCost // ignore: cast_nullable_to_non_nullable
-                      as double,
-            designOfferSummaryTax: null == designOfferSummaryTax
-                ? _value.designOfferSummaryTax
-                : designOfferSummaryTax // ignore: cast_nullable_to_non_nullable
-                      as double,
-            footerData: null == footerData
-                ? _value.footerData
-                : footerData // ignore: cast_nullable_to_non_nullable
-                      as FooterData,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of CommercialOfferResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $InputDataDesignCopyWith<$Res> get inputDataDesign {
-    return $InputDataDesignCopyWith<$Res>(_value.inputDataDesign, (value) {
-      return _then(_value.copyWith(inputDataDesign: value) as $Val);
-    });
-  }
-
-  /// Create a copy of CommercialOfferResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $FooterDataCopyWith<$Res> get footerData {
-    return $FooterDataCopyWith<$Res>(_value.footerData, (value) {
-      return _then(_value.copyWith(footerData: value) as $Val);
-    });
-  }
+/// Create a copy of CommercialOfferResult
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? inputDataDesign = null,Object? divisionResults = null,Object? designOfferSummaryCost = null,Object? designOfferSummaryTax = null,Object? footerData = null,}) {
+  return _then(_self.copyWith(
+inputDataDesign: null == inputDataDesign ? _self.inputDataDesign : inputDataDesign // ignore: cast_nullable_to_non_nullable
+as InputDataDesign,divisionResults: null == divisionResults ? _self.divisionResults : divisionResults // ignore: cast_nullable_to_non_nullable
+as List<DivisionResult>,designOfferSummaryCost: null == designOfferSummaryCost ? _self.designOfferSummaryCost : designOfferSummaryCost // ignore: cast_nullable_to_non_nullable
+as double,designOfferSummaryTax: null == designOfferSummaryTax ? _self.designOfferSummaryTax : designOfferSummaryTax // ignore: cast_nullable_to_non_nullable
+as double,footerData: null == footerData ? _self.footerData : footerData // ignore: cast_nullable_to_non_nullable
+as FooterData,
+  ));
 }
-
-/// @nodoc
-abstract class _$$CommercialOfferResultImplCopyWith<$Res>
-    implements $CommercialOfferResultCopyWith<$Res> {
-  factory _$$CommercialOfferResultImplCopyWith(
-    _$CommercialOfferResultImpl value,
-    $Res Function(_$CommercialOfferResultImpl) then,
-  ) = __$$CommercialOfferResultImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    InputDataDesign inputDataDesign,
-    List<DivisionResult> divisionResults,
-    double designOfferSummaryCost,
-    double designOfferSummaryTax,
-    FooterData footerData,
+/// Create a copy of CommercialOfferResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$InputDataDesignCopyWith<$Res> get inputDataDesign {
+  
+  return $InputDataDesignCopyWith<$Res>(_self.inputDataDesign, (value) {
+    return _then(_self.copyWith(inputDataDesign: value));
   });
-
-  @override
-  $InputDataDesignCopyWith<$Res> get inputDataDesign;
-  @override
-  $FooterDataCopyWith<$Res> get footerData;
+}/// Create a copy of CommercialOfferResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FooterDataCopyWith<$Res> get footerData {
+  
+  return $FooterDataCopyWith<$Res>(_self.footerData, (value) {
+    return _then(_self.copyWith(footerData: value));
+  });
+}
 }
 
-/// @nodoc
-class __$$CommercialOfferResultImplCopyWithImpl<$Res>
-    extends
-        _$CommercialOfferResultCopyWithImpl<$Res, _$CommercialOfferResultImpl>
-    implements _$$CommercialOfferResultImplCopyWith<$Res> {
-  __$$CommercialOfferResultImplCopyWithImpl(
-    _$CommercialOfferResultImpl _value,
-    $Res Function(_$CommercialOfferResultImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of CommercialOfferResult
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? inputDataDesign = null,
-    Object? divisionResults = null,
-    Object? designOfferSummaryCost = null,
-    Object? designOfferSummaryTax = null,
-    Object? footerData = null,
-  }) {
-    return _then(
-      _$CommercialOfferResultImpl(
-        inputDataDesign: null == inputDataDesign
-            ? _value.inputDataDesign
-            : inputDataDesign // ignore: cast_nullable_to_non_nullable
-                  as InputDataDesign,
-        divisionResults: null == divisionResults
-            ? _value._divisionResults
-            : divisionResults // ignore: cast_nullable_to_non_nullable
-                  as List<DivisionResult>,
-        designOfferSummaryCost: null == designOfferSummaryCost
-            ? _value.designOfferSummaryCost
-            : designOfferSummaryCost // ignore: cast_nullable_to_non_nullable
-                  as double,
-        designOfferSummaryTax: null == designOfferSummaryTax
-            ? _value.designOfferSummaryTax
-            : designOfferSummaryTax // ignore: cast_nullable_to_non_nullable
-                  as double,
-        footerData: null == footerData
-            ? _value.footerData
-            : footerData // ignore: cast_nullable_to_non_nullable
-                  as FooterData,
-      ),
-    );
-  }
+/// Adds pattern-matching-related methods to [CommercialOfferResult].
+extension CommercialOfferResultPatterns on CommercialOfferResult {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CommercialOfferResult value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CommercialOfferResult() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CommercialOfferResult value)  $default,){
+final _that = this;
+switch (_that) {
+case _CommercialOfferResult():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CommercialOfferResult value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CommercialOfferResult() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( InputDataDesign inputDataDesign,  List<DivisionResult> divisionResults,  double designOfferSummaryCost,  double designOfferSummaryTax,  FooterData footerData)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CommercialOfferResult() when $default != null:
+return $default(_that.inputDataDesign,_that.divisionResults,_that.designOfferSummaryCost,_that.designOfferSummaryTax,_that.footerData);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( InputDataDesign inputDataDesign,  List<DivisionResult> divisionResults,  double designOfferSummaryCost,  double designOfferSummaryTax,  FooterData footerData)  $default,) {final _that = this;
+switch (_that) {
+case _CommercialOfferResult():
+return $default(_that.inputDataDesign,_that.divisionResults,_that.designOfferSummaryCost,_that.designOfferSummaryTax,_that.footerData);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( InputDataDesign inputDataDesign,  List<DivisionResult> divisionResults,  double designOfferSummaryCost,  double designOfferSummaryTax,  FooterData footerData)?  $default,) {final _that = this;
+switch (_that) {
+case _CommercialOfferResult() when $default != null:
+return $default(_that.inputDataDesign,_that.divisionResults,_that.designOfferSummaryCost,_that.designOfferSummaryTax,_that.footerData);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$CommercialOfferResultImpl implements _CommercialOfferResult {
-  const _$CommercialOfferResultImpl({
-    required this.inputDataDesign,
-    required final List<DivisionResult> divisionResults,
-    required this.designOfferSummaryCost,
-    required this.designOfferSummaryTax,
-    required this.footerData,
-  }) : _divisionResults = divisionResults;
 
-  factory _$CommercialOfferResultImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CommercialOfferResultImplFromJson(json);
+class _CommercialOfferResult implements CommercialOfferResult {
+  const _CommercialOfferResult({required this.inputDataDesign, required final  List<DivisionResult> divisionResults, required this.designOfferSummaryCost, required this.designOfferSummaryTax, required this.footerData}): _divisionResults = divisionResults;
+  factory _CommercialOfferResult.fromJson(Map<String, dynamic> json) => _$CommercialOfferResultFromJson(json);
 
-  @override
-  final InputDataDesign inputDataDesign;
-  final List<DivisionResult> _divisionResults;
-  @override
-  List<DivisionResult> get divisionResults {
-    if (_divisionResults is EqualUnmodifiableListView) return _divisionResults;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_divisionResults);
-  }
-
-  @override
-  final double designOfferSummaryCost;
-  @override
-  final double designOfferSummaryTax;
-  @override
-  final FooterData footerData;
-
-  @override
-  String toString() {
-    return 'CommercialOfferResult(inputDataDesign: $inputDataDesign, divisionResults: $divisionResults, designOfferSummaryCost: $designOfferSummaryCost, designOfferSummaryTax: $designOfferSummaryTax, footerData: $footerData)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CommercialOfferResultImpl &&
-            (identical(other.inputDataDesign, inputDataDesign) ||
-                other.inputDataDesign == inputDataDesign) &&
-            const DeepCollectionEquality().equals(
-              other._divisionResults,
-              _divisionResults,
-            ) &&
-            (identical(other.designOfferSummaryCost, designOfferSummaryCost) ||
-                other.designOfferSummaryCost == designOfferSummaryCost) &&
-            (identical(other.designOfferSummaryTax, designOfferSummaryTax) ||
-                other.designOfferSummaryTax == designOfferSummaryTax) &&
-            (identical(other.footerData, footerData) ||
-                other.footerData == footerData));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    inputDataDesign,
-    const DeepCollectionEquality().hash(_divisionResults),
-    designOfferSummaryCost,
-    designOfferSummaryTax,
-    footerData,
-  );
-
-  /// Create a copy of CommercialOfferResult
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CommercialOfferResultImplCopyWith<_$CommercialOfferResultImpl>
-  get copyWith =>
-      __$$CommercialOfferResultImplCopyWithImpl<_$CommercialOfferResultImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$CommercialOfferResultImplToJson(this);
-  }
+@override final  InputDataDesign inputDataDesign;
+ final  List<DivisionResult> _divisionResults;
+@override List<DivisionResult> get divisionResults {
+  if (_divisionResults is EqualUnmodifiableListView) return _divisionResults;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_divisionResults);
 }
 
-abstract class _CommercialOfferResult implements CommercialOfferResult {
-  const factory _CommercialOfferResult({
-    required final InputDataDesign inputDataDesign,
-    required final List<DivisionResult> divisionResults,
-    required final double designOfferSummaryCost,
-    required final double designOfferSummaryTax,
-    required final FooterData footerData,
-  }) = _$CommercialOfferResultImpl;
+@override final  double designOfferSummaryCost;
+@override final  double designOfferSummaryTax;
+@override final  FooterData footerData;
 
-  factory _CommercialOfferResult.fromJson(Map<String, dynamic> json) =
-      _$CommercialOfferResultImpl.fromJson;
+/// Create a copy of CommercialOfferResult
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CommercialOfferResultCopyWith<_CommercialOfferResult> get copyWith => __$CommercialOfferResultCopyWithImpl<_CommercialOfferResult>(this, _$identity);
 
-  @override
-  InputDataDesign get inputDataDesign;
-  @override
-  List<DivisionResult> get divisionResults;
-  @override
-  double get designOfferSummaryCost;
-  @override
-  double get designOfferSummaryTax;
-  @override
-  FooterData get footerData;
-
-  /// Create a copy of CommercialOfferResult
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CommercialOfferResultImplCopyWith<_$CommercialOfferResultImpl>
-  get copyWith => throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$CommercialOfferResultToJson(this, );
 }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CommercialOfferResult&&(identical(other.inputDataDesign, inputDataDesign) || other.inputDataDesign == inputDataDesign)&&const DeepCollectionEquality().equals(other._divisionResults, _divisionResults)&&(identical(other.designOfferSummaryCost, designOfferSummaryCost) || other.designOfferSummaryCost == designOfferSummaryCost)&&(identical(other.designOfferSummaryTax, designOfferSummaryTax) || other.designOfferSummaryTax == designOfferSummaryTax)&&(identical(other.footerData, footerData) || other.footerData == footerData));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,inputDataDesign,const DeepCollectionEquality().hash(_divisionResults),designOfferSummaryCost,designOfferSummaryTax,footerData);
+
+@override
+String toString() {
+  return 'CommercialOfferResult(inputDataDesign: $inputDataDesign, divisionResults: $divisionResults, designOfferSummaryCost: $designOfferSummaryCost, designOfferSummaryTax: $designOfferSummaryTax, footerData: $footerData)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$CommercialOfferResultCopyWith<$Res> implements $CommercialOfferResultCopyWith<$Res> {
+  factory _$CommercialOfferResultCopyWith(_CommercialOfferResult value, $Res Function(_CommercialOfferResult) _then) = __$CommercialOfferResultCopyWithImpl;
+@override @useResult
+$Res call({
+ InputDataDesign inputDataDesign, List<DivisionResult> divisionResults, double designOfferSummaryCost, double designOfferSummaryTax, FooterData footerData
+});
+
+
+@override $InputDataDesignCopyWith<$Res> get inputDataDesign;@override $FooterDataCopyWith<$Res> get footerData;
+
+}
+/// @nodoc
+class __$CommercialOfferResultCopyWithImpl<$Res>
+    implements _$CommercialOfferResultCopyWith<$Res> {
+  __$CommercialOfferResultCopyWithImpl(this._self, this._then);
+
+  final _CommercialOfferResult _self;
+  final $Res Function(_CommercialOfferResult) _then;
+
+/// Create a copy of CommercialOfferResult
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? inputDataDesign = null,Object? divisionResults = null,Object? designOfferSummaryCost = null,Object? designOfferSummaryTax = null,Object? footerData = null,}) {
+  return _then(_CommercialOfferResult(
+inputDataDesign: null == inputDataDesign ? _self.inputDataDesign : inputDataDesign // ignore: cast_nullable_to_non_nullable
+as InputDataDesign,divisionResults: null == divisionResults ? _self._divisionResults : divisionResults // ignore: cast_nullable_to_non_nullable
+as List<DivisionResult>,designOfferSummaryCost: null == designOfferSummaryCost ? _self.designOfferSummaryCost : designOfferSummaryCost // ignore: cast_nullable_to_non_nullable
+as double,designOfferSummaryTax: null == designOfferSummaryTax ? _self.designOfferSummaryTax : designOfferSummaryTax // ignore: cast_nullable_to_non_nullable
+as double,footerData: null == footerData ? _self.footerData : footerData // ignore: cast_nullable_to_non_nullable
+as FooterData,
+  ));
+}
+
+/// Create a copy of CommercialOfferResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$InputDataDesignCopyWith<$Res> get inputDataDesign {
+  
+  return $InputDataDesignCopyWith<$Res>(_self.inputDataDesign, (value) {
+    return _then(_self.copyWith(inputDataDesign: value));
+  });
+}/// Create a copy of CommercialOfferResult
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$FooterDataCopyWith<$Res> get footerData {
+  
+  return $FooterDataCopyWith<$Res>(_self.footerData, (value) {
+    return _then(_self.copyWith(footerData: value));
+  });
+}
+}
+
+// dart format on

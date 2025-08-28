@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'stage_info.freezed.dart';
 
 @freezed
-class StageData with _$StageData {
+abstract class StageData with _$StageData {
   const factory StageData({
     required String id,
     required String parentId,

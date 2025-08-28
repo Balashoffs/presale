@@ -48,7 +48,7 @@ class _DivisionsMarginTableWidgetState
     return List.generate(widget.tableDataRows.length, (int index) {
       final row = widget.tableDataRows[index];
       return MoonTableRow(
-        height: 56,
+        height: 72,
         cells: [
           CellDecorationWidget(
             isFistCell: true,

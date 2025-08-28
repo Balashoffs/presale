@@ -49,7 +49,7 @@ class DesignOfferHeaderWidget extends StatelessWidget {
                   ),
                   HeaderCellWidget(
                     title: "Площадь",
-                    value: '${results.objectSquare} дн.',
+                    value: '${results.objectSquare} м2.',
                     width: 96,
                   ),
                   HeaderEditableWidget(

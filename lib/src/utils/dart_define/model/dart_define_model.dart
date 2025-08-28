@@ -5,7 +5,7 @@ part 'dart_define_model.freezed.dart';
 part 'dart_define_model.g.dart';
 
 @freezed
-class DartDefineModel with _$DartDefineModel {
+abstract class DartDefineModel with _$DartDefineModel {
   const factory DartDefineModel({
     required String type,
     required DesignClass design,

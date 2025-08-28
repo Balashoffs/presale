@@ -6,7 +6,7 @@ import 'package:presale/src/presentation/modules/construction/stages_selector/mo
 part 'stage_view_model.freezed.dart';
 
 @freezed
-class StageDataViewModel with _$StageDataViewModel {
+abstract class StageDataViewModel with _$StageDataViewModel {
   const factory StageDataViewModel({
     required StageData stageInfo,
     required List<StageData> subStages,
@@ -14,7 +14,7 @@ class StageDataViewModel with _$StageDataViewModel {
 }
 
 @freezed
-class SectionDataVewModel with _$SectionDataVewModel {
+abstract class SectionDataVewModel with _$SectionDataVewModel {
   const factory SectionDataVewModel({
     required StageData stageInfo,
     required List<SectionData> subStages,

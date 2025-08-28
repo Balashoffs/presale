@@ -35,8 +35,6 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
   void init() async {
     DesignPresalePojo designPresalePojo = await _dataSourceLocal
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
-    DesignClass dc = di.dartDefineModel.design;
-    await _designOfferController.fillSign(dc);
     bool isBuild = _designOfferController.buildModel(designPresalePojo);
     if (isBuild) {
       emit(

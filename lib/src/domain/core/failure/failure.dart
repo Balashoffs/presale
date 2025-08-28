@@ -8,7 +8,7 @@ part 'failure.g.dart';
 enum FailureType { api, network, unauthorized, database, response, unknown }
 
 @freezed
-class Failure with _$Failure {
+abstract class Failure with _$Failure {
   const Failure._();
 
   const factory Failure(

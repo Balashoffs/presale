@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'section_cost.freezed.dart';
 
 @freezed
-class SectionCost with _$SectionCost {
+abstract class SectionCost with _$SectionCost {
   const factory SectionCost({
     required String sectionName,
     required double factor,

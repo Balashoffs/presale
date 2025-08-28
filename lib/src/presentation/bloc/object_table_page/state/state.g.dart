@@ -6,9 +6,9 @@ part of 'state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ObjectTableStateImpl _$$ObjectTableStateImplFromJson(
+_ObjectTableState _$ObjectTableStateFromJson(
   Map<String, dynamic> json,
-) => _$ObjectTableStateImpl(
+) => _ObjectTableState(
   objectName: json['objectName'] as String?,
   address: json['address'] as String?,
   square: (json['square'] as num?)?.toDouble(),
@@ -21,16 +21,15 @@ _$ObjectTableStateImpl _$$ObjectTableStateImplFromJson(
       (json['difficultyCoefficient'] as num?)?.toDouble() ?? 1,
 );
 
-Map<String, dynamic> _$$ObjectTableStateImplToJson(
-  _$ObjectTableStateImpl instance,
-) => <String, dynamic>{
-  'objectName': instance.objectName,
-  'address': instance.address,
-  'square': instance.square,
-  'workDuration': instance.workDuration,
-  'profitNorm': instance.profitNorm,
-  'distanceCoefficient': instance.distanceCoefficient,
-  'durationCoefficient': instance.durationCoefficient,
-  'customerCoefficient': instance.customerCoefficient,
-  'difficultyCoefficient': instance.difficultyCoefficient,
-};
+Map<String, dynamic> _$ObjectTableStateToJson(_ObjectTableState instance) =>
+    <String, dynamic>{
+      'objectName': instance.objectName,
+      'address': instance.address,
+      'square': instance.square,
+      'workDuration': instance.workDuration,
+      'profitNorm': instance.profitNorm,
+      'distanceCoefficient': instance.distanceCoefficient,
+      'durationCoefficient': instance.durationCoefficient,
+      'customerCoefficient': instance.customerCoefficient,
+      'difficultyCoefficient': instance.difficultyCoefficient,
+    };

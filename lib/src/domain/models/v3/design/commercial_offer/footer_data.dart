@@ -5,7 +5,7 @@ part 'footer_data.freezed.dart';
 part 'footer_data.g.dart';
 
 @freezed
-class FooterData with _$FooterData {
+abstract class FooterData with _$FooterData {
   const factory FooterData({
     @Default('') String noteText,
     required String workCompletionTime,

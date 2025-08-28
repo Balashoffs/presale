@@ -8,7 +8,7 @@ InitialState
 LoadedState
  */
 @freezed
-class ObjectInputDataState with _$ObjectInputDataState {
+abstract class ObjectInputDataState with _$ObjectInputDataState {
   const factory ObjectInputDataState.initial() = _Initial;
   const factory ObjectInputDataState.enterInputData(InputFactorsViewModel factors) = _EnterInputData;
   const factory ObjectInputDataState.nextPage() = _NextPage;

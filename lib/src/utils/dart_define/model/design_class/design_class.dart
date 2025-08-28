@@ -11,7 +11,7 @@ part 'design_class.freezed.dart';
  "sign",
  */
 @freezed
-class DesignClass with _$DesignClass {
+abstract class DesignClass with _$DesignClass {
   const factory DesignClass({
     required String resources,
     @JsonKey(name: 'job_divisions')required String workDivisions,

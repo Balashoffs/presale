@@ -5,7 +5,7 @@ part 'employee.freezed.dart';
 part 'employee.g.dart';
 
 @freezed
-class Employee with _$Employee {
+abstract class Employee with _$Employee {
   const Employee._();
 
   const factory Employee({

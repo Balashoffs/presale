@@ -5,7 +5,7 @@ part 'input_result.freezed.dart';
 part 'input_result.g.dart';
 
 @freezed
-class InputResult with _$InputResult {
+abstract class InputResult with _$InputResult {
   const factory InputResult({
     required String id,
     @Default('') String objectName,

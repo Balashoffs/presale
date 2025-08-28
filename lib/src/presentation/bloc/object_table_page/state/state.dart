@@ -4,7 +4,7 @@ part 'state.freezed.dart';
 part 'state.g.dart';
 
 @freezed
-class ObjectTableState with _$ObjectTableState {
+abstract class ObjectTableState with _$ObjectTableState {
   const ObjectTableState._();
 
   const factory ObjectTableState({

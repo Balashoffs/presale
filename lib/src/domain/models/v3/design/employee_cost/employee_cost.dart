@@ -8,7 +8,7 @@ Example
 'BIM инженер', workingRatePerDay: 1056.78, correctionFactor: 1.0
  */
 @freezed
-class EmployeeCost with _$EmployeeCost {
+abstract class EmployeeCost with _$EmployeeCost {
   const EmployeeCost._();
 
   const factory EmployeeCost({

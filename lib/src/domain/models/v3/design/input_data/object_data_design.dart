@@ -5,7 +5,7 @@ part 'object_data_design.g.dart';
 part 'object_data_design.freezed.dart';
 
 @freezed
-class ObjectDataDesign with _$ObjectDataDesign {
+abstract class ObjectDataDesign with _$ObjectDataDesign {
   const factory ObjectDataDesign({
     //Имя объекта
     required final String name,

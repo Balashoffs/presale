@@ -32,14 +32,13 @@ class DesignOfferTemplateBuilder {
     _addObjectName();
     _increment();
     _addObjectLocation();
-    _addObjectSquare();
     _addDeadLine();
     _increment(2);
     _addTableTitle();
     _increment();
     _addTable();
     _addOfferNotes();
-    _increment(2);
+    _addObjectSquare();
     _addAvance();
     _increment(2);
     _addSignRows();
@@ -225,7 +224,7 @@ class DesignOfferTemplateBuilder {
         alignType: HAlignType.center,
       );
       _buildCell(
-        convertToString(result.divisionSummaryWithMargin, 2),
+        convertToString(result.divisionSummary, 2),
         'D$_rowPos',
         width: 25,
         alignType: HAlignType.center,
@@ -283,32 +282,34 @@ class DesignOfferTemplateBuilder {
         fontSize: 12,
         isBold: true,
       );
-    }
-    String note = _offerResult.footerData.noteText;
-    if (note.contains('\n')) {
-      List<String> lines = note.split('\n');
-      for (final line in lines) {
+      String note = _offerResult.footerData.noteText;
+      if (note.contains('\n')) {
+        List<String> lines = note.split('\n');
+        for (final line in lines) {
+          _increment(1);
+          _buildCell(
+            line,
+            'B$_rowPos:D$_rowPos',
+            isMerge: true,
+            alignType: HAlignType.left,
+          );
+        }
+      } else {
         _increment(1);
         _buildCell(
-          line,
+          note,
           'B$_rowPos:D$_rowPos',
           isMerge: true,
           alignType: HAlignType.left,
         );
       }
-    } else {
-      _increment(1);
-      _buildCell(
-        note,
-        'B$_rowPos:D$_rowPos',
-        isMerge: true,
-        alignType: HAlignType.left,
-      );
     }
+
   }
 
   void _addAvance() {
-    if (_offerResult.footerData.noteText.isNotEmpty) {
+    if (_offerResult.footerData.prepayment.isNotEmpty) {
+      _increment(1);
       _buildCell(
         'Авансирование',
         'B$_rowPos:D$_rowPos',
@@ -317,14 +318,15 @@ class DesignOfferTemplateBuilder {
         fontSize: 12,
         isBold: true,
       );
+      _increment(1);
+      _buildCell(
+        '${_offerResult.footerData.prepayment} рубл.',
+        'B$_rowPos:D$_rowPos',
+        isMerge: true,
+        alignType: HAlignType.left,
+      );
     }
-    _increment(1);
-    _buildCell(
-      '${_offerResult.footerData.prepayment} рубл.',
-      'B$_rowPos:D$_rowPos',
-      isMerge: true,
-      alignType: HAlignType.left,
-    );
+
   }
 
   _buildCell(

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,276 +9,309 @@ part of 'division.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
-Division _$DivisionFromJson(Map<String, dynamic> json) {
-  return _Division.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Division {
-  // Виды проектирования - Испольнительная, Рабочая, Обе
-  DivisionType? get type =>
-      throw _privateConstructorUsedError; // Полное имя раздела
-  String get name => throw _privateConstructorUsedError; // Аббвеатура раздела
-  String get shortName =>
-      throw _privateConstructorUsedError; // Порядковый номер
-  int get id => throw _privateConstructorUsedError; // Данные о специалисте
-  EmployeeCost get employee => throw _privateConstructorUsedError;
+
+// Виды проектирования - Испольнительная, Рабочая, Обе
+ DivisionType? get type;// Полное имя раздела
+ String get name;// Аббвеатура раздела
+ String get shortName;// Порядковый номер
+ int get id;// Данные о специалисте
+ EmployeeCost get employee;
+/// Create a copy of Division
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$DivisionCopyWith<Division> get copyWith => _$DivisionCopyWithImpl<Division>(this as Division, _$identity);
 
   /// Serializes this Division to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of Division
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $DivisionCopyWith<Division> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Division&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.shortName, shortName) || other.shortName == shortName)&&(identical(other.id, id) || other.id == id)&&(identical(other.employee, employee) || other.employee == employee));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,type,name,shortName,id,employee);
+
+@override
+String toString() {
+  return 'Division(type: $type, name: $name, shortName: $shortName, id: $id, employee: $employee)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $DivisionCopyWith<$Res> {
-  factory $DivisionCopyWith(Division value, $Res Function(Division) then) =
-      _$DivisionCopyWithImpl<$Res, Division>;
-  @useResult
-  $Res call({
-    DivisionType? type,
-    String name,
-    String shortName,
-    int id,
-    EmployeeCost employee,
-  });
+abstract mixin class $DivisionCopyWith<$Res>  {
+  factory $DivisionCopyWith(Division value, $Res Function(Division) _then) = _$DivisionCopyWithImpl;
+@useResult
+$Res call({
+ DivisionType? type, String name, String shortName, int id, EmployeeCost employee
+});
 
-  $EmployeeCostCopyWith<$Res> get employee;
+
+$EmployeeCostCopyWith<$Res> get employee;
+
 }
-
 /// @nodoc
-class _$DivisionCopyWithImpl<$Res, $Val extends Division>
+class _$DivisionCopyWithImpl<$Res>
     implements $DivisionCopyWith<$Res> {
-  _$DivisionCopyWithImpl(this._value, this._then);
+  _$DivisionCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final Division _self;
+  final $Res Function(Division) _then;
 
-  /// Create a copy of Division
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = freezed,
-    Object? name = null,
-    Object? shortName = null,
-    Object? id = null,
-    Object? employee = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            type: freezed == type
-                ? _value.type
-                : type // ignore: cast_nullable_to_non_nullable
-                      as DivisionType?,
-            name: null == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                      as String,
-            shortName: null == shortName
-                ? _value.shortName
-                : shortName // ignore: cast_nullable_to_non_nullable
-                      as String,
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int,
-            employee: null == employee
-                ? _value.employee
-                : employee // ignore: cast_nullable_to_non_nullable
-                      as EmployeeCost,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of Division
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $EmployeeCostCopyWith<$Res> get employee {
-    return $EmployeeCostCopyWith<$Res>(_value.employee, (value) {
-      return _then(_value.copyWith(employee: value) as $Val);
-    });
-  }
+/// Create a copy of Division
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? type = freezed,Object? name = null,Object? shortName = null,Object? id = null,Object? employee = null,}) {
+  return _then(_self.copyWith(
+type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as DivisionType?,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,shortName: null == shortName ? _self.shortName : shortName // ignore: cast_nullable_to_non_nullable
+as String,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,employee: null == employee ? _self.employee : employee // ignore: cast_nullable_to_non_nullable
+as EmployeeCost,
+  ));
 }
-
-/// @nodoc
-abstract class _$$DivisionImplCopyWith<$Res>
-    implements $DivisionCopyWith<$Res> {
-  factory _$$DivisionImplCopyWith(
-    _$DivisionImpl value,
-    $Res Function(_$DivisionImpl) then,
-  ) = __$$DivisionImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    DivisionType? type,
-    String name,
-    String shortName,
-    int id,
-    EmployeeCost employee,
+/// Create a copy of Division
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EmployeeCostCopyWith<$Res> get employee {
+  
+  return $EmployeeCostCopyWith<$Res>(_self.employee, (value) {
+    return _then(_self.copyWith(employee: value));
   });
-
-  @override
-  $EmployeeCostCopyWith<$Res> get employee;
+}
 }
 
-/// @nodoc
-class __$$DivisionImplCopyWithImpl<$Res>
-    extends _$DivisionCopyWithImpl<$Res, _$DivisionImpl>
-    implements _$$DivisionImplCopyWith<$Res> {
-  __$$DivisionImplCopyWithImpl(
-    _$DivisionImpl _value,
-    $Res Function(_$DivisionImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of Division
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? type = freezed,
-    Object? name = null,
-    Object? shortName = null,
-    Object? id = null,
-    Object? employee = null,
-  }) {
-    return _then(
-      _$DivisionImpl(
-        type: freezed == type
-            ? _value.type
-            : type // ignore: cast_nullable_to_non_nullable
-                  as DivisionType?,
-        name: null == name
-            ? _value.name
-            : name // ignore: cast_nullable_to_non_nullable
-                  as String,
-        shortName: null == shortName
-            ? _value.shortName
-            : shortName // ignore: cast_nullable_to_non_nullable
-                  as String,
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int,
-        employee: null == employee
-            ? _value.employee
-            : employee // ignore: cast_nullable_to_non_nullable
-                  as EmployeeCost,
-      ),
-    );
-  }
+/// Adds pattern-matching-related methods to [Division].
+extension DivisionPatterns on Division {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Division value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Division() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Division value)  $default,){
+final _that = this;
+switch (_that) {
+case _Division():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Division value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Division() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( DivisionType? type,  String name,  String shortName,  int id,  EmployeeCost employee)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Division() when $default != null:
+return $default(_that.type,_that.name,_that.shortName,_that.id,_that.employee);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( DivisionType? type,  String name,  String shortName,  int id,  EmployeeCost employee)  $default,) {final _that = this;
+switch (_that) {
+case _Division():
+return $default(_that.type,_that.name,_that.shortName,_that.id,_that.employee);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( DivisionType? type,  String name,  String shortName,  int id,  EmployeeCost employee)?  $default,) {final _that = this;
+switch (_that) {
+case _Division() when $default != null:
+return $default(_that.type,_that.name,_that.shortName,_that.id,_that.employee);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$DivisionImpl implements _Division {
-  const _$DivisionImpl({
-    this.type,
-    required this.name,
-    required this.shortName,
-    required this.id,
-    required this.employee,
+
+class _Division implements Division {
+  const _Division({this.type, required this.name, required this.shortName, required this.id, required this.employee});
+  factory _Division.fromJson(Map<String, dynamic> json) => _$DivisionFromJson(json);
+
+// Виды проектирования - Испольнительная, Рабочая, Обе
+@override final  DivisionType? type;
+// Полное имя раздела
+@override final  String name;
+// Аббвеатура раздела
+@override final  String shortName;
+// Порядковый номер
+@override final  int id;
+// Данные о специалисте
+@override final  EmployeeCost employee;
+
+/// Create a copy of Division
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$DivisionCopyWith<_Division> get copyWith => __$DivisionCopyWithImpl<_Division>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$DivisionToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Division&&(identical(other.type, type) || other.type == type)&&(identical(other.name, name) || other.name == name)&&(identical(other.shortName, shortName) || other.shortName == shortName)&&(identical(other.id, id) || other.id == id)&&(identical(other.employee, employee) || other.employee == employee));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,type,name,shortName,id,employee);
+
+@override
+String toString() {
+  return 'Division(type: $type, name: $name, shortName: $shortName, id: $id, employee: $employee)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$DivisionCopyWith<$Res> implements $DivisionCopyWith<$Res> {
+  factory _$DivisionCopyWith(_Division value, $Res Function(_Division) _then) = __$DivisionCopyWithImpl;
+@override @useResult
+$Res call({
+ DivisionType? type, String name, String shortName, int id, EmployeeCost employee
+});
+
+
+@override $EmployeeCostCopyWith<$Res> get employee;
+
+}
+/// @nodoc
+class __$DivisionCopyWithImpl<$Res>
+    implements _$DivisionCopyWith<$Res> {
+  __$DivisionCopyWithImpl(this._self, this._then);
+
+  final _Division _self;
+  final $Res Function(_Division) _then;
+
+/// Create a copy of Division
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? type = freezed,Object? name = null,Object? shortName = null,Object? id = null,Object? employee = null,}) {
+  return _then(_Division(
+type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as DivisionType?,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,shortName: null == shortName ? _self.shortName : shortName // ignore: cast_nullable_to_non_nullable
+as String,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int,employee: null == employee ? _self.employee : employee // ignore: cast_nullable_to_non_nullable
+as EmployeeCost,
+  ));
+}
+
+/// Create a copy of Division
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EmployeeCostCopyWith<$Res> get employee {
+  
+  return $EmployeeCostCopyWith<$Res>(_self.employee, (value) {
+    return _then(_self.copyWith(employee: value));
   });
-
-  factory _$DivisionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DivisionImplFromJson(json);
-
-  // Виды проектирования - Испольнительная, Рабочая, Обе
-  @override
-  final DivisionType? type;
-  // Полное имя раздела
-  @override
-  final String name;
-  // Аббвеатура раздела
-  @override
-  final String shortName;
-  // Порядковый номер
-  @override
-  final int id;
-  // Данные о специалисте
-  @override
-  final EmployeeCost employee;
-
-  @override
-  String toString() {
-    return 'Division(type: $type, name: $name, shortName: $shortName, id: $id, employee: $employee)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DivisionImpl &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.shortName, shortName) ||
-                other.shortName == shortName) &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.employee, employee) ||
-                other.employee == employee));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, type, name, shortName, id, employee);
-
-  /// Create a copy of Division
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DivisionImplCopyWith<_$DivisionImpl> get copyWith =>
-      __$$DivisionImplCopyWithImpl<_$DivisionImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$DivisionImplToJson(this);
-  }
+}
 }
 
-abstract class _Division implements Division {
-  const factory _Division({
-    final DivisionType? type,
-    required final String name,
-    required final String shortName,
-    required final int id,
-    required final EmployeeCost employee,
-  }) = _$DivisionImpl;
-
-  factory _Division.fromJson(Map<String, dynamic> json) =
-      _$DivisionImpl.fromJson;
-
-  // Виды проектирования - Испольнительная, Рабочая, Обе
-  @override
-  DivisionType? get type; // Полное имя раздела
-  @override
-  String get name; // Аббвеатура раздела
-  @override
-  String get shortName; // Порядковый номер
-  @override
-  int get id; // Данные о специалисте
-  @override
-  EmployeeCost get employee;
-
-  /// Create a copy of Division
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DivisionImplCopyWith<_$DivisionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

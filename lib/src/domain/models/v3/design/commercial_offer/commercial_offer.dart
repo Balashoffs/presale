@@ -8,7 +8,7 @@ part 'commercial_offer.g.dart';
 
 
 @freezed
-class CommercialOfferResult with _$CommercialOfferResult {
+abstract class CommercialOfferResult with _$CommercialOfferResult {
   const factory CommercialOfferResult({
     required InputDataDesign inputDataDesign,
     required List<DivisionResult> divisionResults,

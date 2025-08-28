@@ -9,7 +9,7 @@ part 'design_presale_pojo.g.dart';
 part 'design_presale_pojo.freezed.dart';
 
 @freezed
-class DesignPresalePojo with _$DesignPresalePojo {
+abstract class DesignPresalePojo with _$DesignPresalePojo {
   const factory DesignPresalePojo({
     required InputDataDesign inputDataDesign,
     DivisionResourceTableWithTypePojo? resource,

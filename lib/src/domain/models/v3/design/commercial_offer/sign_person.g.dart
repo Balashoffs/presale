@@ -6,16 +6,15 @@ part of 'sign_person.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SignPersonImpl _$$SignPersonImplFromJson(Map<String, dynamic> json) =>
-    _$SignPersonImpl(
-      jobTitle: json['jobTitle'] as String,
-      companyName: json['companyName'] as String,
-      fullName: json['fullName'] as String,
-      phoneNumber: json['phoneNumber'] as String,
-      email: json['email'] as String,
-    );
+_SignPerson _$SignPersonFromJson(Map<String, dynamic> json) => _SignPerson(
+  jobTitle: json['jobTitle'] as String,
+  companyName: json['companyName'] as String,
+  fullName: json['fullName'] as String,
+  phoneNumber: json['phoneNumber'] as String,
+  email: json['email'] as String,
+);
 
-Map<String, dynamic> _$$SignPersonImplToJson(_$SignPersonImpl instance) =>
+Map<String, dynamic> _$SignPersonToJson(_SignPerson instance) =>
     <String, dynamic>{
       'jobTitle': instance.jobTitle,
       'companyName': instance.companyName,

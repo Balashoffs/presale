@@ -7,7 +7,7 @@ part 'divisions_margin_table_with_type_pojo.g.dart';
 part 'divisions_margin_table_with_type_pojo.freezed.dart';
 
 @freezed
-class DivisionsMarginTableWithTypePojo with _$DivisionsMarginTableWithTypePojo {
+abstract class DivisionsMarginTableWithTypePojo with _$DivisionsMarginTableWithTypePojo {
   const factory DivisionsMarginTableWithTypePojo({
     required DivisionType divisionType,
     required List<DivisionsMarginRowPojo> rows,

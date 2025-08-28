@@ -5,7 +5,7 @@ part 'input_factors_pojo.g.dart';
 part 'input_factors_pojo.freezed.dart';
 
 @freezed
-class InputFactorsPojo with _$InputFactorsPojo {
+abstract class InputFactorsPojo with _$InputFactorsPojo {
   const factory InputFactorsPojo({
     // Коэфициент за срочность
     required double speedFactor,

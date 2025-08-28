@@ -8,7 +8,7 @@ part 'section_data.g.dart';
 part 'section_data.freezed.dart';
 
 @freezed
-class SectionData with _$SectionData {
+abstract class SectionData with _$SectionData {
   const factory SectionData({
     required String id,
     required String parentId,

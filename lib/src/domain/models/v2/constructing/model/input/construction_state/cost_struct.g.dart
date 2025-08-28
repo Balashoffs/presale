@@ -6,13 +6,12 @@ part of 'cost_struct.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$CostStructImpl _$$CostStructImplFromJson(Map<String, dynamic> json) =>
-    _$CostStructImpl(
-      jobFactor: (json['jobFactor'] as num).toDouble(),
-      jobName: json['jobName'] as String,
-    );
+_CostStruct _$CostStructFromJson(Map<String, dynamic> json) => _CostStruct(
+  jobFactor: (json['jobFactor'] as num).toDouble(),
+  jobName: json['jobName'] as String,
+);
 
-Map<String, dynamic> _$$CostStructImplToJson(_$CostStructImpl instance) =>
+Map<String, dynamic> _$CostStructToJson(_CostStruct instance) =>
     <String, dynamic>{
       'jobFactor': instance.jobFactor,
       'jobName': instance.jobName,
