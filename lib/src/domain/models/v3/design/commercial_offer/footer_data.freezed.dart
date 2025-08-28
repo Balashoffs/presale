@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,261 +9,302 @@ part of 'footer_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
-FooterData _$FooterDataFromJson(Map<String, dynamic> json) {
-  return _FooterData.fromJson(json);
-}
 
 /// @nodoc
 mixin _$FooterData {
-  String get noteText => throw _privateConstructorUsedError;
-  String get workCompletionTime => throw _privateConstructorUsedError;
-  String get prepayment => throw _privateConstructorUsedError;
-  SignPerson? get signPerson => throw _privateConstructorUsedError;
+
+ String get noteText; String get workCompletionTime; String get prepayment; SignPerson? get signPerson;
+/// Create a copy of FooterData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$FooterDataCopyWith<FooterData> get copyWith => _$FooterDataCopyWithImpl<FooterData>(this as FooterData, _$identity);
 
   /// Serializes this FooterData to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of FooterData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $FooterDataCopyWith<FooterData> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FooterData&&(identical(other.noteText, noteText) || other.noteText == noteText)&&(identical(other.workCompletionTime, workCompletionTime) || other.workCompletionTime == workCompletionTime)&&(identical(other.prepayment, prepayment) || other.prepayment == prepayment)&&(identical(other.signPerson, signPerson) || other.signPerson == signPerson));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,noteText,workCompletionTime,prepayment,signPerson);
+
+@override
+String toString() {
+  return 'FooterData(noteText: $noteText, workCompletionTime: $workCompletionTime, prepayment: $prepayment, signPerson: $signPerson)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $FooterDataCopyWith<$Res> {
-  factory $FooterDataCopyWith(
-    FooterData value,
-    $Res Function(FooterData) then,
-  ) = _$FooterDataCopyWithImpl<$Res, FooterData>;
-  @useResult
-  $Res call({
-    String noteText,
-    String workCompletionTime,
-    String prepayment,
-    SignPerson? signPerson,
-  });
+abstract mixin class $FooterDataCopyWith<$Res>  {
+  factory $FooterDataCopyWith(FooterData value, $Res Function(FooterData) _then) = _$FooterDataCopyWithImpl;
+@useResult
+$Res call({
+ String noteText, String workCompletionTime, String prepayment, SignPerson? signPerson
+});
 
-  $SignPersonCopyWith<$Res>? get signPerson;
+
+$SignPersonCopyWith<$Res>? get signPerson;
+
 }
-
 /// @nodoc
-class _$FooterDataCopyWithImpl<$Res, $Val extends FooterData>
+class _$FooterDataCopyWithImpl<$Res>
     implements $FooterDataCopyWith<$Res> {
-  _$FooterDataCopyWithImpl(this._value, this._then);
+  _$FooterDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final FooterData _self;
+  final $Res Function(FooterData) _then;
 
-  /// Create a copy of FooterData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? noteText = null,
-    Object? workCompletionTime = null,
-    Object? prepayment = null,
-    Object? signPerson = freezed,
-  }) {
-    return _then(
-      _value.copyWith(
-            noteText: null == noteText
-                ? _value.noteText
-                : noteText // ignore: cast_nullable_to_non_nullable
-                      as String,
-            workCompletionTime: null == workCompletionTime
-                ? _value.workCompletionTime
-                : workCompletionTime // ignore: cast_nullable_to_non_nullable
-                      as String,
-            prepayment: null == prepayment
-                ? _value.prepayment
-                : prepayment // ignore: cast_nullable_to_non_nullable
-                      as String,
-            signPerson: freezed == signPerson
-                ? _value.signPerson
-                : signPerson // ignore: cast_nullable_to_non_nullable
-                      as SignPerson?,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of FooterData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SignPersonCopyWith<$Res>? get signPerson {
-    if (_value.signPerson == null) {
-      return null;
-    }
-
-    return $SignPersonCopyWith<$Res>(_value.signPerson!, (value) {
-      return _then(_value.copyWith(signPerson: value) as $Val);
-    });
-  }
+/// Create a copy of FooterData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? noteText = null,Object? workCompletionTime = null,Object? prepayment = null,Object? signPerson = freezed,}) {
+  return _then(_self.copyWith(
+noteText: null == noteText ? _self.noteText : noteText // ignore: cast_nullable_to_non_nullable
+as String,workCompletionTime: null == workCompletionTime ? _self.workCompletionTime : workCompletionTime // ignore: cast_nullable_to_non_nullable
+as String,prepayment: null == prepayment ? _self.prepayment : prepayment // ignore: cast_nullable_to_non_nullable
+as String,signPerson: freezed == signPerson ? _self.signPerson : signPerson // ignore: cast_nullable_to_non_nullable
+as SignPerson?,
+  ));
 }
+/// Create a copy of FooterData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SignPersonCopyWith<$Res>? get signPerson {
+    if (_self.signPerson == null) {
+    return null;
+  }
 
-/// @nodoc
-abstract class _$$FooterDataImplCopyWith<$Res>
-    implements $FooterDataCopyWith<$Res> {
-  factory _$$FooterDataImplCopyWith(
-    _$FooterDataImpl value,
-    $Res Function(_$FooterDataImpl) then,
-  ) = __$$FooterDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    String noteText,
-    String workCompletionTime,
-    String prepayment,
-    SignPerson? signPerson,
+  return $SignPersonCopyWith<$Res>(_self.signPerson!, (value) {
+    return _then(_self.copyWith(signPerson: value));
   });
-
-  @override
-  $SignPersonCopyWith<$Res>? get signPerson;
+}
 }
 
-/// @nodoc
-class __$$FooterDataImplCopyWithImpl<$Res>
-    extends _$FooterDataCopyWithImpl<$Res, _$FooterDataImpl>
-    implements _$$FooterDataImplCopyWith<$Res> {
-  __$$FooterDataImplCopyWithImpl(
-    _$FooterDataImpl _value,
-    $Res Function(_$FooterDataImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of FooterData
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? noteText = null,
-    Object? workCompletionTime = null,
-    Object? prepayment = null,
-    Object? signPerson = freezed,
-  }) {
-    return _then(
-      _$FooterDataImpl(
-        noteText: null == noteText
-            ? _value.noteText
-            : noteText // ignore: cast_nullable_to_non_nullable
-                  as String,
-        workCompletionTime: null == workCompletionTime
-            ? _value.workCompletionTime
-            : workCompletionTime // ignore: cast_nullable_to_non_nullable
-                  as String,
-        prepayment: null == prepayment
-            ? _value.prepayment
-            : prepayment // ignore: cast_nullable_to_non_nullable
-                  as String,
-        signPerson: freezed == signPerson
-            ? _value.signPerson
-            : signPerson // ignore: cast_nullable_to_non_nullable
-                  as SignPerson?,
-      ),
-    );
-  }
+/// Adds pattern-matching-related methods to [FooterData].
+extension FooterDataPatterns on FooterData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _FooterData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _FooterData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _FooterData value)  $default,){
+final _that = this;
+switch (_that) {
+case _FooterData():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _FooterData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _FooterData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String noteText,  String workCompletionTime,  String prepayment,  SignPerson? signPerson)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _FooterData() when $default != null:
+return $default(_that.noteText,_that.workCompletionTime,_that.prepayment,_that.signPerson);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String noteText,  String workCompletionTime,  String prepayment,  SignPerson? signPerson)  $default,) {final _that = this;
+switch (_that) {
+case _FooterData():
+return $default(_that.noteText,_that.workCompletionTime,_that.prepayment,_that.signPerson);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String noteText,  String workCompletionTime,  String prepayment,  SignPerson? signPerson)?  $default,) {final _that = this;
+switch (_that) {
+case _FooterData() when $default != null:
+return $default(_that.noteText,_that.workCompletionTime,_that.prepayment,_that.signPerson);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$FooterDataImpl implements _FooterData {
-  const _$FooterDataImpl({
-    this.noteText = '',
-    required this.workCompletionTime,
-    required this.prepayment,
-    this.signPerson,
+
+class _FooterData implements FooterData {
+  const _FooterData({this.noteText = '', required this.workCompletionTime, required this.prepayment, this.signPerson});
+  factory _FooterData.fromJson(Map<String, dynamic> json) => _$FooterDataFromJson(json);
+
+@override@JsonKey() final  String noteText;
+@override final  String workCompletionTime;
+@override final  String prepayment;
+@override final  SignPerson? signPerson;
+
+/// Create a copy of FooterData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FooterDataCopyWith<_FooterData> get copyWith => __$FooterDataCopyWithImpl<_FooterData>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$FooterDataToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FooterData&&(identical(other.noteText, noteText) || other.noteText == noteText)&&(identical(other.workCompletionTime, workCompletionTime) || other.workCompletionTime == workCompletionTime)&&(identical(other.prepayment, prepayment) || other.prepayment == prepayment)&&(identical(other.signPerson, signPerson) || other.signPerson == signPerson));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,noteText,workCompletionTime,prepayment,signPerson);
+
+@override
+String toString() {
+  return 'FooterData(noteText: $noteText, workCompletionTime: $workCompletionTime, prepayment: $prepayment, signPerson: $signPerson)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$FooterDataCopyWith<$Res> implements $FooterDataCopyWith<$Res> {
+  factory _$FooterDataCopyWith(_FooterData value, $Res Function(_FooterData) _then) = __$FooterDataCopyWithImpl;
+@override @useResult
+$Res call({
+ String noteText, String workCompletionTime, String prepayment, SignPerson? signPerson
+});
+
+
+@override $SignPersonCopyWith<$Res>? get signPerson;
+
+}
+/// @nodoc
+class __$FooterDataCopyWithImpl<$Res>
+    implements _$FooterDataCopyWith<$Res> {
+  __$FooterDataCopyWithImpl(this._self, this._then);
+
+  final _FooterData _self;
+  final $Res Function(_FooterData) _then;
+
+/// Create a copy of FooterData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? noteText = null,Object? workCompletionTime = null,Object? prepayment = null,Object? signPerson = freezed,}) {
+  return _then(_FooterData(
+noteText: null == noteText ? _self.noteText : noteText // ignore: cast_nullable_to_non_nullable
+as String,workCompletionTime: null == workCompletionTime ? _self.workCompletionTime : workCompletionTime // ignore: cast_nullable_to_non_nullable
+as String,prepayment: null == prepayment ? _self.prepayment : prepayment // ignore: cast_nullable_to_non_nullable
+as String,signPerson: freezed == signPerson ? _self.signPerson : signPerson // ignore: cast_nullable_to_non_nullable
+as SignPerson?,
+  ));
+}
+
+/// Create a copy of FooterData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SignPersonCopyWith<$Res>? get signPerson {
+    if (_self.signPerson == null) {
+    return null;
+  }
+
+  return $SignPersonCopyWith<$Res>(_self.signPerson!, (value) {
+    return _then(_self.copyWith(signPerson: value));
   });
-
-  factory _$FooterDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FooterDataImplFromJson(json);
-
-  @override
-  @JsonKey()
-  final String noteText;
-  @override
-  final String workCompletionTime;
-  @override
-  final String prepayment;
-  @override
-  final SignPerson? signPerson;
-
-  @override
-  String toString() {
-    return 'FooterData(noteText: $noteText, workCompletionTime: $workCompletionTime, prepayment: $prepayment, signPerson: $signPerson)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FooterDataImpl &&
-            (identical(other.noteText, noteText) ||
-                other.noteText == noteText) &&
-            (identical(other.workCompletionTime, workCompletionTime) ||
-                other.workCompletionTime == workCompletionTime) &&
-            (identical(other.prepayment, prepayment) ||
-                other.prepayment == prepayment) &&
-            (identical(other.signPerson, signPerson) ||
-                other.signPerson == signPerson));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    noteText,
-    workCompletionTime,
-    prepayment,
-    signPerson,
-  );
-
-  /// Create a copy of FooterData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FooterDataImplCopyWith<_$FooterDataImpl> get copyWith =>
-      __$$FooterDataImplCopyWithImpl<_$FooterDataImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$FooterDataImplToJson(this);
-  }
+}
 }
 
-abstract class _FooterData implements FooterData {
-  const factory _FooterData({
-    final String noteText,
-    required final String workCompletionTime,
-    required final String prepayment,
-    final SignPerson? signPerson,
-  }) = _$FooterDataImpl;
-
-  factory _FooterData.fromJson(Map<String, dynamic> json) =
-      _$FooterDataImpl.fromJson;
-
-  @override
-  String get noteText;
-  @override
-  String get workCompletionTime;
-  @override
-  String get prepayment;
-  @override
-  SignPerson? get signPerson;
-
-  /// Create a copy of FooterData
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FooterDataImplCopyWith<_$FooterDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

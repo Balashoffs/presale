@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:presale/src/data/v3/design_calculator.dart';
+import 'package:presale/src/domain/models/v3/design/input_data/input_data_design.dart';
+import 'package:presale/src/domain/models/v3/design/input_factors/input_factors_pojo.dart';
 import 'package:presale/src/domain/models/v4/design/division_resource_table/division_resource_row_pojo.dart';
 import 'package:presale/src/domain/models/v5/design/divisions_margin_table/division_with_margin_row_viewmodel.dart';
 
@@ -14,7 +16,10 @@ class DivisionsViewController {
   DivisionsWithMarginRowVM? getById(int id) =>
       rows.where((element) => element.id == id).firstOrNull;
 
-  void fill(List<DivisionResourceRowPojo> divisionsByType) {
+  void fill(
+    InputFactorsPojo inputFactors,
+    List<DivisionResourceRowPojo> divisionsByType,
+  ) {
     List<String> divisionShortNames = divisionsByType
         .map((e) => e.divisionShortName)
         .toSet()
@@ -34,7 +39,10 @@ class DivisionsViewController {
             .firstOrNull;
         if (pojo != null) {
           DivisionsWithMarginRowVM row = DivisionsWithMarginRowVM(
-            id: i+1,
+            id: i + 1,
+            clientFactor: inputFactors.customerFactor,
+            marginFactor: inputFactors.marginFactor,
+            overPriceFactor: inputFactors.overPriceFactor,
             divisionSummaryCost: summary,
             divisionName: pojo.divisionName,
             divisionShortName: pojo.divisionShortName,
@@ -74,13 +82,13 @@ class DivisionsViewController {
   void onClientFactor(int id, double value) {
     DivisionsWithMarginRowVM? found = getById(id);
     if (found != null) {
-      found.clientValue = value;
+      found.clientFactor = value;
       _calcRowValues(found);
     }
     _calcTotal();
   }
 
-  _calcRowValues(DivisionsWithMarginRowVM value) {
+  void _calcRowValues(DivisionsWithMarginRowVM value) {
     _designOfferCalculator.calcDivisionCost(value);
   }
 

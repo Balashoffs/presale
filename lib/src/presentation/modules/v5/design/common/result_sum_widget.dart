@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ResultSumWidget extends StatelessWidget {
-  const ResultSumWidget({
+class TextCustomWidget extends StatelessWidget {
+  const TextCustomWidget({
     super.key,
     required this.name,
     required this.value,

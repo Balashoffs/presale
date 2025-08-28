@@ -34,11 +34,7 @@ class InputDataPage extends StatelessWidget {
       title: Text(
         'Первоначальные данные о проекте',
         textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 16,
-
-        ),
-
+        style: TextStyle(fontSize: 16),
       ),
 
       child: ObjectInputDataBlocBuilderWidget(),
@@ -65,16 +61,12 @@ class ObjectInputDataConsumerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<ObjectDataCubit, ObjectInputDataState>(
       listener: (context, state) {
-        state.whenOrNull(
-          nextPage: () {
-            context.go(designResourcesRoute);
-          },
-        );
+        state.mapOrNull(nextPage: (_) => context.go(designResourcesRoute));
       },
       builder: (context, state) {
-        return state.whenOrNull(
-              initial: () => CustomCircleLoader(),
-              enterInputData: (factors) => LoadedWidget(factors: factors),
+        return state.mapOrNull(
+              initial: (_) => CustomCircleLoader(),
+              enterInputData: (value) => LoadedWidget(factors: value.factors),
             ) ??
             SizedBox();
       },
@@ -91,205 +83,146 @@ class LoadedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     ObjectDataCubit cubit = context.read<ObjectDataCubit>();
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: Form(
-        child: Builder(
-          builder: (context) {
-            return Column(
-              spacing: 32.0,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 3 / 4,
-                  child: Column(
-                    spacing: 16.0,
-                    children: [
-                      Row(
-                        spacing: 16.0,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            flex: 2,
-                            child: CustomTextInput(
-                              hintText: 'Наименование объекта*',
-                              onChanged: cubit.setObjectName,
-                              trailing: MoonIcons.controls_close_small_24_light,
-                              validator: objectNameValidator,
-                              autofocus: true,
-                            ),
-                          ),
-                          Flexible(
-                            flex: 1,
-                            child: ChangeNotifierProvider(
-                              create: (context) => DropDownTextController(
-                                inputData: DivisionType.values
-                                    .map((e) => e.text)
-                                    .toList(),
-                              ),
-                              child: CustomMoonDropDown(
-                                helperText:"Виды проектной документации*" ,
-                                validator: divisionTypeValidator('Нужно выбрать'),
-                                initText: 'Нужно выбрать',
-                                onSelected: cubit.setResultDesignDocumentations,
-                                leadingIcon: MoonIcons.text_bullets_list_16_light,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      CustomTextAreaInput(
-                        hintText: 'Адрес объекта*',
-                        onChanged: cubit.setObjectLocation,
-                        trailing: MoonIcons.controls_close_small_24_light,
-                        validator: objectLocationValidator,
-                      ),                    ],
-                  ),
-                ),
-                Row(
+    return Center(
+      child: ListView(
+        padding: EdgeInsets.all(8.0),
+        children: [
+          Form(
+            child: Builder(
+              builder: (context) {
+                return Column(
                   spacing: 16.0,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CustomTextInput(
-                      width: 196,
-                      initValue: '0',
-                      onChanged: cubit.setSquare,
-                      leading: Icons.square_outlined,
-                      trailing: MoonIcons.controls_close_small_24_light,
-                      validator: onlyInfiniteNumberValidator,
-                      helpText: 'Площадь объекта, м2',
-                    ),
-                    CustomTextInput(
-                      width: 196,
-                      initValue: '0',
-                      onChanged: cubit.setDeadline,
-                      leading: Icons.timer,
-                      trailing: MoonIcons.controls_close_small_24_light,
-                      validator: onlyInfiniteNumberValidator,
-                      helpText: 'Сроки выполнения, дн.',
-                    ),
-                    CustomTextInput(
-                      width: 196,
-                      initValue: '1.2',
-                      onChanged: cubit.setMarginFactor,
-                      leading: Icons.calculate,
-                      trailing: MoonIcons.controls_close_small_24_light,
-                      validator: onlyFactorValidator,
-                      helpText: 'Норма прибыли, %',
-                    ),
-                    CustomTextInput(
-                      width: 196,
-                      initValue: '0.8',
-                      onChanged: cubit.setOverPriceFactor,
-                      leading: Icons.money_off,
-                      trailing: MoonIcons.controls_close_small_24_light,
-                      validator: onlyFactorValidator,
-                      helpText: 'Накладные, %',
-                    ),
-                    CustomTextInput(
-                      width: 196,
-                      initValue: '1',
-                      onChanged: cubit.setCustomerFactor,
-                      leading: Icons.person,
-                      trailing: MoonIcons.controls_close_small_24_light,
-                      validator: onlyFactorValidator,
-                      helpText: 'Заказчик, %',
-                    ),
-                  ],
-                ),
-                OpacityWidget(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 8.0,
-                    children: [
-                      Column(
-                        children: [
-                          ChangeNotifierProvider(
-                            create: (context) =>
-                                SingleObjectValueNotifierDropDown(
-                                  baseFactors: factors.factorsByType(
-                                    InputFactorType.b.value,
-                                  ),
-                                ),
-                            child: InputFactorMoonDropDown(
-                              onSelected: cubit.setHeightFactor,
-                              helperText: InputFactorType.b.value,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      spacing: 16.0,
+                      children: [
+                        CustomTextInput(
+                          width: 500,
+                          hintText: 'Наименование объекта*',
+                          onChanged: cubit.setObjectName,
+                          trailing: MoonIcons.controls_close_small_24_light,
+                          validator: objectNameValidator,
+                        ),
+                        CustomTextAreaInput(
+                          width: 500,
+                          hintText: 'Адрес объекта*',
+                          onChanged: cubit.setObjectLocation,
+                          trailing: MoonIcons.controls_close_small_24_light,
+                          validator: objectLocationValidator,
+                        ),
+                        TextWithRowHint(
+                          hintText: "Виды проектной документации*",
+                          textWidget: ChangeNotifierProvider(
+                            create: (context) => DropDownTextController(
+                              inputData: DivisionType.values
+                                  .map((e) => e.text)
+                                  .toList(),
+                            ),
+                            child: CustomMoonDropDown(
+                              width: 240,
+                              validator: divisionTypeValidator(
+                                'Нужно выбрать',
+                              ),
+                              initText: 'Нужно выбрать',
+                              onSelected: cubit.setResultDesignDocumentations,
                               leadingIcon:
-                                  MoonIcons.arrows_left_curved_24_light,
+                              MoonIcons.text_bullets_list_16_light,
                             ),
                           ),
-                          ChangeNotifierProvider(
-                            create: (context) =>
-                                MultiObjectValueNotifierDropDown(
-                                  inputData: factors.complexities,
-                                ),
-                            child: InputFactorMultiCustomMoonDropDown(
-                              onSelected: cubit.setComplexityFactor,
-                            ),
+                        ),
+                      ],
+                    ),
+                    TextDivider(text: 'Необязательные параметры', paddingTop: 8.0, paddingBottom: 8.0,),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      spacing: 16.0,
+                      children: [
+                        TextWithRowHint(
+                          leading: Icons.square_outlined,
+                          hintText: 'Площадь объекта, м2',
+                          textWidget: CustomTextInput(
+                            width: 128,
+                            onChanged: cubit.setSquare,
+                            trailing: MoonIcons.controls_close_small_24_light,
+                            validator: onlyInfiniteNumberValidator,
+                            initValue: '0',
                           ),
-                        ],
-                      ),
-                      Column(
+                        ),
+                        TextWithRowHint(
+                          leading: Icons.timer,
+                          hintText: 'Сроки выполнения, дн.',
+                          textWidget: CustomTextInput(
+                            width: 128,
+                            onChanged: cubit.setDeadline,
+                            trailing: MoonIcons.controls_close_small_24_light,
+                            validator: onlyInfiniteNumberValidator,
+                            initValue: '0',
+                          ),
+                        ),
+                        TextWithRowHint(
+                          leading: Icons.money_off,
+                          hintText: 'Накладные, ',
+                          textWidget: CustomTextInput(
+                            width: 128,
+                            onChanged: cubit.setOverPriceFactor,
+                            trailing: MoonIcons.controls_close_small_24_light,
+                            validator: onlyFactorValidator,
+                            initValue: '1.0',
+                          ),
+                        ),
+                        TextWithRowHint(
+                          leading: Icons.calculate,
+                          hintText: 'Норма прибыли,',
+                          textWidget: CustomTextInput(
+                            width: 128,
+                            onChanged: cubit.setMarginFactor,
+                            trailing: MoonIcons.controls_close_small_24_light,
+                            validator: onlyFactorValidator,
+                            initValue: '1.0',
+                          ),
+                        ),
+                        TextWithRowHint(
+                          leading: Icons.person,
+                          hintText: 'Заказчик, ',
+                          textWidget: CustomTextInput(
+                            width: 128,
+                            onChanged: cubit.setCustomerFactor,
+                            trailing: MoonIcons.controls_close_small_24_light,
+                            validator: onlyFactorValidator,
+                            initValue: '1.0',
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 3 / 4,
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ChangeNotifierProvider(
-                            create: (context) =>
-                                SingleObjectValueNotifierDropDown(
-                                  baseFactors: factors.factorsByType(
-                                    InputFactorType.c.value,
-                                  ),
-                                ),
-                            child: InputFactorMoonDropDown(
-                              onSelected: cubit.setLocationFactor,
-                              helperText: InputFactorType.c.value,
-                              leadingIcon:
-                                  MoonIcons.arrows_left_curved_24_light,
-                            ),
-                          ),
-                          ChangeNotifierProvider(
-                            create: (context) =>
-                                SingleObjectValueNotifierDropDown(
-                                  baseFactors: factors.factorsByType(
-                                    InputFactorType.d.value,
-                                  ),
-                                ),
-                            child: InputFactorMoonDropDown(
-                              onSelected: cubit.setSquareFactor,
-                              helperText: InputFactorType.d.value,
-                              leadingIcon:
-                                  MoonIcons.arrows_left_curved_24_light,
-                            ),
+                          NextPageWidget(
+                            onTap: () {
+                              bool isValid = Form.of(context).validate();
+                              if (isValid) {
+                                cubit.nextPage();
+                              } else {
+                                showToast(context, 'Не все поля заполнены!');
+                              }
+                            },
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 3 / 4,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      NextPageWidget(
-                        onTap: () {
-                          bool isValid = Form.of(context).validate();
-                          if (isValid) {
-                            cubit.nextPage();
-                          } else {
-                            showToast(context, 'Не все поля заполнены!');
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            );
-          },
-        ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

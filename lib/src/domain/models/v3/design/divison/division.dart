@@ -7,7 +7,7 @@ part 'division.freezed.dart';
 part 'division.g.dart';
 
 @freezed
-class Division with _$Division {
+abstract class Division with _$Division {
   const factory Division({
     // Виды проектирования - Испольнительная, Рабочая, Обе
     DivisionType? type,

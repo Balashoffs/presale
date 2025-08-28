@@ -4,7 +4,7 @@ import 'package:presale/src/domain/models/v5/design/division_resource_table/exte
 import 'package:presale/src/domain/models/v5/design/division_resource_table/resource_csv.dart';
 import 'package:presale/src/utils/dart_define/model/design_class/design_class.dart';
 
-class ResourceDTO {
+class ResourceDTO implements Comparable<ResourceDTO>{
   final int id;
   final String resourceCode;
   final String resourceName;
@@ -20,6 +20,11 @@ class ResourceDTO {
     required this.resourceCostPerHour,
     this.resourceFactor = 1.0,
   });
+
+  @override
+  int compareTo(ResourceDTO other) {
+    return resourceCostPerDay.compareTo(other.resourceCostPerDay);
+  }
 }
 
 class DivisionDTO {
@@ -93,9 +98,5 @@ class ResourcesDTO {
     }
     return divisions;
 
-    // return ResourcesDTO(
-    //   divisions: divisions.values.toList(),
-    //   resources: allResources,
-    // );
   }
 }

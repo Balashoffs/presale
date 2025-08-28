@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,629 +9,376 @@ part of 'division_resource_calculate_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
-mixin _$DivisionResourceCalculateState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() nextPage,
-    required TResult Function() showPage,
-    required TResult Function(String errorText) error,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? nextPage,
-    TResult? Function()? showPage,
-    TResult? Function(String errorText)? error,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? nextPage,
-    TResult Function()? showPage,
-    TResult Function(String errorText)? error,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_NextPage value) nextPage,
-    required TResult Function(_ShowPage value) showPage,
-    required TResult Function(_Error value) error,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_NextPage value)? nextPage,
-    TResult? Function(_ShowPage value)? showPage,
-    TResult? Function(_Error value)? error,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_NextPage value)? nextPage,
-    TResult Function(_ShowPage value)? showPage,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+mixin _$DivisionResourceCalculateState implements DiagnosticableTreeMixin {
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'DivisionResourceCalculateState'))
+    ;
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DivisionResourceCalculateState);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'DivisionResourceCalculateState()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $DivisionResourceCalculateStateCopyWith<$Res> {
-  factory $DivisionResourceCalculateStateCopyWith(
-    DivisionResourceCalculateState value,
-    $Res Function(DivisionResourceCalculateState) then,
-  ) =
-      _$DivisionResourceCalculateStateCopyWithImpl<
-        $Res,
-        DivisionResourceCalculateState
-      >;
+class $DivisionResourceCalculateStateCopyWith<$Res>  {
+$DivisionResourceCalculateStateCopyWith(DivisionResourceCalculateState _, $Res Function(DivisionResourceCalculateState) __);
 }
 
-/// @nodoc
-class _$DivisionResourceCalculateStateCopyWithImpl<
-  $Res,
-  $Val extends DivisionResourceCalculateState
->
-    implements $DivisionResourceCalculateStateCopyWith<$Res> {
-  _$DivisionResourceCalculateStateCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [DivisionResourceCalculateState].
+extension DivisionResourceCalculateStatePatterns on DivisionResourceCalculateState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Initial value)?  initial,TResult Function( _NextPage value)?  nextPage,TResult Function( _ShowPage value)?  showPage,TResult Function( _Error value)?  error,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _NextPage() when nextPage != null:
+return nextPage(_that);case _ShowPage() when showPage != null:
+return showPage(_that);case _Error() when error != null:
+return error(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Initial value)  initial,required TResult Function( _NextPage value)  nextPage,required TResult Function( _ShowPage value)  showPage,required TResult Function( _Error value)  error,}){
+final _that = this;
+switch (_that) {
+case _Initial():
+return initial(_that);case _NextPage():
+return nextPage(_that);case _ShowPage():
+return showPage(_that);case _Error():
+return error(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Initial value)?  initial,TResult? Function( _NextPage value)?  nextPage,TResult? Function( _ShowPage value)?  showPage,TResult? Function( _Error value)?  error,}){
+final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial(_that);case _NextPage() when nextPage != null:
+return nextPage(_that);case _ShowPage() when showPage != null:
+return showPage(_that);case _Error() when error != null:
+return error(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  nextPage,TResult Function()?  showPage,TResult Function( String errorText)?  error,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _NextPage() when nextPage != null:
+return nextPage();case _ShowPage() when showPage != null:
+return showPage();case _Error() when error != null:
+return error(_that.errorText);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  nextPage,required TResult Function()  showPage,required TResult Function( String errorText)  error,}) {final _that = this;
+switch (_that) {
+case _Initial():
+return initial();case _NextPage():
+return nextPage();case _ShowPage():
+return showPage();case _Error():
+return error(_that.errorText);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  nextPage,TResult? Function()?  showPage,TResult? Function( String errorText)?  error,}) {final _that = this;
+switch (_that) {
+case _Initial() when initial != null:
+return initial();case _NextPage() when nextPage != null:
+return nextPage();case _ShowPage() when showPage != null:
+return showPage();case _Error() when error != null:
+return error(_that.errorText);case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-    _$InitialImpl value,
-    $Res Function(_$InitialImpl) then,
-  ) = __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$DivisionResourceCalculateStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-    _$InitialImpl _value,
-    $Res Function(_$InitialImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DivisionResourceCalculateState.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(
-      DiagnosticsProperty('type', 'DivisionResourceCalculateState.initial'),
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() nextPage,
-    required TResult Function() showPage,
-    required TResult Function(String errorText) error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? nextPage,
-    TResult? Function()? showPage,
-    TResult? Function(String errorText)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? nextPage,
-    TResult Function()? showPage,
-    TResult Function(String errorText)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_NextPage value) nextPage,
-    required TResult Function(_ShowPage value) showPage,
-    required TResult Function(_Error value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_NextPage value)? nextPage,
-    TResult? Function(_ShowPage value)? showPage,
-    TResult? Function(_Error value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_NextPage value)? nextPage,
-    TResult Function(_ShowPage value)? showPage,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements DivisionResourceCalculateState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$NextPageImplCopyWith<$Res> {
-  factory _$$NextPageImplCopyWith(
-    _$NextPageImpl value,
-    $Res Function(_$NextPageImpl) then,
-  ) = __$$NextPageImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$NextPageImplCopyWithImpl<$Res>
-    extends _$DivisionResourceCalculateStateCopyWithImpl<$Res, _$NextPageImpl>
-    implements _$$NextPageImplCopyWith<$Res> {
-  __$$NextPageImplCopyWithImpl(
-    _$NextPageImpl _value,
-    $Res Function(_$NextPageImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$NextPageImpl with DiagnosticableTreeMixin implements _NextPage {
-  const _$NextPageImpl();
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DivisionResourceCalculateState.nextPage()';
-  }
+class _Initial with DiagnosticableTreeMixin implements DivisionResourceCalculateState {
+  const _Initial();
+  
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(
-      DiagnosticsProperty('type', 'DivisionResourceCalculateState.nextPage'),
-    );
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NextPageImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() nextPage,
-    required TResult Function() showPage,
-    required TResult Function(String errorText) error,
-  }) {
-    return nextPage();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? nextPage,
-    TResult? Function()? showPage,
-    TResult? Function(String errorText)? error,
-  }) {
-    return nextPage?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? nextPage,
-    TResult Function()? showPage,
-    TResult Function(String errorText)? error,
-    required TResult orElse(),
-  }) {
-    if (nextPage != null) {
-      return nextPage();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_NextPage value) nextPage,
-    required TResult Function(_ShowPage value) showPage,
-    required TResult Function(_Error value) error,
-  }) {
-    return nextPage(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_NextPage value)? nextPage,
-    TResult? Function(_ShowPage value)? showPage,
-    TResult? Function(_Error value)? error,
-  }) {
-    return nextPage?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_NextPage value)? nextPage,
-    TResult Function(_ShowPage value)? showPage,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (nextPage != null) {
-      return nextPage(this);
-    }
-    return orElse();
-  }
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'DivisionResourceCalculateState.initial'))
+    ;
 }
 
-abstract class _NextPage implements DivisionResourceCalculateState {
-  const factory _NextPage() = _$NextPageImpl;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Initial);
 }
 
-/// @nodoc
-abstract class _$$ShowPageImplCopyWith<$Res> {
-  factory _$$ShowPageImplCopyWith(
-    _$ShowPageImpl value,
-    $Res Function(_$ShowPageImpl) then,
-  ) = __$$ShowPageImplCopyWithImpl<$Res>;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'DivisionResourceCalculateState.initial()';
 }
 
-/// @nodoc
-class __$$ShowPageImplCopyWithImpl<$Res>
-    extends _$DivisionResourceCalculateStateCopyWithImpl<$Res, _$ShowPageImpl>
-    implements _$$ShowPageImplCopyWith<$Res> {
-  __$$ShowPageImplCopyWithImpl(
-    _$ShowPageImpl _value,
-    $Res Function(_$ShowPageImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
 }
+
+
+
 
 /// @nodoc
 
-class _$ShowPageImpl with DiagnosticableTreeMixin implements _ShowPage {
-  const _$ShowPageImpl();
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DivisionResourceCalculateState.showPage()';
-  }
+class _NextPage with DiagnosticableTreeMixin implements DivisionResourceCalculateState {
+  const _NextPage();
+  
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(
-      DiagnosticsProperty('type', 'DivisionResourceCalculateState.showPage'),
-    );
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ShowPageImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() nextPage,
-    required TResult Function() showPage,
-    required TResult Function(String errorText) error,
-  }) {
-    return showPage();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? nextPage,
-    TResult? Function()? showPage,
-    TResult? Function(String errorText)? error,
-  }) {
-    return showPage?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? nextPage,
-    TResult Function()? showPage,
-    TResult Function(String errorText)? error,
-    required TResult orElse(),
-  }) {
-    if (showPage != null) {
-      return showPage();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_NextPage value) nextPage,
-    required TResult Function(_ShowPage value) showPage,
-    required TResult Function(_Error value) error,
-  }) {
-    return showPage(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_NextPage value)? nextPage,
-    TResult? Function(_ShowPage value)? showPage,
-    TResult? Function(_Error value)? error,
-  }) {
-    return showPage?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_NextPage value)? nextPage,
-    TResult Function(_ShowPage value)? showPage,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (showPage != null) {
-      return showPage(this);
-    }
-    return orElse();
-  }
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'DivisionResourceCalculateState.nextPage'))
+    ;
 }
 
-abstract class _ShowPage implements DivisionResourceCalculateState {
-  const factory _ShowPage() = _$ShowPageImpl;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NextPage);
 }
 
-/// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-    _$ErrorImpl value,
-    $Res Function(_$ErrorImpl) then,
-  ) = __$$ErrorImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String errorText});
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'DivisionResourceCalculateState.nextPage()';
 }
 
-/// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$DivisionResourceCalculateStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-    _$ErrorImpl _value,
-    $Res Function(_$ErrorImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? errorText = null}) {
-    return _then(
-      _$ErrorImpl(
-        null == errorText
-            ? _value.errorText
-            : errorText // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
 }
+
+
+
 
 /// @nodoc
 
-class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
-  const _$ErrorImpl(this.errorText);
 
-  @override
-  final String errorText;
+class _ShowPage with DiagnosticableTreeMixin implements DivisionResourceCalculateState {
+  const _ShowPage();
+  
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DivisionResourceCalculateState.error(errorText: $errorText)';
-  }
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DivisionResourceCalculateState.error'))
-      ..add(DiagnosticsProperty('errorText', errorText));
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
-            (identical(other.errorText, errorText) ||
-                other.errorText == errorText));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, errorText);
 
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() nextPage,
-    required TResult Function() showPage,
-    required TResult Function(String errorText) error,
-  }) {
-    return error(errorText);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? nextPage,
-    TResult? Function()? showPage,
-    TResult? Function(String errorText)? error,
-  }) {
-    return error?.call(errorText);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? nextPage,
-    TResult Function()? showPage,
-    TResult Function(String errorText)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(errorText);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_NextPage value) nextPage,
-    required TResult Function(_ShowPage value) showPage,
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_NextPage value)? nextPage,
-    TResult? Function(_ShowPage value)? showPage,
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_NextPage value)? nextPage,
-    TResult Function(_ShowPage value)? showPage,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'DivisionResourceCalculateState.showPage'))
+    ;
 }
 
-abstract class _Error implements DivisionResourceCalculateState {
-  const factory _Error(final String errorText) = _$ErrorImpl;
-
-  String get errorText;
-
-  /// Create a copy of DivisionResourceCalculateState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ShowPage);
 }
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'DivisionResourceCalculateState.showPage()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _Error with DiagnosticableTreeMixin implements DivisionResourceCalculateState {
+  const _Error(this.errorText);
+  
+
+ final  String errorText;
+
+/// Create a copy of DivisionResourceCalculateState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ErrorCopyWith<_Error> get copyWith => __$ErrorCopyWithImpl<_Error>(this, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'DivisionResourceCalculateState.error'))
+    ..add(DiagnosticsProperty('errorText', errorText));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Error&&(identical(other.errorText, errorText) || other.errorText == errorText));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,errorText);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'DivisionResourceCalculateState.error(errorText: $errorText)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ErrorCopyWith<$Res> implements $DivisionResourceCalculateStateCopyWith<$Res> {
+  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) = __$ErrorCopyWithImpl;
+@useResult
+$Res call({
+ String errorText
+});
+
+
+
+
+}
+/// @nodoc
+class __$ErrorCopyWithImpl<$Res>
+    implements _$ErrorCopyWith<$Res> {
+  __$ErrorCopyWithImpl(this._self, this._then);
+
+  final _Error _self;
+  final $Res Function(_Error) _then;
+
+/// Create a copy of DivisionResourceCalculateState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? errorText = null,}) {
+  return _then(_Error(
+null == errorText ? _self.errorText : errorText // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+// dart format on

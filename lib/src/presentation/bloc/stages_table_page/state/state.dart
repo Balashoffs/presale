@@ -6,7 +6,7 @@ part 'state.freezed.dart';
 part 'state.g.dart';
 
 @freezed
-class StagesTableState with _$StagesTableState {
+abstract class StagesTableState with _$StagesTableState {
   const StagesTableState._();
 
   const factory StagesTableState({
@@ -17,7 +17,7 @@ class StagesTableState with _$StagesTableState {
 }
 
 @freezed
-class StagesTableEntity with _$StagesTableEntity {
+abstract class StagesTableEntity with _$StagesTableEntity {
   const StagesTableEntity._();
 
   const factory StagesTableEntity({

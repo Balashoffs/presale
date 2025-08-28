@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'stadiya_cost_model.freezed.dart';
 
 @freezed
-class StadiyaCostModel with _$StadiyaCostModel {
+abstract class StadiyaCostModel with _$StadiyaCostModel {
   const factory StadiyaCostModel({
     required String name,
     required String factorRange,

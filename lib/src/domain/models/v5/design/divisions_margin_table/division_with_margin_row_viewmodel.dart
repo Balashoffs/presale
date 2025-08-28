@@ -10,7 +10,7 @@ class DivisionsWithMarginRowVM {
   double marginFactor;
   double clientFactor;
 
-  double _overPriceValue = 0.8;
+  double _overPriceValue;
 
   set overPriceValue(double value) {
     _overPriceValue = value;
@@ -18,7 +18,7 @@ class DivisionsWithMarginRowVM {
 
   double get overPriceValue => _overPriceValue;
 
-  double _marginValue = 1.2;
+  double _marginValue;
 
   set marginValue(double value) {
     _marginValue = value;
@@ -26,7 +26,7 @@ class DivisionsWithMarginRowVM {
 
   double get marginValue => _marginValue;
 
-  double _clientValue = 1.0;
+  double _clientValue;
 
   set clientValue(double value) {
     _clientValue = value;
@@ -37,7 +37,7 @@ class DivisionsWithMarginRowVM {
   final ValueNotifier<double> summaryCostWithMarginVN;
   final ValueNotifier<double> summaryCostWithTaxVN;
 
-  double _taxValue = 0.0;
+  double _taxValue;
 
   set taxValue(double value) {
     _taxValue = value;
@@ -51,9 +51,13 @@ class DivisionsWithMarginRowVM {
     required this.divisionShortName,
     required this.divisionDescription,
     required this.divisionSummaryCost,
-  }) : overPriceFactor = 0.8,
-       marginFactor = 1.2,
-       clientFactor = 1.0,
+    required this.overPriceFactor,
+    required this.marginFactor,
+    required this.clientFactor,
+  }) : _taxValue = 0.0,
+       _marginValue = 0.0,
+       _clientValue = 0.0,
+       _overPriceValue = 0.0,
        summaryCostWithMarginVN = ValueNotifier(0.0),
        summaryCostWithTaxVN = ValueNotifier(0.0);
 }

@@ -6,28 +6,30 @@ part of 'divisions_margin_row_pojo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DivisionsMarginRowPojoImpl _$$DivisionsMarginRowPojoImplFromJson(
+_DivisionsMarginRowPojo _$DivisionsMarginRowPojoFromJson(
   Map<String, dynamic> json,
-) => _$DivisionsMarginRowPojoImpl(
+) => _DivisionsMarginRowPojo(
   id: (json['id'] as num).toInt(),
   divisionName: json['divisionName'] as String,
   divisionShortName: json['divisionShortName'] as String,
   divisionSummaryCost: (json['divisionSummaryCost'] as num).toDouble(),
-  overPriceFactor: (json['overPriceFactor'] as num).toDouble(),
-  marginFactor: (json['marginFactor'] as num).toDouble(),
+  overPrice: (json['overPrice'] as num).toDouble(),
+  margin: (json['margin'] as num).toDouble(),
+  client: (json['client'] as num).toDouble(),
   summaryCostWithMargin: (json['summaryCostWithMargin'] as num).toDouble(),
   summaryCostWithTax: (json['summaryCostWithTax'] as num).toDouble(),
 );
 
-Map<String, dynamic> _$$DivisionsMarginRowPojoImplToJson(
-  _$DivisionsMarginRowPojoImpl instance,
+Map<String, dynamic> _$DivisionsMarginRowPojoToJson(
+  _DivisionsMarginRowPojo instance,
 ) => <String, dynamic>{
   'id': instance.id,
   'divisionName': instance.divisionName,
   'divisionShortName': instance.divisionShortName,
   'divisionSummaryCost': instance.divisionSummaryCost,
-  'overPriceFactor': instance.overPriceFactor,
-  'marginFactor': instance.marginFactor,
+  'overPrice': instance.overPrice,
+  'margin': instance.margin,
+  'client': instance.client,
   'summaryCostWithMargin': instance.summaryCostWithMargin,
   'summaryCostWithTax': instance.summaryCostWithTax,
 };

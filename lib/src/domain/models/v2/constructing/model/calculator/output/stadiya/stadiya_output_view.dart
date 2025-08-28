@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'stadiya_output_view.freezed.dart';
 
 @freezed
-class StadiyaOutputView with _$StadiyaOutputView {
+abstract class StadiyaOutputView with _$StadiyaOutputView {
   const factory StadiyaOutputView({
     required String element,
     required String clarification,

@@ -6,16 +6,15 @@ part of 'auth_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AuthStateImpl _$$AuthStateImplFromJson(Map<String, dynamic> json) =>
-    _$AuthStateImpl(
-      password: json['password'] as String?,
-      formError: json['formError'] as String?,
-      formStage:
-          $enumDecodeNullable(_$FormStageEnumMap, json['formStage']) ??
-          FormStage.common,
-    );
+_AuthState _$AuthStateFromJson(Map<String, dynamic> json) => _AuthState(
+  password: json['password'] as String?,
+  formError: json['formError'] as String?,
+  formStage:
+      $enumDecodeNullable(_$FormStageEnumMap, json['formStage']) ??
+      FormStage.common,
+);
 
-Map<String, dynamic> _$$AuthStateImplToJson(_$AuthStateImpl instance) =>
+Map<String, dynamic> _$AuthStateToJson(_AuthState instance) =>
     <String, dynamic>{
       'password': instance.password,
       'formError': instance.formError,

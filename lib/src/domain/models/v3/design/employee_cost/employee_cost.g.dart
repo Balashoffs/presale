@@ -6,15 +6,15 @@ part of 'employee_cost.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$EmployeeCostImpl _$$EmployeeCostImplFromJson(Map<String, dynamic> json) =>
-    _$EmployeeCostImpl(
+_EmployeeCost _$EmployeeCostFromJson(Map<String, dynamic> json) =>
+    _EmployeeCost(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       workingRatePerDay: (json['workingRatePerDay'] as num).toDouble(),
       correctionFactor: (json['correctionFactor'] as num?)?.toDouble() ?? 1.0,
     );
 
-Map<String, dynamic> _$$EmployeeCostImplToJson(_$EmployeeCostImpl instance) =>
+Map<String, dynamic> _$EmployeeCostToJson(_EmployeeCost instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

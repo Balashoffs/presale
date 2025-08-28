@@ -5,7 +5,7 @@ part 'sign_person.g.dart';
 part 'sign_person.freezed.dart';
 
 @freezed
-class SignPerson with _$SignPerson {
+abstract class SignPerson with _$SignPerson {
   const factory SignPerson({
     required String jobTitle,
     required String companyName,

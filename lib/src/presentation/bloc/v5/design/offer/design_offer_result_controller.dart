@@ -68,18 +68,21 @@ class DesignOfferResultController {
       final List<DesignOfferResultRowVM> divisionRows = divisionResult.rows
           .map(
             (e) => DesignOfferResultRowVM(
+              overPrice: e.overPrice,
               id: e.id,
               divisionName: e.divisionName,
               divisionShortName: e.divisionShortName,
+              margin: e.margin,
+              client: e.client,
+              divisionSummary: e.summaryCostWithMargin,
               divisionSummaryWithTax: e.summaryCostWithTax,
-              divisionSummaryWithMargin: e.summaryCostWithMargin,
             ),
           )
           .toList();
 
       double overPrice =
           designPresalePojo.divisions?.rows
-              .map((e) => e.overPriceFactor * e.divisionSummaryCost)
+              .map((e) => e.overPrice)
               .reduce((value, element) => value + element) ??
           0.0;
 
@@ -87,7 +90,7 @@ class DesignOfferResultController {
           designPresalePojo.divisions?.rows
               .map(
                 (e) =>
-                    e.overPriceFactor * e.divisionSummaryCost * e.marginFactor,
+                    e.margin ,
               )
               .reduce((value, element) => value + element) ??
           0.0;

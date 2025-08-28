@@ -6,9 +6,9 @@ part of 'division_resource_row_pojo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DivisionResourceRowPojoImpl _$$DivisionResourceRowPojoImplFromJson(
+_DivisionResourceRowPojo _$DivisionResourceRowPojoFromJson(
   Map<String, dynamic> json,
-) => _$DivisionResourceRowPojoImpl(
+) => _DivisionResourceRowPojo(
   divisionName: json['divisionName'] as String,
   divisionShortName: json['divisionShortName'] as String,
   divisionDescription: json['divisionDescription'] as String,
@@ -25,8 +25,8 @@ _$DivisionResourceRowPojoImpl _$$DivisionResourceRowPojoImplFromJson(
   resourceSummaryCost: (json['resourceSummaryCost'] as num).toDouble(),
 );
 
-Map<String, dynamic> _$$DivisionResourceRowPojoImplToJson(
-  _$DivisionResourceRowPojoImpl instance,
+Map<String, dynamic> _$DivisionResourceRowPojoToJson(
+  _DivisionResourceRowPojo instance,
 ) => <String, dynamic>{
   'divisionName': instance.divisionName,
   'divisionShortName': instance.divisionShortName,

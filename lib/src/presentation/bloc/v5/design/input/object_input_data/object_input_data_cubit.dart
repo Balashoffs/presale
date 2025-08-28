@@ -87,7 +87,6 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     value = value.contains(',') ? value.replaceFirst(',', '.') : value;
     double? result = double.tryParse(value);
     if (result != null) {
-      result = result / 100;
       _objectDataBuilder.setCustomerFactor(result);
     }
   }
@@ -96,7 +95,6 @@ class ObjectDataCubit extends Cubit<ObjectInputDataState> {
     value = value.contains(',') ? value.replaceFirst(',', '.') : value;
     double? result = double.tryParse(value);
     if (result != null) {
-      result = result / 100;
       _objectDataBuilder.setMarginFactor(result);
     }
   }

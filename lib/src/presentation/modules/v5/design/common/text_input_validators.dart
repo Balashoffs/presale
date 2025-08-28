@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
+
+String objectNameTemplate = '^[а-яА-ЯёЁa-zA-Z0-9\s.,/-№\"\'()]+\$';
+String locationTemplate = '^[а-яА-ЯёЁa-zA-Z0-9\s.,/-№\"\'()]+\$';
+
 FormFieldValidator<String>? objectNameValidator = (value) {
   if (value == null) {
     return 'Начните вводить адрес объекта';
-  } else if (!RegExp(r'^[\dа-яА-Я\-_ ]+$').hasMatch(value)) {
-    return 'Допускаются только цифры и кириллица';
+  } else if (!RegExp(objectNameTemplate).hasMatch(value)) {
+    return 'Допускаются только цифры, русские и латинские буквы';
   } else if (value.length < 10) {
     return 'Слишком короткое имя';
   }
@@ -14,8 +18,8 @@ FormFieldValidator<String>? objectNameValidator = (value) {
 FormFieldValidator<String>? objectLocationValidator = (value) {
   if (value == null) {
     return 'Начните вводить адрес объекта';
-  } else if (!RegExp(r'^[\dа-яА-Я\-_ ]+$').hasMatch(value)) {
-    return 'Допускаются только цифры и кириллица';
+  } else if (!RegExp(locationTemplate).hasMatch(value)) {
+    return 'Допускаются только цифры, русские и латинские буквы';
   } else if (value.length < 10) {
     return 'Слишком короткий адрес';
   }
@@ -58,15 +62,15 @@ FormFieldValidator<String>? onlyFactorValidator = (value) {
     return 'ошибка';
   } else if (!RegExp(
     r'^[1-9]$|'
-    r'^[1-9]\d$|'
-    r'^[1-9]\d\.\d$|^[1-9]\d\,\d$|'
-    r'^[1-9]\d\.\d\d$|^[1-9]\d\,\d\d$|'
-    r'^\d.\d\d$|^\d,\d\d$|'
-    r'^\d\.[1-9]$|^\d\,[1-9]$',
+    r'^[1-9]\d+$|'
+    r'^[1-9]\.\d$|'
+    r'^[1-9]\d\.\d$|'
+    r'^[1-9]\d+\.\d+$|'
+    r'^[1-9]\d\.\d\d$|'
+    r'^\d\.\d\d$|'
+    r'^\d\.[1-9]$',
   ).hasMatch(value)) {
-    return '99,99';
-  } else if (value.length > 5) {
-    return '99,99';
+    return '99.99';
   }
   return null;
 };

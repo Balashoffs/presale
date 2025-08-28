@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,473 +9,577 @@ part of 'state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
-StagesTableState _$StagesTableStateFromJson(Map<String, dynamic> json) {
-  return _StagesTableState.fromJson(json);
-}
 
 /// @nodoc
 mixin _$StagesTableState {
-  List<StagesTableEntity> get entities => throw _privateConstructorUsedError;
+
+ List<StagesTableEntity> get entities;
+/// Create a copy of StagesTableState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$StagesTableStateCopyWith<StagesTableState> get copyWith => _$StagesTableStateCopyWithImpl<StagesTableState>(this as StagesTableState, _$identity);
 
   /// Serializes this StagesTableState to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of StagesTableState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $StagesTableStateCopyWith<StagesTableState> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StagesTableState&&const DeepCollectionEquality().equals(other.entities, entities));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(entities));
+
+@override
+String toString() {
+  return 'StagesTableState(entities: $entities)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $StagesTableStateCopyWith<$Res> {
-  factory $StagesTableStateCopyWith(
-    StagesTableState value,
-    $Res Function(StagesTableState) then,
-  ) = _$StagesTableStateCopyWithImpl<$Res, StagesTableState>;
-  @useResult
-  $Res call({List<StagesTableEntity> entities});
-}
+abstract mixin class $StagesTableStateCopyWith<$Res>  {
+  factory $StagesTableStateCopyWith(StagesTableState value, $Res Function(StagesTableState) _then) = _$StagesTableStateCopyWithImpl;
+@useResult
+$Res call({
+ List<StagesTableEntity> entities
+});
 
+
+
+
+}
 /// @nodoc
-class _$StagesTableStateCopyWithImpl<$Res, $Val extends StagesTableState>
+class _$StagesTableStateCopyWithImpl<$Res>
     implements $StagesTableStateCopyWith<$Res> {
-  _$StagesTableStateCopyWithImpl(this._value, this._then);
+  _$StagesTableStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final StagesTableState _self;
+  final $Res Function(StagesTableState) _then;
 
-  /// Create a copy of StagesTableState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? entities = null}) {
-    return _then(
-      _value.copyWith(
-            entities: null == entities
-                ? _value.entities
-                : entities // ignore: cast_nullable_to_non_nullable
-                      as List<StagesTableEntity>,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of StagesTableState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? entities = null,}) {
+  return _then(_self.copyWith(
+entities: null == entities ? _self.entities : entities // ignore: cast_nullable_to_non_nullable
+as List<StagesTableEntity>,
+  ));
 }
 
-/// @nodoc
-abstract class _$$StagesTableStateImplCopyWith<$Res>
-    implements $StagesTableStateCopyWith<$Res> {
-  factory _$$StagesTableStateImplCopyWith(
-    _$StagesTableStateImpl value,
-    $Res Function(_$StagesTableStateImpl) then,
-  ) = __$$StagesTableStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<StagesTableEntity> entities});
 }
 
-/// @nodoc
-class __$$StagesTableStateImplCopyWithImpl<$Res>
-    extends _$StagesTableStateCopyWithImpl<$Res, _$StagesTableStateImpl>
-    implements _$$StagesTableStateImplCopyWith<$Res> {
-  __$$StagesTableStateImplCopyWithImpl(
-    _$StagesTableStateImpl _value,
-    $Res Function(_$StagesTableStateImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of StagesTableState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? entities = null}) {
-    return _then(
-      _$StagesTableStateImpl(
-        entities: null == entities
-            ? _value._entities
-            : entities // ignore: cast_nullable_to_non_nullable
-                  as List<StagesTableEntity>,
-      ),
-    );
-  }
+/// Adds pattern-matching-related methods to [StagesTableState].
+extension StagesTableStatePatterns on StagesTableState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _StagesTableState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _StagesTableState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _StagesTableState value)  $default,){
+final _that = this;
+switch (_that) {
+case _StagesTableState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _StagesTableState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _StagesTableState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<StagesTableEntity> entities)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _StagesTableState() when $default != null:
+return $default(_that.entities);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<StagesTableEntity> entities)  $default,) {final _that = this;
+switch (_that) {
+case _StagesTableState():
+return $default(_that.entities);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<StagesTableEntity> entities)?  $default,) {final _that = this;
+switch (_that) {
+case _StagesTableState() when $default != null:
+return $default(_that.entities);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$StagesTableStateImpl extends _StagesTableState {
-  const _$StagesTableStateImpl({
-    final List<StagesTableEntity> entities = const [],
-  }) : _entities = entities,
-       super._();
 
-  factory _$StagesTableStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StagesTableStateImplFromJson(json);
+class _StagesTableState extends StagesTableState {
+  const _StagesTableState({final  List<StagesTableEntity> entities = const []}): _entities = entities,super._();
+  factory _StagesTableState.fromJson(Map<String, dynamic> json) => _$StagesTableStateFromJson(json);
 
-  final List<StagesTableEntity> _entities;
-  @override
-  @JsonKey()
-  List<StagesTableEntity> get entities {
-    if (_entities is EqualUnmodifiableListView) return _entities;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_entities);
-  }
-
-  @override
-  String toString() {
-    return 'StagesTableState(entities: $entities)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StagesTableStateImpl &&
-            const DeepCollectionEquality().equals(other._entities, _entities));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_entities));
-
-  /// Create a copy of StagesTableState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StagesTableStateImplCopyWith<_$StagesTableStateImpl> get copyWith =>
-      __$$StagesTableStateImplCopyWithImpl<_$StagesTableStateImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$StagesTableStateImplToJson(this);
-  }
+ final  List<StagesTableEntity> _entities;
+@override@JsonKey() List<StagesTableEntity> get entities {
+  if (_entities is EqualUnmodifiableListView) return _entities;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_entities);
 }
 
-abstract class _StagesTableState extends StagesTableState {
-  const factory _StagesTableState({final List<StagesTableEntity> entities}) =
-      _$StagesTableStateImpl;
-  const _StagesTableState._() : super._();
 
-  factory _StagesTableState.fromJson(Map<String, dynamic> json) =
-      _$StagesTableStateImpl.fromJson;
+/// Create a copy of StagesTableState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StagesTableStateCopyWith<_StagesTableState> get copyWith => __$StagesTableStateCopyWithImpl<_StagesTableState>(this, _$identity);
 
-  @override
-  List<StagesTableEntity> get entities;
-
-  /// Create a copy of StagesTableState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StagesTableStateImplCopyWith<_$StagesTableStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$StagesTableStateToJson(this, );
 }
 
-StagesTableEntity _$StagesTableEntityFromJson(Map<String, dynamic> json) {
-  return _StagesTableEntity.fromJson(json);
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StagesTableState&&const DeepCollectionEquality().equals(other._entities, _entities));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_entities));
+
+@override
+String toString() {
+  return 'StagesTableState(entities: $entities)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$StagesTableStateCopyWith<$Res> implements $StagesTableStateCopyWith<$Res> {
+  factory _$StagesTableStateCopyWith(_StagesTableState value, $Res Function(_StagesTableState) _then) = __$StagesTableStateCopyWithImpl;
+@override @useResult
+$Res call({
+ List<StagesTableEntity> entities
+});
+
+
+
+
+}
+/// @nodoc
+class __$StagesTableStateCopyWithImpl<$Res>
+    implements _$StagesTableStateCopyWith<$Res> {
+  __$StagesTableStateCopyWithImpl(this._self, this._then);
+
+  final _StagesTableState _self;
+  final $Res Function(_StagesTableState) _then;
+
+/// Create a copy of StagesTableState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? entities = null,}) {
+  return _then(_StagesTableState(
+entities: null == entities ? _self._entities : entities // ignore: cast_nullable_to_non_nullable
+as List<StagesTableEntity>,
+  ));
+}
+
+
+}
+
 
 /// @nodoc
 mixin _$StagesTableEntity {
-  Section? get section => throw _privateConstructorUsedError;
-  String? get sectionName => throw _privateConstructorUsedError;
-  double get coefficient => throw _privateConstructorUsedError;
-  double? get costInDay => throw _privateConstructorUsedError;
-  int? get durationOfWork => throw _privateConstructorUsedError;
-  double? get cost => throw _privateConstructorUsedError;
+
+ Section? get section; String? get sectionName; double get coefficient; double? get costInDay; int? get durationOfWork; double? get cost;
+/// Create a copy of StagesTableEntity
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$StagesTableEntityCopyWith<StagesTableEntity> get copyWith => _$StagesTableEntityCopyWithImpl<StagesTableEntity>(this as StagesTableEntity, _$identity);
 
   /// Serializes this StagesTableEntity to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
-  /// Create a copy of StagesTableEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $StagesTableEntityCopyWith<StagesTableEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StagesTableEntity&&(identical(other.section, section) || other.section == section)&&(identical(other.sectionName, sectionName) || other.sectionName == sectionName)&&(identical(other.coefficient, coefficient) || other.coefficient == coefficient)&&(identical(other.costInDay, costInDay) || other.costInDay == costInDay)&&(identical(other.durationOfWork, durationOfWork) || other.durationOfWork == durationOfWork)&&(identical(other.cost, cost) || other.cost == cost));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,section,sectionName,coefficient,costInDay,durationOfWork,cost);
+
+@override
+String toString() {
+  return 'StagesTableEntity(section: $section, sectionName: $sectionName, coefficient: $coefficient, costInDay: $costInDay, durationOfWork: $durationOfWork, cost: $cost)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $StagesTableEntityCopyWith<$Res> {
-  factory $StagesTableEntityCopyWith(
-    StagesTableEntity value,
-    $Res Function(StagesTableEntity) then,
-  ) = _$StagesTableEntityCopyWithImpl<$Res, StagesTableEntity>;
-  @useResult
-  $Res call({
-    Section? section,
-    String? sectionName,
-    double coefficient,
-    double? costInDay,
-    int? durationOfWork,
-    double? cost,
-  });
+abstract mixin class $StagesTableEntityCopyWith<$Res>  {
+  factory $StagesTableEntityCopyWith(StagesTableEntity value, $Res Function(StagesTableEntity) _then) = _$StagesTableEntityCopyWithImpl;
+@useResult
+$Res call({
+ Section? section, String? sectionName, double coefficient, double? costInDay, int? durationOfWork, double? cost
+});
 
-  $SectionCopyWith<$Res>? get section;
+
+$SectionCopyWith<$Res>? get section;
+
 }
-
 /// @nodoc
-class _$StagesTableEntityCopyWithImpl<$Res, $Val extends StagesTableEntity>
+class _$StagesTableEntityCopyWithImpl<$Res>
     implements $StagesTableEntityCopyWith<$Res> {
-  _$StagesTableEntityCopyWithImpl(this._value, this._then);
+  _$StagesTableEntityCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final StagesTableEntity _self;
+  final $Res Function(StagesTableEntity) _then;
 
-  /// Create a copy of StagesTableEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? section = freezed,
-    Object? sectionName = freezed,
-    Object? coefficient = null,
-    Object? costInDay = freezed,
-    Object? durationOfWork = freezed,
-    Object? cost = freezed,
-  }) {
-    return _then(
-      _value.copyWith(
-            section: freezed == section
-                ? _value.section
-                : section // ignore: cast_nullable_to_non_nullable
-                      as Section?,
-            sectionName: freezed == sectionName
-                ? _value.sectionName
-                : sectionName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            coefficient: null == coefficient
-                ? _value.coefficient
-                : coefficient // ignore: cast_nullable_to_non_nullable
-                      as double,
-            costInDay: freezed == costInDay
-                ? _value.costInDay
-                : costInDay // ignore: cast_nullable_to_non_nullable
-                      as double?,
-            durationOfWork: freezed == durationOfWork
-                ? _value.durationOfWork
-                : durationOfWork // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            cost: freezed == cost
-                ? _value.cost
-                : cost // ignore: cast_nullable_to_non_nullable
-                      as double?,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of StagesTableEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SectionCopyWith<$Res>? get section {
-    if (_value.section == null) {
-      return null;
-    }
-
-    return $SectionCopyWith<$Res>(_value.section!, (value) {
-      return _then(_value.copyWith(section: value) as $Val);
-    });
-  }
+/// Create a copy of StagesTableEntity
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? section = freezed,Object? sectionName = freezed,Object? coefficient = null,Object? costInDay = freezed,Object? durationOfWork = freezed,Object? cost = freezed,}) {
+  return _then(_self.copyWith(
+section: freezed == section ? _self.section : section // ignore: cast_nullable_to_non_nullable
+as Section?,sectionName: freezed == sectionName ? _self.sectionName : sectionName // ignore: cast_nullable_to_non_nullable
+as String?,coefficient: null == coefficient ? _self.coefficient : coefficient // ignore: cast_nullable_to_non_nullable
+as double,costInDay: freezed == costInDay ? _self.costInDay : costInDay // ignore: cast_nullable_to_non_nullable
+as double?,durationOfWork: freezed == durationOfWork ? _self.durationOfWork : durationOfWork // ignore: cast_nullable_to_non_nullable
+as int?,cost: freezed == cost ? _self.cost : cost // ignore: cast_nullable_to_non_nullable
+as double?,
+  ));
 }
+/// Create a copy of StagesTableEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SectionCopyWith<$Res>? get section {
+    if (_self.section == null) {
+    return null;
+  }
 
-/// @nodoc
-abstract class _$$StagesTableEntityImplCopyWith<$Res>
-    implements $StagesTableEntityCopyWith<$Res> {
-  factory _$$StagesTableEntityImplCopyWith(
-    _$StagesTableEntityImpl value,
-    $Res Function(_$StagesTableEntityImpl) then,
-  ) = __$$StagesTableEntityImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    Section? section,
-    String? sectionName,
-    double coefficient,
-    double? costInDay,
-    int? durationOfWork,
-    double? cost,
+  return $SectionCopyWith<$Res>(_self.section!, (value) {
+    return _then(_self.copyWith(section: value));
   });
-
-  @override
-  $SectionCopyWith<$Res>? get section;
+}
 }
 
-/// @nodoc
-class __$$StagesTableEntityImplCopyWithImpl<$Res>
-    extends _$StagesTableEntityCopyWithImpl<$Res, _$StagesTableEntityImpl>
-    implements _$$StagesTableEntityImplCopyWith<$Res> {
-  __$$StagesTableEntityImplCopyWithImpl(
-    _$StagesTableEntityImpl _value,
-    $Res Function(_$StagesTableEntityImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of StagesTableEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? section = freezed,
-    Object? sectionName = freezed,
-    Object? coefficient = null,
-    Object? costInDay = freezed,
-    Object? durationOfWork = freezed,
-    Object? cost = freezed,
-  }) {
-    return _then(
-      _$StagesTableEntityImpl(
-        section: freezed == section
-            ? _value.section
-            : section // ignore: cast_nullable_to_non_nullable
-                  as Section?,
-        sectionName: freezed == sectionName
-            ? _value.sectionName
-            : sectionName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        coefficient: null == coefficient
-            ? _value.coefficient
-            : coefficient // ignore: cast_nullable_to_non_nullable
-                  as double,
-        costInDay: freezed == costInDay
-            ? _value.costInDay
-            : costInDay // ignore: cast_nullable_to_non_nullable
-                  as double?,
-        durationOfWork: freezed == durationOfWork
-            ? _value.durationOfWork
-            : durationOfWork // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        cost: freezed == cost
-            ? _value.cost
-            : cost // ignore: cast_nullable_to_non_nullable
-                  as double?,
-      ),
-    );
-  }
+/// Adds pattern-matching-related methods to [StagesTableEntity].
+extension StagesTableEntityPatterns on StagesTableEntity {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _StagesTableEntity value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _StagesTableEntity() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _StagesTableEntity value)  $default,){
+final _that = this;
+switch (_that) {
+case _StagesTableEntity():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _StagesTableEntity value)?  $default,){
+final _that = this;
+switch (_that) {
+case _StagesTableEntity() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Section? section,  String? sectionName,  double coefficient,  double? costInDay,  int? durationOfWork,  double? cost)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _StagesTableEntity() when $default != null:
+return $default(_that.section,_that.sectionName,_that.coefficient,_that.costInDay,_that.durationOfWork,_that.cost);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Section? section,  String? sectionName,  double coefficient,  double? costInDay,  int? durationOfWork,  double? cost)  $default,) {final _that = this;
+switch (_that) {
+case _StagesTableEntity():
+return $default(_that.section,_that.sectionName,_that.coefficient,_that.costInDay,_that.durationOfWork,_that.cost);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Section? section,  String? sectionName,  double coefficient,  double? costInDay,  int? durationOfWork,  double? cost)?  $default,) {final _that = this;
+switch (_that) {
+case _StagesTableEntity() when $default != null:
+return $default(_that.section,_that.sectionName,_that.coefficient,_that.costInDay,_that.durationOfWork,_that.cost);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$StagesTableEntityImpl extends _StagesTableEntity {
-  const _$StagesTableEntityImpl({
-    this.section,
-    this.sectionName,
-    this.coefficient = 1,
-    this.costInDay,
-    this.durationOfWork,
-    this.cost,
-  }) : super._();
 
-  factory _$StagesTableEntityImpl.fromJson(Map<String, dynamic> json) =>
-      _$$StagesTableEntityImplFromJson(json);
+class _StagesTableEntity extends StagesTableEntity {
+  const _StagesTableEntity({this.section, this.sectionName, this.coefficient = 1, this.costInDay, this.durationOfWork, this.cost}): super._();
+  factory _StagesTableEntity.fromJson(Map<String, dynamic> json) => _$StagesTableEntityFromJson(json);
 
-  @override
-  final Section? section;
-  @override
-  final String? sectionName;
-  @override
-  @JsonKey()
-  final double coefficient;
-  @override
-  final double? costInDay;
-  @override
-  final int? durationOfWork;
-  @override
-  final double? cost;
+@override final  Section? section;
+@override final  String? sectionName;
+@override@JsonKey() final  double coefficient;
+@override final  double? costInDay;
+@override final  int? durationOfWork;
+@override final  double? cost;
 
-  @override
-  String toString() {
-    return 'StagesTableEntity(section: $section, sectionName: $sectionName, coefficient: $coefficient, costInDay: $costInDay, durationOfWork: $durationOfWork, cost: $cost)';
-  }
+/// Create a copy of StagesTableEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StagesTableEntityCopyWith<_StagesTableEntity> get copyWith => __$StagesTableEntityCopyWithImpl<_StagesTableEntity>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StagesTableEntityImpl &&
-            (identical(other.section, section) || other.section == section) &&
-            (identical(other.sectionName, sectionName) ||
-                other.sectionName == sectionName) &&
-            (identical(other.coefficient, coefficient) ||
-                other.coefficient == coefficient) &&
-            (identical(other.costInDay, costInDay) ||
-                other.costInDay == costInDay) &&
-            (identical(other.durationOfWork, durationOfWork) ||
-                other.durationOfWork == durationOfWork) &&
-            (identical(other.cost, cost) || other.cost == cost));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    section,
-    sectionName,
-    coefficient,
-    costInDay,
-    durationOfWork,
-    cost,
-  );
-
-  /// Create a copy of StagesTableEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StagesTableEntityImplCopyWith<_$StagesTableEntityImpl> get copyWith =>
-      __$$StagesTableEntityImplCopyWithImpl<_$StagesTableEntityImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$StagesTableEntityImplToJson(this);
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$StagesTableEntityToJson(this, );
 }
 
-abstract class _StagesTableEntity extends StagesTableEntity {
-  const factory _StagesTableEntity({
-    final Section? section,
-    final String? sectionName,
-    final double coefficient,
-    final double? costInDay,
-    final int? durationOfWork,
-    final double? cost,
-  }) = _$StagesTableEntityImpl;
-  const _StagesTableEntity._() : super._();
-
-  factory _StagesTableEntity.fromJson(Map<String, dynamic> json) =
-      _$StagesTableEntityImpl.fromJson;
-
-  @override
-  Section? get section;
-  @override
-  String? get sectionName;
-  @override
-  double get coefficient;
-  @override
-  double? get costInDay;
-  @override
-  int? get durationOfWork;
-  @override
-  double? get cost;
-
-  /// Create a copy of StagesTableEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$StagesTableEntityImplCopyWith<_$StagesTableEntityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StagesTableEntity&&(identical(other.section, section) || other.section == section)&&(identical(other.sectionName, sectionName) || other.sectionName == sectionName)&&(identical(other.coefficient, coefficient) || other.coefficient == coefficient)&&(identical(other.costInDay, costInDay) || other.costInDay == costInDay)&&(identical(other.durationOfWork, durationOfWork) || other.durationOfWork == durationOfWork)&&(identical(other.cost, cost) || other.cost == cost));
 }
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,section,sectionName,coefficient,costInDay,durationOfWork,cost);
+
+@override
+String toString() {
+  return 'StagesTableEntity(section: $section, sectionName: $sectionName, coefficient: $coefficient, costInDay: $costInDay, durationOfWork: $durationOfWork, cost: $cost)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$StagesTableEntityCopyWith<$Res> implements $StagesTableEntityCopyWith<$Res> {
+  factory _$StagesTableEntityCopyWith(_StagesTableEntity value, $Res Function(_StagesTableEntity) _then) = __$StagesTableEntityCopyWithImpl;
+@override @useResult
+$Res call({
+ Section? section, String? sectionName, double coefficient, double? costInDay, int? durationOfWork, double? cost
+});
+
+
+@override $SectionCopyWith<$Res>? get section;
+
+}
+/// @nodoc
+class __$StagesTableEntityCopyWithImpl<$Res>
+    implements _$StagesTableEntityCopyWith<$Res> {
+  __$StagesTableEntityCopyWithImpl(this._self, this._then);
+
+  final _StagesTableEntity _self;
+  final $Res Function(_StagesTableEntity) _then;
+
+/// Create a copy of StagesTableEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? section = freezed,Object? sectionName = freezed,Object? coefficient = null,Object? costInDay = freezed,Object? durationOfWork = freezed,Object? cost = freezed,}) {
+  return _then(_StagesTableEntity(
+section: freezed == section ? _self.section : section // ignore: cast_nullable_to_non_nullable
+as Section?,sectionName: freezed == sectionName ? _self.sectionName : sectionName // ignore: cast_nullable_to_non_nullable
+as String?,coefficient: null == coefficient ? _self.coefficient : coefficient // ignore: cast_nullable_to_non_nullable
+as double,costInDay: freezed == costInDay ? _self.costInDay : costInDay // ignore: cast_nullable_to_non_nullable
+as double?,durationOfWork: freezed == durationOfWork ? _self.durationOfWork : durationOfWork // ignore: cast_nullable_to_non_nullable
+as int?,cost: freezed == cost ? _self.cost : cost // ignore: cast_nullable_to_non_nullable
+as double?,
+  ));
+}
+
+/// Create a copy of StagesTableEntity
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SectionCopyWith<$Res>? get section {
+    if (_self.section == null) {
+    return null;
+  }
+
+  return $SectionCopyWith<$Res>(_self.section!, (value) {
+    return _then(_self.copyWith(section: value));
+  });
+}
+}
+
+// dart format on

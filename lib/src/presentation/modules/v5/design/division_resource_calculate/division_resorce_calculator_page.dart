@@ -91,21 +91,34 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          flex: 1,
+          flex: 2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ValueListenableBuilder<List<DivisionDTO>>(
-                valueListenable: controller.unselectedDivisionsVN,
-                builder: (context, value, child) {
-                  return CustomDropdownWithSearchWidget(
-                    autoFocus: true,
-                    enabled: true,
-                    divisions: value,
-                    onSelected: (p0) =>
-                        controller.onRowAction(p0.id, WidgetActionType.add),
-                  );
-                },
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Разделы для проектирования",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
+                  ValueListenableBuilder<List<DivisionDTO>>(
+                    valueListenable: controller.unselectedDivisionsVN,
+                    builder: (context, value, child) {
+                      return CustomDropdownWithSearchWidget(
+                        autoFocus: true,
+                        enabled: true,
+                        divisions: value,
+                        onSelected: (p0) =>
+                            controller.onRowAction(p0.id, WidgetActionType.add),
+                      );
+                    },
+                  ),
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -128,7 +141,7 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
                 child: ValueListenableBuilder<double>(
                   valueListenable: controller.summaryVN,
                   builder: (context, value, child) {
-                    return ResultSumWidget(
+                    return TextCustomWidget(
                       name: 'Итого',
                       value: convertToString(value, 0),
                     );
@@ -139,7 +152,7 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 8,
+          flex: 10,
           child: ValueListenableBuilder<List<DivisionWithResourceRowVM>>(
             valueListenable: controller.selectedRows,
             builder: (context, value, child) {
@@ -154,7 +167,7 @@ class DivisionResourceCalculateWidget extends StatelessWidget {
           ),
         ),
         Expanded(
-          flex: 1,
+          flex: 2,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ValueListenableBuilder<bool>(

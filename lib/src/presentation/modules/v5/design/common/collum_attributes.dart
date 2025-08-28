@@ -74,8 +74,28 @@ final List<CollumAttribute> designOfferTableAttribute = [
     tooltip: 'Наименование раздела'
   ),
   CollumAttribute(
+      name: 'Накладные раходы',
+      width: 196,
+      tooltip: 'Расходы на бэкофис'
+  ),
+  CollumAttribute(
+      name: 'Маржа',
+      width: 196,
+      tooltip: 'Чистая прибиль'
+  ),
+  CollumAttribute(
+      name: 'Клиент',
+      width: 196,
+      tooltip: 'Клиентские отчисления'
+  ),
+  CollumAttribute(
+      name: 'Стоимость',
+      width: 196,
+      tooltip: 'Полная стоимость'
+  ),
+  CollumAttribute(
     name: 'Стоимость с НДС',
-    width: 312,
+    width: 196,
     tooltip: 'Стоимость с НДС (Итог для раздела)'
   ),
 ];

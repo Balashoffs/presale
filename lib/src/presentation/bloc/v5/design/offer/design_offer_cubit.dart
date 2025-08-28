@@ -1,14 +1,9 @@
-import 'dart:io';
-
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:presale/src/di/di.dart';
+import 'package:presale/src/presentation/bloc/v5/design/offer/design_offer_result_controller.dart';
 import 'package:presale/src/utils/dart_define/model/design_class/design_class.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
-import 'package:open_file/open_file.dart' as open_file;
 
 import 'package:presale/src/data/core/db_client.dart';
 import 'package:presale/src/data/data_sources/v3/input_result_design_source.dart';
@@ -18,10 +13,9 @@ import 'package:presale/src/domain/models/v4/design/design_presale_pojo.dart';
 import 'package:presale/src/domain/models/v5/common/offer_template_builder.dart';
 import 'package:presale/src/domain/models/v5/design/design_offer_result/design_offer_result_viewmodel.dart';
 
-import 'package:presale/src/data/xlsx_helper/save_file_mobile.dart'
-    if (dart.library.html) 'package:presale/src/data/xlsx_helper/save_file_web.dart';
+import 'package:presale/src/data/helpers/xlsx_helper/save_file_mobile.dart'
+    if (dart.library.html) 'package:presale/src/data/helpers/xlsx_helper/save_file_web.dart';
 
-import 'design_offer_result_controller.dart';
 
 part 'design_offer_state.dart';
 
@@ -41,8 +35,6 @@ class DesignOfferCubit extends Cubit<DesignOfferState> {
   void init() async {
     DesignPresalePojo designPresalePojo = await _dataSourceLocal
         .getDesignPresale(DesignPresaleDataSourceLocal.key);
-    DesignClass dc = di.dartDefineModel.design;
-    await _designOfferController.fillSign(dc);
     bool isBuild = _designOfferController.buildModel(designPresalePojo);
     if (isBuild) {
       emit(

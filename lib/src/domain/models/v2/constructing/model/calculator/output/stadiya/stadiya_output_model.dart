@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'stadiya_output_model.freezed.dart';
 
 @freezed
-class StadiyaOutputModel with _$StadiyaOutputModel {
+abstract class StadiyaOutputModel with _$StadiyaOutputModel {
   const factory StadiyaOutputModel({
     required String element,
     required double cost,

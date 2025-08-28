@@ -5,7 +5,7 @@ part 'division_resource_row_pojo.g.dart';
 part 'division_resource_row_pojo.freezed.dart';
 
 @freezed
-class DivisionResourceRowPojo with _$DivisionResourceRowPojo {
+abstract class DivisionResourceRowPojo with _$DivisionResourceRowPojo {
   const factory DivisionResourceRowPojo({
     required String divisionName,
     required String divisionShortName,

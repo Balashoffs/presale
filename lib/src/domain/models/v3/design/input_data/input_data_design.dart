@@ -9,7 +9,7 @@ part 'input_data_design.g.dart';
 
 
 @freezed
-class InputDataDesign with _$InputDataDesign {
+abstract class InputDataDesign with _$InputDataDesign {
   const factory InputDataDesign({
     // Дата и время создание КП
     required DateTime? created,

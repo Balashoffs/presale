@@ -134,6 +134,22 @@ class DivisionsDataSource extends DataGridSource {
                 value: e.divisionName,
               ),
               DataGridCell<String>(
+                columnName: 'Расходы',
+                value: e.divisionOverPriceS,
+              ),
+              DataGridCell<String>(
+                columnName: 'Маржа',
+                value: e.divisionMarginS,
+              ),
+              DataGridCell<String>(
+                columnName: 'Клиент',
+                value: e.divisionClientS,
+              ),
+              DataGridCell<String>(
+                columnName: 'Стоимость',
+                value: e.divisionSummaryS,
+              ),
+              DataGridCell<String>(
                 columnName: 'Стоимость с НДС',
                 value: e.divisionSummaryWithTaxS,
               ),

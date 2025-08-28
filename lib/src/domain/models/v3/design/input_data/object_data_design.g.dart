@@ -6,20 +6,18 @@ part of 'object_data_design.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ObjectDataDesignImpl _$$ObjectDataDesignImplFromJson(
-  Map<String, dynamic> json,
-) => _$ObjectDataDesignImpl(
-  name: json['name'] as String,
-  address: json['address'] as String,
-  square: (json['square'] as num).toInt(),
-  deadlineValue: (json['deadlineValue'] as num).toInt(),
-);
+_ObjectDataDesign _$ObjectDataDesignFromJson(Map<String, dynamic> json) =>
+    _ObjectDataDesign(
+      name: json['name'] as String,
+      address: json['address'] as String,
+      square: (json['square'] as num).toInt(),
+      deadlineValue: (json['deadlineValue'] as num).toInt(),
+    );
 
-Map<String, dynamic> _$$ObjectDataDesignImplToJson(
-  _$ObjectDataDesignImpl instance,
-) => <String, dynamic>{
-  'name': instance.name,
-  'address': instance.address,
-  'square': instance.square,
-  'deadlineValue': instance.deadlineValue,
-};
+Map<String, dynamic> _$ObjectDataDesignToJson(_ObjectDataDesign instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'address': instance.address,
+      'square': instance.square,
+      'deadlineValue': instance.deadlineValue,
+    };

@@ -7,7 +7,7 @@ part 'division_resource_table_pojo.g.dart';
 
 
 @freezed
-class DivisionResourceTableWithTypePojo with _$DivisionResourceTableWithTypePojo {
+abstract class DivisionResourceTableWithTypePojo with _$DivisionResourceTableWithTypePojo {
   const factory DivisionResourceTableWithTypePojo({
     required DivisionType divisionType,
     required List<DivisionResourceRowPojo> rows,

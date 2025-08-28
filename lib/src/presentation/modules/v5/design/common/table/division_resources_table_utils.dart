@@ -242,8 +242,7 @@ class ResourcesDropdownWidget extends StatelessWidget {
     return Builder(
       builder: (context) {
         return Center(
-          child: ResourceDropDownSelector(
-            hintText: 'Выберите ресурс',
+          child: ResourceObjectDropDownSelector(
             onSelected: (p0) => onChanged(context, p0?.resourceName ?? ''),
             resources: resources,
           ),

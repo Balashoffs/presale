@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,179 +9,269 @@ part of 'cost_struct_view.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$CostStructView {
-  int get pos => throw _privateConstructorUsedError;
-  double get factor => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
 
-  /// Create a copy of CostStructView
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CostStructViewCopyWith<CostStructView> get copyWith =>
-      throw _privateConstructorUsedError;
+ int get pos; double get factor; String get name;
+/// Create a copy of CostStructView
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CostStructViewCopyWith<CostStructView> get copyWith => _$CostStructViewCopyWithImpl<CostStructView>(this as CostStructView, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CostStructView&&(identical(other.pos, pos) || other.pos == pos)&&(identical(other.factor, factor) || other.factor == factor)&&(identical(other.name, name) || other.name == name));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,pos,factor,name);
+
+@override
+String toString() {
+  return 'CostStructView(pos: $pos, factor: $factor, name: $name)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $CostStructViewCopyWith<$Res> {
-  factory $CostStructViewCopyWith(
-    CostStructView value,
-    $Res Function(CostStructView) then,
-  ) = _$CostStructViewCopyWithImpl<$Res, CostStructView>;
-  @useResult
-  $Res call({int pos, double factor, String name});
-}
+abstract mixin class $CostStructViewCopyWith<$Res>  {
+  factory $CostStructViewCopyWith(CostStructView value, $Res Function(CostStructView) _then) = _$CostStructViewCopyWithImpl;
+@useResult
+$Res call({
+ int pos, double factor, String name
+});
 
+
+
+
+}
 /// @nodoc
-class _$CostStructViewCopyWithImpl<$Res, $Val extends CostStructView>
+class _$CostStructViewCopyWithImpl<$Res>
     implements $CostStructViewCopyWith<$Res> {
-  _$CostStructViewCopyWithImpl(this._value, this._then);
+  _$CostStructViewCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final CostStructView _self;
+  final $Res Function(CostStructView) _then;
 
-  /// Create a copy of CostStructView
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? pos = null, Object? factor = null, Object? name = null}) {
-    return _then(
-      _value.copyWith(
-            pos: null == pos
-                ? _value.pos
-                : pos // ignore: cast_nullable_to_non_nullable
-                      as int,
-            factor: null == factor
-                ? _value.factor
-                : factor // ignore: cast_nullable_to_non_nullable
-                      as double,
-            name: null == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                      as String,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of CostStructView
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? pos = null,Object? factor = null,Object? name = null,}) {
+  return _then(_self.copyWith(
+pos: null == pos ? _self.pos : pos // ignore: cast_nullable_to_non_nullable
+as int,factor: null == factor ? _self.factor : factor // ignore: cast_nullable_to_non_nullable
+as double,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [CostStructView].
+extension CostStructViewPatterns on CostStructView {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CostStructView value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CostStructView() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CostStructView value)  $default,){
+final _that = this;
+switch (_that) {
+case _CostStructView():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CostStructView value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CostStructView() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int pos,  double factor,  String name)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CostStructView() when $default != null:
+return $default(_that.pos,_that.factor,_that.name);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int pos,  double factor,  String name)  $default,) {final _that = this;
+switch (_that) {
+case _CostStructView():
+return $default(_that.pos,_that.factor,_that.name);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int pos,  double factor,  String name)?  $default,) {final _that = this;
+switch (_that) {
+case _CostStructView() when $default != null:
+return $default(_that.pos,_that.factor,_that.name);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$CostStructViewImplCopyWith<$Res>
-    implements $CostStructViewCopyWith<$Res> {
-  factory _$$CostStructViewImplCopyWith(
-    _$CostStructViewImpl value,
-    $Res Function(_$CostStructViewImpl) then,
-  ) = __$$CostStructViewImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int pos, double factor, String name});
+
+
+class _CostStructView implements CostStructView {
+  const _CostStructView({required this.pos, required this.factor, required this.name});
+  
+
+@override final  int pos;
+@override final  double factor;
+@override final  String name;
+
+/// Create a copy of CostStructView
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$CostStructViewCopyWith<_CostStructView> get copyWith => __$CostStructViewCopyWithImpl<_CostStructView>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CostStructView&&(identical(other.pos, pos) || other.pos == pos)&&(identical(other.factor, factor) || other.factor == factor)&&(identical(other.name, name) || other.name == name));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,pos,factor,name);
+
+@override
+String toString() {
+  return 'CostStructView(pos: $pos, factor: $factor, name: $name)';
+}
+
+
 }
 
 /// @nodoc
-class __$$CostStructViewImplCopyWithImpl<$Res>
-    extends _$CostStructViewCopyWithImpl<$Res, _$CostStructViewImpl>
-    implements _$$CostStructViewImplCopyWith<$Res> {
-  __$$CostStructViewImplCopyWithImpl(
-    _$CostStructViewImpl _value,
-    $Res Function(_$CostStructViewImpl) _then,
-  ) : super(_value, _then);
+abstract mixin class _$CostStructViewCopyWith<$Res> implements $CostStructViewCopyWith<$Res> {
+  factory _$CostStructViewCopyWith(_CostStructView value, $Res Function(_CostStructView) _then) = __$CostStructViewCopyWithImpl;
+@override @useResult
+$Res call({
+ int pos, double factor, String name
+});
 
-  /// Create a copy of CostStructView
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? pos = null, Object? factor = null, Object? name = null}) {
-    return _then(
-      _$CostStructViewImpl(
-        pos: null == pos
-            ? _value.pos
-            : pos // ignore: cast_nullable_to_non_nullable
-                  as int,
-        factor: null == factor
-            ? _value.factor
-            : factor // ignore: cast_nullable_to_non_nullable
-                  as double,
-        name: null == name
-            ? _value.name
-            : name // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
-  }
+
+
+
 }
-
 /// @nodoc
+class __$CostStructViewCopyWithImpl<$Res>
+    implements _$CostStructViewCopyWith<$Res> {
+  __$CostStructViewCopyWithImpl(this._self, this._then);
 
-class _$CostStructViewImpl implements _CostStructView {
-  const _$CostStructViewImpl({
-    required this.pos,
-    required this.factor,
-    required this.name,
-  });
+  final _CostStructView _self;
+  final $Res Function(_CostStructView) _then;
 
-  @override
-  final int pos;
-  @override
-  final double factor;
-  @override
-  final String name;
-
-  @override
-  String toString() {
-    return 'CostStructView(pos: $pos, factor: $factor, name: $name)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CostStructViewImpl &&
-            (identical(other.pos, pos) || other.pos == pos) &&
-            (identical(other.factor, factor) || other.factor == factor) &&
-            (identical(other.name, name) || other.name == name));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, pos, factor, name);
-
-  /// Create a copy of CostStructView
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CostStructViewImplCopyWith<_$CostStructViewImpl> get copyWith =>
-      __$$CostStructViewImplCopyWithImpl<_$CostStructViewImpl>(
-        this,
-        _$identity,
-      );
+/// Create a copy of CostStructView
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? pos = null,Object? factor = null,Object? name = null,}) {
+  return _then(_CostStructView(
+pos: null == pos ? _self.pos : pos // ignore: cast_nullable_to_non_nullable
+as int,factor: null == factor ? _self.factor : factor // ignore: cast_nullable_to_non_nullable
+as double,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-abstract class _CostStructView implements CostStructView {
-  const factory _CostStructView({
-    required final int pos,
-    required final double factor,
-    required final String name,
-  }) = _$CostStructViewImpl;
 
-  @override
-  int get pos;
-  @override
-  double get factor;
-  @override
-  String get name;
-
-  /// Create a copy of CostStructView
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CostStructViewImplCopyWith<_$CostStructViewImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
+
+// dart format on

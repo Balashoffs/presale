@@ -9,7 +9,7 @@ part 'section.freezed.dart';
 part 'section.g.dart';
 
 @freezed
-class Section with _$Section {
+abstract class Section with _$Section {
   const Section._();
 
   const factory Section({

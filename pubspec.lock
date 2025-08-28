@@ -290,14 +290,13 @@ packages:
     source: hosted
     version: "0.7.11"
   device_frame:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: device_frame
-      ref: HEAD
-      resolved-ref: "3e84282e3ad3578ab898e3fe693af1ceed5dc08c"
-      url: "https://github.com/bradrushworth/flutter_device_preview.git"
-    source: git
-    version: "1.1.0"
+      name: device_frame
+      sha256: "7b2ebb2a09d6cc0f086b51bd1412d7be83e0170056a7290349169be41164c86a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   device_frame_plus:
     dependency: transitive
     description:
@@ -322,15 +321,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.3"
-  device_preview:
-    dependency: "direct overridden"
-    description:
-      path: device_preview
-      ref: HEAD
-      resolved-ref: "3e84282e3ad3578ab898e3fe693af1ceed5dc08c"
-      url: "https://github.com/bradrushworth/flutter_device_preview.git"
-    source: git
-    version: "1.1.0"
   equatable:
     dependency: "direct main"
     description:
@@ -424,11 +414,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
-  flutter_localizations:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   flutter_native_splash:
     dependency: "direct dev"
     description:
@@ -523,10 +508,10 @@ packages:
     dependency: "direct main"
     description:
       name: freezed_annotation
-      sha256: c2e2d632dd9b8a2b7751117abcfc2b4888ecfe181bd9fca7170d9ef02e595fe2
+      sha256: "7294967ff0a6d98638e7acb774aac3af2550777accd8149c90af5b014e6d44d8"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.4"
+    version: "3.1.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -640,13 +625,13 @@ packages:
     source: hosted
     version: "2.1.0"
   intl:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: intl
-      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
+      sha256: "3df61194eb431efc39c4ceba583b95633a403f46c9fd341e550ce0bfa50e9aa5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.18.1"
+    version: "0.20.2"
   intl_utils:
     dependency: "direct dev"
     description:
