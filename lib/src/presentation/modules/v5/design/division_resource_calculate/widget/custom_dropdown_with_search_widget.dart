@@ -287,3 +287,122 @@ class _ResourceDropDownSelectorState extends State<ResourceDropDownSelector> {
     );
   }
 }
+
+
+class ResourceObjectDropDownSelector extends StatefulWidget {
+  const ResourceObjectDropDownSelector({
+    super.key,
+    required this.resources,
+    required this.onSelected,
+  });
+
+  final List<ResourceDTO> resources;
+  final Function(ResourceDTO?) onSelected;
+
+  @override
+  State<ResourceObjectDropDownSelector> createState() =>
+      _ResourceObjectDropDownSelectorState();
+}
+
+class _ResourceObjectDropDownSelectorState extends State<ResourceObjectDropDownSelector> {
+  bool _showMenu = false;
+  String _hintText = '';
+  final GlobalKey _dropWidgetKey = GlobalKey();
+  bool _isUpper = false;
+
+  ResourceDTO? _selected;
+  List<ResourceDTO>? _unselected;
+
+  void _getPosition() {
+    final RenderBox? renderBox =
+    _dropWidgetKey.currentContext?.findRenderObject() as RenderBox?;
+    print('find render: ${renderBox.toString()}');
+    if (renderBox != null) {
+      final Offset globalPosition = renderBox.localToGlobal(Offset.zero);
+      ;
+      final height = MediaQuery.of(context).size.height;
+      setState(() {
+        _isUpper = globalPosition.dy.compareTo(height / 2) > 0;
+      });
+    }
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    widget.resources.sort((a, b) => b.resourceCostPerDay.compareTo(a.resourceCostPerDay),);
+    _selected = widget.resources.firstOrNull;
+    _unselected =  List.of(widget.resources);
+    _unselected!.removeWhere((element) => element.id == _selected!.id,);
+    _hintText = _selected!.resourceName;
+    widget.onSelected(_selected);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MoonDropdown(
+      key: _dropWidgetKey,
+      show: _showMenu,
+      groupId: Uuid().v4(),
+      maxWidth: 196,
+      borderColor: getColor(context, MoonColor.trunks),
+      constrainWidthToChild: true,
+      distanceToTarget: 8.0,
+      dropdownAnchorPosition: _isUpper
+          ? MoonDropdownAnchorPosition.top
+          : MoonDropdownAnchorPosition.bottom,
+      dropdownShadows: null,
+      onTapOutside: () => setState(() {
+        _showMenu = false;
+      }),
+      content: Column(
+        children: List.generate(_unselected!.length, (index) {
+          String name = _unselected![index].resourceName;
+          return MoonMenuItem(
+            onTap: () => setState(() {
+              _showMenu = false;
+              _unselected!.add(_selected!);
+              _selected = _unselected![index];
+              _unselected!.removeWhere((element) => element.id == _selected!.id,);
+              _hintText = _selected!.resourceName;
+              widget.onSelected(_selected!);
+            }),
+            label: Text(name),
+          );
+        }),
+      ),
+      child: MoonTextInput(
+        activeBorderColor:  getColor(context, MoonColor.trunks),
+        width: 256,
+        readOnly: true,
+        canRequestFocus: false,
+        mouseCursor: MouseCursor.defer,
+        hintText: _hintText,
+        onTap: () {
+          _getPosition();
+          setState(() {
+            _showMenu = !_showMenu;
+          });
+        },
+        onTapOutside: (PointerDownEvent _) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        trailing: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: Center(
+            child: AnimatedRotation(
+              duration: const Duration(milliseconds: 200),
+              turns: _showMenu ? -0.5 : 0,
+              child: const Icon(
+                MoonIcons.controls_chevron_down_16_light,
+                size: 16,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
