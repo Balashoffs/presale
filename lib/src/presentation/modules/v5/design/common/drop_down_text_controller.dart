@@ -4,7 +4,10 @@ import 'package:presale/src/domain/models/v2/constructing/model/input/factors/ba
 class DropDownTextController extends ChangeNotifier {
   bool _showMenu;
 
+
   bool get showMenu => _showMenu;
+  bool _isLeading = true;
+  bool get isLeading => _isLeading;
 
   final List<String> _inputData;
 
@@ -25,6 +28,7 @@ class DropDownTextController extends ChangeNotifier {
   void selected(String value) {
     _current = value;
     _showMenu = false;
+    _isLeading = false;
     notifyListeners();
   }
 

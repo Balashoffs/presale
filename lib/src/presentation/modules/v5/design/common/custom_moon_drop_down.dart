@@ -30,6 +30,7 @@ class _CustomMoonDropDownState extends State<CustomMoonDropDown> {
   final TextEditingController _textEditController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
+
   @override
   void initState() {
     super.initState();
@@ -57,6 +58,7 @@ class _CustomMoonDropDownState extends State<CustomMoonDropDown> {
           onTapOutside: value.tapOutside,
           content: Column(children: _generateItems(value, widget.onSelected)),
           child: MoonFormTextInput(
+            width: widget.width,
             activeBorderColor:  getColor(context, MoonColor.trunks),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             focusNode: _focusNode,
@@ -71,7 +73,7 @@ class _CustomMoonDropDownState extends State<CustomMoonDropDown> {
             onTap: value.onTap,
             onTapOutside: (PointerDownEvent _) =>
                 FocusManager.instance.primaryFocus?.unfocus(),
-            leading: Icon(widget.leadingIcon, size: 24),
+            leading: value.isLeading ? Icon(widget.leadingIcon, size: 24) : null,
             trailing: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: Center(
