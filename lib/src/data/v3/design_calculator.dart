@@ -39,15 +39,17 @@ class DesignOfferCalculator {
   }
 
   void calcDivisionCost(DivisionsWithMarginRowVM model) {
-    double withOverPrice = model.overPriceFactor * model.divisionSummaryCost;
-    double withMargins = withOverPrice * model.marginFactor;
+    double total = model.overPriceFactor * model.divisionSummaryCost;
+    model.overPriceValue = total - model.divisionSummaryCost;
 
-    model.overPriceValue = withOverPrice;
-    model.marginValue = withMargins;
+    total *= model.marginFactor;
+    model.marginValue = total - model.divisionSummaryCost - model.overPriceValue;
 
-    double summaryCost = withMargins * model.clientValue;
-    model.summaryCostWithMarginVN.value = summaryCost;
-    double withTax = summaryCost * RussianTax;
+    total *= model.clientFactor;
+    model.clientValue = total - model.marginValue - model.divisionSummaryCost - model.overPriceValue;
+
+    model.summaryCostWithMarginVN.value = total;
+    double withTax = total * RussianTax;
     model.summaryCostWithTaxVN.value = withTax;
     model.taxValue = withTax * 20 / 120;
   }

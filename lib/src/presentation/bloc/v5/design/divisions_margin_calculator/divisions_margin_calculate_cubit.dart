@@ -38,7 +38,7 @@ class DivisionsMarginCalculateCubit
     List<DivisionResourceRowPojo> divisionsByType =
         designPresalePojo.resource?.rows ?? [];
     if (divisionsByType.isNotEmpty) {
-      _divisionsViewController.fill(divisionsByType);
+      _divisionsViewController.fill(designPresalePojo.inputDataDesign.inputFactors, divisionsByType);
       emit(DivisionsMarginCalculateState.showPage());
     }
   }
@@ -59,11 +59,6 @@ class DivisionsMarginCalculateCubit
     DesignPresalePojo updated = designPresalePojo.copyWith(
       divisions: updatesDivisions,
     );
-
-    if (kDebugMode) {
-      String result = json.encode(updated.toJson());
-      ;
-    }
 
     bool isSaves = await _dataSourceLocal.addDesignPresale(updated);
     if (isSaves) {

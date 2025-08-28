@@ -98,9 +98,5 @@ class ResourcesDTO {
     }
     return divisions;
 
-    // return ResourcesDTO(
-    //   divisions: divisions.values.toList(),
-    //   resources: allResources,
-    // );
   }
 }
