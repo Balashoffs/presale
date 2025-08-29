@@ -50,5 +50,5 @@ jobs:
           command_timeout: 20m
           script: |
             cd /home/presale
-            docker-compose pull
+            docker-compose down
             docker-compose up -d --force-recreate
