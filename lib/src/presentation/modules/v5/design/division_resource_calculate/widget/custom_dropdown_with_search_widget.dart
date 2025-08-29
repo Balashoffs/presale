@@ -46,7 +46,8 @@ class _CustomDropdownWithSearchWidgetState
           .where(
             (DivisionDTO option) =>
                 option.divisionName.toLowerCase().contains(_inputValue) ||
-                option.divisionShortName.toLowerCase().contains(_inputValue),
+                option.divisionShortName.toLowerCase().contains(_inputValue) ||
+                option.divisionDescription.toLowerCase().contains(_inputValue),
           )
           .toList();
       _showDropdown = true;

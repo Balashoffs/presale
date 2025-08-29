@@ -6,10 +6,8 @@ Tools • Dart 3.8.0 • DevTools 2.45.1
 
 ### Build docker image 
 ## at mac os m2
-export DOCKER_DEFAULT_PLATFORM=linux/amd64
-
-docker build -t calca_v0.5 .
-docker save -o calca.tar calca-v0.5
+see .script/build_image.sh to build
+see .script/run_image.sh to run
 
 ### Macos build
 flutter build macos --release --dart-define-from-file=env/production.json

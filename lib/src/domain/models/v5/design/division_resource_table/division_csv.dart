@@ -25,7 +25,6 @@ class DivisionCSV {
   });
 
   factory DivisionCSV.fromCsvRow(List<dynamic> row) {
-    ;
     return DivisionCSV(
       id: row[0],
       divisionShortName: row[1],
