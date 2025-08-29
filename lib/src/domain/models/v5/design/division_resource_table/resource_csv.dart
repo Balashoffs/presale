@@ -16,7 +16,6 @@ class ResourceCSV {
   final String resourceCostPerDay;
 
   factory ResourceCSV.fromCsvRow(List<dynamic> row) {
-    ;
     return ResourceCSV(
       id: row[0],
       resourceName: row[1],

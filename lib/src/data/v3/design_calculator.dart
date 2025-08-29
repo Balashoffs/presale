@@ -42,14 +42,20 @@ class DesignOfferCalculator {
     double total = model.overPriceFactor * model.divisionSummaryCost;
     model.overPriceValue = total - model.divisionSummaryCost;
 
-    total *= model.marginFactor;
-    model.marginValue = total - model.divisionSummaryCost - model.overPriceValue;
+    total = model.divisionSummaryCost * model.marginFactor;
+    model.marginValue = total - model.divisionSummaryCost;
 
-    total *= model.clientFactor;
-    model.clientValue = total - model.marginValue - model.divisionSummaryCost - model.overPriceValue;
+    total = model.divisionSummaryCost * model.clientFactor;
+    model.clientValue = total - model.divisionSummaryCost;
 
-    model.summaryCostWithMarginVN.value = total;
+    total =
+        model.divisionSummaryCost +
+        model.overPriceValue +
+        model.marginValue +
+        model.clientValue;
+
     double withTax = total * RussianTax;
+    model.summaryCostWithMarginVN.value = total;
     model.summaryCostWithTaxVN.value = withTax;
     model.taxValue = withTax * 20 / 120;
   }

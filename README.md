@@ -10,7 +10,8 @@ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 docker build -t calca_v0.5 .
 docker save -o calca.tar calca-v0.5
-
+scp -i ~/.ssh/217.18.62.204  calca_v0.5.2.tar root@217.18.62.204:/home/calca_v0.5.2.tar
+docker load -i calca_v0.5.2.tar
 ### Macos build
 flutter build macos --release --dart-define-from-file=env/production.json
 
